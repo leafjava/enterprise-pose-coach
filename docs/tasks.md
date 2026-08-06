@@ -1,48 +1,135 @@
 # MVP 任务清单
 
-状态只使用 `done` 与 `todo`。`done` 表示仓库中已有实现或本轮已经加入且可由 harness 验证；不把设计稿、计划或 README 声明当成产品实现。
+状态只使用 `done` 与 `todo`。`done` 表示仓库中已有实现或本轮已经加入且可由 harness 验证；设计稿、计划、README 声明和局部原型不能算作产品功能完成。
 
-| ID | 模块 | 小任务 | 状态 | 证据/下一步 |
+优先级定义：
+
+- `P0`：黑客松主 Demo 和验收闭环必需；
+- `P1`：显著增强产品表达，但主流程不稳定时可以砍掉；
+- `P2`：赛后产品化事项，不进入 48 小时主路径。
+
+## 产品定义与企业标准
+
+| ID | 优先级 | 小任务 | 状态 | 证据/完成条件 |
 |---|---|---|---|---|
-| T-001 | 产品 | 明确一句话、ICP、核心痛点与不做边界 | done | `docs/PRD.md` |
-| T-002 | 产品 | 确定“招聘体能筛选切入、在岗动作训练扩张”的双阶段路线 | done | `docs/PRD.md`；现有功能未改 |
-| T-003 | Harness | 提供 install/dev/test/check/demo 统一命令 | done | 根目录 `package.json` |
-| T-004 | Harness | 无 GPU 最小测试框架 | done | `tests/harness/`，Python unittest |
-| T-005 | Harness | 主流程端到端 smoke | done | `tools/smoke_test.py` |
-| T-006 | Harness | 脱敏 seed/demo 数据 | done | `data/demo/enterprise_demo.json` |
-| T-007 | Harness | 验收标准与任务状态文档 | done | `docs/acceptance.md`、本文件 |
-| T-008 | Web | 产品首页 `/` | done | `templates/home.html`、smoke HTTP 200 |
-| T-009 | Web | 实时训练页 `/coach` | done | `templates/index.html`、smoke HTTP 200 |
-| T-010 | Web | 认证页 `/certification` | done | `templates/certification.html`、smoke HTTP 200 |
-| T-011 | 视觉 | RTMPose 关键点提取代码与 ONNX 权重 | done | `src/rtmpose_tran.py`、`model/*.onnx` |
-| T-012 | 视觉 | ST-GCN 动作分类代码与 11 类权重 | done | `src/fitness_infer.py`、`model/mmfit_pose11cls_stride48_best.pth` |
-| T-013 | 规则 | 深蹲、弓步、俯卧撑、肩推、划船、弯举专项规则 | done | `src/live_coach.py`、现有单元测试 |
-| T-014 | 规则 | 其他 5 类动作通用反馈 | done | `GENERIC_EXERCISES` |
-| T-015 | 会话 | 开始、逐帧、停止 API | done | `/api/session/*`、smoke |
-| T-016 | 反馈 | 去抖、语音冷却、错误 Top3 与下一重点 | done | `LiveCoachEngine`、现有测试 |
-| T-017 | 认证 | 达标认证写入与查询 | done | `/api/certifications`、smoke 临时数据 |
-| T-018 | AI | Ollama 本地生成教练反馈与故障提示 | done | `src/local_llm.py`、`generate_feedback` |
-| T-019 | 证据 | 模型权重、样本规模、混淆矩阵证据文档 | done | `docs/real-evidence.md` |
-| T-020 | 产品 | 创建 `RECRUIT_SQUAT_50_V1` 招聘标准配置与 schema | todo | 先写配置校验测试，再实现；标准须岗位相关 |
-| T-021 | 产品 | 会话绑定 `batch_id/task_id/standard_id/target_reps` | todo | 保留 50 次 Demo，同时支持企业配置 |
-| T-022 | 产品 | 报告加入 `decision/model_version/rule_version/request_id` | todo | 对应 AC-11 |
-| T-023 | ClawHive | 确认官方 Skill 包规范、认证和回调方式 | todo | 获得比赛平台文档/测试租户后执行 |
-| T-024 | ClawHive | 实现任务创建与结果通知最小连接 | todo | 只做一个主流程连接 |
-| T-025 | ClawHive | 幂等键、签名校验、防重放和错误映射 | todo | 对应 AC-09、AC-13 |
-| T-026 | 安全 | 租户隔离与角色权限 | todo | 优先复用 ClawHive 权限，不自建复杂 IAM |
-| T-027 | 安全 | 结构化审计事件与留存策略 | todo | 不记录密钥、原始帧和完整健康信息 |
-| T-028 | 隐私 | 候选人摄像头用途、留存、重试与人工复核说明 | todo | 复用现有页增加最小告知，不做暗采集 |
-| T-029 | 稳定性 | 真实演示机 GPU 冷启动与 10 分钟运行测试 | todo | 记录硬件、FPS、失败率，不凭空写数字 |
-| T-030 | 稳定性 | 光线、距离、侧面、遮挡测试矩阵 | todo | 每项保存结果与已知限制 |
-| T-031 | 数据 | 先做招聘考场计数一致性测试，再采集安全搬运小样本请 EHS 标注 | todo | 分别验证第一、第二阶段；不得混报精度 |
-| T-032 | 页面 | 训练页展示任务名称、岗位标准、目标次数与数据用途 | todo | 只在 Skill 契约稳定后改页面 |
-| T-033 | 页面 | 招聘批次最小汇总页 | todo | P1；主流程不稳时直接砍掉 |
-| T-034 | 商业 | 访谈 5 名招聘负责人，并补访 EHS/用工合规 | todo | 验证项目真实性、规模、预算和采购阻力 |
-| T-035 | 商业 | 建立每百人考官工时 ROI 模板与在岗扩展模型 | todo | 只使用客户输入的人工时长与成本 |
-| T-036 | 路演 | 5 分钟 Demo 视频与 PPT | todo | 按 AC-16 彩排并准备离线备份 |
-| T-037 | 架构 | 将 FastAPI backend 接入主链路 | todo | 黑客松期间不做；赛后按并发需求决策 |
-| T-038 | 移动端 | 将 React Native app 接入主链路 | todo | 黑客松期间不做；Web 已满足摄像头 Demo |
+| T-001 | P0 | 明确一句话、ICP、核心痛点与不做边界 | done | `docs/PRD.md` |
+| T-002 | P0 | 确定“招聘体能筛选切入、在岗动作训练扩张”的双阶段路线 | done | `docs/PRD.md`；现有功能未改 |
+| T-020 | P0 | 创建 `RECRUIT_SQUAT_50_V1` 招聘标准配置与 schema | todo | 先写配置校验测试；标准须岗位相关、版本化、可回滚 |
+
+## Harness 与质量门禁
+
+| ID | 优先级 | 小任务 | 状态 | 证据/完成条件 |
+|---|---|---|---|---|
+| T-003 | P0 | 提供 `install/dev/test/check/demo` 统一命令 | done | 根目录 `package.json` |
+| T-004 | P0 | 建立无 GPU 最小测试框架 | done | `tests/harness/`，Python `unittest` |
+| T-005 | P0 | 建立主流程端到端 smoke | done | `tools/smoke_test.py` |
+| T-006 | P0 | 提供脱敏 seed/demo 数据 | done | `data/demo/enterprise_demo.json` |
+| T-007 | P0 | 建立验收标准与任务状态文档 | done | `docs/acceptance.md`、本文件 |
+
+## Web 页面与用户流程
+
+| ID | 优先级 | 小任务 | 状态 | 证据/完成条件 |
+|---|---|---|---|---|
+| T-008 | P0 | 产品首页 `/` | done | `templates/home.html`、smoke HTTP 200 |
+| T-009 | P0 | 实时训练页 `/coach` | done | `templates/index.html`、smoke HTTP 200 |
+| T-010 | P0 | 认证页 `/certification` | done | `templates/certification.html`、smoke HTTP 200 |
+| T-032 | P0 | 训练/认证页展示任务名称、批次、标准、目标次数与数据用途 | todo | Skill 契约稳定后实现；主流程不超过 5 次点击 |
+| T-033 | P1 | 招聘批次最小汇总页 | todo | 展示完成、达标、未达标、需复核人数；主流程不稳时砍掉 |
+
+## 视觉模型与数据
+
+| ID | 优先级 | 小任务 | 状态 | 证据/完成条件 |
+|---|---|---|---|---|
+| T-011 | P0 | RTMPose 关键点提取代码与 ONNX 权重 | done | `src/rtmpose_tran.py`、`model/*.onnx` |
+| T-012 | P0 | ST-GCN 动作分类代码与 11 类权重 | done | `src/fitness_infer.py`、`model/mmfit_pose11cls_stride48_best.pth` |
+| T-029 | P0 | 真实演示机 GPU 冷启动与 10 分钟运行测试 | todo | 记录硬件、FPS、失败率和模型加载时间，不凭空写数字 |
+| T-030 | P0 | 建立光线、距离、机位、遮挡与动作节奏测试矩阵 | todo | 每项保存计数结果、需复核率和已知限制 |
+| T-031 | P1 | 先做招聘考场计数一致性测试，再采集安全搬运小样本请 EHS 标注 | todo | 第一、第二阶段分别报告，禁止混报精度 |
+
+## 动作规则、计数与反馈
+
+| ID | 优先级 | 小任务 | 状态 | 证据/完成条件 |
+|---|---|---|---|---|
+| T-013 | P0 | 深蹲、弓步、俯卧撑、肩推、划船、弯举专项规则 | done | `src/live_coach.py`、现有单元测试 |
+| T-014 | P1 | 其他 5 类动作通用反馈 | done | `GENERIC_EXERCISES` |
+| T-016 | P0 | 去抖、语音冷却、错误 Top3 与下一重点 | done | `LiveCoachEngine`、现有测试 |
+| T-018 | P1 | Ollama 本地生成教练反馈与故障提示 | done | `src/local_llm.py`、`generate_feedback`；LLM 不影响核心判断 |
+
+## Ghost Coach 视觉纠正场
+
+目标：在摄像头画面中以实线显示员工当前骨架，以半透明虚线显示同阶段、按人体比例对齐的目标骨架，再用低频闪烁的方向箭头指出最重要的修正方向。MVP 只覆盖深蹲，不做真正的 3D AR，也不一次显示超过两个纠正箭头。
+
+| ID | 优先级 | 小任务 | 状态 | 证据/完成条件 |
+|---|---|---|---|---|
+| T-039 | P0 | 冻结 Ghost Coach 视觉规范 | todo | 定义当前骨架、目标骨架、节点、颜色、线型、透明度、箭头和消失条件 |
+| T-040 | P0 | 盘点并筛选深蹲标准姿态数据 | todo | 检查 `standard_*.npy`、`reference_*.npy`；确定可用来源、视角、关键点格式和授权 |
+| T-041 | P0 | 建立深蹲分阶段目标模板 | todo | 至少包含 `ready/descending/bottom/rising`；每个模板均为 COCO 17 点并有版本号 |
+| T-042 | P0 | 实现目标姿势人体比例对齐 | todo | 以髋/肩中心为锚点，按肩宽、躯干和腿长缩放，并处理左右镜像与摄像头朝向 |
+| T-043 | P0 | 绘制当前姿势实线骨架与节点 | todo | 正确绿色、提醒黄色、错误红色、低置信度灰色；不遮挡关键人物区域 |
+| T-044 | P0 | 绘制半透明虚线目标骨架 | todo | 目标骨架与当前动作阶段同步；用户移动或缩放后仍稳定对齐 |
+| T-045 | P0 | 实现深蹲三类方向箭头 | todo | `squat_knees_out` 向外、`squat_depth` 向下、`squat_chest_up` 向上/向后 |
+| T-046 | P0 | 建立视觉提示优先级、平滑与迟滞机制 | todo | 每帧最多显示 2 个问题；错误持续后出现，修正稳定后消失；骨架和箭头无明显抖动 |
+| T-047 | P0 | 实现置信度、遮挡与无人入镜降级 | todo | 关键点不可靠时隐藏目标与箭头，提示调整站位，不生成误导性目标 |
+| T-048 | P0 | 为 Ghost Coach 增加可自动验证的几何测试 | todo | 固定姿态输入可验证模板选择、对齐方向、箭头代码、最大箭头数和置信度降级 |
+| T-049 | P0 | 增加 Ghost Coach Demo smoke 与视觉验收 | todo | Harness 截图/DOM 状态可复现；真实演示机完成“错误→箭头→修正→变绿→计数 +1” |
+| T-050 | P1 | 做可理解性与视觉舒适度测试 | todo | 至少覆盖 5 名用户、嘈杂/静音环境；闪烁低频且无明显视觉疲劳反馈 |
+| T-051 | P2 | 抽象其他动作的目标模板与箭头接口 | todo | 深蹲验收稳定后再扩展俯卧撑、仰卧起坐和安全搬运代理动作 |
+
+## 会话、认证与报告
+
+| ID | 优先级 | 小任务 | 状态 | 证据/完成条件 |
+|---|---|---|---|---|
+| T-015 | P0 | 开始、逐帧、停止 API | done | `/api/session/*`、smoke |
+| T-017 | P0 | 达标认证写入与查询 | done | `/api/certifications`、smoke 临时数据 |
+| T-021 | P0 | 会话绑定 `batch_id/task_id/standard_id/target_reps` | todo | 保留 50 次 Demo，同时支持标准配置和幂等任务 |
+| T-022 | P0 | 报告加入 `decision/model_version/rule_version/request_id` | todo | 对应 AC-11；技术失败必须是 `inconclusive` |
+
+## ClawHive 与企业系统连接
+
+| ID | 优先级 | 小任务 | 状态 | 证据/完成条件 |
+|---|---|---|---|---|
+| T-023 | P0 | 确认官方 Skill 包规范、认证和回调方式 | todo | 获得比赛平台文档或测试租户后记录确定契约 |
+| T-024 | P0 | 实现任务创建与结果通知最小连接 | todo | 只做一个“创建招聘检测→完成→通知 HR”闭环 |
+| T-025 | P0 | 实现幂等键、签名校验、防重放和错误映射 | todo | 对应 AC-09、AC-13；重复请求不重复建任务 |
+
+## 安全、隐私与审计
+
+| ID | 优先级 | 小任务 | 状态 | 证据/完成条件 |
+|---|---|---|---|---|
+| T-026 | P0 | 租户隔离与角色权限 | todo | 优先复用 ClawHive 权限，不自建复杂 IAM |
+| T-027 | P0 | 结构化审计事件与留存策略 | todo | 不记录密钥、无必要的原始帧和完整健康信息 |
+| T-028 | P0 | 候选人摄像头用途、留存、重试与人工复核说明 | todo | 增加最小告知；不得暗采集；技术失败不计为未达标 |
+
+## 证据、商业验证与路演
+
+| ID | 优先级 | 小任务 | 状态 | 证据/完成条件 |
+|---|---|---|---|---|
+| T-019 | P0 | 模型权重、样本规模、混淆矩阵证据文档 | done | `docs/real-evidence.md` |
+| T-034 | P0 | 访谈 5 名招聘负责人，并补访 EHS/用工合规 | todo | 验证项目真实性、规模、预算、流程和采购阻力 |
+| T-035 | P1 | 建立每百人考官工时 ROI 模板与在岗扩展模型 | todo | 只使用客户输入的人工时长与成本，不编造降本比例 |
+| T-036 | P0 | 制作 5 分钟 Demo 视频与 PPT | todo | 展示招聘主闭环、Ghost Coach WOW Moment、ClawHive 和扩展商业价值 |
+
+## 赛后架构与暂缓事项
+
+| ID | 优先级 | 小任务 | 状态 | 证据/完成条件 |
+|---|---|---|---|---|
+| T-037 | P2 | 将 FastAPI backend 接入主链路 | todo | 黑客松期间不做；赛后按并发和团队边界决策 |
+| T-038 | P2 | 将 React Native app 接入主链路 | todo | 黑客松期间不做；Web 已满足摄像头主 Demo |
 
 ## 48 小时执行顺序
 
-严格按 `T-020 → T-021 → T-022 → T-023 → T-025 → T-032 → T-029 → T-036` 推进。`SAFE_LIFT_V1` 只作为第二阶段扩展故事；T-033、T-037、T-038 不进入 48 小时主计划。
+第一优先级是跑通“招聘检测 + Ghost Coach + 结构化结果”的现场闭环：
+
+```text
+T-020 招聘标准
+  → T-039～T-041 视觉规范与目标模板
+  → T-042～T-047 对齐、绘制、箭头与降级
+  → T-048～T-049 自动测试与视觉验收
+  → T-021～T-022 任务绑定与报告契约
+  → T-023～T-025 ClawHive 最小连接
+  → T-032 页面任务信息
+  → T-029～T-030 演示机与环境稳定性
+  → T-036 视频、PPT 与离线备份
+```
+
+如果时间不足，按顺序砍掉 `T-050` 用户测试扩展、`T-033` 批次看板和所有 `P2` 任务；不得砍掉 `T-047` 置信度降级、`T-048` 自动测试或人工复核边界。`SAFE_LIFT_V1` 只作为第二阶段扩展故事，不抢占招聘深蹲与 Ghost Coach 主 Demo 的 P0 时间。
