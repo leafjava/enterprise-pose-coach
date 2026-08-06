@@ -522,6 +522,7 @@
                 <canvas class="cert-canvas" id="certCanvas" width="1000" height="700"></canvas>
                 <div class="btn-row">
                     <button type="button" class="btn btn-success" id="downloadCertBtn">下载证书（PNG）</button>
+                    <button type="button" class="btn btn-secondary" id="shareCertBtn">复制认证信息</button>
                     <button type="button" class="btn btn-secondary" id="againBtn">再来一次</button>
                     <button type="button" class="btn btn-secondary" id="homeBtn">返回首页</button>
                 </div>
@@ -587,6 +588,7 @@
 
         const certCanvas = document.getElementById("certCanvas");
         const downloadCertBtn = document.getElementById("downloadCertBtn");
+        const shareCertBtn = document.getElementById("shareCertBtn");
         const againBtn = document.getElementById("againBtn");
         const homeBtn = document.getElementById("homeBtn");
         const historyBody = document.getElementById("historyBody");
@@ -845,6 +847,7 @@
                 resultSub.textContent = `本次完成 ${detectedReps} 次，未达到 50 次认证标准，暂未发证。`;
                 downloadCertBtn.disabled = true;
                 downloadCertBtn.textContent = "未达标，无证书";
+                shareCertBtn.disabled = true;
             }
         }
 
@@ -858,6 +861,8 @@
             cueLine.textContent = "打开摄像头后开始检测。";
             downloadCertBtn.disabled = false;
             downloadCertBtn.textContent = "下载证书（PNG）";
+            shareCertBtn.disabled = false;
+            shareCertBtn.textContent = "复制认证信息";
             formCard.hidden = false;
             detectCard.hidden = true;
             resultCard.hidden = true;
@@ -957,6 +962,28 @@
             a.href = certCanvas.toDataURL("image/png");
             a.download = `${lastCert.name}-${lastCert.exercise}-体能认证.png`;
             a.click();
+        });
+
+        shareCertBtn.addEventListener("click", async () => {
+            if (!lastCert) return;
+            const text = [
+                "【练了吗 · 体能检测认证】",
+                `姓名：${lastCert.name}`,
+                `工号：${lastCert.workerId}`,
+                `检测项目：${lastCert.exercise}`,
+                `达标次数：${lastCert.reps} / 50`,
+                `证书编号：${lastCert.certNo}`,
+                `认证时间：${lastCert.date}`,
+                "—— 练了吗 · 企业级实时运动姿态矫正（ClawHive Skill）",
+            ].join("\n");
+            try {
+                await navigator.clipboard.writeText(text);
+                shareCertBtn.textContent = "已复制 ✓";
+                setTimeout(() => { shareCertBtn.textContent = "复制认证信息"; }, 1600);
+            } catch (e) {
+                shareCertBtn.textContent = "复制失败，请手动截图";
+                setTimeout(() => { shareCertBtn.textContent = "复制认证信息"; }, 1600);
+            }
         });
 
         againBtn.addEventListener("click", resetFlow);
