@@ -356,7 +356,58 @@
             font-size: 13px;
         }
 
+        /* ---------- 真实引擎证据 ---------- */
+        .engine-section {
+            background: linear-gradient(180deg, #ffffff 0%, var(--panel-alt) 100%);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 36px;
+        }
+
+        .engine-proof {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            margin-top: 20px;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px 22px;
+        }
+
+        .engine-proof img {
+            width: min(340px, 42%);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: #fff;
+        }
+
+        .engine-proof strong {
+            display: block;
+            font-size: 17px;
+            margin-bottom: 6px;
+        }
+
+        .engine-proof span {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.65;
+        }
+
         @media (max-width: 720px) {
+            .engine-section {
+                padding: 22px;
+            }
+
+            .engine-proof {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .engine-proof img {
+                width: 100%;
+            }
+
             .hero {
                 padding: 56px 0 48px;
             }
@@ -382,15 +433,16 @@
                     练了吗 · 面向蓝领与体力劳动者的企业级 AI 运动健康 Agent。基于 RTMPose 姿态识别
                     与 ST-GCN 时空图卷积，实时纠正劳动与训练中的危险姿势、预防慢性损伤；为工厂招聘
                     提供标准化 AI 体能检测认证，替代人工蹲守计数——用 AI 数字员工，降低企业职业健康成本。
+                    模型权重本地加载，全程离线推理，不依赖任何云端 API。
                 </p>
                 <div class="hero-actions">
                     <a href="/coach" class="primary-cta">实时姿势纠正 →</a>
                     <a href="/certification" class="primary-cta success-cta">体能检测认证 →</a>
                 </div>
                 <div class="hero-proof">
-                    <div><strong>AI 计数</strong><span>体能检测自动判定，替代人工蹲守</span></div>
-                    <div><strong>毫秒级</strong><span>实时姿势纠正，预防职业慢性损伤</span></div>
-                    <div><strong>0 人工跟进</strong><span>标准化检测与认证，降低健康成本</span></div>
+                    <div><strong>真模型</strong><span>RTMPose + ST-GCN，本地 GPU 实时推理</span></div>
+                    <div><strong>11 类动作</strong><span>21 人真实训练数据 · 混淆矩阵验证</span></div>
+                    <div><strong>不依赖云端</strong><span>逐帧本地推理，断网也能跑</span></div>
                 </div>
             </div>
         </section>
@@ -426,6 +478,41 @@
                     <p>服务企业员工健身、体能达标与恢复训练——运动多一些，职业病与工伤风险就少一些。</p>
                     <span class="badge">企业降本</span>
                 </article>
+            </div>
+        </section>
+
+        <!-- 真实推理引擎 -->
+        <section class="shell section-block engine-section">
+            <div class="section-heading">
+                <span>REAL ENGINE · NOT A SLIDEDECK</span>
+                <h2>真模型、真推理、真数据 —— 不只是一个演示</h2>
+            </div>
+            <div class="grid">
+                <article class="panel">
+                    <div class="card-icon">🧠</div>
+                    <h3>真模型</h3>
+                    <p>RTMPose 姿态识别 + ST-GCN 时空图卷积，模型权重本地加载，GPU 实时推理。</p>
+                    <span class="badge">本地权重</span>
+                </article>
+                <article class="panel">
+                    <div class="card-icon">📊</div>
+                    <h3>真数据</h3>
+                    <p>21 人真实采集训练集，11 类动作、8898 个样本窗口，训练/验证混淆矩阵可验证。</p>
+                    <span class="badge">混淆矩阵</span>
+                </article>
+                <article class="panel">
+                    <div class="card-icon">🔗</div>
+                    <h3>真闭环</h3>
+                    <p>摄像头逐帧 → 关键点 → 分类 → 计数 → 纠错 → 认证，全链路本地跑通。</p>
+                    <span class="badge">离线可用</span>
+                </article>
+            </div>
+            <div class="engine-proof">
+                <img src="/static/validation_confusion_matrix.png" alt="ST-GCN 验证集混淆矩阵">
+                <div>
+                    <strong>验证集混淆矩阵</strong>
+                    <span>ST-GCN 动作分类模型的真实验证结果，11 类动作分类表现逐格可核对——这是真实训练产出的模型，不是 mock 数据。</span>
+                </div>
             </div>
         </section>
 
@@ -475,7 +562,7 @@
     </main>
 
     <footer>
-        练了吗 · 企业级 AI 运动健康 Agent（ClawHive Skill）&nbsp;|&nbsp; RTMPose × ST-GCN &nbsp;|&nbsp; 本系统结果仅作参考
+        练了吗 · 企业级 AI 运动健康 Agent（ClawHive Skill）&nbsp;|&nbsp; 本地模型推理 · RTMPose × ST-GCN × CUDA &nbsp;|&nbsp; 本系统结果仅作参考
     </footer>
 </body>
 </html>

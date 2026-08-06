@@ -3,6 +3,9 @@
 > **AI 帮你"看"懂每一个动作是否达标 —— 从工厂招聘体能检测到员工职业健康恢复，用实时视觉姿态矫正，替代昂贵且主观的人工目测。**
 
 一个可被 ClawHive Agent 反复调用、可嵌入招聘与健康管理流程、可沉淀为企业资产的企业级 Skill。
+
+> ⚡ **不是纯演示**：内置真实可运行的本地 AI 模型 —— RTMPose 姿态识别 + ST-GCN 动作分类，11 类动作、21 人真实训练集、本地 GPU 离线推理，评委可当场验证。
+
 参赛作品，面向 **网易智企帝王蟹（ClawHive）大赛 · A 赛道（AI-视听）**。
 
 ---
@@ -149,8 +152,8 @@ Agent 编排：调用 Skill(深蹲) → 调用 Skill(俯卧撑) → 调用 Skill
 ```
 ┌───────────────────────────────────────────────┐
 │  ① 姿态检测层（视觉）                          │
-│     MediaPipe / MoveNet 人体关键点估计         │
-│     33 点骨架 + 关节角度实时计算               │
+│     RTMPose 人体关键点估计（ONNX / GPU）       │
+│     ST-GCN 时空图卷积动作分类（11 类）         │
 ├───────────────────────────────────────────────┤
 │  ② 动作规则 / 评分层                          │
 │     动作周期识别（起-落-起）→ 幅度判定         │
@@ -167,15 +170,17 @@ Agent 编排：调用 Skill(深蹲) → 调用 Skill(俯卧撑) → 调用 Skill
 └───────────────────────────────────────────────┘
 ```
 
-**技术选型（规划）**
+**技术选型（已落地）**
 
 | 模块 | 选型 | 说明 |
 |---|---|---|
-| 姿态估计 | MediaPipe Pose / MoveNet | 端侧运行，隐私友好，无需 GPU 也可实时 |
-| 前端实时预览 | HTML5 + Canvas + 摄像头流 | 手机浏览器即开即用，无需安装 |
-| 后端服务 | Python FastAPI | 视频处理、规则引擎、报告生成 |
-| 报告生成 | 模板 + 视频帧截图 / 录屏 | 可导出 PDF / HTML |
-| 语音纠正 | TTS（Edge-TTS / 平台语音） | 实时语音反馈 |
+| 姿态估计 | **RTMPose（ONNX）** | 人体 17 关键点，onnxruntime GPU 推理，已落地 |
+| 动作分类 | **ST-GCN 时空图卷积** | 11 类动作、21 人真实训练集（MM-Fit），本地权重推理 |
+| 实时推理 | PyTorch + CUDA | 本地 GPU 逐帧推理，离线可用，不依赖云端 API |
+| 前端实时预览 | HTML5 + Canvas + 摄像头流 | 浏览器即开即用，无需安装 |
+| 后端服务 | Python Flask（模型层）+ FastAPI（应用层） | 实时会话接口 + 认证记录接口 |
+| 语音纠正 | Web Speech API TTS | 实时语音反馈 |
+| 体能认证 | Canvas 证书生成 + JSON 记录持久化 | 达标发证、历史可查 |
 
 ---
 
@@ -268,21 +273,26 @@ enterprise-pose-coach/
 
 ---
 
-## 十一、快速开始（规划）
+## 十一、快速开始
 
-> 当前处于黑客松开发冲刺阶段，以下为运行指引规划，将随代码落地逐步补充。
+> 模型层 Web 演示已完整可运行，应用层（React Native App + FastAPI）见 `backend/` 与 `app/`。
 
 ```bash
-# 1. 克隆仓库
-git clone <repo-url> enterprise-pose-coach && cd enterprise-pose-coach
+# 1. 进入项目目录，激活虚拟环境
+cd lian_le_ma
+venv\Scripts\activate
 
-# 2. 安装依赖（建议国内镜像）
+# 2. 安装依赖（建议国内镜像；PyTorch 按你的 CUDA 环境单独安装）
 pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 
-# 3. 启动服务
-python main.py
+# 3. 启动模型层服务（已内置 RTMPose + ST-GCN 权重，本地 GPU 推理）
+set OLLAMA_MODEL=gemma4:e2b
+python web_app.py
 
-# 4. 浏览器打开摄像头，选择动作类型与达标标准，开始检测
+# 4. 浏览器打开 http://127.0.0.1:4000
+#    /              首页（项目介绍 + 双功能入口）
+#    /coach         实时健身动作纠错
+#    /certification 工厂招聘体能检测认证
 ```
 
 ---
@@ -294,6 +304,18 @@ python main.py
 - **赛道**：A 赛道（AI-视听）—— 主打视觉 + 实时交互能力
 - **提交物**：≥3 个 Sample 演示、Demo 视频（5 分钟内）、详细说明书及 PPT
 - **评审维度**：商业价值（25%）· 创新性（25%）· 技能包完整度（25%）· 可复用稳定性（25%）
+
+### 提交材料清单（提交前自查）
+
+| 提交项 | 状态 | 说明 |
+|---|---|---|
+| 实时演示可打开 | ✅ 已完成 | http://127.0.0.1:4000（首页 / `/coach` / `/certification`） |
+| 真实模型可验证 | ✅ 已完成 | RTMPose + ST-GCN 本地 GPU 推理，混淆矩阵见首页 |
+| 认证记录接口 | ✅ 已完成 | `/api/certifications` GET / POST，持久化 `data/certifications.json` |
+| 环境变量说明 | ✅ 已完成 | `OLLAMA_MODEL`、`POSE_VIDEO_DIR` 见 `RUNNING.md` |
+| Demo 视频（≤5 分钟） | ⬜ 待补 | 首页 → 深蹲实时纠错 → 体能认证达标 → 下载证书 |
+| 演示 PPT | ⬜ 待补 | 商业价值 + 真实推理引擎证据 |
+| 截图素材 | ⬜ 待补 | 首页 / 认证证书 / 混淆矩阵 |
 
 ### 联系我们
 
