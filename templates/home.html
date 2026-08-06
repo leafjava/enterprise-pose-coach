@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练了吗 · 企业级实时运动姿态矫正平台</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --bg: #f4f7fb;
+            --panel: #ffffff;
+            --panel-alt: #eef3f9;
+            --text: #162030;
+            --text-dim: #5b6677;
+            --muted: #5b6677;
+            --border: #d9e0ea;
+            --accent: #1f6feb;
+            --accent-strong: #1553b7;
+            --success: #18794e;
+            --hero-grad-1: #0b1f3f;
+            --hero-grad-2: #123a6d;
+            --hero-grad-3: #1f6feb;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .shell {
+            width: min(1120px, calc(100vw - 32px));
+            margin: 0 auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ---------- Hero ---------- */
+        .hero {
+            margin-top: 0;
+            padding: 88px 0 72px;
+            border-radius: 0 0 28px 28px;
+            background:
+                radial-gradient(1100px 480px at 82% -10%, rgba(31, 111, 235, 0.55), transparent 60%),
+                linear-gradient(135deg, var(--hero-grad-1) 0%, var(--hero-grad-2) 62%, #0d2a4e 100%);
+            color: #ffffff;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            color: rgba(255, 255, 255, 0.82);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-radius: 999px;
+            padding: 7px 14px;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4ade80;
+            box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
+            animation: livePulse 2s infinite;
+        }
+
+        @keyframes livePulse {
+            0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.55); }
+            70% { box-shadow: 0 0 0 9px rgba(74, 222, 128, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+        }
+
+        .hero h1 {
+            margin: 26px 0 0;
+            font-size: 54px;
+            line-height: 1.16;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            max-width: 760px;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            background: linear-gradient(90deg, #7cb0ff, #4ade80);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-copy {
+            margin: 22px 0 0;
+            max-width: 640px;
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.86);
+            line-height: 1.75;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 34px;
+        }
+
+        .primary-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 26px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+            background: var(--accent);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 10px 26px rgba(31, 111, 235, 0.45);
+            transition: transform 140ms ease, background 140ms ease;
+        }
+
+        .primary-cta:hover {
+            background: var(--accent-strong);
+            transform: translateY(-2px);
+        }
+
+        .primary-cta.success-cta {
+            background: linear-gradient(135deg, #0f9d58, #18794e);
+            box-shadow: 0 10px 26px rgba(24, 121, 78, 0.4);
+        }
+
+        .primary-cta.success-cta:hover {
+            background: linear-gradient(135deg, #0b7a45, #115f3b);
+        }
+
+        .hero-proof {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            margin-top: 52px;
+            border-top: 1px solid rgba(255, 255, 255, 0.14);
+            padding-top: 30px;
+        }
+
+        .hero-proof > div {
+            flex: 1 1 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding-right: 24px;
+        }
+
+        .hero-proof strong {
+            font-size: 30px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .hero-proof span {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+        }
+
+        /* ---------- 通用区块 ---------- */
+        .section-block {
+            margin-top: 64px;
+        }
+
+        .section-heading {
+            margin-bottom: 22px;
+        }
+
+        .section-heading > span {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 22px;
+        }
+
+        .card-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            background: var(--panel-alt);
+            border: 1px solid var(--border);
+        }
+
+        .panel h3 {
+            margin: 16px 0 6px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .panel p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.65;
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            background: rgba(31, 111, 235, 0.1);
+            border-radius: 999px;
+            padding: 5px 11px;
+            margin-top: 16px;
+        }
+
+        .badge.success {
+            color: var(--success);
+            background: rgba(24, 121, 78, 0.1);
+        }
+
+        /* ---------- 步骤 ---------- */
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .step-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 22px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), rgba(31, 111, 235, 0.25));
+        }
+
+        .step-card > span {
+            font-size: 28px;
+            font-weight: 800;
+            color: rgba(31, 111, 235, 0.35);
+            letter-spacing: 0.02em;
+        }
+
+        .step-card h3 {
+            margin: 12px 0 6px;
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .step-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+
+        /* ---------- CTA 收尾 ---------- */
+        .audience-strip {
+            margin-top: 64px;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, var(--hero-grad-1), var(--hero-grad-2));
+            color: #ffffff;
+            border-radius: 16px;
+            padding: 34px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 26px;
+            align-items: center;
+        }
+
+        .audience-strip > div span {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 6px;
+        }
+
+        .audience-strip > div strong {
+            font-size: 17px;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        .audience-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            justify-self: start;
+            padding: 14px 24px;
+            border-radius: 11px;
+            font-weight: 700;
+            font-size: 15px;
+            color: #0b1f3f;
+            background: #ffffff;
+            transition: transform 140ms ease, opacity 140ms ease;
+        }
+
+        .audience-cta:hover {
+            transform: translateY(-2px);
+            opacity: 0.92;
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 26px 0 40px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        @media (max-width: 720px) {
+            .hero {
+                padding: 56px 0 48px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero-proof strong {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <!-- Hero -->
+        <section class="hero">
+            <div class="shell">
+                <div class="eyebrow"><span class="live-dot"></span>ENTERPRISE REAL-TIME POSE CORRECTION</div>
+                <h1>把每一个动作，<br><em>变成标准动作。</em></h1>
+                <p class="hero-copy">
+                    练了吗 · 企业级实时运动姿态矫正平台。基于 RTMPose 姿态识别与 ST-GCN 时空图卷积，
+                    在训练过程中逐帧分析人体关键点，实时判定动作标准度、即时给出纠错提示——
+                    既能服务个人健身，也能为工厂招聘提供标准化的体能检测认证。
+                </p>
+                <div class="hero-actions">
+                    <a href="/coach" class="primary-cta">实时健身动作纠错 →</a>
+                    <a href="/certification" class="primary-cta success-cta">体能检测认证 →</a>
+                </div>
+                <div class="hero-proof">
+                    <div><strong>10+</strong><span>可识别健身动作，覆盖上下肢与核心训练</span></div>
+                    <div><strong>RTMPose + ST-GCN</strong><span>关键点检测 + 时空图卷积动作分类双引擎</span></div>
+                    <div><strong>毫秒级</strong><span>逐帧实时反馈，训练中即时纠错</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 核心能力 -->
+        <section class="shell section-block">
+            <div class="section-heading">
+                <span>ONE ENGINE / TWO BUSINESS LINES</span>
+                <h2>一套引擎，承载实时纠错与体能认证两大业务</h2>
+            </div>
+            <div class="grid">
+                <article class="panel">
+                    <div class="card-icon">🔍</div>
+                    <h3>实时动作识别</h3>
+                    <p>摄像头逐帧捕获人体关键点，自动识别当前正在完成的健身动作，无需手动切换。</p>
+                    <span class="badge">动作分类</span>
+                </article>
+                <article class="panel">
+                    <div class="card-icon">🧭</div>
+                    <h3>智能纠错反馈</h3>
+                    <p>阶段机判定动作是否标准：深蹲深度、膝盖方向、俯卧撑塌腰……问题即时指出。</p>
+                    <span class="badge">姿态判定</span>
+                </article>
+                <article class="panel">
+                    <div class="card-icon">🗣️</div>
+                    <h3>语音实时提醒</h3>
+                    <p>训练过程中语音播报纠错提示，让眼睛始终盯着动作，不被屏幕打断。</p>
+                    <span class="badge">语音播报</span>
+                </article>
+                <article class="panel">
+                    <div class="card-icon">🏅</div>
+                    <h3>体能检测认证</h3>
+                    <p>工厂招聘场景：深蹲 / 仰卧起坐连续完成 50 次即达标，生成可下载的认证证书。</p>
+                    <span class="badge success">认证发放</span>
+                </article>
+            </div>
+        </section>
+
+        <!-- 使用流程 -->
+        <section class="shell section-block">
+            <div class="section-heading">
+                <span>THE GOLDEN PATH</span>
+                <h2>从打开摄像头到达标认证，一条完整链路</h2>
+            </div>
+            <div class="step-grid">
+                <article class="step-card">
+                    <span>01</span>
+                    <h3>打开摄像头</h3>
+                    <p>浏览器授权摄像头，站到画面中央，系统开始逐帧识别人体关键点。</p>
+                </article>
+                <article class="step-card">
+                    <span>02</span>
+                    <h3>选择动作</h3>
+                    <p>深蹲、仰卧起坐、俯卧撑等 10+ 动作任选，或开启自动识别。</p>
+                </article>
+                <article class="step-card">
+                    <span>03</span>
+                    <h3>实时纠错</h3>
+                    <p>训练中即时反馈动作是否标准，语音 + 文字提示每一个细节。</p>
+                </article>
+                <article class="step-card">
+                    <span>04</span>
+                    <h3>认证达标</h3>
+                    <p>连续完成 50 次规定动作，通过检测，生成个人认证证书。</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- CTA 收尾 -->
+        <section class="shell audience-strip">
+            <div>
+                <span>REAL-TIME CORRECTION</span>
+                <strong>实时健身动作纠错 —— 训练中每个动作都有教练盯着</strong>
+            </div>
+            <div>
+                <span>PHYSICAL CERTIFICATION</span>
+                <strong>工厂招聘体能检测 —— 深蹲 / 仰卧起坐 50 次达标即认证</strong>
+            </div>
+            <a href="/coach" class="audience-cta">进入实时纠错 →</a>
+            <a href="/certification" class="audience-cta">进入体能认证 →</a>
+        </section>
+    </main>
+
+    <footer>
+        练了吗 · 企业级实时运动姿态矫正平台 &nbsp;|&nbsp; RTMPose × ST-GCN &nbsp;|&nbsp; 本系统结果仅作参考
+    </footer>
+</body>
+</html>

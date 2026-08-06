@@ -74,6 +74,19 @@
             line-height: 1.5;
         }
 
+        .back-link {
+            display: inline-block;
+            margin-bottom: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: var(--accent-strong);
+        }
+
         .pill {
             display: inline-flex;
             align-items: center;
@@ -463,6 +476,7 @@
         <section class="stage">
             <header class="stage-header">
                 <div>
+                    <a href="/" class="back-link">← 返回首页</a>
                     <h1 class="stage-title">实时健身动作纠错</h1>
                     <p class="stage-copy">选择动作并打开摄像头，训练过程中就能实时收到识别、纠错和语音提醒。</p>
                 </div>

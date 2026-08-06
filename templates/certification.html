@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>体能检测认证 · 练了吗</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --bg: #f4f7fb;
+            --panel: #ffffff;
+            --panel-alt: #eef3f9;
+            --text: #162030;
+            --muted: #5b6677;
+            --border: #d9e0ea;
+            --accent: #1f6feb;
+            --accent-strong: #1553b7;
+            --success: #18794e;
+            --warn: #c37b05;
+            --danger: #c2413b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .shell {
+            width: min(1080px, calc(100vw - 32px));
+            margin: 20px auto;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .topbar h1 {
+            margin: 0;
+            font-size: 26px;
+            font-weight: 800;
+        }
+
+        .topbar p {
+            margin: 4px 0 0;
+            color: var(--muted);
+            font-size: 13.5px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .back-link:hover {
+            color: var(--accent-strong);
+        }
+
+        .step-badge {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent);
+            background: rgba(31, 111, 235, 0.1);
+            border-radius: 999px;
+            padding: 5px 12px;
+            margin-bottom: 12px;
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+
+        .card[hidden] {
+            display: none;
+        }
+
+        .card-title {
+            margin: 0 0 6px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .card-desc {
+            margin: 0 0 18px;
+            color: var(--muted);
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+
+        .field-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .field-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--muted);
+        }
+
+        input,
+        select {
+            width: 100%;
+            min-height: 44px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--panel);
+            padding: 10px 12px;
+            color: var(--text);
+            font: inherit;
+            font-size: 14px;
+        }
+
+        input:focus,
+        select:focus {
+            outline: 2px solid rgba(31, 111, 235, 0.4);
+            outline-offset: 0;
+            border-color: var(--accent);
+        }
+
+        .hint {
+            font-size: 12.5px;
+            color: var(--muted);
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+
+        .btn {
+            min-height: 46px;
+            border-radius: 9px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            font: inherit;
+            font-size: 15px;
+            font-weight: 700;
+            padding: 12px 22px;
+            transition: background 120ms ease, opacity 120ms ease, transform 120ms ease;
+        }
+
+        .btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.55;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: var(--accent-strong);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: #fff;
+        }
+
+        .btn-success:hover:not(:disabled) {
+            filter: brightness(1.1);
+        }
+
+        .btn-secondary {
+            background: var(--panel);
+            color: var(--text);
+            border-color: var(--border);
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: var(--panel-alt);
+        }
+
+        .btn-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .error-banner {
+            padding: 12px 14px;
+            border-radius: 8px;
+            background: rgba(194, 65, 59, 0.1);
+            border: 1px solid rgba(194, 65, 59, 0.2);
+            color: var(--danger);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        /* ---------- 检测区 ---------- */
+        .video-box {
+            position: relative;
+            background: #0f1726;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #0c1320;
+        }
+
+        .video-box video {
+            width: 100%;
+            min-height: 420px;
+            object-fit: cover;
+            display: block;
+            background: #0f1726;
+        }
+
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 16px;
+        }
+
+        .video-overlay .pill {
+            align-self: flex-start;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(12, 18, 30, 0.76);
+            font-size: 13px;
+            color: #e5e7eb;
+            backdrop-filter: blur(6px);
+        }
+
+        .pill.good {
+            color: #86efac;
+            border-color: rgba(134, 239, 172, 0.3);
+        }
+
+        .pill.warn {
+            color: #fcd34d;
+            border-color: rgba(252, 211, 77, 0.3);
+        }
+
+        .pill.alert {
+            color: #fca5a5;
+            border-color: rgba(252, 165, 165, 0.3);
+        }
+
+        .progress-panel {
+            background: rgba(12, 18, 30, 0.78);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+            padding: 14px 16px;
+            backdrop-filter: blur(6px);
+            color: #fff;
+            align-self: flex-end;
+            width: min(420px, 100%);
+        }
+
+        .progress-panel .row {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .progress-panel .count {
+            font-size: 32px;
+            font-weight: 800;
+        }
+
+        .progress-panel .count em {
+            font-style: normal;
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        .progress-panel .phase {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .progress-track {
+            height: 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.16);
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent), #4ade80);
+            transition: width 200ms ease;
+            border-radius: 999px;
+        }
+
+        .cue-line {
+            margin: 12px 0 0;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* ---------- 结果 ---------- */
+        .result-panel {
+            display: grid;
+            gap: 18px;
+        }
+
+        .result-head {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .result-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            flex-shrink: 0;
+        }
+
+        .result-icon.pass {
+            background: rgba(24, 121, 78, 0.12);
+            border: 1px solid rgba(24, 121, 78, 0.3);
+        }
+
+        .result-icon.fail {
+            background: rgba(194, 65, 59, 0.12);
+            border: 1px solid rgba(194, 65, 59, 0.3);
+        }
+
+        .result-head h2 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .result-head p {
+            margin: 4px 0 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .cert-canvas {
+            width: 100%;
+            max-width: 860px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            display: block;
+        }
+
+        /* ---------- 历史记录 ---------- */
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13.5px;
+        }
+
+        .history-table th,
+        .history-table td {
+            text-align: left;
+            padding: 11px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .history-table th {
+            color: var(--muted);
+            font-weight: 600;
+            background: var(--panel-alt);
+        }
+
+        .history-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .history-empty {
+            color: var(--muted);
+            font-size: 13.5px;
+            padding: 18px 0 6px;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        @media (max-width: 720px) {
+            .video-box video {
+                min-height: 320px;
+            }
+
+            .shell {
+                width: calc(100vw - 20px);
+                margin: 12px auto;
+            }
+
+            .card {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="shell">
+        <div class="topbar">
+            <div>
+                <h1>工厂招聘体能检测认证</h1>
+                <p>深蹲 / 仰卧起坐，实时 AI 计数，连续完成 50 次即达标，生成可下载认证证书。</p>
+            </div>
+            <a href="/" class="back-link">← 返回首页</a>
+        </div>
+
+        <div class="error-banner" id="globalError" hidden></div>
+
+        <!-- 阶段一：信息填写 -->
+        <section class="card" id="formCard">
+            <span class="step-badge">STEP 1 · 填写信息</span>
+            <h2 class="card-title">填写检测人信息</h2>
+            <p class="card-desc">信息仅用于生成认证证书与历史记录，请如实填写。</p>
+
+            <div class="field-row">
+                <div>
+                    <label class="field-label" for="nameInput">姓名 *</label>
+                    <input id="nameInput" type="text" placeholder="请输入姓名" maxlength="30">
+                </div>
+                <div>
+                    <label class="field-label" for="workerIdInput">工号 *</label>
+                    <input id="workerIdInput" type="text" placeholder="请输入工号" maxlength="30">
+                </div>
+                <div>
+                    <label class="field-label" for="exerciseSelect">检测项目</label>
+                    <select id="exerciseSelect">
+                        {% for exercise_id, meta in exercises.items() if exercise_id in ['squats', 'situps'] %}
+                            <option value="{{ exercise_id }}" data-tip="{{ meta.tip }}">{{ meta.label }} · 连续 50 次</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <p class="hint" id="exerciseTip">选择检测项目后，请按提示站到合适的入镜位置。</p>
+
+            <div class="btn-row">
+                <button type="button" class="btn btn-primary" id="startDetectBtn">开始检测</button>
+            </div>
+        </section>
+
+        <!-- 阶段二：实时检测 -->
+        <section class="card" id="detectCard" hidden>
+            <span class="step-badge">STEP 2 · 实时检测</span>
+            <h2 class="card-title">实时动作检测</h2>
+            <p class="card-desc">站到画面中央，保持全身入镜。系统实时计数，完成 50 次自动达标。</p>
+
+            <div class="video-box">
+                <video id="cameraPreview" autoplay playsinline muted></video>
+                <canvas id="frameCanvas" hidden></canvas>
+                <div class="video-overlay">
+                    <div>
+                        <span class="pill warn" id="statusBadge">等待中</span>
+                        <span class="pill" id="exerciseBadge">深蹲</span>
+                    </div>
+                    <div class="progress-panel">
+                        <div class="row">
+                            <div>
+                                <div class="count"><span id="repCount">0</span> <em>/ 50</em></div>
+                                <div class="phase" id="phaseText">准备</div>
+                            </div>
+                            <div class="phase" id="modeText">手动计数</div>
+                        </div>
+                        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+                        <div class="cue-line" id="cueLine">打开摄像头后开始检测。</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-row">
+                <button type="button" class="btn btn-secondary" id="endDetectBtn">结束检测</button>
+                <button type="button" class="btn btn-secondary" id="resetDetectBtn" hidden>重新检测</button>
+            </div>
+            <p class="hint" id="cameraStatus">检测过程中请保持全身在画面内，动作节奏稳定。</p>
+        </section>
+
+        <!-- 阶段三：结果与证书 -->
+        <section class="card" id="resultCard" hidden>
+            <span class="step-badge">STEP 3 · 检测结果</span>
+            <div class="result-panel">
+                <div class="result-head">
+                    <div class="result-icon" id="resultIcon">🏅</div>
+                    <div>
+                        <h2 id="resultTitle">检测通过</h2>
+                        <p id="resultSub">恭喜完成认证。</p>
+                    </div>
+                </div>
+                <canvas class="cert-canvas" id="certCanvas" width="1000" height="700"></canvas>
+                <div class="btn-row">
+                    <button type="button" class="btn btn-success" id="downloadCertBtn">下载证书（PNG）</button>
+                    <button type="button" class="btn btn-secondary" id="againBtn">再来一次</button>
+                    <button type="button" class="btn btn-secondary" id="homeBtn">返回首页</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 历史记录 -->
+        <section class="card">
+            <span class="step-badge">RECORDS · 认证记录</span>
+            <h2 class="card-title">历史认证记录</h2>
+            <p class="card-desc">近期通过体能检测认证的人员名单。</p>
+            <div class="table-wrap">
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>姓名</th>
+                            <th>工号</th>
+                            <th>项目</th>
+                            <th>达标次数</th>
+                            <th>证书编号</th>
+                            <th>认证时间</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyBody"></tbody>
+                </table>
+            </div>
+            <p class="history-empty" id="historyEmpty" hidden>暂无认证记录。</p>
+        </section>
+    </main>
+
+    <script>
+        const CERT_TARGET = 50;
+        const exerciseCatalog = {{ exercises | tojson }};
+        const CERT_ITEMS = ["squats", "situps"];
+
+        const nameInput = document.getElementById("nameInput");
+        const workerIdInput = document.getElementById("workerIdInput");
+        const exerciseSelect = document.getElementById("exerciseSelect");
+        const exerciseTip = document.getElementById("exerciseTip");
+        const startDetectBtn = document.getElementById("startDetectBtn");
+        const endDetectBtn = document.getElementById("endDetectBtn");
+        const resetDetectBtn = document.getElementById("resetDetectBtn");
+        const globalError = document.getElementById("globalError");
+
+        const formCard = document.getElementById("formCard");
+        const detectCard = document.getElementById("detectCard");
+        const resultCard = document.getElementById("resultCard");
+        const resultIcon = document.getElementById("resultIcon");
+        const resultTitle = document.getElementById("resultTitle");
+        const resultSub = document.getElementById("resultSub");
+
+        const cameraPreview = document.getElementById("cameraPreview");
+        const frameCanvas = document.getElementById("frameCanvas");
+        const canvasContext = frameCanvas.getContext("2d");
+        const statusBadge = document.getElementById("statusBadge");
+        const exerciseBadge = document.getElementById("exerciseBadge");
+        const repCountEl = document.getElementById("repCount");
+        const progressFill = document.getElementById("progressFill");
+        const phaseText = document.getElementById("phaseText");
+        const modeText = document.getElementById("modeText");
+        const cueLine = document.getElementById("cueLine");
+        const cameraStatus = document.getElementById("cameraStatus");
+
+        const certCanvas = document.getElementById("certCanvas");
+        const downloadCertBtn = document.getElementById("downloadCertBtn");
+        const againBtn = document.getElementById("againBtn");
+        const homeBtn = document.getElementById("homeBtn");
+        const historyBody = document.getElementById("historyBody");
+        const historyEmpty = document.getElementById("historyEmpty");
+
+        let mediaStream = null;
+        let activeSessionId = "";
+        let frameTimer = null;
+        let frameInFlight = false;
+        let finished = false;
+        let detectedReps = 0;
+
+        const phaseLabels = { ready: "准备", bottom: "底部", top: "顶点", lowering: "下降", rising: "上升" };
+
+        function setBadge(mode, text) {
+            statusBadge.textContent = text;
+            statusBadge.className = "pill";
+            if (mode) statusBadge.classList.add(mode);
+        }
+
+        function setError(msg) {
+            if (!msg) { globalError.hidden = true; return; }
+            globalError.textContent = msg;
+            globalError.hidden = false;
+        }
+
+        function currentExercise() {
+            return exerciseSelect.value;
+        }
+
+        function currentExerciseLabel() {
+            const meta = exerciseCatalog[currentExercise()];
+            return meta ? meta.label : currentExercise();
+        }
+
+        // 项目选择时更新站位提示
+        exerciseSelect.addEventListener("change", () => {
+            const opt = exerciseSelect.selectedOptions[0];
+            exerciseTip.textContent = opt.dataset.tip || "请按提示站到合适的入镜位置。";
+            exerciseBadge.textContent = currentExerciseLabel();
+        });
+
+        // ---------- 摄像头与会话 ----------
+        async function openCamera() {
+            mediaStream = await navigator.mediaDevices.getUserMedia({
+                video: { width: 1280, height: 720 },
+                audio: false,
+            });
+            cameraPreview.srcObject = mediaStream;
+            setBadge("good", "摄像头已就绪");
+        }
+
+        async function ensureSession() {
+            if (activeSessionId) return activeSessionId;
+            const response = await fetch("/api/session/start", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ exercise: currentExercise(), mode: "manual" }),
+            });
+            const payload = await response.json();
+            if (!response.ok) throw new Error(payload.error || "启动检测失败。");
+            activeSessionId = payload.session_id;
+            exerciseBadge.textContent = payload.exercise_label;
+            cueLine.textContent = payload.tip || "检测已开始，保持动作稳定。";
+            return activeSessionId;
+        }
+
+        function startFrameLoop() {
+            if (frameTimer) window.clearInterval(frameTimer);
+            sendFrame();
+            frameTimer = window.setInterval(sendFrame, 450);
+        }
+
+        function stopFrameLoop() {
+            if (frameTimer) {
+                window.clearInterval(frameTimer);
+                frameTimer = null;
+            }
+        }
+
+        async function sendFrame() {
+            if (!activeSessionId || frameInFlight || finished) return;
+            if (!cameraPreview.videoWidth || !cameraPreview.videoHeight) return;
+
+            frameInFlight = true;
+            try {
+                frameCanvas.width = cameraPreview.videoWidth;
+                frameCanvas.height = cameraPreview.videoHeight;
+                canvasContext.drawImage(cameraPreview, 0, 0, frameCanvas.width, frameCanvas.height);
+                const imageData = frameCanvas.toDataURL("image/jpeg", 0.72);
+                const response = await fetch("/api/session/frame", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        session_id: activeSessionId,
+                        image_data: imageData,
+                        mode: "manual",
+                    }),
+                });
+                const payload = await response.json();
+                if (!response.ok) throw new Error(payload.error || "当前帧分析失败。");
+
+                renderFeedback(payload);
+            } catch (error) {
+                setError(error.message);
+                setBadge("alert", "出错");
+            } finally {
+                frameInFlight = false;
+            }
+        }
+
+        function renderFeedback(payload) {
+            const count = payload.rep_count ?? 0;
+            detectedReps = count;
+            repCountEl.textContent = String(count);
+            progressFill.style.width = Math.min(100, (count / CERT_TARGET) * 100) + "%";
+            phaseText.textContent = phaseLabels[payload.phase] || payload.phase || "准备";
+            cueLine.textContent = payload.primary_cue || "保持动作稳定。";
+            setBadge(payload.status_color || "warn", { warn: "提醒", alert: "警告", good: "稳定" }[payload.status_color] || "检测中");
+
+            if (count >= CERT_TARGET && !finished) {
+                finishPass();
+            }
+        }
+
+        // ---------- 结束检测 ----------
+        async function endSession() {
+            stopFrameLoop();
+            if (window.speechSynthesis) window.speechSynthesis.cancel();
+
+            const sessionId = activeSessionId;
+            activeSessionId = "";
+            finished = true;
+
+            if (!sessionId) return;
+            try {
+                await fetch("/api/session/stop", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ session_id: sessionId }),
+                });
+            } catch (e) {
+                // 忽略停止失败，不影响结果展示
+            }
+        }
+
+        async function finishPass() {
+            await endSession();
+            showResult(true);
+        }
+
+        async function endManual() {
+            await endSession();
+            showResult(detectedReps >= CERT_TARGET);
+        }
+
+        // ---------- 结果与证书 ----------
+        function nowStamp() {
+            const d = new Date();
+            const p = (n) => String(n).padStart(2, "0");
+            return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
+        }
+
+        function nowCompact() {
+            const d = new Date();
+            const p = (n) => String(n).padStart(2, "0");
+            return `${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}`;
+        }
+
+        function makeCertNo() {
+            const rand = Math.floor(Math.random() * 10000).toString().padStart(4, "0");
+            return `LLM-CERT-${nowCompact()}-${rand}`;
+        }
+
+        function drawCertificate(ctx, info) {
+            const W = 1000, H = 700;
+            // 背景
+            ctx.fillStyle = "#fbf8f1";
+            ctx.fillRect(0, 0, W, H);
+
+            // 外边框
+            ctx.strokeStyle = "#b78a2f";
+            ctx.lineWidth = 3;
+            ctx.strokeRect(22, 22, W - 44, H - 44);
+            ctx.lineWidth = 1;
+            ctx.strokeRect(38, 38, W - 76, H - 76);
+
+            // 顶部色带
+            const grad = ctx.createLinearGradient(0, 0, W, 0);
+            grad.addColorStop(0, "#123a6d");
+            grad.addColorStop(1, "#1f6feb");
+            ctx.fillStyle = grad;
+            ctx.fillRect(38, 38, W - 76, 118);
+
+            // 标题
+            ctx.fillStyle = "#ffffff";
+            ctx.font = "700 52px 'Microsoft YaHei', 'PingFang SC', sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillText("体能检测认证证书", W / 2, 104);
+            ctx.font = "500 15px 'Segoe UI', sans-serif";
+            ctx.fillStyle = "rgba(255,255,255,0.85)";
+            ctx.fillText("PHYSICAL FITNESS CERTIFICATION", W / 2, 134);
+
+            // 正文
+            ctx.textAlign = "center";
+            ctx.fillStyle = "#162030";
+            ctx.font = "400 20px 'Microsoft YaHei', sans-serif";
+            ctx.fillText(`兹证明 ${info.name}（工号：${info.workerId}）`, W / 2, 250);
+
+            ctx.font = "400 20px 'Microsoft YaHei', sans-serif";
+            ctx.fillText(`已通过「${info.exercise}」体能检测，`, W / 2, 292);
+            ctx.fillText(`连续完成 ${info.reps} 次标准动作，成绩有效。`, W / 2, 334);
+
+            // 底部信息
+            ctx.font = "500 16px 'Microsoft YaHei', sans-serif";
+            ctx.fillStyle = "#5b6677";
+            ctx.textAlign = "left";
+            ctx.fillText(`证书编号：${info.certNo}`, 70, 610);
+            ctx.textAlign = "right";
+            ctx.fillText(`认证日期：${info.date}`, W - 70, 610);
+
+            ctx.textAlign = "center";
+            ctx.fillStyle = "#9aa4b2";
+            ctx.font = "400 13px 'Microsoft YaHei', sans-serif";
+            ctx.fillText("练了吗 · 企业级实时运动姿态矫正平台 · 本证书结果仅作参考", W / 2, 650);
+        }
+
+        let lastCert = null;
+
+        function showResult(passed) {
+            stopFrameLoop();
+            formCard.hidden = true;
+            detectCard.hidden = true;
+            resultCard.hidden = false;
+
+            resultIcon.className = "result-icon " + (passed ? "pass" : "fail");
+            resultIcon.textContent = passed ? "🏅" : "📋";
+
+            if (passed) {
+                const info = {
+                    name: nameInput.value.trim(),
+                    workerId: workerIdInput.value.trim(),
+                    exercise: currentExerciseLabel(),
+                    reps: detectedReps,
+                    certNo: makeCertNo(),
+                    date: nowStamp(),
+                };
+                lastCert = info;
+                resultTitle.textContent = "检测通过 · 认证成功";
+                resultSub.textContent = `${info.name}（工号：${info.workerId}）完成 ${info.exercise} 50 次，认证生效。`;
+                const ctx = certCanvas.getContext("2d");
+                drawCertificate(ctx, info);
+                saveRecord(info);
+            } else {
+                resultTitle.textContent = "未达标";
+                resultSub.textContent = `本次完成 ${detectedReps} 次，未达到 50 次认证标准，暂未发证。`;
+                downloadCertBtn.disabled = true;
+                downloadCertBtn.textContent = "未达标，无证书";
+            }
+        }
+
+        function resetFlow() {
+            setError(null);
+            finished = false;
+            detectedReps = 0;
+            repCountEl.textContent = "0";
+            progressFill.style.width = "0%";
+            phaseText.textContent = "准备";
+            cueLine.textContent = "打开摄像头后开始检测。";
+            downloadCertBtn.disabled = false;
+            downloadCertBtn.textContent = "下载证书（PNG）";
+            formCard.hidden = false;
+            detectCard.hidden = true;
+            resultCard.hidden = true;
+        }
+
+        async function saveRecord(info) {
+            try {
+                await fetch("/api/certifications", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        name: info.name,
+                        worker_id: info.workerId,
+                        exercise: currentExercise(),
+                        rep_count: info.reps,
+                        cert_no: info.certNo,
+                        issued_at: info.date,
+                    }),
+                });
+            } catch (e) {
+                // 保存失败不阻塞证书展示
+            }
+            loadHistory();
+        }
+
+        // ---------- 历史记录 ----------
+        async function loadHistory() {
+            try {
+                const response = await fetch("/api/certifications");
+                const payload = await response.json();
+                const records = payload.records || [];
+                historyBody.innerHTML = "";
+                historyEmpty.hidden = records.length > 0;
+                records.forEach((r) => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td>${esc(r.name)}</td>
+                        <td>${esc(r.worker_id)}</td>
+                        <td>${esc(r.exercise_label || r.exercise)}</td>
+                        <td>${Number(r.rep_count) || 0}</td>
+                        <td>${esc(r.cert_no)}</td>
+                        <td>${esc(r.issued_at)}</td>`;
+                    historyBody.appendChild(tr);
+                });
+            } catch (e) {
+                // 历史加载失败不阻塞页面
+            }
+        }
+
+        function esc(text) {
+            const div = document.createElement("div");
+            div.textContent = text == null ? "" : String(text);
+            return div.innerHTML;
+        }
+
+        // ---------- 按钮事件 ----------
+        startDetectBtn.addEventListener("click", async () => {
+            setError(null);
+            const name = nameInput.value.trim();
+            const workerId = workerIdInput.value.trim();
+            if (!name) { setError("请填写姓名。"); nameInput.focus(); return; }
+            if (!workerId) { setError("请填写工号。"); workerIdInput.focus(); return; }
+
+            formCard.hidden = true;
+            detectCard.hidden = false;
+            finished = false;
+            detectedReps = 0;
+            repCountEl.textContent = "0";
+            progressFill.style.width = "0%";
+            cueLine.textContent = "正在打开摄像头…";
+            setBadge("warn", "等待中");
+            resetDetectBtn.hidden = false;
+
+            try {
+                if (!mediaStream) await openCamera();
+                await ensureSession();
+                startFrameLoop();
+                setBadge("good", "检测进行中");
+                cameraStatus.textContent = "检测进行中，系统每几百毫秒更新一次计数。";
+            } catch (error) {
+                setError(error.message || "打开摄像头失败，请检查权限。");
+                setBadge("alert", "不可用");
+            }
+        });
+
+        endDetectBtn.addEventListener("click", () => {
+            endManual().catch((error) => setError(error.message));
+        });
+
+        resetDetectBtn.addEventListener("click", () => {
+            resetFlow();
+        });
+
+        downloadCertBtn.addEventListener("click", () => {
+            if (!lastCert) return;
+            const a = document.createElement("a");
+            a.href = certCanvas.toDataURL("image/png");
+            a.download = `${lastCert.name}-${lastCert.exercise}-体能认证.png`;
+            a.click();
+        });
+
+        againBtn.addEventListener("click", resetFlow);
+        homeBtn.addEventListener("click", () => { window.location.href = "/"; });
+
+        // 初始化
+        exerciseBadge.textContent = currentExerciseLabel();
+        loadHistory();
+    </script>
+</body>
+</html>

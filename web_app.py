@@ -1,4 +1,5 @@
-﻿import os
+﻿import json
+import os
 import base64
 import time
 import hashlib
@@ -404,8 +405,18 @@ def serve_video(filename):
     )
 
 @app.route('/')
-def index():
+def home():
+    return render_template('home.html')
+
+
+@app.route('/coach')
+def coach():
     return render_template('index.html', result=None, error=None, exercises=LIVE_EXERCISES)
+
+
+@app.route('/certification')
+def certification():
+    return render_template('certification.html', exercises=LIVE_EXERCISES)
 
 
 @app.route('/upload', methods=['POST'])
@@ -553,6 +564,70 @@ def api_session_stop():
 
     summary = live_coach_engine.build_summary(session)
     return jsonify({'summary': summary})
+
+
+CERTIFICATIONS_FILE = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "data", "certifications.json"
+)
+CERTIFICATION_TARGET_REPS = 50
+
+
+def _load_certifications() -> list:
+    if not os.path.exists(CERTIFICATIONS_FILE):
+        return []
+    try:
+        with open(CERTIFICATIONS_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data if isinstance(data, list) else []
+    except (OSError, ValueError):
+        return []
+
+
+def _save_certifications(records: list) -> None:
+    os.makedirs(os.path.dirname(CERTIFICATIONS_FILE), exist_ok=True)
+    with open(CERTIFICATIONS_FILE, "w", encoding="utf-8") as f:
+        json.dump(records, f, ensure_ascii=False, indent=2)
+
+
+@app.route('/api/certifications', methods=['GET'])
+def list_certifications():
+    return jsonify({'records': _load_certifications()})
+
+
+@app.route('/api/certifications', methods=['POST'])
+def create_certification():
+    payload = request.get_json(silent=True) or {}
+    name = str(payload.get('name', '')).strip()
+    worker_id = str(payload.get('worker_id', '')).strip()
+    exercise = str(payload.get('exercise', '')).strip()
+    rep_count = int(payload.get('rep_count', 0) or 0)
+    cert_no = str(payload.get('cert_no', '')).strip()
+    issued_at = str(payload.get('issued_at', '')).strip()
+
+    if not name:
+        return jsonify({'error': '缺少姓名'}), 400
+    if not worker_id:
+        return jsonify({'error': '缺少工号'}), 400
+    try:
+        exercise_label = LIVE_EXERCISES[exercise]['label']
+    except KeyError:
+        return jsonify({'error': f'不支持的检测项目: {exercise}'}), 400
+    if rep_count < CERTIFICATION_TARGET_REPS:
+        return jsonify({'error': f'未达到认证标准（需完成 {CERTIFICATION_TARGET_REPS} 个）'}), 400
+
+    record = {
+        'name': name,
+        'worker_id': worker_id,
+        'exercise': exercise,
+        'exercise_label': exercise_label,
+        'rep_count': rep_count,
+        'cert_no': cert_no or '',
+        'issued_at': issued_at or '',
+    }
+    records = _load_certifications()
+    records.append(record)
+    _save_certifications(records)
+    return jsonify({'record': record})
 
 
 @app.route('/chat', methods=['POST'])
