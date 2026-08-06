@@ -1,0 +1,14 @@
+{
+  "name": "enterprise-pose-coach-harness",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cross-platform hackathon harness for Enterprise Pose Coach",
+  "scripts": {
+    "install": "node tools/harness.mjs install",
+    "dev": "node tools/harness.mjs dev",
+    "test": "node tools/harness.mjs test",
+    "check": "node tools/harness.mjs check",
+    "demo": "node tools/harness.mjs demo",
+    "dev:real": "node tools/harness.mjs dev-real"
+  }
+}

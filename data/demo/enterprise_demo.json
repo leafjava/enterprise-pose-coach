@@ -1,0 +1,42 @@
+{
+  "scenario_id": "recruitment-squat-screening-demo-v1",
+  "description": "虚构的工厂招聘批次深蹲体能检测数据，仅用于黑客松演示。",
+  "data_classification": "synthetic",
+  "actor": {
+    "tenant_id": "factory-demo",
+    "candidate_id": "candidate-c042",
+    "display_name": "演示候选人",
+    "batch": "2026-08-07-一线招聘批次"
+  },
+  "proposed_skill_request": {
+    "request_id": "req-demo-001",
+    "task_id": "task-demo-001",
+    "standard_id": "RECRUIT_SQUAT_50_V1",
+    "exercise": "squats",
+    "target_reps": 50,
+    "due_at": "2026-08-07T18:00:00+08:00"
+  },
+  "current_api_adapter": {
+    "start_session": {
+      "exercise": "squats",
+      "mode": "manual"
+    },
+    "frame": {
+      "image_data": "data:image/jpeg;base64,AA==",
+      "mode": "manual"
+    },
+    "certification": {
+      "name": "演示候选人",
+      "worker_id": "C042",
+      "exercise": "squats",
+      "rep_count": 50,
+      "cert_no": "DEMO-CERT-001",
+      "issued_at": "2026-08-07 17:30:00"
+    }
+  },
+  "expected": {
+    "pages_status": 200,
+    "valid_rep_count_after_bottom_and_ready": 1,
+    "certification_record_count": 1
+  }
+}
