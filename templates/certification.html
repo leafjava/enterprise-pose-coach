@@ -429,6 +429,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="/static/ghost-coach.css">
 </head>
 <body>
     <main class="shell">
@@ -482,10 +483,12 @@
             <div class="video-box">
                 <video id="cameraPreview" autoplay playsinline muted></video>
                 <canvas id="frameCanvas" hidden></canvas>
+                <canvas id="ghostCoachCanvas" class="ghost-coach-canvas" aria-hidden="true"></canvas>
                 <div class="video-overlay">
                     <div>
                         <span class="pill warn" id="statusBadge">等待中</span>
                         <span class="pill" id="exerciseBadge">深蹲</span>
+                        <span class="pill ghost-coach-status" id="ghostCoachStatus" data-ghost-state="unavailable">视觉引导待命</span>
                     </div>
                     <div class="progress-panel">
                         <div class="row">
@@ -553,6 +556,7 @@
         </section>
     </main>
 
+    <script src="/static/ghost-coach.js"></script>
     <script>
         const CERT_TARGET = 50;
         const exerciseCatalog = {{ exercises | tojson }};
@@ -577,6 +581,10 @@
         const cameraPreview = document.getElementById("cameraPreview");
         const frameCanvas = document.getElementById("frameCanvas");
         const canvasContext = frameCanvas.getContext("2d");
+        const ghostCoachCanvas = document.getElementById("ghostCoachCanvas");
+        const ghostCoachStatus = document.getElementById("ghostCoachStatus");
+        const ghostCoachOverlay = new window.GhostCoachOverlay(ghostCoachCanvas, ghostCoachStatus);
+        window.__ghostCoachOverlay = ghostCoachOverlay;
         const statusBadge = document.getElementById("statusBadge");
         const exerciseBadge = document.getElementById("exerciseBadge");
         const repCountEl = document.getElementById("repCount");
@@ -686,6 +694,7 @@
                         session_id: activeSessionId,
                         image_data: imageData,
                         mode: "manual",
+                        mirrored: false,
                     }),
                 });
                 const payload = await response.json();
@@ -708,6 +717,7 @@
             phaseText.textContent = phaseLabels[payload.phase] || payload.phase || "准备";
             cueLine.textContent = payload.primary_cue || "保持动作稳定。";
             setBadge(payload.status_color || "warn", { warn: "提醒", alert: "警告", good: "稳定" }[payload.status_color] || "检测中");
+            ghostCoachOverlay.update(payload.ghost_coach);
 
             if (count >= CERT_TARGET && !finished) {
                 finishPass();
@@ -866,6 +876,7 @@
             formCard.hidden = false;
             detectCard.hidden = true;
             resultCard.hidden = true;
+            ghostCoachOverlay.reset();
         }
 
         async function saveRecord(info) {
@@ -989,9 +1000,31 @@
         againBtn.addEventListener("click", resetFlow);
         homeBtn.addEventListener("click", () => { window.location.href = "/"; });
 
+        function startGhostCoachHarnessDemo() {
+            const step = new URLSearchParams(window.location.search).get("ghost_demo");
+            if (!step) return;
+
+            formCard.hidden = true;
+            detectCard.hidden = false;
+            resultCard.hidden = true;
+            document.querySelector(".video-box").classList.add("ghost-demo-active");
+            modeText.textContent = "Ghost Coach Demo";
+            cameraStatus.textContent = "可复现视觉验收模式，无需摄像头。";
+            window.GhostCoachDemo.start(ghostCoachOverlay, step, (payload) => {
+                detectedReps = payload.demo_rep_count || 0;
+                repCountEl.textContent = String(detectedReps);
+                progressFill.style.width = Math.min(100, (detectedReps / CERT_TARGET) * 100) + "%";
+                phaseText.textContent = phaseLabels[payload.template_phase] || payload.template_phase;
+                cueLine.textContent = payload.message;
+                cameraStatus.textContent = `Ghost Coach 演示：${payload.demo_step}`;
+                document.querySelector(".video-box").dataset.ghostDemoStep = payload.demo_step;
+            });
+        }
+
         // 初始化
         exerciseBadge.textContent = currentExerciseLabel();
         loadHistory();
+        startGhostCoachHarnessDemo();
     </script>
 </body>
 </html>

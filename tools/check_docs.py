@@ -16,6 +16,14 @@ REQUIRED_FILES = [
     "data/demo/enterprise_demo.json",
     "requirements-harness.txt",
     "package.json",
+    "config/posture_standards/recruit_squat_50_v1.json",
+    "docs/ghost-coach-design.md",
+    "docs/ghost-coach-usability-results.md",
+    "src/ghost_coach.py",
+    "static/ghost-coach.css",
+    "static/ghost-coach.js",
+    "tools/ghost_coach_study.py",
+    "data/usability/ghost-coach-study.json",
 ]
 
 PRD_SECTIONS = [
@@ -61,6 +69,22 @@ def main() -> None:
     tasks = (ROOT / "docs" / "tasks.md").read_text(encoding="utf-8")
     if "| todo |" not in tasks or "| done |" not in tasks:
         raise SystemExit("tasks.md must contain both todo and done rows")
+
+    standard = json.loads(
+        (ROOT / "config/posture_standards/recruit_squat_50_v1.json").read_text(encoding="utf-8")
+    )
+    if set(standard.get("templates", {})) != {"ready", "descending", "bottom", "rising"}:
+        raise SystemExit("Ghost Coach standard must contain four phase templates")
+    if any(len(points) != 17 for points in standard["templates"].values()):
+        raise SystemExit("Every Ghost Coach phase template must contain COCO-17 keypoints")
+
+    study = json.loads(
+        (ROOT / "data/usability/ghost-coach-study.json").read_text(encoding="utf-8")
+    )
+    if study.get("data_classification") != "anonymous_usability_feedback":
+        raise SystemExit("Ghost Coach study must declare anonymous data classification")
+    if not isinstance(study.get("records"), list):
+        raise SystemExit("Ghost Coach study records must be a list")
 
     print(f"Documentation contract passed: {len(REQUIRED_FILES)} files, {len(PRD_SECTIONS)} PRD sections")
 

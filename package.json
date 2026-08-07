@@ -9,6 +9,7 @@
     "test": "node tools/harness.mjs test",
     "check": "node tools/harness.mjs check",
     "demo": "node tools/harness.mjs demo",
+    "usability": "node tools/harness.mjs usability",
     "dev:real": "node tools/harness.mjs dev-real"
   }
 }

@@ -25,6 +25,11 @@ npm run demo
 | AC-06 | 动作为 `burpee` | 创建会话 | HTTP 400 且响应含 `error` | `test_smoke_flow.py` | done |
 | AC-07 | 认证次数为 50 | 写入后查询 | 新记录可查询，正式数据文件未改变 | 临时目录中的 smoke | done |
 | AC-10 | 关键点无效 | 调用规则引擎 | 返回调整站位/需复核提示，不把技术失败记为体能未达标 | 现有 `test_live_coach.py` | done |
+| AC-19 | 四阶段版本化深蹲模板 | 构建 Ghost Coach payload | 返回同阶段 COCO-17 目标骨架和标准版本 | `test_ghost_coach.py` | done |
+| AC-20 | 深蹲出现三个已知错误 | 错误持续达到阈值 | 箭头方向正确、最多两个问题、稳定两帧后清除 | `test_ghost_coach.py` | done |
+| AC-21 | 低置信度、无人或非支持动作 | 构建视觉提示 | 隐藏目标与箭头并返回明确降级原因 | `test_ghost_coach.py` | done |
+| AC-22 | 训练页与认证页 | 使用 `ghost_demo` 打开固定状态 | Canvas、状态 DOM 与 error/correct/counted 一致 | `test_ghost_coach_dom.py` + 浏览器截图 | done |
+| AC-23 | 其他动作的模板与 provider | 注入临时动作配置 | 无需修改渲染协议即可产生该动作方向提示 | `test_ghost_coach.py` | done |
 
 ## 产品接入后必须新增的自动验收
 
@@ -45,6 +50,7 @@ npm run demo
 | AC-16 | 5 分钟路演 | 30 秒痛点、2 分钟真 Demo、1 分钟 ClawHive、1 分钟商业、30 秒收尾 | todo |
 | AC-17 | 断网演示 | 核心姿态与规则链路继续运行；LLM 不可用有明确提示 | todo |
 | AC-18 | 数据隔离 | Harness/彩排不写入正式认证数据，Demo 数据均为虚构 | done |
+| AC-24 | Ghost Coach 五人可用性与舒适度 | 5 名真实参与者，覆盖静音/嘈杂；`npm run usability -- status` 返回 `passed` | todo（待真人参与） |
 
 ## Smoke 覆盖的主流程
 

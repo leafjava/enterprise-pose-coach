@@ -470,6 +470,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="/static/ghost-coach.css">
 </head>
 <body>
     <main class="app-shell">
@@ -486,11 +487,13 @@
             <div class="video-stage">
                 <video id="cameraPreview" autoplay playsinline muted></video>
                 <canvas id="frameCanvas" hidden></canvas>
+                <canvas id="ghostCoachCanvas" class="ghost-coach-canvas" aria-hidden="true"></canvas>
                 <div class="stage-overlay">
                     <div class="overlay-top">
                         <div class="overlay-stack">
                             <div class="pill warn" id="statusBadge">等待中</div>
                             <div class="pill" id="exerciseBadge">请选择动作</div>
+                            <div class="pill ghost-coach-status" id="ghostCoachStatus" data-ghost-state="unavailable">视觉引导待命</div>
                         </div>
                         <div class="overlay-card">
                             <span class="overlay-label">次数</span>
@@ -617,11 +620,16 @@
         </aside>
     </main>
 
+    <script src="/static/ghost-coach.js"></script>
     <script>
         const exerciseCatalog = {{ exercises | tojson }};
         const cameraPreview = document.getElementById("cameraPreview");
         const frameCanvas = document.getElementById("frameCanvas");
         const canvasContext = frameCanvas.getContext("2d");
+        const ghostCoachCanvas = document.getElementById("ghostCoachCanvas");
+        const ghostCoachStatus = document.getElementById("ghostCoachStatus");
+        const ghostCoachOverlay = new window.GhostCoachOverlay(ghostCoachCanvas, ghostCoachStatus);
+        window.__ghostCoachOverlay = ghostCoachOverlay;
         const modeSelect = document.getElementById("modeSelect");
         const exerciseSelect = document.getElementById("exerciseSelect");
         const openCameraBtn = document.getElementById("openCameraBtn");
@@ -802,6 +810,7 @@
             secondaryCueOverlay.textContent = payload.secondary_cue || "继续保持现在的节奏，动作别着急。";
             setBadgeState(payload.status_color || "warn", statusLabel(payload.status_color || "warn"));
             exerciseBadge.textContent = payload.active_exercise_label || exerciseBadge.textContent;
+            ghostCoachOverlay.update(payload.ghost_coach);
 
             if ((payload.mode || "manual") === "auto") {
                 if (payload.recognition_state === "recognized" && payload.active_exercise_label) {
@@ -925,6 +934,7 @@
                         session_id: activeSessionId,
                         image_data: imageData,
                         mode: modeSelect.value,
+                        mirrored: false,
                     }),
                 });
                 const payload = await response.json();
@@ -993,6 +1003,7 @@
             setStateOverlay.textContent = "训练已结束";
             recognizedAction.textContent = `${modeLabel()}待命中`;
             recognizedActionMetric.textContent = coachingModeLabel(modeSelect.value);
+            ghostCoachOverlay.reset("本组视觉引导已结束");
 
             try {
                 const response = await fetch("/api/session/stop", {
@@ -1043,9 +1054,29 @@
             }
         });
 
+        function startGhostCoachHarnessDemo() {
+            const step = new URLSearchParams(window.location.search).get("ghost_demo");
+            if (!step) return;
+
+            document.querySelector(".video-stage").classList.add("ghost-demo-active");
+            setCameraPill("视觉 Demo", "good");
+            setStateOverlay.textContent = "Ghost Coach 可复现演示";
+            window.GhostCoachDemo.start(ghostCoachOverlay, step, (payload) => {
+                repCount.textContent = String(payload.demo_rep_count || 0);
+                repCountOverlay.textContent = String(payload.demo_rep_count || 0);
+                phaseText.textContent = phaseLabel(payload.template_phase);
+                phaseOverlay.textContent = phaseLabel(payload.template_phase);
+                primaryCue.textContent = payload.message;
+                primaryCueOverlay.textContent = payload.message;
+                cameraStatus.textContent = `Ghost Coach 演示：${payload.demo_step}`;
+                document.querySelector(".video-stage").dataset.ghostDemoStep = payload.demo_step;
+            });
+        }
+
         updateExerciseTip();
         setButtonState("idle");
         setBadgeState("warn", "等待中");
+        startGhostCoachHarnessDemo();
     </script>
 </body>
 </html>

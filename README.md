@@ -349,6 +349,11 @@ npm run dev
 | `npm run test` | 运行最小 `unittest` 测试集 | 所有测试通过 |
 | `npm run check` | 编译检查、文档契约检查、测试 | 退出码 0 |
 | `npm run demo` | 执行确定性端到端 smoke | 输出 `status: passed` |
+| `npm run usability -- status` | 检查 T-050 真人研究数据 | 5 人完成前诚实返回 `incomplete` 和非零退出码 |
+
+Ghost Coach 的无摄像头视觉验收入口为 `/coach?ghost_demo=sequence`；也可以将 `sequence` 换成 `error`、`correct` 或 `counted` 固定到某个状态。认证页使用 `/certification?ghost_demo=error`。这些入口用于复现 UI，不替代真人动作和可用性测试。
+
+T-050 必须记录真实参与者，匿名录入示例见 [五人测试记录](docs/ghost-coach-usability-results.md)。录入五人后运行 `npm run usability -- status`，只有静音与嘈杂场景均覆盖、箭头理解率及舒适度达标且无人报告视觉疲劳时才返回 `passed`。
 
 ## 真实模型启动
 
@@ -384,6 +389,7 @@ enterprise-pose-coach/
 ├── app/                       # React Native 早期原型，非主链路
 ├── backend/                   # FastAPI 早期原型，非主链路
 ├── data/demo/                 # 脱敏 Demo 种子数据
+├── data/usability/            # 匿名真人研究记录（初始为空，不生成虚假反馈）
 ├── docs/                      # PRD、架构、验收与任务清单
 ├── tests/harness/             # 无 GPU 最小测试
 ├── tools/harness.mjs          # package scripts 统一入口
@@ -397,6 +403,8 @@ enterprise-pose-coach/
 - [可执行验收标准](docs/acceptance.md)
 - [MVP 任务与 done/todo 状态](docs/tasks.md)
 - [真实模型与数据证据](docs/real-evidence.md)
+- [Ghost Coach 设计与姿态数据审计](docs/ghost-coach-design.md)
+- [Ghost Coach 五人测试记录](docs/ghost-coach-usability-results.md)
 - [原始运行说明](RUNNING.md)
 
 ## 大赛提交清单

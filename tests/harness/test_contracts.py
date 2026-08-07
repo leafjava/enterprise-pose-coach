@@ -28,6 +28,28 @@ class HarnessContractTests(unittest.TestCase):
             with self.subTest(section=section):
                 self.assertIn(section, prd)
 
+    def test_ghost_coach_standard_is_versioned_coco17(self):
+        standard = json.loads(
+            (ROOT / "config/posture_standards/recruit_squat_50_v1.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual(standard["standard_id"], "RECRUIT_SQUAT_50_V1")
+        self.assertTrue(standard["version"])
+        self.assertEqual(set(standard["templates"]), {"ready", "descending", "bottom", "rising"})
+        for points in standard["templates"].values():
+            self.assertEqual(len(points), 17)
+            self.assertTrue(all(len(point) == 2 for point in points))
+
+    def test_usability_study_has_anonymous_real_participant_contract(self):
+        study = json.loads(
+            (ROOT / "data/usability/ghost-coach-study.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual(study["data_classification"], "anonymous_usability_feedback")
+        self.assertIsInstance(study["records"], list)
+        for record in study["records"]:
+            self.assertEqual(record.get("attestation"), "recorded_from_real_participant")
+        package = json.loads((ROOT / "package.json").read_text(encoding="utf-8"))
+        self.assertIn("usability", package["scripts"])
+
 
 if __name__ == "__main__":
     unittest.main()

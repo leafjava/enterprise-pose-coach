@@ -48,8 +48,20 @@ def run_smoke() -> dict:
         bottom = client.post("/api/session/frame", json=frame_payload)
         ready = client.post("/api/session/frame", json=frame_payload)
         _require(bottom.status_code == 200 and ready.status_code == 200, "frame evaluation failed")
-        _require(ready.get_json()["rep_count"] == 1, "bottom-to-ready cycle did not count one rep")
-        steps.append({"step": "evaluate bottom-to-ready", "rep_count": 1})
+        bottom_json = bottom.get_json()
+        ready_json = ready.get_json()
+        _require(ready_json["rep_count"] == 1, "bottom-to-ready cycle did not count one rep")
+        for payload in (bottom_json, ready_json):
+            ghost = payload.get("ghost_coach")
+            _require(ghost is not None, "frame response missing ghost_coach payload")
+            _require(ghost["available"], f"Ghost Coach unavailable: {ghost.get('reason')}")
+            _require(ghost["standard_id"] == "RECRUIT_SQUAT_50_V1", "wrong pose standard")
+            _require(len(ghost["target_keypoints"]) == 17, "target skeleton is not COCO-17")
+        steps.append({
+            "step": "evaluate bottom-to-ready with Ghost Coach",
+            "rep_count": 1,
+            "standard_id": ready_json["ghost_coach"]["standard_id"],
+        })
 
         stopped = client.post("/api/session/stop", json={"session_id": session_id})
         _require(stopped.status_code == 200, "session stop failed")

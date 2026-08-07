@@ -14,6 +14,7 @@ from werkzeug.utils import secure_filename
 
 from src.datapro import PreProcess
 from src.fitness_infer import FITNESS_LABELS, load_fitness_action_recognizer
+from src.ghost_coach import GhostCoachEngine, GhostCoachState
 from src.live_coach import (
     EXERCISES as LIVE_EXERCISES,
     GENERIC_EXERCISES,
@@ -77,6 +78,8 @@ live_pose_estimator = None
 fitness_action_recognizer = None
 live_session_store = LiveCoachSessionStore()
 live_coach_engine = LiveCoachEngine()
+ghost_coach_engine = GhostCoachEngine()
+ghost_coach_states = {}
 
 
 def get_pose_transformer():
@@ -115,10 +118,17 @@ def decode_image_data(image_data):
 
 def extract_live_pose(image_data):
     frame = decode_image_data(image_data)
-    keypoints, _ = get_live_pose_estimator()(frame)
+    keypoints, scores = get_live_pose_estimator()(frame)
     if len(keypoints) == 0:
         return None
-    return np.asarray(keypoints[0], dtype=np.float32)
+    points = np.asarray(keypoints[0], dtype=np.float32)
+    confidence = None
+    if scores is not None:
+        values = np.asarray(scores, dtype=np.float32)
+        if values.size:
+            confidence = values.reshape(-1, values.shape[-1])[0]
+    frame_size = (int(frame.shape[1]), int(frame.shape[0]))
+    return points, confidence, frame_size
 
 
 def _detect_video_codec_tag(video_path):
@@ -479,6 +489,7 @@ def api_session_start():
 
     if fitness_action_recognizer is not None:
         fitness_action_recognizer.reset()
+    ghost_coach_states[session.session_id] = GhostCoachState()
 
     return jsonify({
         'session_id': session.session_id,
@@ -507,9 +518,19 @@ def api_session_frame():
         return jsonify({'error': '会话不存在或已过期'}), 404
 
     try:
-        keypoints = extract_live_pose(image_data)
+        pose_observation = extract_live_pose(image_data)
     except ValueError as exc:
         return jsonify({'error': str(exc)}), 400
+
+    keypoints = pose_observation
+    keypoint_confidences = None
+    frame_size = None
+    if isinstance(pose_observation, tuple):
+        keypoints = pose_observation[0]
+        if len(pose_observation) > 1:
+            keypoint_confidences = pose_observation[1]
+        if len(pose_observation) > 2:
+            frame_size = pose_observation[2]
 
     active_exercise = session.exercise
     recognized_action = ""
@@ -533,6 +554,17 @@ def api_session_frame():
 
     result = live_coach_engine.evaluate(active_exercise, keypoints, session)
     coaching_mode = resolve_coaching_mode(active_exercise)
+    ghost_state = ghost_coach_states.setdefault(session_id, GhostCoachState())
+    ghost_payload = ghost_coach_engine.build_payload(
+        exercise=active_exercise,
+        phase=result.get('phase', 'ready'),
+        keypoints=keypoints,
+        errors=result.get('errors', []),
+        state=ghost_state,
+        frame_size=frame_size,
+        confidences=keypoint_confidences,
+        mirrored=bool(payload.get('mirrored', False)),
+    )
     return jsonify({
         **result,
         'exercise': session.exercise,
@@ -544,6 +576,7 @@ def api_session_frame():
         'recognized_action': recognized_action,
         'recognized_confidence': recognized_confidence,
         'recognition_state': recognition_state,
+        'ghost_coach': ghost_payload,
     })
 
 
@@ -561,6 +594,7 @@ def api_session_stop():
 
     if fitness_action_recognizer is not None:
         fitness_action_recognizer.reset()
+    ghost_coach_states.pop(session_id, None)
 
     summary = live_coach_engine.build_summary(session)
     return jsonify({'summary': summary})

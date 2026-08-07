@@ -1,0 +1,47 @@
+.ghost-coach-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.stage-overlay,
+.video-overlay {
+    z-index: 2;
+}
+
+.ghost-coach-status {
+    border-color: rgba(45, 212, 191, 0.36) !important;
+    background: rgba(8, 47, 73, 0.82) !important;
+    color: #ccfbf1 !important;
+}
+
+.ghost-coach-status[data-ghost-state="guiding"] {
+    border-color: rgba(251, 146, 60, 0.58) !important;
+    background: rgba(124, 45, 18, 0.84) !important;
+    color: #ffedd5 !important;
+}
+
+.ghost-coach-status[data-ghost-state="stable"] {
+    border-color: rgba(74, 222, 128, 0.48) !important;
+    background: rgba(20, 83, 45, 0.84) !important;
+    color: #dcfce7 !important;
+}
+
+.ghost-coach-status[data-ghost-state="unavailable"] {
+    border-color: rgba(148, 163, 184, 0.36) !important;
+    background: rgba(30, 41, 59, 0.84) !important;
+    color: #e2e8f0 !important;
+}
+
+.ghost-demo-active video {
+    opacity: 0.16;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ghost-coach-status {
+        transition: none !important;
+    }
+}

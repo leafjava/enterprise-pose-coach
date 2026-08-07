@@ -75,10 +75,13 @@ switch (command) {
   case "demo":
     py(["tools/smoke_test.py", "--pretty"]);
     break;
+  case "usability":
+    py(["tools/ghost_coach_study.py", ...process.argv.slice(3)]);
+    break;
   case "dev-real":
     py(["web_app.py"]);
     break;
   default:
-    console.error("Usage: node tools/harness.mjs <install|dev|test|check|demo|dev-real>");
+    console.error("Usage: node tools/harness.mjs <install|dev|test|check|demo|usability|dev-real>");
     process.exit(2);
 }

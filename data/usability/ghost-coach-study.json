@@ -1,0 +1,8 @@
+{
+  "study_id": "ghost-coach-t050-v1",
+  "status": "pending_real_participants",
+  "data_classification": "anonymous_usability_feedback",
+  "instructions": "Only append results observed from real participants. Use anonymous codes, never names or employee IDs.",
+  "protocol": "docs/ghost-coach-usability-results.md",
+  "records": []
+}
