@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>练了吗 · 企业级实时运动姿态矫正平台</title>
+    <title>练了么 · AI 体能数字员工 · 基座 + 基座 · 实时监测 + 实时纠正</title>
     <style>
         :root {
             color-scheme: light;
@@ -434,122 +434,129 @@
         <!-- Hero -->
         <section class="hero">
             <div class="shell">
-                <div class="eyebrow"><span class="live-dot"></span>ENTERPRISE AI AGENT · OCCUPATIONAL HEALTH</div>
-                <h1>你今天，<br><em>练了吗？</em></h1>
-                <p class="hero-sub">把每一个动作，变成标准动作。</p>
+                <div class="eyebrow"><span class="live-dot"></span>AI 体能数字员工 · 基座 + 基座 · CLAWHIVE SKILL</div>
+                <h1>你今天，<br><em>练了么？</em></h1>
+                <p class="hero-sub">实时监测 · 实时纠正 · 实时反馈——运行在企业专属垂直基座之上。</p>
                 <p class="hero-copy">
                     练了吗 · 面向蓝领与体力劳动者的企业级 AI 运动健康 Agent。基于 RTMPose 姿态识别
                     与 ST-GCN 时空图卷积，实时纠正劳动与训练中的危险姿势、预防慢性损伤；为工厂招聘
                     提供标准化 AI 体能检测认证，替代人工蹲守计数——用 AI 数字员工，降低企业职业健康成本。
                     模型权重本地加载，全程离线推理，不依赖任何云端 API。
+                    监测是实时的，纠错是实时的，反馈也是实时的——不是事后总结，是当下反馈。
                 </p>
                 <div class="hero-actions">
-                    <a href="/coach" class="primary-cta">实时姿势纠正 →</a>
-                    <a href="/certification" class="primary-cta success-cta">体能检测认证 →</a>
+                    <a href="/coach" class="primary-cta">实时纠错体验 →</a>
+                    <a href="/certification" class="primary-cta success-cta">招聘体能认证 →</a>
                 </div>
                 <div class="hero-proof">
-                    <div><strong>真模型</strong><span>RTMPose + ST-GCN，本地 GPU 实时推理</span></div>
-                    <div><strong>11 类动作</strong><span>21 人真实训练数据 · 混淆矩阵验证</span></div>
-                    <div><strong>不依赖云端</strong><span>逐帧本地推理，断网也能跑</span></div>
+                    <div><strong>基座 + 基座</strong><span>通用基座（公共资产）+ 企业专属垂直基座（按 tenant 沉淀）</span></div>
+                    <div><strong>实时三层</strong><span>实时监测（毫秒级阶段切换）+ 实时纠正（即时语音）+ 实时计数</span></div>
+                    <div><strong>ClawHive 双 Skill</strong><span>基座训练 Skill + 实时纠错 Skill，HR 在飞书/钉钉/OA 直接调用</span></div>
                 </div>
             </div>
         </section>
 
-        <!-- 核心能力 -->
+        <!-- 核心能力：ClawHive 双 Skill 架构 -->
         <section class="shell section-block">
             <div class="section-heading">
-                <span>ONE ENGINE / TWO BUSINESS LINES</span>
-                <h2>一套 AI 引擎，承载企业职业健康两大业务</h2>
+                <span>CLAWHIVE DUAL-SKILL ARCHITECTURE</span>
+                <h2>基座 + 基座：一对 Skill 撑起企业级 AI 体能闭环</h2>
             </div>
             <div class="grid">
                 <article class="panel">
+                    <div class="card-icon">🧱</div>
+                    <h3>基座训练 Skill</h3>
+                    <p>接收企业岗位相关数据集（或代理搜索开源数据集），在通用基座之上微调出该企业的专属垂直基座，输出 <code>vertical_base_id</code> 与权重哈希。</p>
+                    <span class="badge success">pose-coach-trainer</span>
+                </article>
+                <article class="panel">
+                    <div class="card-icon">⚡</div>
+                    <h3>实时纠错 Skill</h3>
+                    <p>运行在垂直基座之上：毫秒级阶段切换的实时监测、当下立刻的实时纠正、完整周期的实时计数与 Web Speech 实时语音反馈。</p>
+                    <span class="badge">enterprise-pose-coach</span>
+                </article>
+                <article class="panel">
                     <div class="card-icon">🏅</div>
                     <h3>AI 体能检测认证</h3>
-                    <p>工厂招聘标准化体能检测：深蹲 / 仰卧起坐连续完成 50 次即达标，AI 自动计数判定，替代人工蹲守跟进。</p>
+                    <p>工厂招聘标准化体能检测：深蹲 / 俯卧撑连续完成目标次数即达标，AI 自动计数 + 实时纠错 + 结构化认证记录。</p>
                     <span class="badge success">认证发放</span>
                 </article>
                 <article class="panel">
-                    <div class="card-icon">🧭</div>
-                    <h3>实时姿势纠正</h3>
-                    <p>逐帧分析人体关键点，纠正蓝领劳动与训练中的危险姿势，从源头预防腰背等慢性损伤。</p>
-                    <span class="badge">姿势纠正</span>
-                </article>
-                <article class="panel">
                     <div class="card-icon">🗣️</div>
-                    <h3>语音实时提醒</h3>
-                    <p>训练与康复过程中语音播报纠正提示，让眼睛始终盯着动作，不被屏幕打断节奏。</p>
-                    <span class="badge">语音播报</span>
-                </article>
-                <article class="panel">
-                    <div class="card-icon">🏭</div>
-                    <h3>员工职业健康</h3>
-                    <p>服务企业员工健身、体能达标与恢复训练——运动多一些，职业病与工伤风险就少一些。</p>
-                    <span class="badge">企业降本</span>
+                    <h3>实时语音 + 文字</h3>
+                    <p>训练与复训过程中实时语音播报纠正提示，配合毫秒级阶段徽标与错误码，让眼睛始终盯着动作。</p>
+                    <span class="badge">实时反馈</span>
                 </article>
             </div>
         </section>
 
-        <!-- 真实推理引擎 -->
+        <!-- 真实推理引擎 + 双层基座证据 -->
         <section class="shell section-block engine-section">
             <div class="section-heading">
-                <span>REAL ENGINE · NOT A SLIDEDECK</span>
-                <h2>真模型、真推理、真数据 —— 不只是一个演示</h2>
+                <span>REAL ENGINE · BASE + BASE</span>
+                <h2>通用基座 + 垂直基座：真模型、真推理、真数据</h2>
             </div>
             <div class="grid">
                 <article class="panel">
                     <div class="card-icon">🧠</div>
-                    <h3>真模型</h3>
-                    <p>RTMPose 姿态识别 + ST-GCN 时空图卷积，模型权重本地加载，GPU 实时推理。</p>
-                    <span class="badge">本地权重</span>
+                    <h3>通用基座</h3>
+                    <p>RTMPose 姿态识别 + ST-GCN 11 类动作分类（MM-Fit 微调）+ YOLOv8n 辅助检测，模型权重本地加载，GPU 实时推理。</p>
+                    <span class="badge">公共资产</span>
+                </article>
+                <article class="panel">
+                    <div class="card-icon">🏗️</div>
+                    <h3>垂直基座微调</h3>
+                    <p>基座训练 Skill 在通用基座上用企业脱敏样本微调，按 <code>tenant + standard_id</code> 沉淀专属权重；垂直基座是企业私有资产。</p>
+                    <span class="badge">tenant-private</span>
                 </article>
                 <article class="panel">
                     <div class="card-icon">📊</div>
                     <h3>真数据</h3>
-                    <p>21 人真实采集训练集，11 类动作、8898 个样本窗口，训练/验证混淆矩阵可验证。</p>
+                    <p>21 人真实采集训练集、8898 个样本窗口 <code>(8898, 2, 48, 17)</code>，训练/验证混淆矩阵可验证。</p>
                     <span class="badge">混淆矩阵</span>
                 </article>
                 <article class="panel">
-                    <div class="card-icon">🔗</div>
+                    <div class="card-icon">🔁</div>
                     <h3>真闭环</h3>
-                    <p>摄像头逐帧 → 关键点 → 分类 → 计数 → 纠错 → 认证，全链路本地跑通。</p>
-                    <span class="badge">离线可用</span>
+                    <p>摄像头逐帧 → 关键点 → 垂直基座推理 → 计数 → 实时纠正 → 结构化评估报告（<code>pass / not_met / needs_retraining / inconclusive</code>）。</p>
+                    <span class="badge">决策矩阵</span>
                 </article>
             </div>
             <div class="engine-proof">
                 <img src="/static/validation_confusion_matrix.png" alt="ST-GCN 验证集混淆矩阵">
                 <div>
-                    <strong>验证集混淆矩阵</strong>
-                    <span>ST-GCN 动作分类模型的真实验证结果，11 类动作分类表现逐格可核对——这是真实训练产出的模型，不是 mock 数据。</span>
+                    <strong>通用基座 → 垂直基座 微调起点</strong>
+                    <span>ST-GCN 11 类动作分类模型的真实验证结果，11 类动作分类表现逐格可核对——这是通用基座，也是垂直基座的微调起点；基座训练 Skill 在此之上为企业现场微调出专属垂直基座。</span>
                 </div>
             </div>
         </section>
 
-        <!-- 使用流程 -->
+<!-- ClawHive Agent 编排：双 Skill 端到端流程 -->
         <section class="shell section-block">
             <div class="section-heading">
-                <span>THE GOLDEN PATH</span>
-                <h2>从打开摄像头到认证达标，一条完整链路</h2>
+                <span>AGENT ORCHESTRATION · DUAL SKILL END-TO-END</span>
+                <h2>ClawHive Agent 调用一对 Skill：从 HR 训练请求到候选人达标回写</h2>
             </div>
             <div class="step-grid">
                 <article class="step-card">
                     <span>01</span>
-                    <h3>打开摄像头</h3>
-                    <p>浏览器授权摄像头，站到画面中央，系统开始逐帧识别人体关键点。</p>
+                    <h3>HR 发起训练请求</h3>
+                    <p>"为新工厂 A 训练深蹲 50 次招聘基座，使用近 3 个月脱敏样本"——HR 在飞书 / 钉钉 / 企微 / OA 里直接发起。</p>
                 </article>
                 <article class="step-card">
                     <span>02</span>
-                    <h3>选择动作</h3>
-                    <p>深蹲、仰卧起坐等检测与训练项目任选，贴合岗位体能要求。</p>
+                    <h3>基座训练 Skill 微调</h3>
+                    <p>ClawHive Agent 调用 <code>pose-coach-trainer</code>，选数据集 + 选微调起点（ST-GCN 通用基座）→ 输出 <code>vertical_base_id</code> → 部署到企业私有推理环境。</p>
                 </article>
                 <article class="step-card">
                     <span>03</span>
-                    <h3>实时纠正</h3>
-                    <p>劳动与训练中的危险姿势即时指出，语音 + 文字提示每一个细节。</p>
+                    <h3>实时纠错 Skill 上场</h3>
+                    <p>HR 发起"今天 A 批候选人创建深蹲 50 次检测"，Agent 调用 <code>enterprise-pose-coach</code> 绑定垂直基座——候选人摄像头前完成动作，毫秒级实时监测 + 即时语音纠错 + 完整周期计数。</p>
                 </article>
                 <article class="step-card">
                     <span>04</span>
-                    <h3>认证达标</h3>
-                    <p>连续完成 50 次规定动作，通过检测，生成个人认证证书。</p>
+                    <h3>结构化回写</h3>
+                    <p>汇总 <code>pass / not_met / needs_retraining / inconclusive</code>，连同 <code>vertical_base_id</code>、规则版本、Top 错误一并回写招聘台账，需复核项通知 HR。</p>
                 </article>
             </div>
         </section>
@@ -557,20 +564,20 @@
         <!-- CTA 收尾 -->
         <section class="shell audience-strip">
             <div>
-                <span>REAL-TIME CORRECTION</span>
-                <strong>实时姿势纠正 —— 蓝领劳动与训练中的危险姿势，AI 即时纠正、预防慢性损伤</strong>
+                <span>REAL-TIME CORRECTION LAYER</span>
+                <strong>实时纠错层 —— 跑在企业专属垂直基座之上，监测是实时的、纠错是实时的、反馈也是实时的</strong>
             </div>
             <div>
                 <span>AI PHYSICAL CERTIFICATION</span>
-                <strong>招聘体能检测 —— 深蹲 / 仰卧起坐 50 次达标，AI 自动计数、即时发证</strong>
+                <strong>招聘体能认证 —— 基座训练 Skill 产出垂直基座 · 实时纠错 Skill 在垂直基座上做达标判定</strong>
             </div>
-            <a href="/coach" class="audience-cta">进入姿势纠正 →</a>
+            <a href="/coach" class="audience-cta">体验实时纠错 →</a>
             <a href="/certification" class="audience-cta">进入体能认证 →</a>
         </section>
     </main>
 
     <footer>
-        练了吗 · 企业级 AI 运动健康 Agent（ClawHive Skill）&nbsp;|&nbsp; 本地模型推理 · RTMPose × ST-GCN × CUDA &nbsp;|&nbsp; 本系统结果仅作参考
+        练了么 · AI 体能数字员工（ClawHive 双 Skill：基座训练 Skill + 实时纠错 Skill） &nbsp;|&nbsp; 基座 + 基座：通用基座（公共资产）+ 企业专属垂直基座 &nbsp;|&nbsp; 本系统结果仅供 HR/EHS 复核，最终录用由企业授权人员决定
     </footer>
 </body>
 </html>
