@@ -1,0 +1,17 @@
+{
+  "request_id": "req-demo-003",
+  "task_id": "task-demo-003",
+  "session_id": "session-demo-003",
+  "decision": "inconclusive",
+  "valid_rep_count": 0,
+  "invalid_rep_count": 0,
+  "target_reps": 50,
+  "score": null,
+  "top_errors": [],
+  "review_status": "required",
+  "model_version": "rtmpose+stgcn-demo",
+  "rule_version": "RECRUIT_SQUAT_50_V1",
+  "completed_at": "2026-08-07T18:02:14+08:00",
+  "inconclusive_reason": "keypoints_invalid_after_30s",
+  "candidate_message": "关键点连续 30 秒未达到有效阈值，请调整站位后重试。"
+}

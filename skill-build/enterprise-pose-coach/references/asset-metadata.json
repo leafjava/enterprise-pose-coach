@@ -1,0 +1,152 @@
+{
+  "$schema": "https://clawhive.example.invalid/schemas/skill-asset-metadata/v1.json",
+  "skill": {
+    "name": "enterprise-pose-coach",
+    "version": "1.0.0",
+    "vendor": "lian-le-ma",
+    "category": "computer-vision",
+    "track": "ai-development",
+    "min_runtime": {
+      "python": "3.10",
+      "memory_mb": 1024,
+      "gpu": "optional",
+      "cuda": "optional"
+    }
+  },
+  "assets": {
+    "models": [
+      {
+        "id": "rtmpose-onnx",
+        "kind": "pose-estimation",
+        "format": "onnx",
+        "size_mb": 40,
+        "license": "internal",
+        "path_hint": "model/rtmo-*.onnx",
+        "inputs": ["image"],
+        "outputs": ["keypoints:17x2_or_17x3"],
+        "provider": "onnxruntime"
+      },
+      {
+        "id": "stgcn-11cls",
+        "kind": "action-classification",
+        "format": "pytorch",
+        "size_mb": 1,
+        "license": "internal",
+        "path_hint": "model/mmfit_pose11cls_stride48_best.pth",
+        "inputs": ["keypoint_sequence:48x17x2"],
+        "outputs": ["class:11", "confidence:1"],
+        "provider": "pytorch"
+      },
+      {
+        "id": "yolov8n",
+        "kind": "person-detection",
+        "format": "pytorch",
+        "size_mb": 7,
+        "license": "agpl-3.0",
+        "path_hint": "yolov8n.pt",
+        "inputs": ["image"],
+        "outputs": ["bboxes", "scores"],
+        "provider": "pytorch"
+      }
+    ],
+    "rules": [
+      {
+        "id": "RECRUIT_SQUAT_50_V1",
+        "kind": "exercise-rule-set",
+        "version": "1",
+        "exercise": "squats",
+        "scope": "recruitment-screening",
+        "criteria": {
+          "target_reps": 50,
+          "depth": "hip_below_knee",
+          "knee_alignment": "knee_over_toe",
+          "torso_tilt_max_deg": 45
+        }
+      }
+    ],
+    "data_sources": [
+      {
+        "id": "demo-seed",
+        "kind": "fixture",
+        "path_hint": "data/demo/enterprise_demo.json",
+        "license": "internal",
+        "synthetic": true
+      },
+      {
+        "id": "mmfit-21subjects",
+        "kind": "training-corpus",
+        "subjects": 21,
+        "windows": 8898,
+        "shape": [8898, 2, 48, 17],
+        "license": "research-only"
+      }
+    ],
+    "prompts": [
+      {
+        "id": "coach-feedback-system",
+        "path": "prompts/coach-feedback-system.txt",
+        "model": "ollama:gemma4:e2b",
+        "optional": true,
+        "fallback": "rule-engine-cue"
+      }
+    ],
+    "examples": [
+      "examples/input-request.json",
+      "examples/output-pass.json",
+      "examples/output-not-met.json",
+      "examples/output-inconclusive.json"
+    ]
+  },
+  "api": {
+    "consumed": [],
+    "produced": [
+      {
+        "id": "task.create",
+        "kind": "skill-input",
+        "description": "ClawHive → Skill: create a recruit/onboarding/training task",
+        "schema": "examples/input-request.json"
+      },
+      {
+        "id": "task.callback",
+        "kind": "skill-output",
+        "description": "Skill → ClawHive: structured result + optional webhook",
+        "schema": "examples/output-pass.json"
+      }
+    ],
+    "external_dependencies": [
+      {
+        "name": "ollama",
+        "kind": "local-runtime",
+        "required": false,
+        "purpose": "生成式教练文案；规则链路不依赖",
+        "default_model": "gemma4:e2b"
+      }
+    ]
+  },
+  "permissions": {
+    "camera": "required",
+    "microphone": "denied",
+    "network": "webhook-out-only",
+    "raw_frame_persistence": "denied",
+    "raw_frame_upload_to_llm": "denied"
+  },
+  "limits": {
+    "max_session_seconds": 1800,
+    "max_target_reps": 200,
+    "min_target_reps": 1,
+    "concurrent_sessions_per_tenant": 4,
+    "rate_limit_per_minute": 30
+  },
+  "compliance": {
+    "data_classification": "biometric-employment-screening",
+    "retention_default_days": 365,
+    "human_review_required_for": ["decision: inconclusive", "decision: not_met"],
+    "prohibited_uses": [
+      "medical-diagnosis",
+      "rehabilitation-prescription",
+      "injury-prediction",
+      "performance-evaluation",
+      "compensation-decision"
+    ]
+  }
+}
