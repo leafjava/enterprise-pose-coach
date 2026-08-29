@@ -4,6 +4,57 @@
 
 本仓库已有可运行的 Flask Web 演示、RTMPose 姿态估计、ST-GCN 动作分类、实时规则纠错、动作计数、训练总结和认证记录。参赛产品方向、边界和 48 小时计划见 [PRD](docs/PRD.md)。
 
+## 快速开始
+
+> 两种启动方式：先选一个跑起来，再按需进入完整链路。详细环境说明见 [RUNNING.md](RUNNING.md)。
+
+### 方式 A：无 GPU 评审模式（推荐先跑这个）
+
+适合评审、本地快速看页面、无 CUDA/无摄像头的机器。用确定性姿态输入代替模型，保留真实页面、API 和规则引擎。
+
+前置条件：Node.js 18+、Python 3.10+。Windows 上若 `python` 不是有效解释器，先设置：
+
+```powershell
+$env:PYTHON = "C:\path\to\python.exe"
+```
+
+启动：
+
+```powershell
+npm run install      # 创建 .venv 并安装最小依赖（Flask + NumPy）
+npm run dev          # 启动评审服务器，默认 http://127.0.0.1:4000
+```
+
+打开终端打印的地址即可。其他常用命令：
+
+| 命令 | 作用 |
+|---|---|
+| `npm run dev` | 启动无 GPU 评审服务器 |
+| `npm run test` | 跑最小 `unittest` 测试集 |
+| `npm run check` | 编译检查 + 文档契约 + 测试 |
+| `npm run demo` | 端到端 smoke，预期输出 `status: passed` |
+| `npm run dev:real` | 启动带真实模型的 Flask Web（同 `python web_app.py`） |
+
+### 方式 B：真实模型链路
+
+需要完整视觉依赖（RTMPose ONNX、ST-GCN、YOLOv8n）以及与你 CPU/CUDA 环境匹配的 PyTorch。
+
+```powershell
+python -m pip install -r requirements.txt
+# 按 https://pytorch.org/ 的环境说明安装匹配的 PyTorch
+$env:OLLAMA_MODEL = "gemma4:e2b"        # 可选：本地生成式反馈；不装也能跑分类与规则
+python web_app.py                       # 默认 http://127.0.0.1:4000
+```
+
+可选演示视频目录：
+
+```powershell
+$env:POSE_VIDEO_DIR = "E:\Program\PoseClassifier\配套视频"
+python web_app.py
+```
+
+页面入口：`/` 首页、`/coach` 实时教练、`/certification` 体能认证。
+
 ## 为什么值得做
 
 制造企业批量招聘或转岗时，经常需要人工盯着候选人完成深蹲、俯卧撑等岗位相关体能项目：一个人负责一个个数、判断动作是否有效，招聘高峰成本高，标准也容易因考官而异。员工入职后，安全与工效培训又面临“看过不等于会做”的同一问题。安姿盾先用自动计数和达标报告切入招聘/转岗筛选，再复用同一套视觉、规则和审计资产服务在岗动作合规与复训。
