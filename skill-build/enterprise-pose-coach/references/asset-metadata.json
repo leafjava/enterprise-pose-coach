@@ -2,21 +2,14 @@
   "$schema": "https://clawhive.example.invalid/schemas/skill-asset-metadata/v1.json",
   "skill": {
     "name": "enterprise-pose-coach",
-    "display_name": "Enterprise Pose Coach · 实时纠错层",
+    "display_name": "练了么 · AI 体能数字员工",
     "version": "1.0.0",
     "vendor": "lian-le-ma",
     "category": "computer-vision",
     "track": "ai-development",
-    "architecture": "base_plus_base",
-    "architecture_note": "本 Skill 是「基座 + 基座」双层架构中的实时纠错层。它必须运行在配套基座训练 Skill pose-coach-trainer 产出的垂直基座之上，不在通用基座上裸跑。",
-    "companion_skills": [
-      {
-        "name": "pose-coach-trainer",
-        "role": "base-trainer",
-        "outputs": ["vertical_base_id"],
-        "consumed_by_this_skill": true
-      }
-    ],
+    "architecture": "train_then_reuse",
+    "architecture_note": "本 Skill 自带 训练 + 沉淀 + 复用 生命周期：首次调用训练垂直模型并选 Best 权重沉淀；后续每一次调用都直接加载 Best 权重。Best 权重可下载、可私有部署、可重复调用、可持续进化（旧版可回滚）。",
+    "key_message": "传统 Skill 编排已有能力；练了么 Skill 帮助 Agent 训练、沉淀并持续调用新的垂直能力。",
     "min_runtime": {
       "python": "3.10",
       "memory_mb": 1024,
@@ -47,22 +40,22 @@
         "license": "internal",
         "path_hint": "model/mmfit_pose11cls_stride48_best.pth",
         "base_version": "stgcn-mmfit-11cls-stride48@2026-05-29",
-        "note": "通用基座；垂直基座在本权重上用企业脱敏样本微调",
+        "note": "成熟通用模型；训练 Best 权重的起点",
         "inputs": ["keypoint_sequence:48x17x2"],
         "outputs": ["class:11", "confidence:1"],
         "provider": "pytorch"
       },
       {
-        "id": "vertical-base-placeholder",
-        "role": "vertical-base",
+        "id": "best-weight-placeholder",
+        "role": "best-weight",
         "kind": "action-classification-tenant-finetune",
         "format": "pytorch",
         "size_mb": 1,
         "license": "tenant-private",
-        "path_hint": "model/vbase_<tenant>_<date>.pth",
-        "produced_by": "pose-coach-trainer",
+        "path_hint": "model/bw_<tenant>_<date>_<version>.pth",
+        "produced_by": "this-skill-first-call",
         "trained_from": "stgcn-mmfit-11cls-stride48",
-        "note": "本 Skill 运行时必须绑定到具体 vertical_base_id；占位说明见 examples/base-train-response.json",
+        "note": "本 Skill 首次调用训练后沉淀；后续调用直接加载；旧版本保留可回滚",
         "inputs": ["keypoint_sequence:48x17x2"],
         "outputs": ["class:11", "confidence:1"],
         "provider": "pytorch"
@@ -114,10 +107,10 @@
       },
       {
         "id": "tenant-desensitized-samples",
-        "role": "vertical-base-training-corpus",
+        "role": "best-weight-training-corpus",
         "kind": "tenant-uploaded",
         "license": "tenant-private",
-        "note": "企业脱敏样本；只在基座训练 Skill pose-coach-trainer 中使用，不进入通用基座、不进入公共数据集"
+        "note": "企业脱敏样本；只在 Skill 首次调用训练链路中使用，不进入公共数据集"
       }
     ],
     "prompts": [
@@ -144,25 +137,25 @@
       {
         "id": "task.create",
         "kind": "skill-input",
-        "description": "ClawHive Agent → Skill: create a recruit/onboarding/training task (binds vertical_base_id)",
+        "description": "ClawHive Agent → Skill: create a recruit/onboarding/training task; 首次调用 best_weight_id 不填",
         "schema": "examples/input-request.json"
       },
       {
         "id": "task.callback",
         "kind": "skill-output",
-        "description": "Skill → ClawHive Agent: structured result + optional webhook (echoes vertical_base_id)",
+        "description": "Skill → ClawHive Agent: structured result + best_weight_id + best_weight_version",
         "schema": "examples/output-pass.json"
       },
       {
-        "id": "vertical_base.train",
-        "kind": "companion-skill-input",
-        "description": "ClawHive Agent → pose-coach-trainer: train a tenant vertical base on top of the general base",
+        "id": "skill.init",
+        "kind": "skill-first-call",
+        "description": "首次调用：训练垂直模型，按 训练 + 沉淀 流程产出 best_weight_id",
         "schema": "examples/base-train-request.json"
       },
       {
-        "id": "vertical_base.trained",
-        "kind": "companion-skill-output",
-        "description": "pose-coach-trainer → ClawHive Agent: vertical_base_id + artifact metadata",
+        "id": "skill.init.done",
+        "kind": "skill-first-call-output",
+        "description": "首次调用完成：返回 best_weight_id + 训练指标 + 权重哈希",
         "schema": "examples/base-train-response.json"
       }
     ],
@@ -173,12 +166,6 @@
         "required": false,
         "purpose": "生成式教练文案；规则链路不依赖",
         "default_model": "gemma4:e2b"
-      },
-      {
-        "name": "pose-coach-trainer",
-        "kind": "companion-skill",
-        "required": true,
-        "purpose": "产出 vertical_base_id；本 Skill 不在通用基座上裸跑"
       }
     ]
   },
@@ -188,7 +175,8 @@
     "network": "webhook-out-only",
     "raw_frame_persistence": "denied",
     "raw_frame_upload_to_llm": "denied",
-    "vertical_base_artifact_download": "tenant-scoped"
+    "best_weight_artifact_download": "tenant-scoped",
+    "best_weight_retrain_trigger": "tenant-scoped"
   },
   "limits": {
     "max_session_seconds": 1800,

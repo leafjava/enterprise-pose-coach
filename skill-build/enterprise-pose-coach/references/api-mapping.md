@@ -25,7 +25,7 @@
 | `batch_id` | （无） | 新增：汇总与统计 |
 | `assignee_id` | （无） | 新增：候选人临时 ID；与 `/api/certifications.worker_id` 对齐 |
 | `standard_id` | （无） | 新增：规则版本号；写入 `certifications.rule_version` |
-| **`vertical_base_id`** | （无） | 新增：基座训练 Skill 产出的垂直基座 ID；写入 `session.vertical_base_id`，审计事件必带 |
+| `best_weight_id` | （无） | 新增：Skill 内部训练或复用的 Best 权重 ID；首次调用为空并由 Skill 内部生成，后续调用必填并加载对应权重；写入 `session.best_weight_id` |
 | `exercise` | `session.exercise` | 直接复用 |
 | `target_reps` | `session.target_reps` | 新增字段；`/api/session/start` 接收 |
 | `due_at` | （无） | 可选；用于超时控制 |
@@ -66,48 +66,62 @@
 | 同 `request_id` 二次调用 | 返回同一 `task_id`，不重复创建 |
 | Ollama 关闭 | 视觉分类与规则纠错继续，提示文案降级 |
 | 无 GPU | harness 路径生效，返回同样的 `decision` |
-## 5. 基座训练 Skill `pose-coach-trainer` 的字段映射
+## 5. 训练 + 沉淀 + 复用 · 接入步骤
 
-`pose-coach-trainer` 是配套的基座训练 Skill，调用的是仓库内另一组 Flask 路由（48 小时 MVP 待接入）：
+48 小时 MVP 待接入。本节给出把现有 Flask API 升级到"首次调用训练 + 后续调用复用"两条路径的步骤。
+
+### 5.1 首次调用（训练 + 沉淀）· 新增路由
 
 | 路由 | 方法 | 作用 |
 |---|---|---|
-| `/api/skill/train_base` | POST | 启动一次垂直基座微调 |
-| `/api/skill/vertical_bases` | GET | 查询租户下所有垂直基座列表 |
-| `/api/skill/vertical_base/<vertical_base_id>` | GET | 查询单个垂直基座的训练指标与权重元数据 |
+| `/api/skill/init` | POST | 首次调用：训练垂直模型，按 §8.1 流程跑完后沉淀 Best 权重并返回 `best_weight_id` |
+| `/api/skill/best_weights` | GET | 按 tenant 列出所有 Best 权重（含旧版本，可回滚） |
+| `/api/skill/retrain` | POST | 再次训练：新样本进来后按 §8.3 流程评估新 Best 权重，优于当前版本才升级 |
+
+### 5.2 首次调用入参字段映射
 
 | Skill 字段 | Flask 字段 | 备注 |
 |---|---|---|
 | `request_id` | `train_job.request_id` | 幂等键 |
 | `tenant_id` | `train_job.tenant_id` | 租户隔离 |
 | `standard_id` | `train_job.standard_id` | 规则版本号；与本 Skill 输出对齐 |
-| `base_checkpoint` | `train_job.base_checkpoint` | 固定为 `stgcn-mmfit-11cls-stride48` |
 | `training_data` | `train_job.data_manifest` | 含 subjects/windows/shape/synthetic_allowed |
 | `hyperparameters` | `train_job.hparams` | 不填走默认 |
 | `notify_url` | `train_job.notify_url` | 训练完成后 webhook |
-| `vertical_base_id` | `artifact.vertical_base_id` | 产出 ID |
-| `trained_from` | `artifact.trained_from` | 实际微调起点 |
+| `best_weight_id` | `train_job.best_weight_id` | 首次调用不填；响应中生成 |
+| `trained_from` | `artifact.trained_from` | 实际微调起点（一般是 `stgcn-mmfit-11cls-stride48@2026-05-29`） |
 | `metrics` | `artifact.metrics` | `train_loss` / `val_accuracy` / `val_top3` |
-| `artifact.path` | `model/vbase_<tenant>_<date>.pth` | 实际落盘路径 |
+| `artifact.path` | `model/bw_<tenant>_<date>_<version>.pth` | 实际落盘路径 |
 | `artifact.sha256` | `artifact.sha256` | 权重哈希，便于审计 |
 | `completed_at` | `artifact.completed_at` | ISO 8601 |
 
-### 5.1 训练 Skill 与实时纠错 Skill 的串联
+### 5.3 后续调用（直接复用 Best 权重）· 现有路由升级
+
+| 路由 | 方法 | 改动 |
+|---|---|---|
+| `POST /api/session/start` | POST | 新增接收 `best_weight_id` 字段；服务端加载对应 Best 权重 |
+| `POST /api/session/stop` | POST | 在响应中回传 `best_weight_id` + `best_weight_version` |
+
+### 5.4 两条路径串联（ClawHive Agent 视角）
 
 ```text
-HR → ClawHive Agent → pose-coach-trainer.train_base
-                       ↓ 返回 vertical_base_id
-                       ↓ 部署到企业私有推理环境
-HR → ClawHive Agent → enterprise-pose-coach.task.create
-                       ↓ 传 vertical_base_id
+HR → ClawHive Agent → 练了么 Skill.init （首次）
+                       ↓ 返回 best_weight_id
+                       ↓ 沉淀到企业私有推理环境
+HR → ClawHive Agent → 练了么 Skill.session.start （传 best_weight_id）
+                       ↓ 直接加载 Best 权重
                        ↓ 候选人摄像头前完成动作
                        ↓ 实时纠错 Skill 返回结构化评估
                        ↓ 回写招聘台账 / EHS 工单
+
+未来：HR → ClawHive Agent → 练了么 Skill.retrain（新样本）
+                       ↓ 评估新 Best 权重
+                       ↓ 更优才升级为 v2，旧 v1 保留可回滚
 ```
 
-### 5.2 接入步骤（48 小时 MVP 待办）
+### 5.5 接入步骤（48 小时 MVP 待办）
 
-1. 新增 `src/train_base.py`：加载通用基座权重 → 接收企业脱敏样本 → 跑微调 → 产出 `vertical_base_id` 与权重；
-2. 新增 `/api/skill/train_base` 与 `/api/skill/vertical_bases` Flask 路由；
-3. 在本 Skill 的 `/api/session/start` 接收 `vertical_base_id` 并加载对应垂直基座权重；
-4. `/api/session/stop` 把 `vertical_base_id` / `vertical_base_version` 写入响应体（已经在契约 §2 输出表中定义）。
+1. 新增 `src/train_vertical.py`：加载成熟通用模型权重 → 接收企业脱敏样本 → 跑微调 → 产出 `best_weight_id` 与权重；
+2. 新增 `/api/skill/init` / `/api/skill/best_weights` / `/api/skill/retrain` Flask 路由；
+3. 在 `/api/session/start` 接收 `best_weight_id` 并加载对应 Best 权重；
+4. `/api/session/stop` 把 `best_weight_id` / `best_weight_version` 写入响应体（已在契约 §2 输出表中定义）。

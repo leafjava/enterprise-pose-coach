@@ -2,7 +2,8 @@
   "request_id": "req-train-001",
   "tenant_id": "factory-demo",
   "standard_id": "RECRUIT_SQUAT_50_V1",
-  "base_checkpoint": "stgcn-mmfit-11cls-stride48",
+  "best_weight_id": null,
+  "_note": "首次调用：best_weight_id 不填；Skill 内部按 训练 + 沉淀 流程跑完后生成 best_weight_id 并回传",
   "training_data": {
     "source": "tenant-uploaded-or-public",
     "subjects": 21,

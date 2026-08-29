@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>练了么 · AI 体能数字员工 · 基座 + 基座 · 实时监测 + 实时纠正</title>
+    <title>练了么 · AI 体能数字员工 · 训练 + 沉淀 + 复用 · 实时监测 + 实时纠正</title>
     <style>
         :root {
             color-scheme: light;
@@ -434,24 +434,24 @@
         <!-- Hero -->
         <section class="hero">
             <div class="shell">
-                <div class="eyebrow"><span class="live-dot"></span>AI 体能数字员工 · 基座 + 基座 · CLAWHIVE SKILL</div>
+                <div class="eyebrow"><span class="live-dot"></span>AI 体能数字员工 · 训练 + 沉淀 + 复用 · CLAWHIVE SKILL</div>
                 <h1>你今天，<br><em>练了么？</em></h1>
-                <p class="hero-sub">实时监测 · 实时纠正 · 实时反馈——运行在企业专属垂直基座之上。</p>
+                <p class="hero-sub">实时监测 · 实时纠正 · 实时反馈——首次调用训练 Best 权重并沉淀，后续调用直接复用。</p>
                 <p class="hero-copy">
-                    练了吗 · 面向蓝领与体力劳动者的企业级 AI 运动健康 Agent。基于 RTMPose 姿态识别
+                    练了么 · 面向蓝领与体力劳动者的企业级 AI 运动健康 Agent。基于 RTMPose 姿态识别
                     与 ST-GCN 时空图卷积，实时纠正劳动与训练中的危险姿势、预防慢性损伤；为工厂招聘
                     提供标准化 AI 体能检测认证，替代人工蹲守计数——用 AI 数字员工，降低企业职业健康成本。
                     模型权重本地加载，全程离线推理，不依赖任何云端 API。
-                    监测是实时的，纠错是实时的，反馈也是实时的——不是事后总结，是当下反馈。
+                    首次调用：训练 Best 权重并沉淀；后续调用：直接复用 Best 权重。监测是实时的，纠错是实时的，反馈也是实时的——不是事后总结，是当下反馈。
                 </p>
                 <div class="hero-actions">
                     <a href="/coach" class="primary-cta">实时纠错体验 →</a>
                     <a href="/certification" class="primary-cta success-cta">招聘体能认证 →</a>
                 </div>
                 <div class="hero-proof">
-                    <div><strong>基座 + 基座</strong><span>通用基座（公共资产）+ 企业专属垂直基座（按 tenant 沉淀）</span></div>
-                    <div><strong>实时三层</strong><span>实时监测（毫秒级阶段切换）+ 实时纠正（即时语音）+ 实时计数</span></div>
-                    <div><strong>ClawHive 双 Skill</strong><span>基座训练 Skill + 实时纠错 Skill，HR 在飞书/钉钉/OA 直接调用</span></div>
+                    <div><strong>训练 + 沉淀 + 复用</strong><span>首次调用训练垂直模型 → 沉淀 Best 权重 → 后续调用直接复用</span></div>
+                    <div><strong>实时四层</strong><span>实时监测（毫秒级阶段切换）+ 实时纠正（即时语音）+ 实时计数（完整周期）+ 实时反馈</span></div>
+                    <div><strong>ClawHive 单 Skill</strong><span>练了么 Skill 自带训练 + 沉淀 + 复用 生命周期，HR 在飞书 / 钉钉 / 企微 / OA 直接调用</span></div>
                 </div>
             </div>
         </section>
@@ -459,21 +459,21 @@
         <!-- 核心能力：ClawHive 双 Skill 架构 -->
         <section class="shell section-block">
             <div class="section-heading">
-                <span>CLAWHIVE DUAL-SKILL ARCHITECTURE</span>
-                <h2>基座 + 基座：一对 Skill 撑起企业级 AI 体能闭环</h2>
+                <span>CLAWHIVE SKILL · TRAIN + REUSE</span>
+                <h2>训练 + 沉淀 + 复用：一个 Skill 撑起企业级 AI 体能闭环</h2>
             </div>
             <div class="grid">
                 <article class="panel">
-                    <div class="card-icon">🧱</div>
-                    <h3>基座训练 Skill</h3>
-                    <p>接收企业岗位相关数据集（或代理搜索开源数据集），在通用基座之上微调出该企业的专属垂直基座，输出 <code>vertical_base_id</code> 与权重哈希。</p>
-                    <span class="badge success">pose-coach-trainer</span>
+                    <div class="card-icon">🧠</div>
+                    <h3>首次调用：训练 + 沉淀</h3>
+                    <p>Skill 指导 Agent 完成数据获取 → 数据处理 → 模型训练 → 效果评估 → <strong>选择效果最好的 Best 权重并沉淀</strong>。沉淀后输出 <code>best_weight_id</code>、<code>best_weight_version</code> 与权重哈希。</p>
+                    <span class="badge success">首次调用 · best_weight_id=null</span>
                 </article>
                 <article class="panel">
                     <div class="card-icon">⚡</div>
-                    <h3>实时纠错 Skill</h3>
-                    <p>运行在垂直基座之上：毫秒级阶段切换的实时监测、当下立刻的实时纠正、完整周期的实时计数与 Web Speech 实时语音反馈。</p>
-                    <span class="badge">enterprise-pose-coach</span>
+                    <h3>后续调用：直接复用</h3>
+                    <p>每次后续调用时，Skill 直接加载沉淀的 <code>best_weight_id</code>，进入毫秒级实时监测、当下立刻的实时纠正、完整周期的实时计数与 Web Speech 实时语音反馈。</p>
+                    <span class="badge">后续调用 · best_weight_id 已填</span>
                 </article>
                 <article class="panel">
                     <div class="card-icon">🏅</div>
@@ -493,20 +493,20 @@
         <!-- 真实推理引擎 + 双层基座证据 -->
         <section class="shell section-block engine-section">
             <div class="section-heading">
-                <span>REAL ENGINE · BASE + BASE</span>
-                <h2>通用基座 + 垂直基座：真模型、真推理、真数据</h2>
+                <span>REAL ENGINE · GENERAL MODEL + BEST WEIGHT</span>
+                <h2>成熟通用模型 + Best 权重：真模型、真推理、真数据</h2>
             </div>
             <div class="grid">
                 <article class="panel">
                     <div class="card-icon">🧠</div>
-                    <h3>通用基座</h3>
-                    <p>RTMPose 姿态识别 + ST-GCN 11 类动作分类（MM-Fit 微调）+ YOLOv8n 辅助检测，模型权重本地加载，GPU 实时推理。</p>
-                    <span class="badge">公共资产</span>
+                    <h3>成熟通用模型</h3>
+                    <p>RTMPose 姿态识别 + ST-GCN 11 类动作分类（MM-Fit 微调）+ YOLOv8n 辅助检测，模型权重本地加载，GPU 实时推理；这是训练 Best 权重的稳定起点。</p>
+                    <span class="badge">通用资产</span>
                 </article>
                 <article class="panel">
                     <div class="card-icon">🏗️</div>
-                    <h3>垂直基座微调</h3>
-                    <p>基座训练 Skill 在通用基座上用企业脱敏样本微调，按 <code>tenant + standard_id</code> 沉淀专属权重；垂直基座是企业私有资产。</p>
+                    <h3>Best 权重（沉淀的垂直模型）</h3>
+                    <p>首次调用在通用模型上用企业脱敏样本训练，按 <code>tenant + standard_id + version</code> 沉淀 Best 权重；可下载、可私有部署、可重复调用、可再训练升级，旧版本保留可回滚。</p>
                     <span class="badge">tenant-private</span>
                 </article>
                 <article class="panel">
@@ -518,15 +518,15 @@
                 <article class="panel">
                     <div class="card-icon">🔁</div>
                     <h3>真闭环</h3>
-                    <p>摄像头逐帧 → 关键点 → 垂直基座推理 → 计数 → 实时纠正 → 结构化评估报告（<code>pass / not_met / needs_retraining / inconclusive</code>）。</p>
+                    <p>摄像头逐帧 → 关键点 → Best 权重推理 → 计数 → 实时纠正 → 结构化评估报告（<code>pass / not_met / needs_retraining / inconclusive</code>）。</p>
                     <span class="badge">决策矩阵</span>
                 </article>
             </div>
             <div class="engine-proof">
                 <img src="/static/validation_confusion_matrix.png" alt="ST-GCN 验证集混淆矩阵">
                 <div>
-                    <strong>通用基座 → 垂直基座 微调起点</strong>
-                    <span>ST-GCN 11 类动作分类模型的真实验证结果，11 类动作分类表现逐格可核对——这是通用基座，也是垂直基座的微调起点；基座训练 Skill 在此之上为企业现场微调出专属垂直基座。</span>
+                    <strong>成熟通用模型 → Best 权重（沉淀的垂直模型）</strong>
+                    <span>ST-GCN 11 类动作分类模型的真实验证结果，11 类动作分类表现逐格可核对——这是成熟通用模型，也是 Best 权重的训练起点；首次调用在此之上为企业现场训练并沉淀专属 Best 权重。</span>
                 </div>
             </div>
         </section>
@@ -534,29 +534,29 @@
 <!-- ClawHive Agent 编排：双 Skill 端到端流程 -->
         <section class="shell section-block">
             <div class="section-heading">
-                <span>AGENT ORCHESTRATION · DUAL SKILL END-TO-END</span>
-                <h2>ClawHive Agent 调用一对 Skill：从 HR 训练请求到候选人达标回写</h2>
+                <span>AGENT ORCHESTRATION · SINGLE SKILL LIFECYCLE</span>
+                <h2>ClawHive Agent 调用一个 Skill：从首次训练到后续持续复用</h2>
             </div>
             <div class="step-grid">
                 <article class="step-card">
                     <span>01</span>
-                    <h3>HR 发起训练请求</h3>
-                    <p>"为新工厂 A 训练深蹲 50 次招聘基座，使用近 3 个月脱敏样本"——HR 在飞书 / 钉钉 / 企微 / OA 里直接发起。</p>
+                    <h3>HR 发起首次调用（训练）</h3>
+                    <p>"为新工厂 A 训练深蹲 50 次招聘能力，使用近 3 个月脱敏样本"——HR 在飞书 / 钉钉 / 企微 / OA 里直接发起，<code>best_weight_id</code> 不填。</p>
                 </article>
                 <article class="step-card">
                     <span>02</span>
-                    <h3>基座训练 Skill 微调</h3>
-                    <p>ClawHive Agent 调用 <code>pose-coach-trainer</code>，选数据集 + 选微调起点（ST-GCN 通用基座）→ 输出 <code>vertical_base_id</code> → 部署到企业私有推理环境。</p>
+                    <h3>Skill 内部训练 + 沉淀</h3>
+                    <p>Skill 指导 Agent 完成数据获取 → 数据处理（清洗 / 关键点 / 48 帧切窗 / 划分）→ 模型训练 → 效果评估 → <strong>选择 Best 权重</strong> → 沉淀到企业私有环境，输出 <code>best_weight_id</code>。</p>
                 </article>
                 <article class="step-card">
                     <span>03</span>
-                    <h3>实时纠错 Skill 上场</h3>
-                    <p>HR 发起"今天 A 批候选人创建深蹲 50 次检测"，Agent 调用 <code>enterprise-pose-coach</code> 绑定垂直基座——候选人摄像头前完成动作，毫秒级实时监测 + 即时语音纠错 + 完整周期计数。</p>
+                    <h3>Skill 后续调用：直接复用</h3>
+                    <p>HR 发起"今天 A 批候选人创建深蹲 50 次检测"，Agent 调用 <code>enterprise-pose-coach</code> 并传入 <code>best_weight_id</code>——候选人摄像头前完成动作，Skill 直接加载 Best 权重进入毫秒级实时监测 + 即时语音纠错 + 完整周期计数。</p>
                 </article>
                 <article class="step-card">
                     <span>04</span>
-                    <h3>结构化回写</h3>
-                    <p>汇总 <code>pass / not_met / needs_retraining / inconclusive</code>，连同 <code>vertical_base_id</code>、规则版本、Top 错误一并回写招聘台账，需复核项通知 HR。</p>
+                    <h3>结构化回写 + 持续进化</h3>
+                    <p>汇总 <code>pass / not_met / needs_retraining / inconclusive</code>，连同 <code>best_weight_id</code> / <code>best_weight_version</code>、规则版本、Top 错误一并回写招聘台账，需复核项通知 HR；后续积累新样本可再训练升级，旧版本可回滚。</p>
                 </article>
             </div>
         </section>
@@ -565,11 +565,11 @@
         <section class="shell audience-strip">
             <div>
                 <span>REAL-TIME CORRECTION LAYER</span>
-                <strong>实时纠错层 —— 跑在企业专属垂直基座之上，监测是实时的、纠错是实时的、反馈也是实时的</strong>
+                <strong>实时纠错层 —— 直接加载沉淀的 Best 权重，监测是实时的、纠错是实时的、反馈也是实时的</strong>
             </div>
             <div>
                 <span>AI PHYSICAL CERTIFICATION</span>
-                <strong>招聘体能认证 —— 基座训练 Skill 产出垂直基座 · 实时纠错 Skill 在垂直基座上做达标判定</strong>
+                <strong>招聘体能认证 —— 首次调用训练 Best 权重并沉淀 · 后续调用直接复用做达标判定</strong>
             </div>
             <a href="/coach" class="audience-cta">体验实时纠错 →</a>
             <a href="/certification" class="audience-cta">进入体能认证 →</a>
@@ -577,7 +577,7 @@
     </main>
 
     <footer>
-        练了么 · AI 体能数字员工（ClawHive 双 Skill：基座训练 Skill + 实时纠错 Skill） &nbsp;|&nbsp; 基座 + 基座：通用基座（公共资产）+ 企业专属垂直基座 &nbsp;|&nbsp; 本系统结果仅供 HR/EHS 复核，最终录用由企业授权人员决定
+        练了么 · AI 体能数字员工（ClawHive 单 Skill：训练 + 沉淀 + 复用 生命周期） &nbsp;|&nbsp; 首次调用：训练 Best 权重并沉淀 &nbsp;|&nbsp; 后续调用：直接复用 &nbsp;|&nbsp; 本系统结果仅供 HR / EHS 复核，最终录用由企业授权人员决定
     </footer>
 </body>
 </html>

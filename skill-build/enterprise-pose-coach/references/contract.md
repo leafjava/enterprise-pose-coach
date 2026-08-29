@@ -11,7 +11,7 @@
 | `batch_id` | string | 否 | — | 招聘/转岗批次，便于汇总。 |
 | `assignee_id` | string | 是 | — | 候选人临时 ID 或员工内部 ID。Demo 用 `candidate-c042`，生产建议用脱敏 ID。 |
 | `standard_id` | string | 是 | — | 规则版本号，如 `RECRUIT_SQUAT_50_V1`。 |
-| **`vertical_base_id`** | string | 是 | — | 由配套的**基座训练 Skill `pose-coach-trainer`** 为该企业微调出来的垂直基座 ID。本 Skill 不在通用基座上裸跑，必须绑定 `vertical_base_id` 才能运行；它保证了"基座 + 基座"架构中第二个基座的来源可审计。 |
+| `best_weight_id` | string | 否（**首次调用不填**） | — | 已沉淀的 Best 权重 ID；首次调用不填，Skill 内部走训练链路并生成该 ID；后续调用必须传入才能直接加载 Best 权重。 |
 | `exercise` | string | 是 | — | 动作 ID：`squats` / `pushups` / `situps` / `lunges` / `shoulder_press` / `rowing` / `bicep_curl`。 |
 | `target_reps` | integer | 是 | — | 目标有效次数，1–200。 |
 | `due_at` | string (ISO 8601) | 否 | — | 截止时间。 |
@@ -35,9 +35,8 @@
 | `review_status` | enum | 是 | `not_required` / `optional` / `required`。`inconclusive` 必为 `required`。 |
 | `model_version` | string | 是 | 模型版本号，建议含日期或 hash。 |
 | `rule_version` | string | 是 | 规则版本号，与 `standard_id` 对应。 |
-| `base_version` | string | 是 | **通用基座**版本号（公共资产，例如 `stgcn-mmfit-11cls-stride48@2026-05-29`）。 |
-| `vertical_base_id` | string | 是 | **垂直基座** ID（来自基座训练 Skill，例如 `vbase-factory-A-20260807`）。本 Skill 每次响应都必须原样回传，便于审计可追溯。 |
-| `vertical_base_version` | string | 是 | **垂直基座**版本号（同一垂直基座的多次迭代，例如 `v1` / `v2`），用于基座迭代回滚。 |
+| `best_weight_id` | string | 是 | **Best 权重 ID**（首次调用回传新生成的；后续调用回传已沉淀的，例如 `bw-factory-A-20260807-v1`）。每次响应必须原样回传，便于审计可追溯。 |
+| `best_weight_version` | string | 是 | **Best 权重版本号**（同一 Best 权重的多次迭代，例如 `v1` / `v2`），用于迭代回滚。 |
 | `completed_at` | string (ISO 8601) | 是 | 完成时间。 |
 | `certificate_id` | string | 否 | 当 `decision: pass` 时生成；否则省略。 |
 | `recommendation` | enum | 否 | `needs_retraining` 时建议复训；其他场景省略。 |
@@ -87,42 +86,51 @@
 - 输出侧：`valid_rep_count` + `top_errors` + `score` 必须能用同一份脱敏事件日志复现。
 
 隐私不进审计事件：候选人姓名、邮箱、原始视频帧、模型 prompt 不进入日志或审计字段。
-## 8. 配套基座训练 Skill `pose-coach-trainer` 契约（草图）
+## 8. 训练 + 沉淀 + 复用 生命周期
 
-`enterprise-pose-coach` 是"基座 + 基座"双层架构中的**实时纠错 Skill**。
-它**必须**运行在垂直基座之上；垂直基座由配套的基座训练 Skill `pose-coach-trainer` 产出。
-下面是基座训练 Skill 的草图契约，便于 ClawHive Agent 串联两个 Skill��
+本 Skill 在 ClawHive Agent 视角下是单一 Skill，但内部覆盖两条调用路径：
 
-### 8.1 基座训练 Skill 输入
+### 8.1 首次调用（训练 + 沉淀）
 
-| 字段 | 类型 | 必填 | 说明 |
-|---|---|---|---|
-| `request_id` | string | 是 | 幂等键 |
-| `tenant_id` | string | 是 | 企业租户标识 |
-| `standard_id` | string | 是 | 规则版本号（如 `RECRUIT_SQUAT_50_V1`），与本 Skill 输出对齐 |
-| `base_checkpoint` | string | 是 | 微调起点，固定为通用基座 ID（如 `stgcn-mmfit-11cls-stride48`） |
-| `training_data` | object | 是 | 数据来源：`tenant-uploaded` / `public-proxy`，含 `subjects` / `windows` / `shape` / `synthetic_allowed` |
-| `hyperparameters` | object | 否 | `epochs` / `batch_size` / `learning_rate`；不填走默认 |
-| `notify_url` | string | 否 | 训练完成后 webhook 回写 |
+`best_weight_id` 不填。Skill 内部按下列流程执行：
 
-### 8.2 基座训练 Skill 输出
+| 步骤 | 说明 |
+|---|---|
+| 数据获取 | Skill 指导 Agent 检索并筛选开源数据集（或接入企业上传的脱敏样本），检查数据许可、动作类别和数据格式 |
+| 数据处理 | 清洗、人体关键点转换、48 帧序列切分、训练集和验证集划分；典型 shape `(N, 2, 48, 17)` |
+| 模型训练 | 以成熟通用模型（`stgcn-mmfit-11cls-stride48`）为起点，用训练集做有监督学习 |
+| 效果评估 | 在验证集上计算 `train_loss` / `val_accuracy` / `val_top3`，与历史 Best 权重比较 |
+| 选择 Best 权重 | 选择验证集表现最优的 checkpoint，保存为该企业的 Best 权重 |
+| 沉淀 | 写入 `model/bw_<tenant>_<date>_<version>.pth`，记入版本表（含 `trained_from` / `metrics` / `sha256`） |
+| 输出 `best_weight_id` | Skill 响应中回传，供 Agent 持久化保存 |
 
-| 字段 | 类型 | 说明 |
-|---|---|---|
-| `request_id` | string | 原样回传 |
-| `vertical_base_id` | string | 新生成的垂直基座 ID（例：`vbase-factory-A-20260807`） |
-| `tenant_id` | string | 原样回传 |
-| `standard_id` | string | 原样回传 |
-| `trained_from` | string | 实际微调起点（一般是入参 `base_checkpoint`，可能因兼容性问题被替换） |
-| `metrics` | object | `train_loss` / `val_accuracy` / `val_top3` |
-| `artifact` | object | `path` / `size_mb` / `sha256` |
-| `completed_at` | string | ISO 8601 |
+### 8.2 后续调用（直接复用 Best 权重）
 
-### 8.3 ClawHive Agent 编排顺序
+`best_weight_id` **必须填**。Skill 内部按下列流程执行：
 
-1. HR 发起训练请求 → Agent 调用 `pose-coach-trainer`，拿到 `vertical_base_id`；
-2. HR 发起实时检测 → Agent 调用 `enterprise-pose-coach`，入参里传 `vertical_base_id`；
-3. 本 Skill 在该垂直基座上做实时监测 / 实时纠正 / 实时计数 / 实时反馈；
-4. 返回结构化评估结果（包含 `vertical_base_id` 与 `vertical_base_version`），HR 复核后回写招聘台账。
+1. Agent 把 `best_weight_id` 传入 Skill；
+2. Skill 加载对应的 `model/bw_<tenant>_<date>_<version>.pth`，无需重训练；
+3. 候选人摄像头前完成动作 → 实时监测 / 实时纠正 / 实时计数 / 实时反馈；
+4. 返回 `decision` + `best_weight_id` + `best_weight_version`，供 HR / EHS 复核。
 
-完整示例见 [`examples/base-train-request.json`](../examples/base-train-request.json) 与 [`examples/base-train-response.json`](../examples/base-train-response.json)。
+### 8.3 再次训练与版本回滚
+
+未来新样本积累后，Agent 可再次进入训练链路：
+
+```text
+当前 Best 权重（v1）
+       ↓
+新增授权数据 → 再训练 → 新旧权重评估
+                         ↓
+              新权重更优 → 升级为 v2，旧 v1 保留可回滚
+              新权重未更优 → 保留 v1
+```
+
+只有当新 Best 权重在验证集上优于当前版本时，才升级为新的 `best_weight_version`；旧版本保留可回滚。
+
+### 8.4 训练链路示例
+
+完整示例见：
+
+- [`examples/base-train-request.json`](../examples/base-train-request.json)：首次调用（训练）的入参（`best_weight_id` 不填）
+- [`examples/base-train-response.json`](../examples/base-train-response.json)：训练完成后 Skill 回传的 Best 权重信息
