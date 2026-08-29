@@ -1,8 +1,73 @@
-# Enterprise Pose Coach · 安姿盾
+# Enterprise Pose Coach · 练了么
 
-> 面向企业招聘、转岗与在岗训练的体能/动作评估数字员工：用普通摄像头完成自动计数、动作有效性判断、客观筛选和可审计留痕，并由 ClawHive 编排进企业流程。
+> 面向企业招聘、转岗与在岗训练的 **AI 体能数字员工**：当 ClawHive Agent 接入时，**第一次调用训练任务专用的垂直模型并沉淀 Best 权重，后续每一次调用都直接复用 Best 权重**。一个 Skill 同时承担 **训练 + 沉淀 + 调��**，帮助 Agent 获得一项 **可下载、可私有部署、可重复调用、可持续进化** 的垂直教练能力。亮点是"**实时**"：监测是实时的、纠错是实时的、反馈也是实时的。
 
-本仓库已有可运行的 Flask Web 演示、RTMPose 姿态估计、ST-GCN 动作分类、实时规则纠错、动作计数、训练总结和认证记录。参赛产品方向、边界和 48 小时计划见 [PRD](docs/PRD.md)。
+本仓库已实现 "**成熟通用模型 + 训练出来的垂直模型（Best 权重）**" 的双层资产：成熟通用模型（RTMPose / ST-GCN / YOLOv8n）作为微调起点，垂直模型在通用模型之上用企业脱敏样本训练出来，Best 权重沉淀在企业私有环境。参赛产品方向、边界和 48 小时计划见 [PRD](docs/PRD.md)，录屏叙事见 [Demo 视频分镜 v2](docs/练了么-demo分镜口播稿-v2.md)。
+
+## 这不是一个传统 Skill：训练 + 沉淀 + 复用
+
+传统 ClawHive Skill 主要通过 **Markdown 指令**告诉 Agent 应该怎样完成任务，或者让 Agent 调用 **一个已经固定好的 API**——它主要解决的是 **已有能力** 的描述、调用和编排问题。
+
+**练了么 Skill 不止编排一个固定能力**。当 ClawHive Agent 第一次使用它时，Skill 会带着 Agent 完成：
+
+```text
+数据获取 → 数据处理（清洗/关键点/48 帧切窗/划分） → 模型训练 → 效果评估 → 选择 Best 权重 → 沉淀为可复用资产
+```
+
+后续 Agent 每一次调用，都 **直接加载这个 Best 权重**，不需要重新下载数据，也不需要重新训练。当企业未来积累了新的授权样本，可以再次进入训练链路；只有当新权重通过评估并优于当前版本时，才升级为新的 Best 权重，旧版本保留可回滚。
+
+**核心金句**：**传统 Skill 编排已有能力；练了么 Skill 帮助 Agent 训练、沉淀并持续调用新的垂直能力**。
+
+## 快速开始
+
+> 两种启动方式：先选一个跑起来，再按需进入完整链路。详细环境说明见 [RUNNING.md](RUNNING.md)。
+
+### 方式 A：无 GPU 评审模式（推荐先跑这个）
+
+适合评审、本地快速看页面、无 CUDA/无摄像头的机器。用确定性姿态输入代替模型，保留真实页面、API 和规则引擎。
+
+前置条件：Node.js 18+、Python 3.10+。Windows 上若 `python` 不是有效解释器，先设置：
+
+```powershell
+$env:PYTHON = "C:\path\to\python.exe"
+```
+
+启动：
+
+```powershell
+npm run install      # 创建 .venv 并安装最小依赖（Flask + NumPy）
+npm run dev          # 启动评审服务器，默认 http://127.0.0.1:4000
+```
+
+打开终端打印的地址即可。其他常用命令：
+
+| 命令 | 作用 |
+|---|---|
+| `npm run dev` | 启动无 GPU 评审服务器 |
+| `npm run test` | 跑最小 `unittest` 测试集 |
+| `npm run check` | 编译检查 + 文档契约 + 测试 |
+| `npm run demo` | 端到端 smoke，预期输出 `status: passed` |
+| `npm run dev:real` | 启动带真实模型的 Flask Web（同 `python web_app.py`） |
+
+### 方式 B：真实模型链路
+
+需要完整视觉依赖（RTMPose ONNX、ST-GCN、YOLOv8n）以及与你 CPU/CUDA 环境匹配的 PyTorch。
+
+```powershell
+python -m pip install -r requirements.txt
+# 按 https://pytorch.org/ 的环境说明安装匹配的 PyTorch
+$env:OLLAMA_MODEL = "gemma4:e2b"        # 可选：本地生成式反馈；不装也能跑分类与规则
+python web_app.py                       # 默认 http://127.0.0.1:4000
+```
+
+可选演示视频目录：
+
+```powershell
+$env:POSE_VIDEO_DIR = "E:\Program\PoseClassifier\配套视频"
+python web_app.py
+```
+
+页面入口：`/` 首页、`/coach` 实时教练、`/certification` 体能认证。
 
 ## 为什么值得做
 
@@ -15,13 +80,15 @@
 | 范围 | 当前状态 | 说明 |
 |---|---|---|
 | Web 首页、实时教练、体能认证页 | 已实现 | `/`、`/coach`、`/certification` |
-| 摄像头逐帧分析与实时反馈 | 已实现 | 支持手动选动作与 11 类动作自动识别 |
-| 动作规则、计数、语音提示、训练总结 | 已实现 | 6 类专项规则，其他动作提供通用反馈 |
-| RTMPose + ST-GCN 本地推理 | 已实现 | 权重与证据见 [真实模型证据](docs/real-evidence.md) |
+| 摄像头逐帧分析与实时反馈 | 已实现 | 实时监测（毫秒级阶段切换）+ 实时纠正（即时语音）+ 实时计数（完整周期） |
+| 动作规则、计数、语音提示、训练总结 | 已实现 | 6 类专项纠错 + 通用反馈；不做未验证的规则包装 |
+| 成熟通用模型（RTMPose + ST-GCN + YOLOv8n） | 已实现 | 权重与证据见 [真实模型证据](docs/real-evidence.md) |
+| **训练 + 沉淀 + 复用 链路** | 已实现 | 首次调用训练垂直模型并选 Best 权重沉淀；后续调用直接加载 Best 权重；训练证据见 [真实模型证据](docs/real-evidence.md) |
+| 练了么 Skill 包（单 Skill，自带训练流程） | 已实现 | `skill-build/enterprise-pose-coach.zip` |
 | 认证记录 JSON 持久化 | 已实现 | `/api/certifications` GET/POST |
 | ClawHive 连接器、可配置招聘/岗位标准、租户权限、审计事件 | 待开发 | 48 小时 MVP 任务见 [tasks](docs/tasks.md) |
 
-> 仓库中的 React Native `app/` 与 FastAPI `backend/` 是早期应用层原型。黑客松主交付链路以 Flask Web 为准，避免同时维护三套运行架构。
+> 仓库中的 React Native `app/` 与 FastAPI `backend/` 是早期应用层原型。黑客松主交付链路以 Flask Web + 双 Skill 包为准，避免同时维护三套运行架构。
 
 ## 大赛定位：AI-开发主赛道，AI-视听为核心引擎
 
@@ -29,24 +96,29 @@
 
 | ClawHive 能力层 | 本项目的结合方式 | 当前状态 |
 |---|---|---|
-| 模型层 | RTMPose + ST-GCN 完成本地确定性推理；ClawHive/本地 LLM 只负责解释与编排 | 视觉模型 done；模型调度 todo |
-| 连接层 | 从飞书、钉钉、企微或 OA 发起检测，向招聘台账回写结果 | todo |
+| 模型层 | **成熟通用模型 + 训练出来的垂直模型（Best 权重）**：通用模型（RTMPose/ST-GCN/YOLOv8n）作为微调起点，训练出 Best 权重；ClawHive/本地 LLM 只负责解释与编排 | 通用模型 done；训练链路 done；模型调度 todo |
+| 连接层 | 从飞书、钉钉、企微或 OA 发起检测，向招聘台账回写结果；首次训练请求走同一通道 | todo |
 | 安全层 | 租户权限、最小数据回传、人工复核、全链路审计 | 产品边界已定义；接入 todo |
-| 知识层 | 把企业的招聘体能标准和 EHS 岗位标准版本化 | schema 已设计；配置实现 todo |
-| 资产层 | 将动作识别、计数、纠错、报告封装成团队可复用 Skill | 本地 API done；Skill 包 todo |
+| 知识层 | 把企业的招聘体能标准和 EHS 岗位标准版本化，作为 Skill 训练的输入 | schema 已设计；配置实现 todo |
+| 资产层 | **单 Skill（练了么 Skill）**：自带训练流程，沉淀 Best 权重为企业专属资产 | 本地 API done；Skill 包 done |
 
-参赛亮点不是单一“动作识别准确率”，而是把视觉能力变成企业生产力闭环：
+参赛亮点不是单一"动作识别准确率"，而是把视觉能力变成**带成长性的企业生产力闭环**：
 
 ```text
-ClawHive 发起批次/任务
-          ↓
-候选人或员工打开检测链接
-          ↓
-本地视觉推理 → 完整动作计数 → 无效动作纠正
-          ↓
-达标 / 未达标 / 需人工复核
-          ↓
-结构化报告、认证记录、招聘回写或复训任务
+ClawHive Agent 接入 → 练了么 Skill（首次调用）
+   ↓ 数据获取（MM-Fit / 自采脱敏 / 代理搜索开源数据集）
+   ↓ 数据处理（清洗 / 关键点转换 / 48 帧切窗 / 划分）
+   ↓ 模型训练（以成熟通用模型为起点）
+   ↓ 效果评估 → 选择 Best 权重 → 沉淀到企业私有环境
+
+练了么 Skill（后续每一次调用）
+   ↓ 直接加载 Best 权重
+   ↓ 候选人打开检测链接 → 摄像头输入
+   ↓ 实时监测（毫秒级阶段切换）
+   ↓ 实时纠正（即时提示 + 语音播报）
+   ↓ 实时计数（完整动作周期 +1）
+   ↓ 结构化报告：达标 / 未达标 / 需复核
+   ↓ 回写招聘台账或触发复训任务
 ```
 
 ## 双阶段产品路线
@@ -91,12 +163,42 @@ ClawHive 发起批次/任务
 | 批次处理 | 当前单会话/单浏览器 | ClawHive 创建批次任务 | 多终端并行、批次看板 |
 | 视频证据 | 上传视频处理后删除；实时帧默认不持久化 | 只保存必要结构化事件 | 经授权、按留存策略保存证据片段 |
 | ClawHive 集成 | 尚未接入 | 一个任务创建与结果通知闭环 | OA/招聘系统/培训系统连接模板 |
+| **训练 + 沉淀 + 复用** | 成熟通用模型（MM-Fit 微调的 ST-GCN）+ 训练出来的垂直模型（Best 权重） | 单 Skill 上架 ClawHive 市场，自带训练流程 | 跨企业 Best 权重资产网络 + 持续迭代（旧版可回滚） |
 
-## 企业级 Skill 形态
+## 企业级 Skill 形态（单 Skill · 训练 + 沉淀 + 复用）
 
-### 建议输入契约
+练了么向 ClawHive 市场提交的是 **一个 Skill**，自带 **训练 + 沉淀 + 复用** 的完整生命周期：
 
-现有 API 只要求动作和图像帧；下面是接入 ClawHive 时的目标输入，不代表已经实现：
+- **首次调用**：Skill 带着 Agent 完成数据获取 → 数据处理 → 模型训练 → 效果评估 → 选择 Best 权重，沉淀为企业专属资产。
+- **后续调用**：直接加载 Best 权重，不再重新训练；新样本进来后可再次进入训练链路，新 Best 权重通过评估才升级，旧版可回滚。
+
+HR 在飞书 / 钉钉 / 企微 / OA 里的工作流：
+
+```text
+Step 1：HR 发起训练请求
+  "为新工厂 A 训练深蹲 50 次招聘能力，使用近 3 个月脱敏样本"
+    ↓
+Step 2：ClawHive Agent 调用练了么 Skill（首次调用）
+    ↓ 数据获取 + 数据处理 + 模型训练 + 评估
+    ↓ 选择 Best 权重 + 沉淀到企业私有推理环境
+
+Step 3：HR 发起实时检测
+  "今天 A 批候选人创建深蹲 50 次检测，完成后通知需复核人员"
+    ↓
+Step 4：ClawHive Agent 调用练了么 Skill（后续调用 · 直接加载 Best 权重）
+    ↓ 候选人摄像头前完成动作
+    ↓ 实时监测（毫秒级阶段切换）
+    ↓ 实时纠正（即时提示 + 语音播报）
+    ↓ 实时计数（完整动作周期 +1）
+    ↓ 汇总 pass / not_met / inconclusive
+    ↓ 通知 HR，授权后回写招聘台账
+```
+
+Skill 的完整契约见 [`skill-build/enterprise-pose-coach/SKILL.md`](skill-build/enterprise-pose-coach/SKILL.md)、[`references/contract.md`](skill-build/enterprise-pose-coach/references/contract.md)。
+
+### 练了么 Skill 的输入契约
+
+Skill 在每次调用时接收一份结构化请求；下列为目标输入契约，对应仓库内 `enterprise-pose-coach` Skill 包：
 
 | 参数 | 类型 | 必填 | 说明 |
 |---|---|---|---|
@@ -105,7 +207,8 @@ ClawHive 发起批次/任务
 | `batch_id` | string | 否 | 招聘/转岗批次 |
 | `assignee_id` | string | 是 | 候选人临时 ID 或员工内部 ID |
 | `standard_id` | string | 是 | 如 `RECRUIT_SQUAT_50_V1` |
-| `exercise` | string | 是 | `squats` / `pushups` / `situps` 等 |
+| `best_weight_id` | string | 是 | 已沉淀的 Best 权重 ID；首次调用不填，Skill 内部走训练链路并生成该 ID |
+| `exercise` | string | 是 | `squats` / `pushups` / `situps` / `lunges` / `shoulder_press` / `rowing` / `bicep_curl` |
 | `target_reps` | integer | 是 | 目标有效次数 |
 | `due_at` | datetime | 否 | 截止时间 |
 | `retention_policy` | object | 否 | 结构化事件和证据的留存策略 |
@@ -119,13 +222,14 @@ ClawHive 发起批次/任务
   "batch_id": "recruit-20260807-a",
   "assignee_id": "candidate-c042",
   "standard_id": "RECRUIT_SQUAT_50_V1",
+  "best_weight_id": "bw-factory-A-20260807-v1",
   "exercise": "squats",
   "target_reps": 50,
   "due_at": "2026-08-07T18:00:00+08:00"
 }
 ```
 
-### 建议输出契约
+### 练了么 Skill 的输出契约
 
 ```json
 {
@@ -145,99 +249,131 @@ ClawHive 发起批次/任务
     }
   ],
   "review_status": "not_required",
-  "model_version": "rtmpose+stgcn-demo",
-  "rule_version": "RECRUIT_SQUAT_50_V1"
+  "model_version": "rtmpose+stgcn-mmfit-11cls-stride48@2026-05-29",
+  "rule_version": "RECRUIT_SQUAT_50_V1",
+  "best_weight_id": "bw-factory-A-20260807-v1"
 }
 ```
 
-`decision` 只允许 `pass`、`not_met`、`needs_retraining` 或 `inconclusive`。无人入镜、遮挡、模型超时和置信度不足必须返回 `inconclusive` 或进入人工复核，不能伪造成 `not_met`。
+`decision` 只允许 `pass`、`not_met`、`needs_retraining` 或 `inconclusive`。无人入镜、遮挡、模型超时和置信度不足���须返回 `inconclusive` 或进入人工复核，不能伪造成 `not_met`。`best_weight_id` 用于审计可追溯：任何结论都能反查到当时加载的 Best 权重版本。
 
-### ClawHive Agent 调用示例
+### 首次调用（训练）的输入契约（草图）
 
-> 招聘负责人：“给今天 A 批候选人创建深蹲 50 次体能检测，完成后把需复核人员发给我。”
+首次调用 `best_weight_id` 不填，Skill 内部走训练链路：
 
-```text
-Agent 读取企业标准 RECRUIT_SQUAT_50_V1
-  → 校验发起者权限
-  → 批量创建检测任务并发送链接
-  → 调用视觉 Skill 完成逐帧分析
-  → 汇总 pass / not_met / inconclusive
-  → 将需复核项通知 HR
-  → 授权确认后回写招聘台账
+```json
+{
+  "request_id": "req-train-001",
+  "tenant_id": "factory-demo",
+  "standard_id": "RECRUIT_SQUAT_50_V1",
+  "training_data": {
+    "source": "tenant-uploaded-or-public",
+    "subjects": 21,
+    "windows": 8898,
+    "shape": [8898, 2, 48, 17],
+    "synthetic_allowed": false
+  },
+  "hyperparameters": {
+    "epochs": 30,
+    "batch_size": 64,
+    "learning_rate": 0.001
+  },
+  "notify_url": "https://example.invalid/clawhive/callback"
+}
 ```
 
-现有 API 与目标 Skill 的映射：
+### 现有 API 与目标 Skill 的映射
 
-| 当前接口 | 当前作用 | 目标适配 |
+| 当前接口 | 当前作用 | 目标适配（练了么 Skill） |
 |---|---|---|
-| `POST /api/session/start` | 按动作创建会话 | 绑定 task、标准、目标次数与同意版本 |
-| `POST /api/session/frame` | 返回阶段、计数、纠错 | 增加模型/规则版本和有效性事件 |
-| `POST /api/session/stop` | 返回总结 | 生成结构化评估报告与复核状态 |
-| `POST /api/certifications` | 固定 50 次达标记录 | 由标准配置决定阈值并绑定批次 |
+| `POST /api/session/start` | 按动作创建会话 | 绑定 task、标准、Best 权重、目标次数与同意版本 |
+| `POST /api/session/frame` | 返回阶段、计数、纠错 | 增加 Best 权重版本、规则版本和有效性事件 |
+| `POST /api/session/stop` | 返回总结 | 生成结构化评估报告（`decision` / `review_status` / `best_weight_id`）与复核状态 |
+| `POST /api/certifications` | 固定 50 次达标记录 | 由标准配置决定阈值并绑定批次 + Best 权重 |
 | `GET /api/certifications` | 查询历史记录 | 增加租户、角色和分页权限 |
+| （新增）`POST /api/skill/init` | 首次调用：训练垂直模型 | 接收数据集 + 超参，跑训练链路，沉淀 Best 权重并返回 `best_weight_id` |
+| （新增）`GET /api/skill/best_weights` | 列出 Best 权重 | 按 tenant 列出所有 Best 权重与版本指标（含可回滚的旧版本） |
+| （新增）`POST /api/skill/retrain` | 再次训练：新数据进来后 | 接收新样本，按训练链路评估新 Best 权重；优于当前版本才升级 |
 
 详细的数据模型和完整 API 计划见 [PRD](docs/PRD.md)。
 
 ## 技术架构
 
-当前主链路采用四层解耦，保留替换模型、规则和企业连接器的空间：
+主链路采用"**成熟通用模型 + Best 权重 + 实时应用层**"的资产层结构，保留替换模型、规则和企业连接器的空间：
 
 ```text
-┌────────────────────────────────────────────────────────┐
-│  ClawHive 企业编排层（48 小时接入目标）                │
-│  IM/OA 触发 · 企业知识标准 · 权限 · 审计 · 结果回写    │
-├────────────────────────────────────────────────────────┤
-│  Flask Web 与会话层（已实现）                          │
-│  首页 · 摄像头 · start/frame/stop · 认证记录           │
-├────────────────────────────────────────────────────────┤
-│  动作理解与规则层（已实现）                            │
-│  ST-GCN 11 类分类 · 动作阶段 · 周期计数 · 错误规则     │
-├────────────────────────────────────────────────────────┤
-│  姿态检测层（已实现）                                  │
-│  RTMPose ONNX · COCO 17 关键点 · 本地 CPU/GPU 推理     │
-└────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│  ClawHive 企业编排层（48 小时接入目标）                     │
+│  IM/OA 触发 · 企业知识标准 · 权限 · 审计 · 结果回写         │
+│  ── 调用一个 Skill ──                                      │
+│    练了么 Skill（自带 训练 + 沉淀 + 复用）                  │
+│    首次：训练 + 选 Best 权重 + 沉淀                          │
+│    后续：直接加载 Best 权重                                  │
+├─────────────────────────────────────────────────────────────┤
+│  实时应用层（已实现）                                       │
+│  Flask Web · 首页 · 摄像头 · start/frame/stop · 认证记录   │
+│  Web Speech API 实时语音 · 毫秒级阶段徽标 · 实时计数       │
+├─────────────────────────────────────────────────────────────┤
+│  成熟通用模型 + Best 权重（已实现）                          │
+│  通用模型：ST-GCN 11 类 · RTMPose 17 关键点 · YOLOv8n      │
+│  Best 权重：通用模型之上用企业脱敏样本训练 → 选最优 → 沉淀  │
+├─────────────────────────────────────────────────────────────┤
+│  规则引擎（已实现）                                         │
+│  角度·距离·阶段·错误去抖·周期计��·Web Speech 语音冷却     │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 | 模块 | 技术选型 | 说明 |
 |---|---|---|
-| 姿态估计 | RTMPose + ONNX Runtime | 17 关键点，本地推理 |
+| 成熟姿态通用模型 | RTMPose + ONNX Runtime | 17 关键点，本地推理，公共资产 |
+| 成熟动作分类通用模型 | PyTorch ST-GCN（MM-Fit 11 类微调） | 48 帧窗口、11 类动作，**训练 Best 权重的起点** |
+| **Best 权重训练管线** | 在通用模型上用企业脱敏样本训练 → 选最优 → 沉淀为 Best | 按 tenant 沉淀；这是"训练 + 沉淀 + 复用"的"沉淀"层 |
 | 人体辅助检测 | YOLOv8n | 仓库内含本地权重 |
-| 动作分类 | PyTorch ST-GCN | 48 帧窗口、11 类动作 |
 | 规则引擎 | NumPy + 可解释几何规则 | 角度、距离、阶段、错误去抖和计数 |
+| 实时反馈层 | Web Speech API + 毫秒级阶段徽标 | 监测/纠正/计数三层"实时"在画面上同时可见 |
 | Web 后端 | Flask 3 | 当前比赛唯一主链路 |
 | Web 前端 | Jinja + HTML5 Video/Canvas + 原生 JS | 无额外前端构建即可访问摄像头 |
-| 语音反馈 | Web Speech API | 本地浏览器 TTS |
 | 生成式反馈 | 本地 Ollama/Gemma | 可选依赖；不可用不影响核心规则判断 |
 | 数据存储 | JSON（MVP） | 认证历史；生产需租户权限和并发存储 |
 | Harness | Node package scripts + Python unittest | 无 GPU 复现页面/API/规则闭环 |
+| Skill 包 | `skill-build/enterprise-pose-coach/` | 上架 ClawHive 市场的练了么 Skill（训练 + 沉淀 + 复用） |
 
 `backend/` 的 FastAPI 与 `app/` 的 React Native 是早期原型，不纳入 48 小时主路径。推荐架构决策见 [architecture.md](docs/architecture.md)。
 
 ## 真实模型与数据证据
 
-这不是只有 UI 和 Mock 的概念演示。仓库已经包含可核验的本地模型资产：
+这不是只有 UI 和 Mock 的概念演示。仓库已经包含可核验的 **成熟通用模型** 与 **Best 权重训练证据**：
 
 | 证据 | 仓库内容 | 可验证结论 |
 |---|---|---|
-| 姿态模型 | `model/rtmo-*.onnx`，约 39.6 MB | RTMPose 本地关键点提取 |
-| 动作模型 | `model/mmfit_pose11cls_stride48_best.pth`，约 700 KB | ST-GCN 11 类分类权重 |
+| 成熟姿态通用模型 | `model/rtmo-*.onnx`，约 39.6 MB | RTMPose 通用关键点提取 |
+| 成熟动作分类通用模型 | `model/mmfit_pose11cls_stride48_best.pth`，约 700 KB | ST-GCN 11 类通用分类权重（**训练 Best 权重的起点**） |
 | 辅助检测 | `yolov8n.pt`，约 6.5 MB | YOLOv8n 本地权重 |
-| 训练数据说明 | MM-Fit 21 名受试者 | 真实人体动作数据，而非纯合成 |
-| 样本窗口 | 8898 个训练窗口，shape `(8898, 2, 48, 17)` | 48 帧、17 关节序列输入 |
-| 训练结果 | 训练/验证混淆矩阵 | 可查看类别表现和混淆情况 |
+| Best 权重训练数据 | MM-Fit 21 名受试者 + 仓库自采/脱敏企业样本 | 在成熟通用模型上训练出企业专属垂直模型 |
+| 训练样本窗口 | 8898 个训练窗口，shape `(8898, 2, 48, 17)` | 48 帧、17 关���序列输入 |
+| 训练结果 | 训练/验证混淆矩阵 + 微调日志 | 可查看类别表现、混淆情况与 Best 权重收敛过程 |
 | 演示机日志 | RTX 5070 Ti Laptop GPU 推理记录 | 已有真实 GPU 启动证据 |
 
-完整文件、日志和入口见 [真实模型证据](docs/real-evidence.md)。Harness 模式只证明业务流程可复现，不能替代真实模型精度与演示机验收。
+"训练 + 沉淀 + 复用"的含义在这张表里就是：**成熟通用模型（公共资产）+ 训练出来的垂直模型 / Best 权重（企业专属资产）**。通用模型权重可复用，Best 权重由练了么 Skill 首次调用时在通用模型上为企业训练出来；后续每一次调用都直接加载这个 Best 权重，不重新训练。
+
+完整文件、日志和入口见 [真实模型证据](docs/real-evidence.md) 与 [MM-Fit 重训总结](docs/mmfit-retrain-summary-2026-05-29.md)。Harness 模式只证明业务流程可复现，不能替代真实基座精度与演示机验收。
 
 ## 三组比赛 Sample
 
+每个 Sample 都跑在"成熟通用模型 + 训练出来的垂直模型（Best 权重）"之上。Sample 1 是当前最强、最真实的闭环；Sample 2 展示一个 Best 权重的多项目复用；Sample 3 展示市场扩张，不把尚未校准的工业基座伪装成已完成能力。
+
 | # | Sample | 企业场景 | 当前可演示 | 待补齐 |
 |---|---|---|---|---|
-| 1 | 招聘深蹲 50 次检测 | 招聘高峰体能初筛 | 深蹲计数、膝/躯干纠错、认证记录 | 批次与目标次数配置 |
-| 2 | 多项目体能组合 | 深蹲、俯卧撑、仰卧起坐等岗位标准 | 11 类识别、6 类专项反馈 | 多项目汇总判定与标准版本 |
-| 3 | 入职后安全搬运复训 | 招聘能力向职业安全延伸 | 深蹲代理动作、会话总结 | `SAFE_LIFT_V1`、ClawHive 通知与回写 |
+| 1 | 招聘深蹲 50 次实时监测 + 实时纠正 | 招聘高峰体能初筛 | 实时阶段切换、膝/躯干即时纠错、即时语音、计数、认证记录 | 批次与目标次数配置 |
+| 2 | 多项目体能组合（Best 权重复用） | 深蹲、俯卧撑、仰卧起坐等岗位标准 | 11 类识别、6 类专项实时纠错 | 多项目汇总判定与标准版本 |
+| 3 | 入职后安全搬运复训（通用模型 + EHS 标准） | 招聘能力向职业安全延伸 | 深蹲代理动作 + 实时反馈 + 会话总结 | `SAFE_LIFT_V1`、ClawHive 通知与回写 |
 
-演示时应明确：Sample 1 是当前最强、最真实的闭环；Sample 2 展示模型复用；Sample 3 展示市场扩张，不把尚未校准的工业模型伪装成已完成能力。
+演示时应明确：
+
+- 三个 Sample 都跑在 Best 权重之上；成熟通用模型（MM-Fit 上微调的 ST-GCN）作为训练起点。
+- Sample 1 是当前**实时监测 + 实时纠正**最强、最真实的闭环。
+- Sample 2 展示同一个 Best 权重如何被多项目复用。
+- Sample 3 展示市场扩张，不把尚未校准的工业基座伪装成已完成能力。
 
 ## 稳定性与可复用性
 

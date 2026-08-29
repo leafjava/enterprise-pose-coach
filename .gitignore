@@ -90,3 +90,8 @@ dataset/readme.md
 /datas/
 /tools/mmfit_pose_11cls/
 /tools/mmfit_pose_11cls_stride48/
+
+# ---- ClawHive Skill marketplace packaging ----
+# Source tree under skill-build/ is tracked; the rebuilt ZIP is a binary
+# artifact regenerable from source via `python -c "import zipfile..."`.
+skill-build/*.zip

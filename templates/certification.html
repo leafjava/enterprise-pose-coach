@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>体能检测认证 · 练了吗</title>
+    <title>体能检测认证 · 练了么 · 训练 + 沉淀 + 复用 · 直接加载 Best 权重做实时纠错</title>
     <style>
         :root {
             color-scheme: light;
@@ -435,8 +435,8 @@
     <main class="shell">
         <div class="topbar">
             <div>
-                <h1>工厂招聘体能检测认证</h1>
-                <p>深蹲 / 仰卧起坐，实时 AI 计数，连续完成 50 次即达标，生成可下载认证证书。</p>
+                <h1>工厂招聘体能检测认证（训练 + 沉淀 + 复用 · 实时四层）</h1>
+                <p>首次调用训练 Best 权重并沉淀到企业私有环境；本次调用直接加载沉淀的 Best 权重，跑出实时监测 + 实时纠正 + 实时计数 + 实时反馈，深蹲 / 俯卧撑 / 仰卧起坐连续完成目标次数即达标，生成可下载认证证书。</p>
             </div>
             <a href="/" class="back-link">← 返回首页</a>
         </div>
@@ -823,7 +823,7 @@
             ctx.textAlign = "center";
             ctx.fillStyle = "#9aa4b2";
             ctx.font = "400 13px 'Microsoft YaHei', sans-serif";
-            ctx.fillText("练了吗 · 企业级实时运动姿态矫正平台 · 本证书结果仅作参考", W / 2, 650);
+            ctx.fillText("练了么 · AI 体能数字员工 · 训练 + 沉淀 + 复用 · 本证书结果仅供 HR 复核", W / 2, 650);
         }
 
         let lastCert = null;
@@ -978,14 +978,14 @@
         shareCertBtn.addEventListener("click", async () => {
             if (!lastCert) return;
             const text = [
-                "【练了吗 · 体能检测认证】",
+                "【练了么 · 体能检测认证（实时纠错层）】",
                 `姓名：${lastCert.name}`,
                 `工号：${lastCert.workerId}`,
                 `检测项目：${lastCert.exercise}`,
                 `达标次数：${lastCert.reps} / 50`,
                 `证书编号：${lastCert.certNo}`,
                 `认证时间：${lastCert.date}`,
-                "—— 练了吗 · 企业级实时运动姿态矫正（ClawHive Skill）",
+                "—— 练了么 · ClawHive 单 Skill · 训练 + 沉淀 + 复用 · 直接加载 Best 权重做实时纠错",
             ].join("\n");
             try {
                 await navigator.clipboard.writeText(text);
