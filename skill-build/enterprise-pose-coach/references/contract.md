@@ -11,6 +11,7 @@
 | `batch_id` | string | 否 | — | 招聘/转岗批次，便于汇总。 |
 | `assignee_id` | string | 是 | — | 候选人临时 ID 或员工内部 ID。Demo 用 `candidate-c042`，生产建议用脱敏 ID。 |
 | `standard_id` | string | 是 | — | 规则版本号，如 `RECRUIT_SQUAT_50_V1`。 |
+| **`vertical_base_id`** | string | 是 | — | 由配套的**基座训练 Skill `pose-coach-trainer`** 为该企业微调出来的垂直基座 ID。本 Skill 不在通用基座上裸跑，必须绑定 `vertical_base_id` 才能运行；它保证了"基座 + 基座"架构中第二个基座的来源可审计。 |
 | `exercise` | string | 是 | — | 动作 ID：`squats` / `pushups` / `situps` / `lunges` / `shoulder_press` / `rowing` / `bicep_curl`。 |
 | `target_reps` | integer | 是 | — | 目标有效次数，1–200。 |
 | `due_at` | string (ISO 8601) | 否 | — | 截止时间。 |
@@ -33,7 +34,10 @@
 | `top_errors` | array | 是 | 错误数组，按出现次数倒序，最多 3 条。每条含 `code`、`count`、`cue`。 |
 | `review_status` | enum | 是 | `not_required` / `optional` / `required`。`inconclusive` 必为 `required`。 |
 | `model_version` | string | 是 | 模型版本号，建议含日期或 hash。 |
-| `rule_version` | string | 是 | 规则版本号，��� `standard_id` 对应。 |
+| `rule_version` | string | 是 | 规则版本号，与 `standard_id` 对应。 |
+| `base_version` | string | 是 | **通用基座**版本号（公共资产，例如 `stgcn-mmfit-11cls-stride48@2026-05-29`）。 |
+| `vertical_base_id` | string | 是 | **垂直基座** ID（来自基座训练 Skill，例如 `vbase-factory-A-20260807`）。本 Skill 每次响应都必须原样回传，便于审计可追溯。 |
+| `vertical_base_version` | string | 是 | **垂直基座**版本号（同一垂直基座的多次迭代，例如 `v1` / `v2`），用于基座迭代回滚。 |
 | `completed_at` | string (ISO 8601) | 是 | 完成时间。 |
 | `certificate_id` | string | 否 | 当 `decision: pass` 时生成；否则省略。 |
 | `recommendation` | enum | 否 | `needs_retraining` 时建议复训；其他场景省略。 |
@@ -82,4 +86,43 @@
 - 输入侧：`request_id` + `tenant_id` + `assignee_id` + `standard_id` + `model_version` + `rule_version` 决定了一次评估的边界。
 - 输出侧：`valid_rep_count` + `top_errors` + `score` 必须能用同一份脱敏事件日志复现。
 
-隐私不进审计事件：候���人姓名、邮箱、原始视频帧、模型 prompt 不进入日志或审计字段。
+隐私不进审计事件：候选人姓名、邮箱、原始视频帧、模型 prompt 不进入日志或审计字段。
+## 8. 配套基座训练 Skill `pose-coach-trainer` 契约（草图）
+
+`enterprise-pose-coach` 是"基座 + 基座"双层架构中的**实时纠错 Skill**。
+它**必须**运行在垂直基座之上；垂直基座由配套的基座训练 Skill `pose-coach-trainer` 产出。
+下面是基座训练 Skill 的草图契约，便于 ClawHive Agent 串联两个 Skill��
+
+### 8.1 基座训练 Skill 输入
+
+| 字段 | 类型 | 必填 | 说明 |
+|---|---|---|---|
+| `request_id` | string | 是 | 幂等键 |
+| `tenant_id` | string | 是 | 企业租户标识 |
+| `standard_id` | string | 是 | 规则版本号（如 `RECRUIT_SQUAT_50_V1`），与本 Skill 输出对齐 |
+| `base_checkpoint` | string | 是 | 微调起点，固定为通用基座 ID（如 `stgcn-mmfit-11cls-stride48`） |
+| `training_data` | object | 是 | 数据来源：`tenant-uploaded` / `public-proxy`，含 `subjects` / `windows` / `shape` / `synthetic_allowed` |
+| `hyperparameters` | object | 否 | `epochs` / `batch_size` / `learning_rate`；不填走默认 |
+| `notify_url` | string | 否 | 训练完成后 webhook 回写 |
+
+### 8.2 基座训练 Skill 输出
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `request_id` | string | 原样回传 |
+| `vertical_base_id` | string | 新生成的垂直基座 ID（例：`vbase-factory-A-20260807`） |
+| `tenant_id` | string | 原样回传 |
+| `standard_id` | string | 原样回传 |
+| `trained_from` | string | 实际微调起点（一般是入参 `base_checkpoint`，可能因兼容性问题被替换） |
+| `metrics` | object | `train_loss` / `val_accuracy` / `val_top3` |
+| `artifact` | object | `path` / `size_mb` / `sha256` |
+| `completed_at` | string | ISO 8601 |
+
+### 8.3 ClawHive Agent 编排顺序
+
+1. HR 发起训练请求 → Agent 调用 `pose-coach-trainer`，拿到 `vertical_base_id`；
+2. HR 发起实时检测 → Agent 调用 `enterprise-pose-coach`，入参里传 `vertical_base_id`；
+3. 本 Skill 在该垂直基座上做实时监测 / 实时纠正 / 实时计数 / 实时反馈；
+4. 返回结构化评估结果（包含 `vertical_base_id` 与 `vertical_base_version`），HR 复核后回写招聘台账。
+
+完整示例见 [`examples/base-train-request.json`](../examples/base-train-request.json) 与 [`examples/base-train-response.json`](../examples/base-train-response.json)。

@@ -23,5 +23,8 @@
   "model_version": "rtmpose+stgcn-demo",
   "rule_version": "RECRUIT_SQUAT_50_V1",
   "completed_at": "2026-08-07T17:55:30+08:00",
-  "recommendation": "needs_retraining"
+  "recommendation": "needs_retraining",
+  "base_version": "stgcn-mmfit-11cls-stride48@2026-05-29",
+  "vertical_base_id": "vbase-factory-A-20260807",
+  "vertical_base_version": "v1"
 }

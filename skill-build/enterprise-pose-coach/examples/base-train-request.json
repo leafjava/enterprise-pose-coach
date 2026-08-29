@@ -1,0 +1,24 @@
+{
+  "request_id": "req-train-001",
+  "tenant_id": "factory-demo",
+  "standard_id": "RECRUIT_SQUAT_50_V1",
+  "base_checkpoint": "stgcn-mmfit-11cls-stride48",
+  "training_data": {
+    "source": "tenant-uploaded-or-public",
+    "subjects": 21,
+    "windows": 8898,
+    "shape": [
+      8898,
+      2,
+      48,
+      17
+    ],
+    "synthetic_allowed": false
+  },
+  "hyperparameters": {
+    "epochs": 30,
+    "batch_size": 64,
+    "learning_rate": 0.001
+  },
+  "notify_url": "https://example.invalid/clawhive/callback"
+}

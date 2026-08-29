@@ -17,6 +17,9 @@
   "review_status": "not_required",
   "model_version": "rtmpose+stgcn-demo",
   "rule_version": "RECRUIT_SQUAT_50_V1",
+  "base_version": "stgcn-mmfit-11cls-stride48@2026-05-29",
+  "vertical_base_id": "vbase-factory-A-20260807",
+  "vertical_base_version": "v1",
   "completed_at": "2026-08-07T17:42:11+08:00",
   "certificate_id": "DEMO-CERT-001"
 }

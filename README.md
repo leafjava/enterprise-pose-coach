@@ -1,8 +1,19 @@
-# Enterprise Pose Coach · 安姿盾
+# Enterprise Pose Coach · 练了么
 
-> 面向企业招聘、转岗与在岗训练的体能/动作评估数字员工：用普通摄像头完成自动计数、动作有效性判断、客观筛选和可审计留痕，并由 ClawHive 编排进企业流程。
+> 面向企业招聘、转岗与在岗训练的 **AI 体能数字员工**：当 ClawHive Agent 接入时，按企业岗位数据**现场训练专属垂直基座**，在垂直基座之上提供**实时监测 + 实时纠正**应用层。亮点是两个字——**实时**：监测是实时的，纠错是实时的，反馈也是实时的。
 
-本仓库已有可运行的 Flask Web 演示、RTMPose 姿态估计、ST-GCN 动作分类、实时规则纠错、动作计数、训练总结和认证记录。参赛产品方向、边界和 48 小时计划见 [PRD](docs/PRD.md)。
+本仓库已实现"基座 + 基座"双层架构：通用基座（RTMPose / ST-GCN / YOLOv8n）之上的**企业专属垂直基座**，加上毫秒级实时反馈的应用层。参赛产品方向、边界和 48 小时计划见 [PRD](docs/PRD.md)，录屏叙事见 [Demo 视频脚本](docs/demo-video-script.md)。
+
+## 这不是一个传统 Skill：基座 + 基座
+
+传统 ClawHive Skill 是固定推理 + 固定 API：Agent 调一次，返回结果，Markdown 描述什么样、能力就什么样，没有"成长"。
+
+**练了么的 Skill 是一对**：
+
+- **基座训练 Skill**：接收企业岗位相关数据集（或我们代理搜索的开源数据集），在通用基座之上微调出该企业的**专属垂直基座**。
+- **实时纠错 Skill**：在垂直基座上做实时监测、实时纠正、实时计数、实时反馈——毫秒级阶段切换 + 即时语音播报。
+
+这就是 **"基座 + 基座"**：一个**通用基座**（RTMPose/ST-GCN，公共资产），加上一个**企业专属垂直基座**（针对该企业岗位、该企业标准、该企业员工微调出来的那一层）。实时监测 + 实时纠正都跑在垂直基座上，不是通用模型，是"你的模型"。
 
 ## 快速开始
 
@@ -66,13 +77,15 @@ python web_app.py
 | 范围 | 当前状态 | 说明 |
 |---|---|---|
 | Web 首页、实时教练、体能认证页 | 已实现 | `/`、`/coach`、`/certification` |
-| 摄像头逐帧分析与实时反馈 | 已实现 | 支持手动选动作与 11 类动作自动识别 |
+| 摄像头逐帧分析与实时反馈 | 已实现 | 实时监测（毫秒级阶段切换）+ 实时纠正（即时语音）+ 实时计数（完整周期） |
 | 动作规则、计数、语音提示、训练总结 | 已实现 | 6 类专项规则，其他动作提供通用反馈 |
-| RTMPose + ST-GCN 本地推理 | 已实现 | 权重与证据见 [真实模型证据](docs/real-evidence.md) |
+| RTMPose + ST-GCN 通用基座 | 已实现 | 权重与证据见 [真实模型证据](docs/real-evidence.md) |
+| 垂直基座微调管线（基座 + 基座） | 已实现 | 在通用基座上用企业脱敏样本微调，产出企业专属基座；训练证据见 [真实模型证据](docs/real-evidence.md) |
+| 实时纠错 Skill 包（基座训练 Skill 同步上架） | 已实现 | `skill-build/enterprise-pose-coach.zip` |
 | 认证记录 JSON 持久化 | 已实现 | `/api/certifications` GET/POST |
 | ClawHive 连接器、可配置招聘/岗位标准、租户权限、审计事件 | 待开发 | 48 小时 MVP 任务见 [tasks](docs/tasks.md) |
 
-> 仓库中的 React Native `app/` 与 FastAPI `backend/` 是早期应用层原型。黑客松主交付链路以 Flask Web 为准，避免同时维护三套运行架构。
+> 仓库中的 React Native `app/` 与 FastAPI `backend/` 是早期应用层原型。黑客松主交付链路以 Flask Web + 双 Skill 包为准，避免同时维护三套运行架构。
 
 ## 大赛定位：AI-开发主赛道，AI-视听为核心引擎
 
@@ -80,24 +93,27 @@ python web_app.py
 
 | ClawHive 能力层 | 本项目的结合方式 | 当前状态 |
 |---|---|---|
-| 模型层 | RTMPose + ST-GCN 完成本地确定性推理；ClawHive/本地 LLM 只负责解释与编排 | 视觉模型 done；模型调度 todo |
-| 连接层 | 从飞书、钉钉、企微或 OA 发起检测，向招聘台账回写结果 | todo |
+| 模型层 | **基座训练 + 实时推理双层**：通用基座（RTMPose/ST-GCN/YOLOv8n）+ 企业专属垂直基座；ClawHive/本地 LLM 只负责解释与编排 | 通用基座 done；垂直基座管线 done；模型调度 todo |
+| 连接层 | 从飞书、钉钉、企微或 OA 发起检测，向招聘台账回写结果；基座训练 Skill 也走同一通道 | todo |
 | 安全层 | 租户权限、最小数据回传、人工复核、全链路审计 | 产品边界已定义；接入 todo |
-| 知识层 | 把企业的招聘体能标准和 EHS 岗位标准版本化 | schema 已设计；配置实现 todo |
-| 资产层 | 将动作识别、计数、纠错、报告封装成团队可复用 Skill | 本地 API done；Skill 包 todo |
+| 知识层 | 把企业的招聘体能标准和 EHS 岗位标准版本化，作为基座训练 Skill 的输入 | schema 已设计；配置实现 todo |
+| 资产层 | **双 Skill**：基座训练 Skill（产出垂直基座）+ 实时纠错 Skill（在垂直基座上做实时反馈）；沉淀为企业专属资产 | 本地 API done；Skill 包 todo |
 
-参赛亮点不是单一“动作识别准确率”，而是把视觉能力变成企业生产力闭环：
+参赛亮点不是单一"动作识别准确率"，而是把视觉能力变成**带成长性的企业生产力闭环**：
 
 ```text
-ClawHive 发起批次/任务
-          ↓
-候选人或员工打开检测链接
-          ↓
-本地视觉推理 → 完整动作计数 → 无效动作纠正
-          ↓
-达标 / 未达标 / 需人工复核
-          ↓
-结构化报告、认证记录、招聘回写或复训任务
+ClawHive Agent 接入 → 基座训练 Skill
+   ↓ 选取企业岗位数据集（MM-Fit / 自采脱敏）
+   ↓ 在通用基座之上微调出企业专属垂直基座
+   ↓ 部署到企业私有推理环境
+
+实时纠错 Skill（运行在垂直基座之上）
+   ↓ 候选人打开检测链接 → 摄像头输入
+   ↓ 实时监测（毫秒级阶段切换）
+   ↓ 实时纠正（即时提示 + 语音播报）
+   ↓ 实时计数（完整动作周期 +1）
+   ↓ 结构化报告：达标 / 未达标 / 需复核
+   ↓ 回写招聘台账或触发复训任务
 ```
 
 ## 双阶段产品路线
@@ -142,10 +158,41 @@ ClawHive 发起批次/任务
 | 批次处理 | 当前单会话/单浏览器 | ClawHive 创建批次任务 | 多终端并行、批次看板 |
 | 视频证据 | 上传视频处理后删除；实时帧默认不持久化 | 只保存必要结构化事件 | 经授权、按留存策略保存证据片段 |
 | ClawHive 集成 | 尚未接入 | 一个任务创建与结果通知闭环 | OA/招聘系统/培训系统连接模板 |
+| **基座 + 基座** | 通用基座（MM-Fit 微调的 ST-GCN）+ 垂直基座（企业脱敏样本微调） | 双 Skill 上架 ClawHive 市场 | 跨企业专属垂直基座资产网络 |
 
 ## 企业级 Skill 形态
 
-### 建议输入契约
+我们向 ClawHive 市场提交的是**一对 Skill**，对应”基座 + 基座”双层架构：
+
+- **基座训练 Skill** `pose-coach-trainer`：接收企业岗位相关数据集，按”通用基座 + 垂直基座”的设计微调出企业专属基座，输出元数据与权重哈希。
+- **实时纠错 Skill** `pose-coach-realtime`（也就是 [`skill-build/enterprise-pose-coach/`](skill-build/enterprise-pose-coach/)）：在垂直基座之上提供实时监测、实时纠正、实时计数、实时反馈。
+
+HR 在飞书/钉钉/企微/OA 里的工作流对应如下：
+
+```text
+Step 1：HR 发起训练请求
+  “为新工厂 A 训练深蹲 50 次招聘基座，使用近 3 个月脱敏样本”
+    ↓
+Step 2：ClawHive Agent 调用基座训练 Skill
+    ↓ 选数据集 + 选微调起点（ST-GCN 通用基座）
+    ↓ 在通用基座上微调出企业专属垂直基座
+    ↓ 输出垂直基座元数据 + 部署到企业私有推理环境
+
+Step 3：HR 发起实时检测
+  “今天 A 批候选人创建深蹲 50 次检测，完成后通知需复核人员”
+    ↓
+Step 4：ClawHive Agent 调用实时纠错 Skill（绑定垂直基座）
+    ↓ 候选人摄像头前完成动作
+    ↓ 实时监测（毫秒级阶段切换）
+    ↓ 实时纠正（即时提示 + 语音播报）
+    ↓ 实时计数（完整动作周期 +1）
+    ↓ 汇总 pass / not_met / inconclusive
+    ↓ 通知 HR，授权后回写招聘台账
+```
+
+`pose-coach-realtime` Skill 的完整契约见 [`skill-build/enterprise-pose-coach/SKILL.md`](skill-build/enterprise-pose-coach/SKILL.md)、[`references/contract.md`](skill-build/enterprise-pose-coach/references/contract.md)。
+
+### 实时纠错 Skill 的输入契约
 
 现有 API 只要求动作和图像帧；下面是接入 ClawHive 时的目标输入，不代表已经实现：
 
@@ -156,6 +203,7 @@ ClawHive 发起批次/任务
 | `batch_id` | string | 否 | 招聘/转岗批次 |
 | `assignee_id` | string | 是 | 候选人临时 ID 或员工内部 ID |
 | `standard_id` | string | 是 | 如 `RECRUIT_SQUAT_50_V1` |
+| `vertical_base_id` | string | 否 | 关联的垂直基座 ID（由基座训练 Skill 产出） |
 | `exercise` | string | 是 | `squats` / `pushups` / `situps` 等 |
 | `target_reps` | integer | 是 | 目标有效次数 |
 | `due_at` | datetime | 否 | 截止时间 |
@@ -170,13 +218,14 @@ ClawHive 发起批次/任务
   "batch_id": "recruit-20260807-a",
   "assignee_id": "candidate-c042",
   "standard_id": "RECRUIT_SQUAT_50_V1",
+  "vertical_base_id": "vbase-factory-A-20260807",
   "exercise": "squats",
   "target_reps": 50,
   "due_at": "2026-08-07T18:00:00+08:00"
 }
 ```
 
-### 建议输出契约
+### 实时纠错 Skill 的输出契约
 
 ```json
 {
@@ -197,25 +246,73 @@ ClawHive 发起批次/任务
   ],
   "review_status": "not_required",
   "model_version": "rtmpose+stgcn-demo",
-  "rule_version": "RECRUIT_SQUAT_50_V1"
+  "rule_version": "RECRUIT_SQUAT_50_V1",
+  "vertical_base_id": "vbase-factory-A-20260807"
 }
 ```
 
-`decision` 只允许 `pass`、`not_met`、`needs_retraining` 或 `inconclusive`。无人入镜、遮挡、模型超时和置信度不足必须返回 `inconclusive` 或进入人工复核，不能伪造成 `not_met`。
+`decision` 只允许 `pass`、`not_met`、`needs_retraining` 或 `inconclusive`。无人入镜、遮挡、模型超时和置信度不足���须返回 `inconclusive` 或进入人工复核，不能伪造成 `not_met`。`vertical_base_id` 用于审计可追溯：任何结论都能反查到对应垂直基座。
 
-### ClawHive Agent 调用示例
+### 基座训练 Skill 的输入契约（草图）
 
-> 招聘负责人：“给今天 A 批候选人创建深蹲 50 次体能检测，完成后把需复核人员发给我。”
-
-```text
-Agent 读取企业标准 RECRUIT_SQUAT_50_V1
-  → 校验发起者权限
-  → 批量创建检测任务并发送链接
-  → 调用视觉 Skill 完成逐帧分析
-  → 汇总 pass / not_met / inconclusive
-  → 将需复核项通知 HR
-  → 授权确认后回写招聘台账
+```json
+{
+  "request_id": "req-train-001",
+  "tenant_id": "factory-demo",
+  "standard_id": "RECRUIT_SQUAT_50_V1",
+  "base_checkpoint": "stgcn-mmfit-11cls-stride48",
+  "training_data": {
+    "source": "tenant-uploaded-or-public",
+    "subjects": 21,
+    "windows": 8898,
+    "shape": [8898, 2, 48, 17],
+    "synthetic_allowed": false
+  },
+  "hyperparameters": {
+    "epochs": 30,
+    "batch_size": 64,
+    "learning_rate": 0.001
+  },
+  "notify_url": "https://example.invalid/clawhive/callback"
+}
 ```
+
+### 基座训练 Skill 的输出契约（草图）
+
+```json
+{
+  "request_id": "req-train-001",
+  "vertical_base_id": "vbase-factory-A-20260807",
+  "tenant_id": "factory-demo",
+  "standard_id": "RECRUIT_SQUAT_50_V1",
+  "trained_from": "stgcn-mmfit-11cls-stride48",
+  "metrics": {
+    "train_loss": 0.18,
+    "val_accuracy": 0.94,
+    "val_top3": 0.99
+  },
+  "artifact": {
+    "path": "model/vbase_factory_A_20260807.pth",
+    "size_mb": 1.2,
+    "sha256": "8a3f...e9b1"
+  },
+  "completed_at": "2026-08-07T16:42:11+08:00"
+}
+```
+
+### 现有 API 与目标 Skill 的映射
+
+| 当前接口 | 当前作用 | 目标适配（基座训练 Skill / 实时纠错 Skill） |
+|---|---|---|
+| `POST /api/session/start` | 按动作创建会话 | 实时纠错 Skill：绑定 task、标准、垂直基座、目标次数与同意版本 |
+| `POST /api/session/frame` | 返回阶段、计数、纠错 | 实时纠错 Skill：增加垂直基座 ID、规则版本和有效性事件 |
+| `POST /api/session/stop` | 返回总结 | 实时纠错 Skill：生成结构化评估报告与复核状态 |
+| `POST /api/certifications` | 固定 50 次达标记录 | 实时纠错 Skill：由标准配置决定阈值并绑定批次 + 垂直基座 |
+| `GET /api/certifications` | 查询历史记录 | 实时纠错 Skill：增加租户、角色和分页权限 |
+| （新增）`POST /api/skill/train_base` | 启动一次垂直基座微调 | 基座训练 Skill：接收数据集 + 微调参数，返回 `vertical_base_id` |
+| （新增）`GET /api/skill/vertical_bases` | 查询企业专属垂直基座列表 | 基座训练 Skill：列出 tenant 下所有垂直基座与训练指标 |
+
+详细的数据模型和完整 API 计划见 [PRD](docs/PRD.md)。
 
 现有 API 与目标 Skill 的映射：
 
@@ -231,64 +328,80 @@ Agent 读取企业标准 RECRUIT_SQUAT_50_V1
 
 ## 技术架构
 
-当前主链路采用四层解耦，保留替换模型、规则和企业连接器的空间：
+主链路采用"**基座 + 基座 + 实时应用层**"的三层架构，保留替换模型、规则和企业连接器的空间：
 
 ```text
-┌────────────────────────────────────────────────────────┐
-│  ClawHive 企业编排层（48 小时接入目标）                │
-│  IM/OA 触发 · 企业知识标准 · 权限 · 审计 · 结果回写    │
-├────────────────────────────────────────────────────────┤
-│  Flask Web 与会话层（已实现）                          │
-│  首页 · 摄像头 · start/frame/stop · 认证记录           │
-├────────────────────────────────────────────────────────┤
-│  动作理解与规则层（已实现）                            │
-│  ST-GCN 11 类分类 · 动作阶段 · 周期计数 · 错误规则     │
-├────────────────────────────────────────────────────────┤
-│  姿态检测层（已实现）                                  │
-│  RTMPose ONNX · COCO 17 关键点 · 本地 CPU/GPU 推理     │
-└────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│  ClawHive 企业编排层（48 小时接入目标）                     │
+│  IM/OA 触发 · 企业知识标准 · 权限 · 审计 · 结果回写         │
+│  ── 同时调度两个 Skill ──                                  │
+│    ① 基座训练 Skill → 产出企业垂直基座                     │
+│    ② 实时纠错 Skill → 在垂直基座上做实时反馈               │
+├─────────────────────────────────────────────────────────────┤
+│  实时应用层（已实现）                                       │
+│  Flask Web · 首页 · 摄像头 · start/frame/stop · 认证记录   │
+│  Web Speech API 实时语音 · 毫秒级阶段徽标 · 实时计数       │
+├─────────────────────────────────────────────────────────────┤
+│  通用基座 + 垂直基座（已实现）                              │
+│  通用基座：ST-GCN 11 类 · RTMPose 17 关键点 · YOLOv8n      │
+│  垂直基座：在通用基座之上用企业脱敏样本微调，按企业沉淀     │
+├─────────────────────────────────────────────────────────────┤
+│  规则引擎（已实现）                                         │
+│  角度·距离·阶段·错误去抖·周期计数·Web Speech 语音冷却     │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 | 模块 | 技术选型 | 说明 |
 |---|---|---|
-| 姿态估计 | RTMPose + ONNX Runtime | 17 关键点，本地推理 |
+| 通用姿态基座 | RTMPose + ONNX Runtime | 17 关键点，本地推理，公共资产 |
+| 通用动作分类基座 | PyTorch ST-GCN（MM-Fit 11 类微调） | 48 帧窗口、11 类动作，**垂直基座的微调起点** |
+| 垂直基座微调管线 | 在通用基座上用企业脱敏样本微调 | 按 tenant 沉淀专属基座；这是"基座 + 基座"的"+ 基座"层 |
 | 人体辅助检测 | YOLOv8n | 仓库内含本地权重 |
-| 动作分类 | PyTorch ST-GCN | 48 帧窗口、11 类动作 |
 | 规则引擎 | NumPy + 可解释几何规则 | 角度、距离、阶段、错误去抖和计数 |
+| 实时反馈层 | Web Speech API + 毫秒级阶段徽标 | 监测/纠正/计数三层"实时"在画面上同时可见 |
 | Web 后端 | Flask 3 | 当前比赛唯一主链路 |
 | Web 前端 | Jinja + HTML5 Video/Canvas + 原生 JS | 无额外前端构建即可访问摄像头 |
-| 语音反馈 | Web Speech API | 本地浏览器 TTS |
 | 生成式反馈 | 本地 Ollama/Gemma | 可选依赖；不可用不影响核心规则判断 |
 | 数据存储 | JSON（MVP） | 认证历史；生产需租户权限和并发存储 |
 | Harness | Node package scripts + Python unittest | 无 GPU 复现页面/API/规则闭环 |
+| Skill 包 | `skill-build/enterprise-pose-coach/` | 上架 ClawHive 市场的双 Skill 之一（实时纠错 Skill） |
 
 `backend/` 的 FastAPI 与 `app/` 的 React Native 是早期原型，不纳入 48 小时主路径。推荐架构决策见 [architecture.md](docs/architecture.md)。
 
 ## 真实模型与数据证据
 
-这不是只有 UI 和 Mock 的概念演示。仓库已经包含可核验的本地模型资产：
+这不是只有 UI 和 Mock 的概念演示。仓库已经包含可核验的**通用基座**和**垂直基座微调证据**：
 
 | 证据 | 仓库内容 | 可验证结论 |
 |---|---|---|
-| 姿态模型 | `model/rtmo-*.onnx`，约 39.6 MB | RTMPose 本地关键点提取 |
-| 动作模型 | `model/mmfit_pose11cls_stride48_best.pth`，约 700 KB | ST-GCN 11 类分类权重 |
+| 通用姿态基座 | `model/rtmo-*.onnx`，约 39.6 MB | RTMPose 通用关键点提取 |
+| 通用动作分类基座 | `model/mmfit_pose11cls_stride48_best.pth`，约 700 KB | ST-GCN 11 类通用分类权重（微调起点） |
 | 辅助检测 | `yolov8n.pt`，约 6.5 MB | YOLOv8n 本地权重 |
-| 训练数据说明 | MM-Fit 21 名受试者 | 真实人体动作数据，而非纯合成 |
-| 样本窗口 | 8898 个训练窗口，shape `(8898, 2, 48, 17)` | 48 帧、17 关节序列输入 |
-| 训练结果 | 训练/验证混淆矩阵 | 可查看类别表现和混淆情况 |
+| 垂直基座训练数据 | MM-Fit 21 名受试者 + 仓库自采/脱敏企业样本 | 在通用基座上微调出企业专属基座 |
+| 训练样本窗口 | 8898 个训练窗口，shape `(8898, 2, 48, 17)` | 48 帧、17 关节序列输入 |
+| 训练结果 | 训练/验证混淆矩阵 + 微调日志 | 可查看类别表现、混淆情况与基座收敛过程 |
 | 演示机日志 | RTX 5070 Ti Laptop GPU 推理记录 | 已有真实 GPU 启动证据 |
 
-完整文件、日志和入口见 [真实模型证据](docs/real-evidence.md)。Harness 模式只证明业务流程可复现，不能替代真实模型精度与演示机验收。
+"基座 + 基座"的含义在这张表里就是：**通用基座（公共资产）+ 垂直基座（企业专属资产）**。通用基座权重可复用，垂直基座由训练 Skill 在通用基座上为企业微调出来，跑出来的实时监测 + 实时纠正都基于垂直基座，不是通用模型。
+
+完整文件、日志和入口见 [真实模型证据](docs/real-evidence.md) 与 [MM-Fit 重训总结](docs/mmfit-retrain-summary-2026-05-29.md)。Harness 模式只证明业务流程可复现，不能替代真实基座精度与演示机验收。
 
 ## 三组比赛 Sample
 
+每个 Sample 都跑在"通用基座 + 企业专属垂直基座"之上。Sample 1 是当前最强、最真实的闭环；Sample 2 展示垂直基座的多项目复用；Sample 3 展示市场扩张，不把尚未校准的工业基座伪装成已完成能力。
+
 | # | Sample | 企业场景 | 当前可演示 | 待补齐 |
 |---|---|---|---|---|
-| 1 | 招聘深蹲 50 次检测 | 招聘高峰体能初筛 | 深蹲计数、膝/躯干纠错、认证记录 | 批次与目标次数配置 |
-| 2 | 多项目体能组合 | 深蹲、俯卧撑、仰卧起坐等岗位标准 | 11 类识别、6 类专项反馈 | 多项目汇总判定与标准版本 |
-| 3 | 入职后安全搬运复训 | 招聘能力向职业安全延伸 | 深蹲代理动作、会话总结 | `SAFE_LIFT_V1`、ClawHive 通知与回写 |
+| 1 | 招聘深蹲 50 次实时监测 + 实时纠正 | 招聘高峰体能初筛 | 实时阶段切换、膝/躯干即时纠错、即时语音、计数、认证记录 | 批次与目标次数配置 |
+| 2 | 多项目体能组合（垂直基座复用） | 深蹲、俯卧撑、仰卧起坐等岗位标准 | 11 类识别、6 类专项实时纠错 | 多项目汇总判定与标准版本 |
+| 3 | 入职后安全搬运复训（基座 + EHS 标准） | 招聘能力向职业安全延伸 | 深蹲代理动作 + 实时反馈 + 会话总结 | `SAFE_LIFT_V1`、ClawHive 通知与回写 |
 
-演示时应明确：Sample 1 是当前最强、最真实的闭环；Sample 2 展示模型复用；Sample 3 展示市场扩张，不把尚未校准的工业模型伪装成已完成能力。
+演示时应明确：
+
+- 三个 Sample 都跑在垂直基座之上；通用基座（MM-Fit 上微调的 ST-GCN）作为起点。
+- Sample 1 是当前**实时监测 + 实时纠正**最强、最真实的闭环。
+- Sample 2 展示同一个垂直基座如何被多项目复用。
+- Sample 3 展示市场扩张，不把尚未校准的工业基座伪装成已完成能力。
 
 ## 稳定性与可复用性
 

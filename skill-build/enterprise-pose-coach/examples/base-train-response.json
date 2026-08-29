@@ -1,0 +1,18 @@
+{
+  "request_id": "req-train-001",
+  "vertical_base_id": "vbase-factory-A-20260807",
+  "tenant_id": "factory-demo",
+  "standard_id": "RECRUIT_SQUAT_50_V1",
+  "trained_from": "stgcn-mmfit-11cls-stride48",
+  "metrics": {
+    "train_loss": 0.18,
+    "val_accuracy": 0.94,
+    "val_top3": 0.99
+  },
+  "artifact": {
+    "path": "model/vbase_factory_A_20260807.pth",
+    "size_mb": 1.2,
+    "sha256": "8a3f...e9b1"
+  },
+  "completed_at": "2026-08-07T16:42:11+08:00"
+}

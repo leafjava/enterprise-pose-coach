@@ -4,6 +4,7 @@
   "batch_id": "recruit-20260807-a",
   "assignee_id": "candidate-c042",
   "standard_id": "RECRUIT_SQUAT_50_V1",
+  "vertical_base_id": "vbase-factory-A-20260807",
   "exercise": "squats",
   "target_reps": 50,
   "due_at": "2026-08-07T18:00:00+08:00",

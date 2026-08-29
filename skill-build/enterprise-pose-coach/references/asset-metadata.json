@@ -2,10 +2,21 @@
   "$schema": "https://clawhive.example.invalid/schemas/skill-asset-metadata/v1.json",
   "skill": {
     "name": "enterprise-pose-coach",
+    "display_name": "Enterprise Pose Coach · 实时纠错层",
     "version": "1.0.0",
     "vendor": "lian-le-ma",
     "category": "computer-vision",
     "track": "ai-development",
+    "architecture": "base_plus_base",
+    "architecture_note": "本 Skill 是「基座 + 基座」双层架构中的实时纠错层。它必须运行在配套基座训练 Skill pose-coach-trainer 产出的垂直基座之上，不在通用基座上裸跑。",
+    "companion_skills": [
+      {
+        "name": "pose-coach-trainer",
+        "role": "base-trainer",
+        "outputs": ["vertical_base_id"],
+        "consumed_by_this_skill": true
+      }
+    ],
     "min_runtime": {
       "python": "3.10",
       "memory_mb": 1024,
@@ -17,6 +28,7 @@
     "models": [
       {
         "id": "rtmpose-onnx",
+        "role": "general-base",
         "kind": "pose-estimation",
         "format": "onnx",
         "size_mb": 40,
@@ -27,18 +39,37 @@
         "provider": "onnxruntime"
       },
       {
-        "id": "stgcn-11cls",
+        "id": "stgcn-mmfit-11cls-stride48",
+        "role": "general-base",
         "kind": "action-classification",
         "format": "pytorch",
         "size_mb": 1,
         "license": "internal",
         "path_hint": "model/mmfit_pose11cls_stride48_best.pth",
+        "base_version": "stgcn-mmfit-11cls-stride48@2026-05-29",
+        "note": "通用基座；垂直基座在本权重上用企业脱敏样本微调",
+        "inputs": ["keypoint_sequence:48x17x2"],
+        "outputs": ["class:11", "confidence:1"],
+        "provider": "pytorch"
+      },
+      {
+        "id": "vertical-base-placeholder",
+        "role": "vertical-base",
+        "kind": "action-classification-tenant-finetune",
+        "format": "pytorch",
+        "size_mb": 1,
+        "license": "tenant-private",
+        "path_hint": "model/vbase_<tenant>_<date>.pth",
+        "produced_by": "pose-coach-trainer",
+        "trained_from": "stgcn-mmfit-11cls-stride48",
+        "note": "本 Skill 运行时必须绑定到具体 vertical_base_id；占位说明见 examples/base-train-response.json",
         "inputs": ["keypoint_sequence:48x17x2"],
         "outputs": ["class:11", "confidence:1"],
         "provider": "pytorch"
       },
       {
         "id": "yolov8n",
+        "role": "support",
         "kind": "person-detection",
         "format": "pytorch",
         "size_mb": 7,
@@ -74,11 +105,19 @@
       },
       {
         "id": "mmfit-21subjects",
+        "role": "general-base-training-corpus",
         "kind": "training-corpus",
         "subjects": 21,
         "windows": 8898,
         "shape": [8898, 2, 48, 17],
         "license": "research-only"
+      },
+      {
+        "id": "tenant-desensitized-samples",
+        "role": "vertical-base-training-corpus",
+        "kind": "tenant-uploaded",
+        "license": "tenant-private",
+        "note": "企业脱敏样本；只在基座训练 Skill pose-coach-trainer 中使用，不进入通用基座、不进入公共数据集"
       }
     ],
     "prompts": [
@@ -94,7 +133,9 @@
       "examples/input-request.json",
       "examples/output-pass.json",
       "examples/output-not-met.json",
-      "examples/output-inconclusive.json"
+      "examples/output-inconclusive.json",
+      "examples/base-train-request.json",
+      "examples/base-train-response.json"
     ]
   },
   "api": {
@@ -103,14 +144,26 @@
       {
         "id": "task.create",
         "kind": "skill-input",
-        "description": "ClawHive → Skill: create a recruit/onboarding/training task",
+        "description": "ClawHive Agent → Skill: create a recruit/onboarding/training task (binds vertical_base_id)",
         "schema": "examples/input-request.json"
       },
       {
         "id": "task.callback",
         "kind": "skill-output",
-        "description": "Skill → ClawHive: structured result + optional webhook",
+        "description": "Skill → ClawHive Agent: structured result + optional webhook (echoes vertical_base_id)",
         "schema": "examples/output-pass.json"
+      },
+      {
+        "id": "vertical_base.train",
+        "kind": "companion-skill-input",
+        "description": "ClawHive Agent → pose-coach-trainer: train a tenant vertical base on top of the general base",
+        "schema": "examples/base-train-request.json"
+      },
+      {
+        "id": "vertical_base.trained",
+        "kind": "companion-skill-output",
+        "description": "pose-coach-trainer → ClawHive Agent: vertical_base_id + artifact metadata",
+        "schema": "examples/base-train-response.json"
       }
     ],
     "external_dependencies": [
@@ -120,6 +173,12 @@
         "required": false,
         "purpose": "生成式教练文案；规则链路不依赖",
         "default_model": "gemma4:e2b"
+      },
+      {
+        "name": "pose-coach-trainer",
+        "kind": "companion-skill",
+        "required": true,
+        "purpose": "产出 vertical_base_id；本 Skill 不在通用基座上裸跑"
       }
     ]
   },
@@ -128,7 +187,8 @@
     "microphone": "denied",
     "network": "webhook-out-only",
     "raw_frame_persistence": "denied",
-    "raw_frame_upload_to_llm": "denied"
+    "raw_frame_upload_to_llm": "denied",
+    "vertical_base_artifact_download": "tenant-scoped"
   },
   "limits": {
     "max_session_seconds": 1800,
