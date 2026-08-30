@@ -1,0 +1,37 @@
+Deck source notes
+
+All non-trivial claims are sourced from user-provided competition materials or repository-local evidence.
+
+Competition criteria and ClawHive five-layer capabilities:
+- User-provided competition brief in the current conversation.
+
+Product positioning, ICP, workflow, business model, pilot and safety boundaries:
+- README.md
+- docs/PRD.md
+- docs/architecture.md
+- skill-build/enterprise-pose-coach/SKILL.md
+- skill-build/enterprise-pose-coach/references/contract.md
+- skill-build/enterprise-pose-coach/references/api-mapping.md
+
+Training and model evidence:
+- docs/mmfit-retrain-summary-2026-05-29.md
+- docs/real-evidence.md
+- model/mmfit_pose11cls_stride48_best.pth
+- model/rtmo-s_8xb32-600e_body7-640x640-dac2bf74_20231211.onnx
+- yolov8n.pt
+
+Runtime and test evidence:
+- npm run check: 23 automated tests passed on 2026-08-30 in this workspace.
+- npm run demo: deterministic no-GPU end-to-end smoke returned status=passed on 2026-08-30.
+- npm run usability: status=incomplete, participant_count=0. The deck does not claim usability validation.
+
+Product screenshots (captured from the local deterministic review server on 2026-08-30):
+- .codex-tmp/pitchdeck/screens/home.png
+- .codex-tmp/pitchdeck/screens/coach-counted.png
+- .codex-tmp/pitchdeck/screens/coach-error.png
+- .codex-tmp/pitchdeck/screens/certification.png
+
+Evidence caveat:
+- static/validation_confusion_matrix.png and model/VAL_confusion_matrix.png show a label taxonomy inconsistent with the current MM-Fit 11-class description. They are intentionally excluded from the deck.
+- 93.15% is the reported validation accuracy after epoch 5 in docs/mmfit-retrain-summary-2026-05-29.md. It is described only as offline validation accuracy, not enterprise field accuracy.
+

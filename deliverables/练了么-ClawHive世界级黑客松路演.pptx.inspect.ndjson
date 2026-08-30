@@ -1,0 +1,430 @@
+{"kind":"deck","id":"pr/5h8x9a","name":"Deck"}
+{"kind":"layout","layoutId":"8cf20969-39a3-47ea-a5af-e41037eb9b29","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"21efb217-e040-4339-b1db-c4fd6c3c55a1","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/12awkr","slide":1,"title":"CLAW HIVE × ENTERPRISE VISION SKILL","textShapes":6}
+{"kind":"shape","id":"sh/cr2h0fu5","slide":1,"bbox":[64,54,292,30]}
+{"kind":"textbox","id":"sh/rqt07adk","slide":1,"text":"CLAW HIVE × ENTERPRISE VISION SKILL","textPreview":"CLAW HIVE × ENTERPRISE VISION SKILL","textChars":35,"textLines":1,"bbox":[64,56,292,25]}
+{"kind":"textbox","id":"sh/qpkzy5cz","slide":1,"text":"让 ClawHive 的数字员工\n真正看见现场","textPreview":"让 ClawHive 的数字员工 | 真正看见现场","textChars":23,"textLines":2,"bbox":[64,145,570,170]}
+{"kind":"textbox","id":"sh/1gvidkvm","slide":1,"text":"练了么｜企业体能与岗位动作评估数字员工","textPreview":"练了么｜企业体能与岗位动作评估数字员工","textChars":19,"textLines":1,"bbox":[64,350,520,46]}
+{"kind":"textbox","id":"sh/0fmh4fuh","slide":1,"text":"普通摄像头完成实时计数、即时纠错、结果留痕与人工复核；一套 Skill 贯穿训练、沉淀、复用与升级。","textPreview":"普通摄像头完成实时计数、即时纠错、结果留痕与人工复核；一套 Skill 贯穿训练、沉淀、复用与升级。","textChars":50,"textLines":1,"bbox":[64,420,500,105]}
+{"kind":"shape","id":"sh/zet0badw","slide":1,"bbox":[64,560,500,0]}
+{"kind":"textbox","id":"sh/edkz25cb","slide":1,"text":"网易智企帝王蟹 ClawHive 大赛 · 镇江站","textPreview":"网易智企帝王蟹 ClawHive 大赛 · 镇江站","textChars":25,"textLines":1,"bbox":[64,580,500,30]}
+{"kind":"textbox","id":"sh/hkry1gvi","slide":1,"text":"AI-开发主赛道｜AI-视听为核心引擎","textPreview":"AI-开发主赛道｜AI-视听为核心引擎","textChars":19,"textLines":1,"bbox":[64,616,500,28]}
+{"kind":"shape","id":"sh/gjihsbux","slide":1,"bbox":[674,46,544,614]}
+{"kind":"image","id":"im/5036tsrm","slide":1,"name":"","geometry":"roundRect","alt":"练了么首页实时姿态演示","bbox":[676,48,540,610]}
+{"kind":"notes","id":"nt/12awkr","slide":1,"text":"开场只讲一件事：ClawHive 已经能管理数字员工，练了么让数字员工获得对物理动作的实时感知能力。\n\n[Sources]\n- README.md\n- 本地产品截图：.codex-tmp/pitchdeck/screens/home.png\n- 用户提供的大赛介绍\n[/Sources]"}
+{"kind":"slide","id":"sl/hvz1ua","slide":2,"title":"BUSINESS BOTTLENECK","textShapes":22}
+{"kind":"textbox","id":"sh/h4jqpozu","slide":2,"text":"BUSINESS BOTTLENECK","textPreview":"BUSINESS BOTTLENECK","textChars":19,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/uhs7etg3","slide":2,"text":"招聘高峰里，考官是最稀缺的“传感器”","textPreview":"招聘高峰里，考官是最稀缺的“传感器”","textChars":18,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/fi1onyho","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/sfqpcjyx","slide":2,"bbox":[64,132,1152,0]}
+{"kind":"textbox","id":"sh/tgj6lozi","slide":2,"text":"30 × 50","textPreview":"30 × 50","textChars":7,"textLines":1,"bbox":[64,176,360,100]}
+{"kind":"textbox","id":"sh/6d87a9g7","slide":2,"text":"名候选人 × 次深蹲","textPreview":"名候选人 × 次深蹲","textChars":10,"textLines":1,"bbox":[68,278,350,36]}
+{"kind":"textbox","id":"sh/7ehojehs","slide":2,"text":"虚构演示批次，用来还原招聘现场的吞吐瓶颈","textPreview":"虚构演示批次，用来还原招聘现场的吞吐瓶颈","textChars":20,"textLines":1,"bbox":[68,326,372,62]}
+{"kind":"shape","id":"sh/kbqp8zy1","slide":2,"bbox":[64,420,356,170]}
+{"kind":"textbox","id":"sh/5cz6h4zm","slide":2,"text":"价值验证不靠口号","textPreview":"价值验证不靠口号","textChars":8,"textLines":1,"bbox":[88,446,300,32]}
+{"kind":"textbox","id":"sh/5032l4be","slide":2,"text":"每百人考官工时\nAI / 人工计数一致性\n需复核率与争议处理时长","textPreview":"每百人考官工时 | AI / 人工计数一致性 | 需复核率与争议处理时长","textChars":32,"textLines":3,"bbox":[88,492,300,80]}
+{"kind":"textbox","id":"sh/4fu1czut","slide":2,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[492,192,48,24]}
+{"kind":"textbox","id":"sh/jelkjut8","slide":2,"text":"逐次计数","textPreview":"逐次计数","textChars":4,"textLines":1,"bbox":[492,232,150,36]}
+{"kind":"textbox","id":"sh/idcjapcn","slide":2,"text":"完整动作才有效","textPreview":"完整动作才有效","textChars":7,"textLines":1,"bbox":[492,282,150,64]}
+{"kind":"shape","id":"sh/hc32hkbi","slide":2,"bbox":[656,188,1,0]}
+{"kind":"textbox","id":"sh/wbu18zux","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[668,192,48,24]}
+{"kind":"textbox","id":"sh/valkfutc","slide":2,"text":"判断幅度","textPreview":"判断幅度","textChars":4,"textLines":1,"bbox":[668,232,150,36]}
+{"kind":"textbox","id":"sh/u9cj6pcr","slide":2,"text":"不同考官尺度不同","textPreview":"不同考官尺度不同","textChars":8,"textLines":1,"bbox":[668,282,150,64]}
+{"kind":"shape","id":"sh/98j2dkb6","slide":2,"bbox":[832,188,1,0]}
+{"kind":"textbox","id":"sh/87a14ful","slide":2,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[844,192,48,24]}
+{"kind":"textbox","id":"sh/0re10f2h","slide":2,"text":"纸面登记","textPreview":"纸面登记","textChars":4,"textLines":1,"bbox":[844,232,150,36]}
+{"kind":"textbox","id":"sh/lsn2tkj2","slide":2,"text":"过程证据容易丢失","textPreview":"过程证据容易丢失","textChars":8,"textLines":1,"bbox":[844,282,150,64]}
+{"kind":"shape","id":"sh/ypwjy5kb","slide":2,"bbox":[1008,188,1,0]}
+{"kind":"textbox","id":"sh/zq5kra1w","slide":2,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1020,192,48,24]}
+{"kind":"textbox","id":"sh/cne1wf2l","slide":2,"text":"解释争议","textPreview":"解释争议","textChars":4,"textLines":1,"bbox":[1020,232,150,36]}
+{"kind":"textbox","id":"sh/don2pkj6","slide":2,"text":"候选人为何没被计数","textPreview":"候选人为何没被计数","textChars":9,"textLines":1,"bbox":[1020,282,150,64]}
+{"kind":"shape","id":"sh/qlcju5kf","slide":2,"bbox":[492,378,688,0]}
+{"kind":"textbox","id":"sh/bmlkna10","slide":2,"text":"授权人员仍负责最终录用；练了么接管的是重复观察、计数和记录。","textPreview":"授权人员仍负责最终录用；练了么接管的是重复观察、计数和记录。","textChars":30,"textLines":1,"bbox":[492,418,680,70]}
+{"kind":"textbox","id":"sh/wjyl8z2p","slide":2,"text":"技术失败、遮挡和低置信度统一转人工复核。","textPreview":"技术失败、遮挡和低置信度统一转人工复核。","textChars":20,"textLines":1,"bbox":[492,514,680,40]}
+{"kind":"notes","id":"nt/hvz1ua","slide":2,"text":"用一个具体批次让评委感受工作量。强调最终录用权仍在人手中，产品接管重复性、可标准化的观察和记录。\n\n[Sources]\n- docs/PRD.md §3–4\n- data/demo/enterprise_demo.json\n[/Sources]"}
+{"kind":"slide","id":"sl/wvn40u","slide":3,"title":"PRODUCT LOOP","textShapes":9}
+{"kind":"textbox","id":"sh/yhg3qdg3","slide":3,"text":"PRODUCT LOOP","textPreview":"PRODUCT LOOP","textChars":12,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/lk7m1szu","slide":3,"text":"一句任务，交付一份可复核结果","textPreview":"一句任务，交付一份可复核结果","textChars":14,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/0jy5sny9","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/be54vyhs","slide":3,"bbox":[64,132,1152,0]}
+{"kind":"shape","id":"sh/qtw3mtg7","slide":3,"bbox":[366,375,49,2]}
+{"kind":"shape","id":"sh/dgnmx8zi","slide":3,"bbox":[412,372,12,8]}
+{"kind":"shape","id":"sh/cfelo3yd","slide":3,"bbox":[812,375,49,2]}
+{"kind":"shape","id":"sh/3q54ryhg","slide":3,"bbox":[858,372,12,8]}
+{"kind":"shape","id":"sh/2pw3itgv","slide":3,"bbox":[64,178,300,420]}
+{"kind":"textbox","id":"sh/43itofy1","slide":3,"text":"HR / EHS","textPreview":"HR / EHS","textChars":8,"textLines":1,"bbox":[88,204,220,24]}
+{"kind":"textbox","id":"sh/54buhkfm","slide":3,"text":"“给今天的一线招聘批次创建深蹲 50 次检测，18:00 前完成。”","textPreview":"“给今天的一线招聘批次创建深蹲 50 次检测，18:00 前完成。”","textChars":34,"textLines":1,"bbox":[88,250,250,150]}
+{"kind":"textbox","id":"sh/i10bm5gv","slide":3,"text":"ClawHive 选择标准、检查权限并发送任务链接","textPreview":"ClawHive 选择标准、检查权限并发送任务链接","textChars":25,"textLines":1,"bbox":[88,452,250,72]}
+{"kind":"shape","id":"sh/329sfaxg","slide":3,"bbox":[88,546,112,30]}
+{"kind":"textbox","id":"sh/gzitkvy5","slide":3,"text":"任务发起","textPreview":"任务发起","textChars":4,"textLines":1,"bbox":[88,548,112,25]}
+{"kind":"shape","id":"sh/h0rad0zq","slide":3,"bbox":[422,208,392,286]}
+{"kind":"textbox","id":"sh/vy9sbqhk","slide":3,"text":"普通摄像头完成实时识别、纠错与完整周期计数","textPreview":"普通摄像头完成实时识别、纠错与完整周期计数","textChars":21,"textLines":1,"bbox":[424,518,388,60]}
+{"kind":"shape","id":"sh/0vmtwzy9","slide":3,"bbox":[868,208,350,286]}
+{"kind":"textbox","id":"sh/9cra947y","slide":3,"text":"pass / not_met / inconclusive\n结果绑定模型、规则与权重版本","textPreview":"pass / not_met / inconclusive | 结果绑定模型、规则与权重版本","textChars":44,"textLines":2,"bbox":[870,518,346,65]}
+{"kind":"image","id":"im/dk7elgru","slide":3,"name":"","geometry":"roundRect","alt":"标准动作完成后实时计数为 1","bbox":[424,210,388,282]}
+{"kind":"image","id":"im/2dwvm187","slide":3,"name":"","geometry":"roundRect","alt":"招聘体能认证和结构化记录页面","bbox":[870,210,346,282]}
+{"kind":"notes","id":"nt/wvn40u","slide":3,"text":"一条链路讲完：任务从企业工作入口发起，普通摄像头完成检测，ClawHive 接收结构化结果并把异常交给 HR 复核。\n\n[Sources]\n- docs/PRD.md §4\n- README.md 企业级 Skill 形态\n- 本地截图：coach-counted.png、certification.png\n[/Sources]"}
+{"kind":"slide","id":"sl/lcvit1","slide":4,"title":"LIVE PROOF","textShapes":16}
+{"kind":"textbox","id":"sh/fa9w76dw","slide":4,"text":"LIVE PROOF","textPreview":"LIVE PROOF","textChars":10,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/gbixgbuh","slide":4,"text":"错误发生的当下，系统就解释为什么没计数","textPreview":"错误发生的当下，系统就解释为什么没计数","textChars":19,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/1cre9gv2","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/2d0filcn","slide":4,"bbox":[64,132,1152,0]}
+{"kind":"shape","id":"sh/3y9wbqd8","slide":4,"bbox":[62,166,794,478]}
+{"kind":"textbox","id":"sh/p0bedgve","slide":4,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[902,176,42,28]}
+{"kind":"textbox","id":"sh/q1kfmlcz","slide":4,"text":"阶段","textPreview":"阶段","textChars":2,"textLines":1,"bbox":[954,174,200,32]}
+{"kind":"textbox","id":"sh/b2twfqd4","slide":4,"text":"准备 / 下降 / 底部 / 上升","textPreview":"准备 / 下降 / 底部 / 上升","textChars":17,"textLines":1,"bbox":[902,216,290,48]}
+{"kind":"shape","id":"sh/felg3etk","slide":4,"bbox":[902,270,290,0]}
+{"kind":"textbox","id":"sh/udczu9sz","slide":4,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[902,288,42,28]}
+{"kind":"textbox","id":"sh/hg3y54bq","slide":4,"text":"纠错","textPreview":"纠错","textChars":2,"textLines":1,"bbox":[954,286,200,32]}
+{"kind":"textbox","id":"sh/gfuhwja5","slide":4,"text":"膝内扣、深度不足即时提示","textPreview":"膝内扣、深度不足即时提示","textChars":12,"textLines":1,"bbox":[902,328,290,48]}
+{"kind":"shape","id":"sh/7a1gzut8","slide":4,"bbox":[902,382,290,0]}
+{"kind":"textbox","id":"sh/69szqpc3","slide":4,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[902,400,42,28]}
+{"kind":"textbox","id":"sh/tcjy14be","slide":4,"text":"计数","textPreview":"计数","textChars":2,"textLines":1,"bbox":[954,398,200,32]}
+{"kind":"textbox","id":"sh/sbahszat","slide":4,"text":"完整动作周期成立才 +1","textPreview":"完整动作周期成立才 +1","textChars":12,"textLines":1,"bbox":[902,440,290,48]}
+{"kind":"shape","id":"sh/r65gvyts","slide":4,"bbox":[902,494,290,0]}
+{"kind":"textbox","id":"sh/q5wz2ts7","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[902,512,42,28]}
+{"kind":"textbox","id":"sh/m1gjuxcf","slide":4,"text":"降级","textPreview":"降级","textChars":2,"textLines":1,"bbox":[954,510,200,32]}
+{"kind":"textbox","id":"sh/n2pk32d0","slide":4,"text":"低置信度进入人工复核","textPreview":"低置信度进入人工复核","textChars":10,"textLines":1,"bbox":[902,552,290,48]}
+{"kind":"textbox","id":"sh/o3y1wnul","slide":4,"text":"视觉、文字、语音三条反馈通道同时工作","textPreview":"视觉、文字、语音三条反馈通道同时工作","textChars":18,"textLines":1,"bbox":[902,626,290,28]}
+{"kind":"image","id":"im/54ryhsru","slide":4,"name":"","geometry":"roundRect","alt":"Ghost Coach 展示膝盖和躯干纠正箭头","bbox":[64,168,790,474]}
+{"kind":"notes","id":"nt/lcvit1","slide":4,"text":"这一页是核心产品证据。请现场指出橙色纠正提示、关节引导箭头和计数区域；随后说明错误动作不会被默默吞掉。\n\n[Sources]\n- src/live_coach.py\n- src/ghost_coach.py\n- templates/index.html\n- 本地截图：coach-error.png\n[/Sources]"}
+{"kind":"slide","id":"sl/swnksy","slide":5,"title":"CORE INNOVATION","textShapes":26}
+{"kind":"textbox","id":"sh/x0nyl0ri","slide":5,"text":"CORE INNOVATION","textPreview":"CORE INNOVATION","textChars":15,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/adwfa587","slide":5,"text":"一个 Skill，管理一项可持续进化的模型资产","textPreview":"一个 Skill，管理一项可持续进化的模型资产","textChars":23,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/be5wja9s","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/obux8vq1","slide":5,"bbox":[64,132,1152,0]}
+{"kind":"textbox","id":"sh/pcneh0rm","slide":5,"text":"首次调用","textPreview":"首次调用","textChars":4,"textLines":1,"bbox":[64,176,150,28]}
+{"kind":"shape","id":"sh/29cf6lsv","slide":5,"bbox":[255,261,81,2]}
+{"kind":"shape","id":"sh/nalwfq9g","slide":5,"bbox":[333,258,12,8]}
+{"kind":"shape","id":"sh/87yxkfq5","slide":5,"bbox":[493,261,81,2]}
+{"kind":"shape","id":"sh/t87ytkrq","slide":5,"bbox":[571,258,12,8]}
+{"kind":"shape","id":"sh/583mhozi","slide":5,"bbox":[731,261,81,2]}
+{"kind":"shape","id":"sh/47ul8jyx","slide":5,"bbox":[809,258,12,8]}
+{"kind":"shape","id":"sh/36l4fehc","slide":5,"bbox":[64,220,190,112]}
+{"kind":"textbox","id":"sh/i5c369g7","slide":5,"text":"数据与标准","textPreview":"数据与标准","textChars":5,"textLines":1,"bbox":[82,240,155,28]}
+{"kind":"textbox","id":"sh/h43md4zm","slide":5,"text":"许可检查\n48 帧切窗","textPreview":"许可检查 | 48 帧切窗","textChars":11,"textLines":2,"bbox":[82,278,155,42]}
+{"kind":"shape","id":"sh/g3ul4zy1","slide":5,"bbox":[345,220,190,112]}
+{"kind":"textbox","id":"sh/v214buhg","slide":5,"text":"训练","textPreview":"训练","textChars":2,"textLines":1,"bbox":[363,240,155,28]}
+{"kind":"textbox","id":"sh/u1s3i9gv","slide":5,"text":"通用模型起点\n企业脱敏样本","textPreview":"通用模型起点 | 企业脱敏样本","textChars":13,"textLines":2,"bbox":[363,278,155,42]}
+{"kind":"shape","id":"sh/10nmp8zq","slide":5,"bbox":[583,220,190,112]}
+{"kind":"textbox","id":"sh/0ze5g3y5","slide":5,"text":"评估","textPreview":"评估","textChars":2,"textLines":1,"bbox":[601,240,155,28]}
+{"kind":"textbox","id":"sh/kf6x8bat","slide":5,"text":"验证指标比较\n选择最优 checkpoint","textPreview":"验证指标比较 | 选择最优 checkpoint","textChars":22,"textLines":2,"bbox":[601,278,155,42]}
+{"kind":"shape","id":"sh/lgfe1wby","slide":5,"bbox":[821,220,190,112]}
+{"kind":"textbox","id":"sh/ydof61sn","slide":5,"text":"Best 权重","textPreview":"Best 权重","textChars":7,"textLines":1,"bbox":[839,240,155,28]}
+{"kind":"textbox","id":"sh/zexwz6t8","slide":5,"text":"tenant + standard\nversion + hash","textPreview":"tenant + standard | version + hash","textChars":32,"textLines":2,"bbox":[839,278,155,42]}
+{"kind":"shape","id":"sh/cbmx4rah","slide":5,"bbox":[1050,208,166,136]}
+{"kind":"textbox","id":"sh/xcfexwb2","slide":5,"text":"best_weight_id","textPreview":"best_weight_id","textChars":14,"textLines":1,"bbox":[1058,232,150,30]}
+{"kind":"textbox","id":"sh/ap4f2hsb","slide":5,"text":"调用、审计、回滚\n共用同一资产锚点","textPreview":"调用、审计、回滚 | 共用同一资产锚点","textChars":17,"textLines":2,"bbox":[1064,278,138,52]}
+{"kind":"textbox","id":"sh/bqdwvmtw","slide":5,"text":"后续调用","textPreview":"后续调用","textChars":4,"textLines":1,"bbox":[64,400,150,28]}
+{"kind":"shape","id":"sh/onmx0ral","slide":5,"bbox":[255,489,81,2]}
+{"kind":"shape","id":"sh/povetcb6","slide":5,"bbox":[333,486,12,8]}
+{"kind":"shape","id":"sh/ritgjmds","slide":5,"bbox":[493,489,81,2]}
+{"kind":"shape","id":"sh/qhkfahw7","slide":5,"bbox":[571,486,12,8]}
+{"kind":"shape","id":"sh/dkbylcvy","slide":5,"bbox":[731,489,81,2]}
+{"kind":"shape","id":"sh/sj2xc7ed","slide":5,"bbox":[809,486,12,8]}
+{"kind":"shape","id":"sh/fmdgnmd4","slide":5,"bbox":[64,448,190,96]}
+{"kind":"textbox","id":"sh/el4fehcj","slide":5,"text":"任务","textPreview":"任务","textChars":2,"textLines":1,"bbox":[82,466,155,28]}
+{"kind":"textbox","id":"sh/1ovypwvu","slide":5,"text":"传入 best_weight_id","textPreview":"传入 best_weight_id","textChars":17,"textLines":1,"bbox":[82,506,155,24]}
+{"kind":"shape","id":"sh/0nmxgru9","slide":5,"bbox":[345,448,190,96]}
+{"kind":"textbox","id":"sh/nadgr6d0","slide":5,"text":"直接加载","textPreview":"直接加载","textChars":4,"textLines":1,"bbox":[363,466,155,28]}
+{"kind":"textbox","id":"sh/2p4zi1cf","slide":5,"text":"无需重新训练","textPreview":"无需重新训练","textChars":6,"textLines":1,"bbox":[363,506,155,24]}
+{"kind":"shape","id":"sh/mtcze5kr","slide":5,"bbox":[583,448,190,96]}
+{"kind":"textbox","id":"sh/7ul0nalc","slide":5,"text":"实时推理","textPreview":"实时推理","textChars":4,"textLines":1,"bbox":[601,466,155,28]}
+{"kind":"textbox","id":"sh/8vu1gf2x","slide":5,"text":"识别 · 计数 · 纠错","textPreview":"识别 · 计数 · 纠错","textChars":12,"textLines":1,"bbox":[601,506,155,24]}
+{"kind":"shape","id":"sh/9wnipk32","slide":5,"bbox":[821,448,190,96]}
+{"kind":"textbox","id":"sh/uhwji5kn","slide":5,"text":"结构化报告","textPreview":"结构化报告","textChars":5,"textLines":1,"bbox":[839,466,155,28]}
+{"kind":"textbox","id":"sh/vi50ral8","slide":5,"text":"结论 · 版本 · 复核","textPreview":"结论 · 版本 · 复核","textChars":12,"textLines":1,"bbox":[839,506,155,24]}
+{"kind":"shape","id":"sh/wje1kf2t","slide":5,"bbox":[1050,438,166,116]}
+{"kind":"textbox","id":"sh/hknitk3e","slide":5,"text":"更优才升级","textPreview":"更优才升级","textChars":5,"textLines":1,"bbox":[1062,462,142,28]}
+{"kind":"textbox","id":"sh/qlsz6lkj","slide":5,"text":"旧版保留可回滚","textPreview":"旧版保留可回滚","textChars":7,"textLines":1,"bbox":[1062,506,142,24]}
+{"kind":"textbox","id":"sh/bm10fql4","slide":5,"text":"这套生命周期把个人经验、企业数据和模型权重沉淀为可复用资产。","textPreview":"这套生命周期把个人经验、企业数据和模型权重沉淀为可复用资产。","textChars":30,"textLines":1,"bbox":[64,606,1080,34]}
+{"kind":"notes","id":"nt/swnksy","slide":5,"text":"这是评委最需要记住的技术创新：一次调用不只返回答案，还能沉淀一份可治理的垂直权重资产；后续调用带着明确版本进入生产流程。\n\n[Sources]\n- README.md：训练 + 沉淀 + 复用\n- skill-build/enterprise-pose-coach/SKILL.md §1、§6\n- skill-build/enterprise-pose-coach/references/contract.md §8\n[/Sources]"}
+{"kind":"slide","id":"sl/5d3hqg","slide":6,"title":"PLATFORM FIT","textShapes":22}
+{"kind":"textbox","id":"sh/gzuxsry5","slide":6,"text":"PLATFORM FIT","textPreview":"PLATFORM FIT","textChars":12,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/vylgzmhk","slide":6,"text":"ClawHive 管企业工作流，练了么负责看懂动作","textPreview":"ClawHive 管企业工作流，练了么负责看懂动作","textChars":25,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/uxcfq1gz","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/tw3yxwze","slide":6,"bbox":[64,132,1152,0]}
+{"kind":"textbox","id":"sh/8vaxory9","slide":6,"text":"ClawHive 能力层","textPreview":"ClawHive 能力层","textChars":12,"textLines":1,"bbox":[64,166,220,26]}
+{"kind":"textbox","id":"sh/7u1gvmho","slide":6,"text":"练了么的企业视觉能力","textPreview":"练了么的企业视觉能力","textChars":10,"textLines":1,"bbox":[372,166,520,26]}
+{"kind":"textbox","id":"sh/6tsfmhg3","slide":6,"text":"当前交付","textPreview":"当前交付","textChars":4,"textLines":1,"bbox":[1030,166,170,26]}
+{"kind":"shape","id":"sh/dsnytgfy","slide":6,"bbox":[64,200,1152,0]}
+{"kind":"textbox","id":"sh/creh0byd","slide":6,"text":"模型层","textPreview":"模型层","textChars":3,"textLines":1,"bbox":[64,216,220,36]}
+{"kind":"textbox","id":"sh/6xwnyhgj","slide":6,"text":"RTMPose / ST-GCN / Best 权重按任务加载","textPreview":"RTMPose / ST-GCN / Best 权重按任务加载","textChars":31,"textLines":1,"bbox":[372,216,590,42]}
+{"kind":"textbox","id":"sh/7y5ormh4","slide":6,"text":"本地模型已就绪","textPreview":"本地模型已就绪","textChars":7,"textLines":1,"bbox":[1000,216,216,36]}
+{"kind":"shape","id":"sh/8zy507yp","slide":6,"bbox":[64,282,1152,0]}
+{"kind":"textbox","id":"sh/tk76tcza","slide":6,"text":"连接层","textPreview":"连接层","textChars":3,"textLines":1,"bbox":[64,298,220,36]}
+{"kind":"textbox","id":"sh/ytwnuxgn","slide":6,"text":"IM / OA 发起任务，完成后回写招聘台账","textPreview":"IM / OA 发起任务，完成后回写招聘台账","textChars":22,"textLines":1,"bbox":[372,298,590,42]}
+{"kind":"textbox","id":"sh/ju5on2h8","slide":6,"text":"接口最后接线","textPreview":"接口最后接线","textChars":6,"textLines":1,"bbox":[1000,298,216,36]}
+{"kind":"shape","id":"sh/kve5w7yt","slide":6,"bbox":[64,364,1152,0]}
+{"kind":"textbox","id":"sh/lwn6pcze","slide":6,"text":"安全层","textPreview":"安全层","textChars":3,"textLines":1,"bbox":[64,380,220,36]}
+{"kind":"textbox","id":"sh/2pg761gr","slide":6,"text":"租户权限、最小回传、人工复核、版本审计","textPreview":"租户权限、最小回传、人工复核、版本审计","textChars":19,"textLines":1,"bbox":[372,380,590,42]}
+{"kind":"textbox","id":"sh/3qpoz6hc","slide":6,"text":"契约已定义","textPreview":"契约已定义","textChars":5,"textLines":1,"bbox":[1000,380,216,36]}
+{"kind":"shape","id":"sh/za1kryxo","slide":6,"bbox":[64,446,1152,0]}
+{"kind":"textbox","id":"sh/e9s3ytgj","slide":6,"text":"知识层","textPreview":"知识层","textChars":3,"textLines":1,"bbox":[64,462,220,36]}
+{"kind":"textbox","id":"sh/1wj2tofu","slide":6,"text":"岗位体能标准与 EHS 动作标准版本化","textPreview":"岗位体能标准与 EHS 动作标准版本化","textChars":19,"textLines":1,"bbox":[372,462,590,42]}
+{"kind":"textbox","id":"sh/0val0je9","slide":6,"text":"首个标准已落盘","textPreview":"首个标准已落盘","textChars":7,"textLines":1,"bbox":[1000,462,216,36]}
+{"kind":"shape","id":"sh/ny14vyx0","slide":6,"bbox":[64,528,1152,0]}
+{"kind":"textbox","id":"sh/mxs32twf","slide":6,"text":"资产层","textPreview":"资产层","textChars":3,"textLines":1,"bbox":[64,544,220,36]}
+{"kind":"textbox","id":"sh/903mx8f6","slide":6,"text":"Skill + 权重 + 规则 + 错误事件持续复用","textPreview":"Skill + 权重 + 规则 + 错误事件持续复用","textChars":26,"textLines":1,"bbox":[372,544,590,42]}
+{"kind":"textbox","id":"sh/ozal43el","slide":6,"text":"Skill 包已完成","textPreview":"Skill 包已完成","textChars":10,"textLines":1,"bbox":[1000,544,216,36]}
+{"kind":"shape","id":"sh/b2l4zixw","slide":6,"bbox":[64,610,1152,0]}
+{"kind":"textbox","id":"sh/a1c36dwb","slide":6,"text":"平台提供企业级治理与分发，Skill 把现实世界的动作转成结构化事件。","textPreview":"平台提供企业级治理与分发，Skill 把现实世界的动作转成结构化事件。","textChars":35,"textLines":1,"bbox":[64,632,1040,32]}
+{"kind":"notes","id":"nt/5d3hqg","slide":6,"text":"把项目嵌入帝王蟹五层能力，主动说明连接层仍在最后接线。这样既能证明平台适配，又不会把原型说成已上线。\n\n[Sources]\n- 用户提供的大赛介绍：ClawHive 五层能力\n- README.md：大赛定位与能力层映射\n- skill-build/enterprise-pose-coach/references/api-mapping.md\n[/Sources]"}
+{"kind":"slide","id":"sl/jsauha","slide":7,"title":"TECH ARCHITECTURE","textShapes":24}
+{"kind":"textbox","id":"sh/4fatw325","slide":7,"text":"TECH ARCHITECTURE","textPreview":"TECH ARCHITECTURE","textChars":17,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/3ehs3ylk","slide":7,"text":"普通摄像头到审计结论，共五个可替换模块","textPreview":"普通摄像头到审计结论，共五个可替换模块","textChars":19,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/id8butkz","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/hsza1o3e","slide":7,"bbox":[64,132,1152,0]}
+{"kind":"shape","id":"sh/grqtsj2t","slide":7,"bbox":[236,287,49,2]}
+{"kind":"shape","id":"sh/vqhszyl8","slide":7,"bbox":[282,284,12,8]}
+{"kind":"shape","id":"sh/up8bqtkn","slide":7,"bbox":[466,287,49,2]}
+{"kind":"shape","id":"sh/1o3udsji","slide":7,"bbox":[512,284,12,8]}
+{"kind":"shape","id":"sh/0nut4n2x","slide":7,"bbox":[696,287,49,2]}
+{"kind":"shape","id":"sh/6x43ux0j","slide":7,"bbox":[742,284,12,8]}
+{"kind":"shape","id":"sh/7yd4n214","slide":7,"bbox":[926,287,49,2]}
+{"kind":"shape","id":"sh/8zm5wnip","slide":7,"bbox":[972,284,12,8]}
+{"kind":"shape","id":"sh/t0vmpsja","slide":7,"bbox":[64,224,172,122]}
+{"kind":"textbox","id":"sh/y9k3qd0n","slide":7,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[80,240,32,20]}
+{"kind":"textbox","id":"sh/jat4ji18","slide":7,"text":"摄像头","textPreview":"摄像头","textChars":3,"textLines":1,"bbox":[80,270,140,30]}
+{"kind":"textbox","id":"sh/kb2lsnit","slide":7,"text":"浏览器逐帧输入","textPreview":"浏览器逐帧输入","textChars":7,"textLines":1,"bbox":[80,310,140,24]}
+{"kind":"shape","id":"sh/lwbmlsjy","slide":7,"bbox":[294,224,172,122]}
+{"kind":"textbox","id":"sh/i5on2h0r","slide":7,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[310,240,32,20]}
+{"kind":"textbox","id":"sh/36x4vm1c","slide":7,"text":"RTMPose","textPreview":"RTMPose","textChars":7,"textLines":1,"bbox":[310,270,140,30]}
+{"kind":"textbox","id":"sh/fy5s7ads","slide":7,"text":"17 关键点","textPreview":"17 关键点","textChars":6,"textLines":1,"bbox":[310,310,140,24]}
+{"kind":"shape","id":"sh/exwry5c7","slide":7,"bbox":[524,224,172,122]}
+{"kind":"textbox","id":"sh/107a9kvi","slide":7,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[540,240,32,20]}
+{"kind":"textbox","id":"sh/gzet0fux","slide":7,"text":"ST-GCN","textPreview":"ST-GCN","textChars":6,"textLines":1,"bbox":[540,270,140,30]}
+{"kind":"textbox","id":"sh/32psbudo","slide":7,"text":"11 类 + Best 权重","textPreview":"11 类 + Best 权重","textChars":14,"textLines":1,"bbox":[540,310,140,24]}
+{"kind":"shape","id":"sh/21gb2pc3","slide":7,"bbox":[754,224,172,122]}
+{"kind":"textbox","id":"sh/p47adkvu","slide":7,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[770,240,32,20]}
+{"kind":"textbox","id":"sh/o3yt4fu9","slide":7,"text":"规则引擎","textPreview":"规则引擎","textChars":4,"textLines":1,"bbox":[770,270,140,30]}
+{"kind":"textbox","id":"sh/b6psfudk","slide":7,"text":"阶段 · 几何 · 去抖","textPreview":"阶段 · 几何 · 去抖","textChars":12,"textLines":1,"bbox":[770,310,140,24]}
+{"kind":"shape","id":"sh/q5gb6pcf","slide":7,"bbox":[984,224,172,122]}
+{"kind":"textbox","id":"sh/8vi9wzad","slide":7,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1000,240,32,20]}
+{"kind":"textbox","id":"sh/9wra54ry","slide":7,"text":"报告与复核","textPreview":"报告与复核","textChars":5,"textLines":1,"bbox":[1000,270,140,30]}
+{"kind":"textbox","id":"sh/mt0rups7","slide":7,"text":"decision + version","textPreview":"decision + version","textChars":18,"textLines":1,"bbox":[1000,310,140,24]}
+{"kind":"shape","id":"sh/nu9s3u9s","slide":7,"bbox":[64,420,548,166]}
+{"kind":"textbox","id":"sh/07i9szah","slide":7,"text":"核心判定链","textPreview":"核心判定链","textChars":5,"textLines":1,"bbox":[88,446,190,28]}
+{"kind":"textbox","id":"sh/lsra1krm","slide":7,"text":"姿态、动作、阶段、计数与错误码","textPreview":"姿态、动作、阶段、计数与错误码","textChars":15,"textLines":1,"bbox":[88,486,460,38]}
+{"kind":"textbox","id":"sh/y5grqpsb","slide":7,"text":"断网或生成式模型不可用时仍能继续工作","textPreview":"断网或生成式模型不可用时仍能继续工作","textChars":18,"textLines":1,"bbox":[88,540,460,24]}
+{"kind":"shape","id":"sh/z6p8zu9w","slide":7,"bbox":[668,420,548,166]}
+{"kind":"textbox","id":"sh/c3y9ofa5","slide":7,"text":"生成式模型的职责","textPreview":"生成式模型的职责","textChars":8,"textLines":1,"bbox":[692,446,210,28]}
+{"kind":"textbox","id":"sh/d47qxkbq","slide":7,"text":"解释、编排与友好文案","textPreview":"解释、编排与友好文案","textChars":10,"textLines":1,"bbox":[692,486,460,38]}
+{"kind":"textbox","id":"sh/18n6pg7i","slide":7,"text":"不接收原始人体画面，不独立做录用结论","textPreview":"不接收原始人体画面，不独立做录用结论","textChars":18,"textLines":1,"bbox":[692,540,460,24]}
+{"kind":"notes","id":"nt/jsauha","slide":7,"text":"架构里最重要的边界是：确定性视觉和规则链负责核心判定，生成式模型负责解释与编排。企业可以替换模型或标准，不必重写业务流程。\n\n[Sources]\n- README.md：技术架构\n- docs/architecture.md\n- src/fitness_infer.py\n- src/live_coach.py\n- src/local_llm.py\n[/Sources]"}
+{"kind":"slide","id":"sl/8338dm","slide":8,"title":"VERIFIABLE EVIDENCE","textShapes":17}
+{"kind":"textbox","id":"sh/xkret8bi","slide":8,"text":"VERIFIABLE EVIDENCE","textPreview":"VERIFIABLE EVIDENCE","textChars":19,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/ah0fyds7","slide":8,"text":"模型、数据、训练与测试都能当场核验","textPreview":"模型、数据、训练与测试都能当场核验","textChars":17,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/vi9writc","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/k72x4na9","slide":8,"bbox":[64,132,1152,0]}
+{"kind":"textbox","id":"sh/il0f2ds3","slide":8,"text":"21","textPreview":"21","textChars":2,"textLines":1,"bbox":[774,184,180,60]}
+{"kind":"textbox","id":"sh/jm9wvito","slide":8,"text":"名真实受试者","textPreview":"名真实受试者","textChars":6,"textLines":1,"bbox":[774,248,180,30]}
+{"kind":"textbox","id":"sh/sb2x8na5","slide":8,"text":"MM-Fit 数据源","textPreview":"MM-Fit 数据源","textChars":10,"textLines":1,"bbox":[774,282,180,52]}
+{"kind":"textbox","id":"sh/tcby1sbq","slide":8,"text":"8,898","textPreview":"8,898","textChars":5,"textLines":1,"bbox":[998,184,210,60]}
+{"kind":"textbox","id":"sh/psvatkvy","slide":8,"text":"个训练窗口","textPreview":"个训练窗口","textChars":5,"textLines":1,"bbox":[998,248,210,30]}
+{"kind":"textbox","id":"sh/ormtkzud","slide":8,"text":"48 帧 × 17 关节","textPreview":"48 帧 × 17 关节","textChars":12,"textLines":1,"bbox":[998,282,210,52]}
+{"kind":"shape","id":"sh/3qdsruds","slide":8,"bbox":[774,348,434,0]}
+{"kind":"textbox","id":"sh/2p4bipc7","slide":8,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[774,376,180,60]}
+{"kind":"textbox","id":"sh/dwfax4bu","slide":8,"text":"类动作","textPreview":"类动作","textChars":3,"textLines":1,"bbox":[774,440,180,30]}
+{"kind":"textbox","id":"sh/cv6tozup","slide":8,"text":"ST-GCN 分类模型","textPreview":"ST-GCN 分类模型","textChars":11,"textLines":1,"bbox":[774,474,180,52]}
+{"kind":"textbox","id":"sh/buxsvud4","slide":8,"text":"93.15%","textPreview":"93.15%","textChars":6,"textLines":1,"bbox":[998,376,210,60]}
+{"kind":"textbox","id":"sh/qtobmpcj","slide":8,"text":"离线验证准确率","textPreview":"离线验证准确率","textChars":7,"textLines":1,"bbox":[998,440,210,30]}
+{"kind":"textbox","id":"sh/t0bal0vq","slide":8,"text":"Epoch 5 / 5","textPreview":"Epoch 5 / 5","textChars":11,"textLines":1,"bbox":[998,474,210,52]}
+{"kind":"shape","id":"sh/sz2tcfu5","slide":8,"bbox":[774,560,434,54]}
+{"kind":"textbox","id":"sh/k36tsf21","slide":8,"text":"23 项自动测试通过 · 无 GPU 端到端 smoke passed","textPreview":"23 项自动测试通过 · 无 GPU 端到端 smoke passed","textChars":35,"textLines":1,"bbox":[792,575,398,25]}
+{"kind":"textbox","id":"sh/54fa1k3m","slide":8,"text":"证据边界：93.15% 来自离线验证集；企业现场泛化仍需并行试点验证。","textPreview":"证据边界：93.15% 来自离线验证集；企业现场泛化仍需并行试点验证。","textChars":35,"textLines":1,"bbox":[64,636,1140,26]}
+{"kind":"chart","id":"ch/xgv6lcju","slide":8,"name":"","chartType":"line","title":"5 轮训练准确率（%）","bbox":[64,174,650,420]}
+{"kind":"notes","id":"nt/8338dm","slide":8,"text":"先讲训练曲线和模型文件都可核验，再主动限定证据边界。自动测试证明业务流程与规则稳定；无 GPU smoke 不替代真实模型精度。\n\n[Sources]\n- docs/mmfit-retrain-summary-2026-05-29.md\n- docs/real-evidence.md\n- 2026-08-30 本地运行 npm run check：23 tests OK\n- 2026-08-30 本地运行 npm run demo：status=passed\n[/Sources]"}
+{"kind":"slide","id":"sl/c53sjc","slide":9,"title":"ENTERPRISE TRUST","textShapes":23}
+{"kind":"textbox","id":"sh/9kryhcba","slide":9,"text":"ENTERPRISE TRUST","textPreview":"ENTERPRISE TRUST","textChars":16,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/mh0z6xsz","slide":9,"text":"把错误送去复核，比给出自信的错判更重要","textPreview":"把错误送去复核，比给出自信的错判更重要","textChars":19,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/ni9gf2t4","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/0fih4nat","slide":9,"bbox":[64,132,1152,0]}
+{"kind":"shape","id":"sh/1grydsbe","slide":9,"bbox":[64,172,374,458]}
+{"kind":"textbox","id":"sh/edgz2xsn","slide":9,"text":"FAIL CLOSED","textPreview":"FAIL CLOSED","textChars":11,"textLines":1,"bbox":[92,204,310,30]}
+{"kind":"textbox","id":"sh/ze9gb2t8","slide":9,"text":"看不清，\n就不下结论。","textPreview":"看不清， | 就不下结论。","textChars":11,"textLines":2,"bbox":[92,270,300,120]}
+{"kind":"textbox","id":"sh/cryh0nah","slide":9,"text":"遮挡、无人入镜、模型超时或低置信度统一返回 inconclusive，并要求人工复核","textPreview":"遮挡、无人入镜、模型超时或低置信度统一返回 inconclusive，并要求人工复核","textChars":42,"textLines":1,"bbox":[92,430,292,116]}
+{"kind":"textbox","id":"sh/ds7y9sb2","slide":9,"text":"最终录用、处分与医疗决定由授权人员作出","textPreview":"最终录用、处分与医疗决定由授权人员作出","textChars":19,"textLines":1,"bbox":[92,570,292,42]}
+{"kind":"textbox","id":"sh/twzado7y","slide":9,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[500,184,42,22]}
+{"kind":"textbox","id":"sh/svqtk3qd","slide":9,"text":"本地推理","textPreview":"本地推理","textChars":4,"textLines":1,"bbox":[558,180,230,32]}
+{"kind":"textbox","id":"sh/7uhsbyps","slide":9,"text":"原始人体画面不发送给生成式大模型","textPreview":"原始人体画面不发送给生成式大模型","textChars":16,"textLines":1,"bbox":[800,182,390,56]}
+{"kind":"shape","id":"sh/6t8bit87","slide":9,"bbox":[500,262,690,0]}
+{"kind":"textbox","id":"sh/5sza9o7m","slide":9,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[500,294,42,22]}
+{"kind":"textbox","id":"sh/kr6tgjq1","slide":9,"text":"最小留存","textPreview":"最小留存","textChars":4,"textLines":1,"bbox":[558,290,230,32]}
+{"kind":"textbox","id":"sh/jqxs7epw","slide":9,"text":"实时帧默认不长期保存，只回传必要事件","textPreview":"实时帧默认不长期保存，只回传必要事件","textChars":18,"textLines":1,"bbox":[800,292,390,56]}
+{"kind":"shape","id":"sh/ipobe98b","slide":9,"bbox":[500,372,690,0]}
+{"kind":"textbox","id":"sh/xofa547q","slide":9,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[500,404,42,22]}
+{"kind":"textbox","id":"sh/wn6tcjq5","slide":9,"text":"版本审计","textPreview":"版本审计","textChars":4,"textLines":1,"bbox":[558,400,230,32]}
+{"kind":"textbox","id":"sh/o7atsjy1","slide":9,"text":"模型、规则、Best 权重和结论一一绑定","textPreview":"模型、规则、Best 权重和结论一一绑定","textChars":20,"textLines":1,"bbox":[800,402,390,56]}
+{"kind":"shape","id":"sh/98julofm","slide":9,"bbox":[500,482,690,0]}
+{"kind":"textbox","id":"sh/m5sbq9gv","slide":9,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[500,514,42,22]}
+{"kind":"textbox","id":"sh/n61sjexg","slide":9,"text":"人工兜底","textPreview":"人工兜底","textChars":4,"textLines":1,"bbox":[558,510,230,32]}
+{"kind":"textbox","id":"sh/03qtozyp","slide":9,"text":"争议、低置信度和技术失败进入复核","textPreview":"争议、低置信度和技术失败进入复核","textChars":16,"textLines":1,"bbox":[800,512,390,56]}
+{"kind":"shape","id":"sh/14zah4fa","slide":9,"bbox":[500,618,92,30]}
+{"kind":"textbox","id":"sh/e18bmpgz","slide":9,"text":"pass","textPreview":"pass","textChars":4,"textLines":1,"bbox":[500,620,92,25]}
+{"kind":"shape","id":"sh/z2hsfuxk","slide":9,"bbox":[604,618,112,30]}
+{"kind":"textbox","id":"sh/kzut03y9","slide":9,"text":"not_met","textPreview":"not_met","textChars":7,"textLines":1,"bbox":[604,620,112,25]}
+{"kind":"shape","id":"sh/l03ut8fu","slide":9,"bbox":[728,618,154,30]}
+{"kind":"textbox","id":"sh/fu5wj2hw","slide":9,"text":"needs_retraining","textPreview":"needs_retraining","textChars":16,"textLines":1,"bbox":[728,620,154,25]}
+{"kind":"shape","id":"sh/utwvqx0b","slide":9,"bbox":[894,618,138,30]}
+{"kind":"textbox","id":"sh/hw7elcz2","slide":9,"text":"inconclusive","textPreview":"inconclusive","textChars":12,"textLines":1,"bbox":[894,620,138,25]}
+{"kind":"notes","id":"nt/c53sjc","slide":9,"text":"高影响招聘场景需要主动展示失败处理。评委会更相信一个知道何时不作判断的系统。\n\n[Sources]\n- skill-build/enterprise-pose-coach/references/contract.md §3–7\n- docs/PRD.md §6、§12\n- README.md：数据、安全与使用边界\n[/Sources]"}
+{"kind":"slide","id":"sl/zvdr7h","slide":10,"title":"BUSINESS MODEL","textShapes":18}
+{"kind":"textbox","id":"sh/lw3qp8bu","slide":10,"text":"BUSINESS MODEL","textPreview":"BUSINESS MODEL","textChars":14,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/ytc7edsj","slide":10,"text":"招聘筛选是付费入口，在岗训练打开续费空间","textPreview":"招聘筛选是付费入口，在岗训练打开续费空间","textChars":20,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/jul8nito","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/8zu9knal","slide":10,"bbox":[64,132,1152,0]}
+{"kind":"textbox","id":"sh/t0nqtsb6","slide":10,"text":"首个 ICP","textPreview":"首个 ICP","textChars":6,"textLines":1,"bbox":[64,176,180,26]}
+{"kind":"textbox","id":"sh/6xcridsf","slide":10,"text":"有明确岗位体能项目、招聘旺季需要批量检测的一线制造、仓储与服务企业","textPreview":"有明确岗位体能项目、招聘旺季需要批量检测的一线制造、仓储与服务企业","textChars":33,"textLines":1,"bbox":[64,216,510,92]}
+{"kind":"textbox","id":"sh/7yl8rit0","slide":10,"text":"买方：招聘负责人\n共同决策：EHS / IT / 用工合规","textPreview":"买方：招聘负责人 | 共同决策：EHS / IT / 用工合规","textChars":29,"textLines":2,"bbox":[64,336,430,70]}
+{"kind":"shape","id":"sh/o3ap8ju1","slide":10,"bbox":[64,448,510,142]}
+{"kind":"textbox","id":"sh/94jqhobm","slide":10,"text":"ROI 用现场数据计算","textPreview":"ROI 用现场数据计算","textChars":11,"textLines":1,"bbox":[88,472,350,28]}
+{"kind":"textbox","id":"sh/1krq1ory","slide":10,"text":"每百人节省考官工时\n单次检测成本\nAI / 双人复核计数一致性","textPreview":"每百人节省考官工时 | 单次检测成本 | AI / 双人复核计数一致性","textChars":31,"textLines":3,"bbox":[88,514,400,66]}
+{"kind":"textbox","id":"sh/0ji98jad","slide":10,"text":"LAND","textPreview":"LAND","textChars":4,"textLines":1,"bbox":[664,176,100,24]}
+{"kind":"textbox","id":"sh/zip8ze9s","slide":10,"text":"EXPAND","textPreview":"EXPAND","textChars":6,"textLines":1,"bbox":[1092,176,100,24]}
+{"kind":"shape","id":"sh/exgr69s7","slide":10,"bbox":[684,281,121,2]}
+{"kind":"shape","id":"sh/9orq58ru","slide":10,"bbox":[802,278,12,8]}
+{"kind":"shape","id":"sh/oni9c3a9","slide":10,"bbox":[884,281,121,2]}
+{"kind":"shape","id":"sh/nm983y9o","slide":10,"bbox":[1002,278,12,8]}
+{"kind":"shape","id":"sh/ml0ratsj","slide":10,"bbox":[632,214,160,154]}
+{"kind":"textbox","id":"sh/xsbq98r6","slide":10,"text":"招聘 / 转岗","textPreview":"招聘 / 转岗","textChars":7,"textLines":1,"bbox":[648,238,128,50]}
+{"kind":"textbox","id":"sh/wr29g3al","slide":10,"text":"按检测次数\n或私有化年费","textPreview":"按检测次数 | 或私有化年费","textChars":12,"textLines":2,"bbox":[646,304,132,48]}
+{"kind":"shape","id":"sh/gvatc7ih","slide":10,"bbox":[832,214,160,154]}
+{"kind":"textbox","id":"sh/hwja5cz2","slide":10,"text":"入职动作 SOP","textPreview":"入职动作 SOP","textChars":8,"textLines":1,"bbox":[848,238,128,50]}
+{"kind":"textbox","id":"sh/ut8bah0r","slide":10,"text":"岗位标准订阅\n与周期复训","textPreview":"岗位标准订阅 | 与周期复训","textChars":12,"textLines":2,"bbox":[846,304,132,48]}
+{"kind":"shape","id":"sh/vuhs3mhc","slide":10,"bbox":[1032,214,160,154]}
+{"kind":"textbox","id":"sh/4zatgryt","slide":10,"text":"安全与工效训练","textPreview":"安全与工效训练","textChars":7,"textLines":1,"bbox":[1048,238,128,50]}
+{"kind":"textbox","id":"sh/50ja9wze","slide":10,"text":"活跃员工 / 岗位\nSkill 调用结算","textPreview":"活跃员工 / 岗位 | Skill 调用结算","textChars":20,"textLines":2,"bbox":[1046,304,132,48]}
+{"kind":"shape","id":"sh/ixsbeh0n","slide":10,"bbox":[632,420,560,0]}
+{"kind":"textbox","id":"sh/3y1s7mh8","slide":10,"text":"同一终端、账号、权限、Skill 与审计资产持续复用；新增的是经过专家确认的岗位标准。","textPreview":"同一终端、账号、权限、Skill 与审计资产持续复用；新增的是经过专家确认的岗位标准。","textChars":43,"textLines":1,"bbox":[632,454,560,88]}
+{"kind":"textbox","id":"sh/k3qt4nip","slide":10,"text":"长期壁垒：版本化标准 + 真实错误事件数据 + 复核闭环 + 企业连接资产","textPreview":"长期壁垒：版本化标准 + 真实错误事件数据 + 复核闭环 + 企业连接资产","textChars":37,"textLines":1,"bbox":[632,570,560,54]}
+{"kind":"notes","id":"nt/zvdr7h","slide":10,"text":"投资人关注谁付钱、为什么续费。招聘筛选提供清晰预算入口，入职后复用终端、权限和 Skill，扩展到持续训练。\n\n[Sources]\n- README.md：商业价值与落地路径\n- docs/PRD.md §2–3、商业化附录\n[/Sources]"}
+{"kind":"slide","id":"sl/gnjl07","slide":11,"title":"PILOT & DELIVERY","textShapes":24}
+{"kind":"textbox","id":"sh/gj2xcv29","slide":11,"text":"PILOT & DELIVERY","textPreview":"PILOT & DELIVERY","textChars":16,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/fitw3q14","slide":11,"text":"两到四周，把技术演示变成采购证据","textPreview":"两到四周，把技术演示变成采购证据","textChars":16,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/ux0falkj","slide":11,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/pobe90j6","slide":11,"bbox":[64,132,1152,0]}
+{"kind":"shape","id":"sh/4n2xgv2l","slide":11,"bbox":[380,309,63,2]}
+{"kind":"shape","id":"sh/3mtw7q10","slide":11,"bbox":[440,306,12,8]}
+{"kind":"shape","id":"sh/2lkfelkf","slide":11,"bbox":[810,309,63,2]}
+{"kind":"shape","id":"sh/5srexwjm","slide":11,"bbox":[870,306,12,8]}
+{"kind":"shape","id":"sh/krid4b21","slide":11,"bbox":[64,202,326,220]}
+{"kind":"textbox","id":"sh/q5czi50f","slide":11,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[86,224,40,28]}
+{"kind":"textbox","id":"sh/r6l0ba10","slide":11,"text":"并行运行","textPreview":"并行运行","textChars":4,"textLines":1,"bbox":[86,270,280,34]}
+{"kind":"textbox","id":"sh/s7ehkfil","slide":11,"text":"单考场 · 单项目 · 单批次\nAI 与人工同时计数","textPreview":"单考场 · 单项目 · 单批次 | AI 与人工同时计数","textChars":26,"textLines":2,"bbox":[86,324,280,70]}
+{"kind":"shape","id":"sh/d8nid0j6","slide":11,"bbox":[452,202,358,220]}
+{"kind":"textbox","id":"sh/e9wzm50r","slide":11,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[474,224,40,28]}
+{"kind":"textbox","id":"sh/za50fa1w","slide":11,"text":"验证指标","textPreview":"验证指标","textChars":4,"textLines":1,"bbox":[474,270,310,34]}
+{"kind":"textbox","id":"sh/0behofih","slide":11,"text":"考官工时 · 一致性 · 需复核率\n争议时长 · 候选人完成时长","textPreview":"考官工时 · 一致性 · 需复核率 | 争议时长 · 候选人完成时长","textChars":32,"textLines":2,"bbox":[474,324,310,70]}
+{"kind":"shape","id":"sh/1cnihkj2","slide":11,"bbox":[882,202,326,220]}
+{"kind":"textbox","id":"sh/mdwzqp0n","slide":11,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[904,224,40,28]}
+{"kind":"textbox","id":"sh/ny50ju18","slide":11,"text":"进入采购","textPreview":"进入采购","textChars":4,"textLines":1,"bbox":[904,270,280,34]}
+{"kind":"textbox","id":"sh/j2pg7uxg","slide":11,"text":"达到双方约定门槛后\n再进入正式筛选与岗位扩展","textPreview":"达到双方约定门槛后 | 再进入正式筛选与岗位扩展","textChars":22,"textLines":2,"bbox":[904,324,280,70]}
+{"kind":"textbox","id":"sh/y1gzepgv","slide":11,"text":"赛场可核验","textPreview":"赛场可核验","textChars":5,"textLines":1,"bbox":[64,474,150,26]}
+{"kind":"textbox","id":"sh/l47y94f6","slide":11,"text":"●","textPreview":"●","textChars":1,"textLines":1,"bbox":[64,516,20,24]}
+{"kind":"textbox","id":"sh/k3yhgzy1","slide":11,"text":"Web 实时教练与认证页","textPreview":"Web 实时教练与认证页","textChars":12,"textLines":1,"bbox":[86,514,174,48]}
+{"kind":"textbox","id":"sh/be5g3ah4","slide":11,"text":"●","textPreview":"●","textChars":1,"textLines":1,"bbox":[271,516,20,24]}
+{"kind":"textbox","id":"sh/adwza5gj","slide":11,"text":"本地模型权重","textPreview":"本地模型权重","textChars":6,"textLines":1,"bbox":[293,514,174,48]}
+{"kind":"textbox","id":"sh/x07y5kza","slide":11,"text":"●","textPreview":"●","textChars":1,"textLines":1,"bbox":[478,516,20,24]}
+{"kind":"textbox","id":"sh/wfyhcfyp","slide":11,"text":"规则与 Ghost Coach","textPreview":"规则与 Ghost Coach","textChars":15,"textLines":1,"bbox":[500,514,174,48]}
+{"kind":"textbox","id":"sh/na5gzah8","slide":11,"text":"●","textPreview":"●","textChars":1,"textLines":1,"bbox":[685,516,20,24]}
+{"kind":"textbox","id":"sh/m9wf65gn","slide":11,"text":"Skill 包与契约","textPreview":"Skill 包与契约","textChars":10,"textLines":1,"bbox":[707,514,174,48]}
+{"kind":"textbox","id":"sh/sfud0bel","slide":11,"text":"●","textPreview":"●","textChars":1,"textLines":1,"bbox":[892,516,20,24]}
+{"kind":"textbox","id":"sh/dg3e9gf6","slide":11,"text":"自动测试与 smoke","textPreview":"自动测试与 smoke","textChars":11,"textLines":1,"bbox":[914,514,174,48]}
+{"kind":"shape","id":"sh/qdsvy1wf","slide":11,"bbox":[64,584,1152,0]}
+{"kind":"textbox","id":"sh/re1w76x0","slide":11,"text":"最后接线：ClawHive 任务创建 · request_id 幂等 · 租户审计 · 结果回写","textPreview":"最后接线：ClawHive 任务创建 · request_id 幂等 · 租户审计 · 结果回写","textChars":48,"textLines":1,"bbox":[64,610,1152,32]}
+{"kind":"notes","id":"nt/gnjl07","slide":11,"text":"把下一步变成一个低风险、可采购的并行试点。当前完成度也要讲清楚：核心技术闭环可核验，平台连接和企业治理字段正在最后接线。\n\n[Sources]\n- README.md：建议试点、当前实现与产品方向\n- docs/tasks.md\n- docs/PRD.md §10–12\n[/Sources]"}
+{"kind":"slide","id":"sl/qmggl1","slide":12,"title":"THE ASK","textShapes":10}
+{"kind":"shape","id":"sh/nixsvq98","slide":12,"bbox":[64,58,110,30]}
+{"kind":"textbox","id":"sh/o3qt4vat","slide":12,"text":"THE ASK","textPreview":"THE ASK","textChars":7,"textLines":1,"bbox":[64,60,110,25]}
+{"kind":"textbox","id":"sh/p4zax0re","slide":12,"text":"让第一个“看得懂动作”的\nClawHive 数字员工上岗","textPreview":"让第一个“看得懂动作”的 | ClawHive 数字员工上岗","textChars":28,"textLines":2,"bbox":[64,148,880,160]}
+{"kind":"textbox","id":"sh/a58b6lsz","slide":12,"text":"进入 ClawHive 企业级安全技能市场\n与一家制造 / 仓储企业完成首个并行试点","textPreview":"进入 ClawHive 企业级安全技能市场 | 与一家制造 / 仓储企业完成首个并行试点","textChars":42,"textLines":2,"bbox":[64,372,720,92]}
+{"kind":"shape","id":"sh/b6hszq9k","slide":12,"bbox":[64,518,820,0]}
+{"kind":"textbox","id":"sh/c7qt8va5","slide":12,"text":"一个 Skill 进场，沉淀一套企业可复用的视觉能力。","textPreview":"一个 Skill 进场，沉淀一套企业可复用的视觉能力。","textChars":27,"textLines":1,"bbox":[64,550,880,44]}
+{"kind":"textbox","id":"sh/x8za10rq","slide":12,"text":"练了么 · Enterprise Pose Coach","textPreview":"练了么 · Enterprise Pose Coach","textChars":27,"textLines":1,"bbox":[64,642,460,26]}
+{"kind":"shape","id":"sh/y98ba5sv","slide":12,"bbox":[1004,90,144,540]}
+{"kind":"textbox","id":"sh/za1s3a9g","slide":12,"text":"看见","textPreview":"看见","textChars":2,"textLines":1,"bbox":[1022,126,108,40]}
+{"kind":"shape","id":"sh/f2hkz2d0","slide":12,"bbox":[1034,184,84,0]}
+{"kind":"textbox","id":"sh/e183qxcf","slide":12,"text":"判断","textPreview":"判断","textChars":2,"textLines":1,"bbox":[1022,224,108,40]}
+{"kind":"shape","id":"sh/14z21cv6","slide":12,"bbox":[1034,282,84,0]}
+{"kind":"textbox","id":"sh/03qls7ul","slide":12,"text":"纠正","textPreview":"纠正","textChars":2,"textLines":1,"bbox":[1022,322,108,40]}
+{"kind":"shape","id":"sh/ryhkv2d4","slide":12,"bbox":[1034,380,84,0]}
+{"kind":"textbox","id":"sh/qxo3mxcj","slide":12,"text":"计数","textPreview":"计数","textChars":2,"textLines":1,"bbox":[1022,420,108,40]}
+{"kind":"shape","id":"sh/d0z2xsvu","slide":12,"bbox":[1034,478,84,0]}
+{"kind":"textbox","id":"sh/szqlo7u9","slide":12,"text":"留痕","textPreview":"留痕","textChars":2,"textLines":1,"bbox":[1022,518,108,40]}
+{"kind":"notes","id":"nt/qmggl1","slide":12,"text":"收尾给出明确行动：进入技能市场并完成一个并行试点。最后一句要停顿，让评委记住资产沉淀，而不是只记住一个动作识别页面。\n\n[Sources]\n- README.md\n- docs/PRD.md\n- 用户提供的大赛介绍\n[/Sources]"}
+{"kind":"slide","id":"sl/kvyyyf","slide":13,"title":"APPENDIX · SAMPLES","textShapes":16}
+{"kind":"textbox","id":"sh/qd4j2dcj","slide":13,"text":"APPENDIX · SAMPLES","textPreview":"APPENDIX · SAMPLES","textChars":18,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/dgv2d8bu","slide":13,"text":"备份｜三组 Sample 覆盖落地、复用与扩张","textPreview":"备份｜三组 Sample 覆盖落地、复用与扩张","textChars":23,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/sfm143u9","slide":13,"text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/3qt07yds","slide":13,"bbox":[64,132,1152,0]}
+{"kind":"textbox","id":"sh/ipkjytc7","slide":13,"text":"S1","textPreview":"S1","textChars":2,"textLines":1,"bbox":[64,176,50,28]}
+{"kind":"textbox","id":"sh/5cv298by","slide":13,"text":"招聘深蹲 50 次","textPreview":"招聘深蹲 50 次","textChars":9,"textLines":1,"bbox":[64,220,320,42]}
+{"kind":"shape","id":"sh/4r2103ud","slide":13,"bbox":[64,286,330,250]}
+{"kind":"textbox","id":"sh/nmxkjitw","slide":13,"text":"实时阶段\n即时纠错\n完整周期计数\n认证记录","textPreview":"实时阶段 | 即时纠错 | 完整周期计数 | 认证记录","textChars":21,"textLines":4,"bbox":[88,316,280,160]}
+{"kind":"shape","id":"sh/2lojaxcb","slide":13,"bbox":[88,486,160,30]}
+{"kind":"textbox","id":"sh/crq1wve9","slide":13,"text":"当前最强闭环","textPreview":"当前最强闭环","textChars":6,"textLines":1,"bbox":[88,488,160,25]}
+{"kind":"textbox","id":"sh/xszip0fu","slide":13,"text":"S2","textPreview":"S2","textChars":2,"textLines":1,"bbox":[458,176,50,28]}
+{"kind":"textbox","id":"sh/ap8julw3","slide":13,"text":"多项目体能组合","textPreview":"多项目体能组合","textChars":7,"textLines":1,"bbox":[458,220,320,42]}
+{"kind":"shape","id":"sh/bqh0nqxo","slide":13,"bbox":[458,286,330,250]}
+{"kind":"textbox","id":"sh/onqhsvex","slide":13,"text":"11 类识别\n6 类专项规则\n通用反馈降级\nBest 权重复用","textPreview":"11 类识别 | 6 类专项规则 | 通用反馈降级 | Best 权重复用","textChars":31,"textLines":4,"bbox":[482,316,280,160]}
+{"kind":"shape","id":"sh/pozilgfi","slide":13,"bbox":[482,486,160,30]}
+{"kind":"textbox","id":"sh/2l8zqlw7","slide":13,"text":"组合判定待补","textPreview":"组合判定待补","textChars":6,"textLines":1,"bbox":[482,488,160,25]}
+{"kind":"textbox","id":"sh/nmh0jqxs","slide":13,"text":"S3","textPreview":"S3","textChars":2,"textLines":1,"bbox":[852,176,50,28]}
+{"kind":"textbox","id":"sh/0j6hoby1","slide":13,"text":"入职后动作复训","textPreview":"入职后动作复训","textChars":7,"textLines":1,"bbox":[852,220,320,42]}
+{"kind":"shape","id":"sh/1kfihgfm","slide":13,"bbox":[852,286,330,250]}
+{"kind":"textbox","id":"sh/hg7ylc7a","slide":13,"text":"深蹲代理动作\n会话总结\n同一终端与权限\nClawHive 任务编排","textPreview":"深蹲代理动作 | 会话总结 | 同一终端与权限 | ClawHive 任务编排","textChars":33,"textLines":4,"bbox":[876,316,280,160]}
+{"kind":"shape","id":"sh/gfyxc7qp","slide":13,"bbox":[876,486,160,30]}
+{"kind":"textbox","id":"sh/fepgj2p4","slide":13,"text":"工业数据待校准","textPreview":"工业数据待校准","textChars":7,"textLines":1,"bbox":[876,488,160,25]}
+{"kind":"textbox","id":"sh/udgfax8z","slide":13,"text":"演示纪律：S3 只展示扩张路径，不把健身数据训练的模型包装成生产级工业安全识别。","textPreview":"演示纪律：S3 只展示扩张路径，不把健身数据训练的模型包装成生产级工业安全识别。","textChars":40,"textLines":1,"bbox":[64,606,1152,40]}
+{"kind":"notes","id":"nt/kvyyyf","slide":13,"text":"三个 Sample 对应比赛要求。S1 证明落地，S2 证明复用，S3 证明市场扩张；每个样例都明确当前边界。\n\n[Sources]\n- README.md：三组比赛 Sample\n- docs/PRD.md §4\n[/Sources]"}
+{"kind":"slide","id":"sl/nac4in","slide":14,"title":"CONTRACT","textShapes":8}
+{"kind":"textbox","id":"sh/lwvixgna","slide":14,"text":"CONTRACT","textPreview":"CONTRACT","textChars":8,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/y94z21oj","slide":14,"text":"Skill 契约让任务可编排、可对账、可审计","textPreview":"Skill 契约让任务可编排、可对账、可审计","textChars":22,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/jad0v654","slide":14,"text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/w72h0r6t","slide":14,"bbox":[64,132,1152,0]}
+{"kind":"textbox","id":"sh/x8bytwny","slide":14,"text":"INPUT","textPreview":"INPUT","textChars":5,"textLines":1,"bbox":[64,174,120,26]}
+{"kind":"shape","id":"sh/a5kzy1on","slide":14,"bbox":[64,214,530,370]}
+{"kind":"textbox","id":"sh/b6tgr658","slide":14,"text":"request_id       req-demo-001\ntenant_id        factory-demo\nstandard_id      RECRUIT_SQUAT_50_V1\nbest_weight_id   bw-factory-A-v1\nexercise         squats\ntarget_reps      50\nretention_policy raw_frames: none","textPreview":"request_id       req-demo-001 | tenant_id        factory-demo | standard_id      RECRUIT_SQUAT_50_V1 | best_weight_id   bw-factory-A-v1 |...","textChars":207,"textLines":7,"bbox":[92,246,474,300]}
+{"kind":"textbox","id":"sh/g36hcv6x","slide":14,"text":"OUTPUT","textPreview":"OUTPUT","textChars":6,"textLines":1,"bbox":[686,174,120,26]}
+{"kind":"shape","id":"sh/h4fi50ni","slide":14,"bbox":[686,214,530,370]}
+{"kind":"textbox","id":"sh/50jm5gza","slide":14,"text":"decision            pass\nvalid_rep_count     50\ninvalid_rep_count   3\nreview_status       not_required\nmodel_version       ...\nrule_version        RECRUIT_SQUAT_50_V1\nbest_weight_id      bw-factory-A-v1","textPreview":"decision            pass | valid_rep_count     50 | invalid_rep_count   3 | review_status       not_required | model_version       ... | ...","textChars":202,"textLines":7,"bbox":[714,246,474,300]}
+{"kind":"textbox","id":"sh/4zqlcvyp","slide":14,"text":"同一 tenant_id + request_id 重复调用返回同一 task_id；inconclusive 必须进入 required review。","textPreview":"同一 tenant_id + request_id 重复调用返回同一 task_id；inconclusive 必须进入 required review。","textChars":77,"textLines":1,"bbox":[64,616,1152,34]}
+{"kind":"notes","id":"nt/nac4in","slide":14,"text":"契约页用于回答 Skill 完整度问题。输入解决幂等、租户与标准选择；输出解决回写、复核和审计追溯。\n\n[Sources]\n- skill-build/enterprise-pose-coach/references/contract.md\n- skill-build/enterprise-pose-coach/references/api-mapping.md\n- skill-build/enterprise-pose-coach/examples/\n[/Sources]"}
+{"kind":"slide","id":"sl/pspoqt","slide":15,"title":"APPENDIX · READINESS","textShapes":27}
+{"kind":"textbox","id":"sh/xsfu1ofa","slide":15,"text":"APPENDIX · READINESS","textPreview":"APPENDIX · READINESS","textChars":20,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/ap4bq9wj","slide":15,"text":"备份｜当前证据、最后缺口与风险处置","textPreview":"备份｜当前证据、最后缺口与风险处置","textChars":17,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/bqdczex4","slide":15,"text":"15","textPreview":"15","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/onmtojet","slide":15,"bbox":[64,132,1152,0]}
+{"kind":"textbox","id":"sh/9ovuxofy","slide":15,"text":"工作流","textPreview":"工作流","textChars":3,"textLines":1,"bbox":[64,166,220,24]}
+{"kind":"textbox","id":"sh/ml4bm9wn","slide":15,"text":"当前证据","textPreview":"当前证据","textChars":4,"textLines":1,"bbox":[340,166,360,24]}
+{"kind":"textbox","id":"sh/nmdcvex8","slide":15,"text":"最后缺口 / 处置","textPreview":"最后缺口 / 处置","textChars":9,"textLines":1,"bbox":[770,166,430,24]}
+{"kind":"shape","id":"sh/0j2tkzeh","slide":15,"bbox":[64,196,1152,0]}
+{"kind":"textbox","id":"sh/1kvut4f2","slide":15,"text":"真实模型","textPreview":"真实模型","textChars":4,"textLines":1,"bbox":[64,212,230,34]}
+{"kind":"textbox","id":"sh/pw3698vu","slide":15,"text":"权重、训练日志、GPU 启动证据","textPreview":"权重、训练日志、GPU 启动证据","textChars":16,"textLines":1,"bbox":[340,212,370,45]}
+{"kind":"textbox","id":"sh/4vu5g3u9","slide":15,"text":"目标演示机补 10 分钟稳定性与 FPS 记录","textPreview":"目标演示机补 10 分钟稳定性与 FPS 记录","textChars":23,"textLines":1,"bbox":[770,212,400,48]}
+{"kind":"textbox","id":"sh/3u1o7ydo","slide":15,"text":"●","textPreview":"●","textChars":1,"textLines":1,"bbox":[1180,214,22,22]}
+{"kind":"shape","id":"sh/2tsnetc3","slide":15,"bbox":[64,278,1152,0]}
+{"kind":"textbox","id":"sh/hsj65ovi","slide":15,"text":"无 GPU Harness","textPreview":"无 GPU Harness","textChars":13,"textLines":1,"bbox":[64,294,230,34]}
+{"kind":"textbox","id":"sh/gra5cjux","slide":15,"text":"23 tests OK；端到端 smoke passed","textPreview":"23 tests OK；端到端 smoke passed","textChars":28,"textLines":1,"bbox":[340,294,370,45]}
+{"kind":"textbox","id":"sh/fq1o3edc","slide":15,"text":"明确只证明流程，不替代模型精度","textPreview":"明确只证明流程，不替代模型精度","textChars":15,"textLines":1,"bbox":[770,294,400,48]}
+{"kind":"textbox","id":"sh/upsna9c7","slide":15,"text":"●","textPreview":"●","textChars":1,"textLines":1,"bbox":[1180,296,22,22]}
+{"kind":"shape","id":"sh/t4j614vm","slide":15,"bbox":[64,360,1152,0]}
+{"kind":"textbox","id":"sh/s3a58ju1","slide":15,"text":"ClawHive 适配","textPreview":"ClawHive 适配","textChars":11,"textLines":1,"bbox":[64,376,230,34]}
+{"kind":"textbox","id":"sh/kjex4369","slide":15,"text":"Skill 包、字段契约、API 映射","textPreview":"Skill 包、字段契约、API 映射","textChars":19,"textLines":1,"bbox":[340,376,370,45]}
+{"kind":"textbox","id":"sh/5knyd87e","slide":15,"text":"任务创建、幂等回写、租户审计接线","textPreview":"任务创建、幂等回写、租户审计接线","textChars":16,"textLines":1,"bbox":[770,376,400,48]}
+{"kind":"textbox","id":"sh/ihwf2do3","slide":15,"text":"●","textPreview":"●","textChars":1,"textLines":1,"bbox":[1180,378,22,22]}
+{"kind":"shape","id":"sh/ji5wbypo","slide":15,"bbox":[64,442,1152,0]}
+{"kind":"textbox","id":"sh/wvex036x","slide":15,"text":"企业泛化","textPreview":"企业泛化","textChars":4,"textLines":1,"bbox":[64,458,230,34]}
+{"kind":"textbox","id":"sh/xgne987i","slide":15,"text":"MM-Fit 离线验证 93.15%","textPreview":"MM-Fit 离线验证 93.15%","textChars":18,"textLines":1,"bbox":[340,458,370,45]}
+{"kind":"textbox","id":"sh/atcfytor","slide":15,"text":"固定考场并行试点，统计误拒与改判","textPreview":"固定考场并行试点，统计误拒与改判","textChars":16,"textLines":1,"bbox":[770,458,400,48]}
+{"kind":"textbox","id":"sh/vu5w7ypc","slide":15,"text":"●","textPreview":"●","textChars":1,"textLines":1,"bbox":[1180,460,22,22]}
+{"kind":"shape","id":"sh/gbyxcn61","slide":15,"bbox":[64,524,1152,0]}
+{"kind":"textbox","id":"sh/hc7yls7m","slide":15,"text":"可用性","textPreview":"可用性","textChars":3,"textLines":1,"bbox":[64,540,230,34]}
+{"kind":"textbox","id":"sh/r6t0bm94","slide":15,"text":"Ghost Coach 测试协议已建","textPreview":"Ghost Coach 测试协议已建","textChars":18,"textLines":1,"bbox":[340,540,370,45]}
+{"kind":"textbox","id":"sh/q5kz218j","slide":15,"text":"当前真人参与者 0；完成 5 人测试后再主张","textPreview":"当前真人参与者 0；完成 5 人测试后再主张","textChars":22,"textLines":1,"bbox":[770,540,400,48]}
+{"kind":"textbox","id":"sh/d8bidwru","slide":15,"text":"●","textPreview":"●","textChars":1,"textLines":1,"bbox":[1180,542,22,22]}
+{"kind":"shape","id":"sh/c7214rq9","slide":15,"bbox":[64,618,1152,0]}
+{"kind":"textbox","id":"sh/zat0f690","slide":15,"text":"可信度来自清楚区分：已经跑通的、可以核验的、仍需试点的。","textPreview":"可信度来自清楚区分：已经跑通的、可以核验的、仍需试点的。","textChars":28,"textLines":1,"bbox":[64,636,1152,28]}
+{"kind":"notes","id":"nt/pspoqt","slide":15,"text":"如果评委追问完成度，用这页正面回答。真人可用性研究当前没有参与者，因此不能声称已经验证。\n\n[Sources]\n- docs/tasks.md\n- docs/acceptance.md\n- docs/ghost-coach-usability-results.md\n- data/usability/ghost-coach-study.json\n- 2026-08-30 本地验证日志\n[/Sources]"}

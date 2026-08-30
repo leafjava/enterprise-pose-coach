@@ -1,0 +1,23 @@
+Communication job
+
+By the end, hackathon judges and early-stage investors should want to advance 练了么 into the ClawHive skill marketplace and a first enterprise pilot because the project turns a real-time vision model into a governed, reusable enterprise Skill with a credible initial buyer and verifiable implementation evidence.
+
+Narrative arc
+
+Business bottleneck -> working product -> model-asset lifecycle innovation -> ClawHive fit -> technical/evidence truth -> enterprise trust -> commercial wedge -> pilot request.
+
+Visual route
+
+Codex Grid inspired, 1280x720, white/light-gray canvas, black/navy typography, square panels and thin rules. Product blue (#2155D9) and live green (#12B981) are reserved for evidence and status. Adjacent slide silhouettes vary between image split, full-width evidence, process, chart and timeline. No decorative stock imagery.
+
+Primary assets
+
+Use four unique product screenshots exactly once each. Use native shapes only for simple process diagrams, evidence labels and architecture connectors. Use one native line chart for the five-epoch train/validation history.
+
+Typography
+
+Microsoft YaHei / Arial fallback. Deck title 58–62 px; slide titles 38–44 px; subheads 24–28 px; body 17–20 px; footnotes 12–13 px.
+
+Slide count
+
+12 main slides + 3 appendix slides. Main deck is paced for 5–6 minutes; appendix supports judging questions.
