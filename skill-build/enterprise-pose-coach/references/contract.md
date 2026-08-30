@@ -1,6 +1,17 @@
-# 完整 Skill 契约（contract.md）
+# 完整 Skill 契约（contract.md · v1.1.0）
 
-本文件是 `enterprise-pose-coach` 的权威契约说明。`SKILL.md` 是简介，`asset-metadata.json` 是机器可解析的依赖声明，本文件是字段级详解。
+本文件是 `enterprise-pose-coach` 的权威契约说明。`SKILL.md` 是简介，本文件是字段级详解。`api-mapping.md` 说明 Skill 字段到仓库现有 Flask API 的映射。
+
+## 0. 业务定位与痛点
+
+`enterprise-pose-coach` 是面向**制造 / 仓储企业**招聘、转岗、在岗训练场景的 AI 体能数字员工 Skill。它把现场考官**逐人盯 / 尺度不一 / 事后无法解释 / 系统割裂**的人力工作，升级成同一规则下的**自动计数、即时纠错、可解释复核、回写招聘台账**。
+
+| 现场痛点 | 业务后果 | 数字员工解法 |
+|---|---|---|
+| 招聘高峰必须人工盯着数次数 | 吞吐量被考官人数卡住 | 摄像头自动识别完整动作周期并实时计数 |
+| 不同考官判断尺度不同 | 漏数、误数、动作幅度争议多 | 同一规则版本 + 毫秒级阶段判定 + 几何规则可解释 |
+| 纸面只记最终结果 | 事后无法解释、无法复核 | 结构化会话事件 + Top 错误码 + 错误 cue 文案可回放 |
+| 检测工具与 HR 系统割裂 | HR 手工录入和通知 | `notify_url` 把 `decision + best_weight_id` 回写到招聘台账 |
 
 ## 1. 输入字段（Input）
 
@@ -8,7 +19,7 @@
 |---|---|---|---|---|
 | `request_id` | string | 是 | — | 幂等键。同一 `request_id` 重复调用必须返回首次的 `task_id` 与最终 `decision`，不得新建任务。 |
 | `tenant_id` | string | 是 | — | 企业租户标识，用于权限隔离与计费。 |
-| `batch_id` | string | 否 | — | 招聘/转岗批次，便于汇总。 |
+| `batch_id` | string | 否 | — | 招聘 / 转岗批次，便于汇总。 |
 | `assignee_id` | string | 是 | — | 候选人临时 ID 或员工内部 ID。Demo 用 `candidate-c042`，生产建议用脱敏 ID。 |
 | `standard_id` | string | 是 | — | 规则版本号，如 `RECRUIT_SQUAT_50_V1`。 |
 | `best_weight_id` | string | 否（**首次调用不填**） | — | 已沉淀的 Best 权重 ID；首次调用不填，Skill 内部走训练链路并生成该 ID；后续调用必须传入才能直接加载 Best 权重。 |
@@ -61,6 +72,7 @@
 | `model_timeout` | 模型推理超过 5 秒 |
 | `ollama_unavailable` | LLM 不可用（仅文案降级，不影响核心判定） |
 | `duplicate_request_id_with_conflict` | 同 `request_id` 但参数冲突 |
+| `best_weight_missing` | 后续调用传入的 `best_weight_id` 在企业私有推理环境找不到对应权重 |
 
 ## 5. 边界条款
 
@@ -68,13 +80,14 @@
 2. **不得越权决定**：最终录用、辞退、绩效、薪酬由企业授权人员结合完整信息决定，本 Skill 只给结论。
 3. **不得长期保存原始帧**：默认不留存；如需留存必须显式声明并取得告知同意。
 4. **不得上传原始帧给生成式大模型**：视觉模型在本地推理；只有脱敏的结构化事件可参与 LLM 文案生成。
-5. **不得用于医疗/康复**：本 Skill 不提供疾病诊断、康复处方、伤病预测。
+5. **不得用于医疗 / 康复**：本 Skill 不提供疾病诊断、康复处方、伤病预测。
 6. **规则版本不可热改**：`rule_version` 必须每次响应，规则变更需发布新 `standard_id`。
+7. **不得跨租户混用 Best 权重**：不同 `tenant_id` 的 Best 权重严格按命名空间隔离。
 
 ## 6. 幂等与并发
 
 - 同一 `tenant_id + request_id` 的并发请求必须返回同一 `task_id`，不重复创建任务。
-- 单租户最大并发会话数：`4`（参见 `asset-metadata.json`）。
+- 单租户最大并发会话数：`4`。
 - 单租户每分钟最大任务创建数：`30`。
 - 任务创建后 30 分钟未完成自动进入 `inconclusive`，`inconclusive_reason: model_timeout`。
 
@@ -86,6 +99,7 @@
 - 输出侧：`valid_rep_count` + `top_errors` + `score` 必须能用同一份脱敏事件日志复现。
 
 隐私不进审计事件：候选人姓名、邮箱、原始视频帧、模型 prompt 不进入日志或审计字段。
+
 ## 8. 训练 + 沉淀 + 复用 生命周期
 
 本 Skill 在 ClawHive Agent 视角下是单一 Skill，但内部覆盖两条调用路径：
@@ -110,7 +124,7 @@
 
 1. Agent 把 `best_weight_id` 传入 Skill；
 2. Skill 加载对应的 `model/bw_<tenant>_<date>_<version>.pth`，无需重训练；
-3. 候选人摄像头前完成动作 → 实时监测 / 实时纠正 / 实时计数 / 实时反馈；
+3. 候选人摄像头前完成动作 → **实时监测 / 实时纠正 / 实时计数 / 实时反馈**；
 4. 返回 `decision` + `best_weight_id` + `best_weight_version`，供 HR / EHS 复核。
 
 ### 8.3 再次训练与版本回滚
@@ -134,3 +148,28 @@
 
 - [`examples/base-train-request.json`](../examples/base-train-request.json)：首次调用（训练）的入参（`best_weight_id` 不填）
 - [`examples/base-train-response.json`](../examples/base-train-response.json)：训练完成后 Skill 回传的 Best 权重信息
+
+### 8.5 与 ClawHive 五层能力对齐
+
+本 Skill 的"训练 + 沉淀 + 复用"生命周期直接对应 ClawHive 五层能力：
+
+| ClawHive 能力层 | 对应生命周期阶段 | 本 Skill 落地形态 |
+|---|---|---|
+| 模型层 | 8.1 模型训练 + 8.1 选择 Best 权重 | 成熟通用模型（RTMPose + ST-GCN + YOLOv8n） + 训练出来的垂直模型（Best 权重） |
+| 连接层 | 8.2 后续调用 | `notify_url` webhook 回写 `decision + best_weight_id` 到招聘台账 |
+| 安全层 | 跨章节边界条款 | 等保三级 / ISO27001；租户权限隔离、最小数据回传、人工复核、全链路审计 |
+| 知识层 | 8.1 数据获取 + 8.1 数据处理 | 企业版本化招聘体能标准（`standard_id`）与 EHS 岗位标准作为训练输入 |
+| 资产层 | 8.1 沉淀 + 8.2 复用 + 8.3 版本回滚 | Best 权重按租户命名空间隔离；可下载、可私有部署、可重复调用、可持续进化（旧版可回滚） |
+
+## 9. 实时四层契约
+
+实时链路是**四个"实时"在同一画面上同时可见**，每条实时都有独立的输入来源与可视信号：
+
+| 实时层 | 数据来源 | 用户可见信号 | 不可用降级 |
+|---|---|---|---|
+| 实时监测 | 摄像头每帧 | 毫秒级阶段徽标切换 | 关键点无效 → `inconclusive` |
+| 实时纠正 | 规则引擎 + 阶段 + 错误码 | 错误连续 3 次才语音（1.5s 冷却） | 不依赖 Ollama |
+| 实时计数 | 完整动作周期判定 | 完整周期 +1；幅度不足不计数 | 不依赖 Ollama |
+| 实时反馈 | 会话级事件流 | 完成一次完整动作就刷新 Top 错误 | 不依赖 Ollama |
+
+**硬约束**：核心规则链路不依赖任何生成式大模型；Ollama / Gemma 只负责生成式教练文案，不可用时不影响视觉分类与规则纠错。

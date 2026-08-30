@@ -7,5 +7,14 @@
     "rep_count": 50,
     "cert_no": "LLM-CERT-20260806-2328",
     "issued_at": "2026-08-06 21:26:24"
+  },
+  {
+    "name": "leaf",
+    "worker_id": "666",
+    "exercise": "squats",
+    "exercise_label": "深蹲",
+    "rep_count": 50,
+    "cert_no": "LLM-CERT-20260830-9630",
+    "issued_at": "2026-08-30 18:31:36"
   }
 ]
