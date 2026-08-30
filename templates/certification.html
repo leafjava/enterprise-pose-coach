@@ -3,559 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>体能检测认证 · 练了么 · 训练 + 沉淀 + 复用 · 直接加载 Best 权重做实时纠错</title>
-    <style>
-        :root {
-            color-scheme: light;
-            --bg: #f4f7fb;
-            --panel: #ffffff;
-            --panel-alt: #eef3f9;
-            --text: #162030;
-            --muted: #5b6677;
-            --border: #d9e0ea;
-            --accent: #1f6feb;
-            --accent-strong: #1553b7;
-            --success: #18794e;
-            --warn: #c37b05;
-            --danger: #c2413b;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        .shell {
-            width: min(1080px, calc(100vw - 32px));
-            margin: 20px auto;
-        }
-
-        .topbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            margin-bottom: 18px;
-        }
-
-        .topbar h1 {
-            margin: 0;
-            font-size: 26px;
-            font-weight: 800;
-        }
-
-        .topbar p {
-            margin: 4px 0 0;
-            color: var(--muted);
-            font-size: 13.5px;
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--accent);
-            text-decoration: none;
-            white-space: nowrap;
-        }
-
-        .back-link:hover {
-            color: var(--accent-strong);
-        }
-
-        .step-badge {
-            display: inline-block;
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--accent);
-            background: rgba(31, 111, 235, 0.1);
-            border-radius: 999px;
-            padding: 5px 12px;
-            margin-bottom: 12px;
-        }
-
-        .card {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 16px;
-        }
-
-        .card[hidden] {
-            display: none;
-        }
-
-        .card-title {
-            margin: 0 0 6px;
-            font-size: 18px;
-            font-weight: 700;
-        }
-
-        .card-desc {
-            margin: 0 0 18px;
-            color: var(--muted);
-            font-size: 13.5px;
-            line-height: 1.6;
-        }
-
-        .field-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 16px;
-            margin-bottom: 18px;
-        }
-
-        .field-label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--muted);
-        }
-
-        input,
-        select {
-            width: 100%;
-            min-height: 44px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            background: var(--panel);
-            padding: 10px 12px;
-            color: var(--text);
-            font: inherit;
-            font-size: 14px;
-        }
-
-        input:focus,
-        select:focus {
-            outline: 2px solid rgba(31, 111, 235, 0.4);
-            outline-offset: 0;
-            border-color: var(--accent);
-        }
-
-        .hint {
-            font-size: 12.5px;
-            color: var(--muted);
-            margin-top: 6px;
-            line-height: 1.5;
-        }
-
-        .btn {
-            min-height: 46px;
-            border-radius: 9px;
-            border: 1px solid transparent;
-            cursor: pointer;
-            font: inherit;
-            font-size: 15px;
-            font-weight: 700;
-            padding: 12px 22px;
-            transition: background 120ms ease, opacity 120ms ease, transform 120ms ease;
-        }
-
-        .btn:disabled {
-            cursor: not-allowed;
-            opacity: 0.55;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: #fff;
-        }
-
-        .btn-primary:hover:not(:disabled) {
-            background: var(--accent-strong);
-        }
-
-        .btn-success {
-            background: var(--success);
-            color: #fff;
-        }
-
-        .btn-success:hover:not(:disabled) {
-            filter: brightness(1.1);
-        }
-
-        .btn-secondary {
-            background: var(--panel);
-            color: var(--text);
-            border-color: var(--border);
-        }
-
-        .btn-secondary:hover:not(:disabled) {
-            background: var(--panel-alt);
-        }
-
-        .btn-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 16px;
-        }
-
-        .error-banner {
-            padding: 12px 14px;
-            border-radius: 8px;
-            background: rgba(194, 65, 59, 0.1);
-            border: 1px solid rgba(194, 65, 59, 0.2);
-            color: var(--danger);
-            font-size: 14px;
-            margin-bottom: 16px;
-        }
-
-        /* ---------- 检测区 ---------- */
-        .video-box {
-            position: relative;
-            background: #0f1726;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid #0c1320;
-        }
-
-        .video-box video {
-            width: 100%;
-            min-height: 420px;
-            object-fit: cover;
-            display: block;
-            background: #0f1726;
-        }
-
-        .video-overlay {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 16px;
-        }
-
-        .video-overlay .pill {
-            align-self: flex-start;
-        }
-
-        .pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 12px;
-            border-radius: 999px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            background: rgba(12, 18, 30, 0.76);
-            font-size: 13px;
-            color: #e5e7eb;
-            backdrop-filter: blur(6px);
-        }
-
-        .pill.good {
-            color: #86efac;
-            border-color: rgba(134, 239, 172, 0.3);
-        }
-
-        .pill.warn {
-            color: #fcd34d;
-            border-color: rgba(252, 211, 77, 0.3);
-        }
-
-        .pill.alert {
-            color: #fca5a5;
-            border-color: rgba(252, 165, 165, 0.3);
-        }
-
-        .progress-panel {
-            background: rgba(12, 18, 30, 0.78);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 10px;
-            padding: 14px 16px;
-            backdrop-filter: blur(6px);
-            color: #fff;
-            align-self: flex-end;
-            width: min(420px, 100%);
-        }
-
-        .progress-panel .row {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            gap: 12px;
-        }
-
-        .progress-panel .count {
-            font-size: 32px;
-            font-weight: 800;
-        }
-
-        .progress-panel .count em {
-            font-style: normal;
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.65);
-        }
-
-        .progress-panel .phase {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .progress-track {
-            height: 10px;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.16);
-            overflow: hidden;
-            margin-top: 10px;
-        }
-
-        .progress-fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, var(--accent), #4ade80);
-            transition: width 200ms ease;
-            border-radius: 999px;
-        }
-
-        .cue-line {
-            margin: 12px 0 0;
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        /* ---------- 结果 ---------- */
-        .result-panel {
-            display: grid;
-            gap: 18px;
-        }
-
-        .result-head {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .result-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 26px;
-            flex-shrink: 0;
-        }
-
-        .result-icon.pass {
-            background: rgba(24, 121, 78, 0.12);
-            border: 1px solid rgba(24, 121, 78, 0.3);
-        }
-
-        .result-icon.fail {
-            background: rgba(194, 65, 59, 0.12);
-            border: 1px solid rgba(194, 65, 59, 0.3);
-        }
-
-        .result-head h2 {
-            margin: 0;
-            font-size: 22px;
-            font-weight: 800;
-        }
-
-        .result-head p {
-            margin: 4px 0 0;
-            color: var(--muted);
-            font-size: 14px;
-        }
-
-        .cert-canvas {
-            width: 100%;
-            max-width: 860px;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            display: block;
-        }
-
-        /* ---------- 历史记录 ---------- */
-        .history-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 13.5px;
-        }
-
-        .history-table th,
-        .history-table td {
-            text-align: left;
-            padding: 11px 12px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .history-table th {
-            color: var(--muted);
-            font-weight: 600;
-            background: var(--panel-alt);
-        }
-
-        .history-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .history-empty {
-            color: var(--muted);
-            font-size: 13.5px;
-            padding: 18px 0 6px;
-        }
-
-        .table-wrap {
-            overflow-x: auto;
-        }
-
-        @media (max-width: 720px) {
-            .video-box video {
-                min-height: 320px;
-            }
-
-            .shell {
-                width: calc(100vw - 20px);
-                margin: 12px auto;
-            }
-
-            .card {
-                padding: 18px;
-            }
-        }
-    </style>
+    <meta name="theme-color" content="#f8fafc">
+    <title>工厂招聘体能检测认证 · 练了么</title>
+    <link rel="stylesheet" href="/static/design-system.css">
+    <link rel="stylesheet" href="/static/console.css">
+    <link rel="stylesheet" href="/static/certification.css">
     <link rel="stylesheet" href="/static/ghost-coach.css">
 </head>
 <body>
-    <main class="shell">
-        <div class="topbar">
+
+<header class="topbar">
+    <div class="topbar-inner">
+        <a href="/" class="back-link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6"/><path d="m11.5 6-6 6 6 6"/></svg>
+            返回首页
+        </a>
+        <div class="topbar-divider" aria-hidden="true"></div>
+        <div class="topbar-title">
+            <h1>招聘体能检测认证</h1>
+            <span>加载沉淀的 Best 权重做达标判定</span>
+        </div>
+        <div class="topbar-meta">
+            <span class="pill mono">RECRUIT_SQUAT_50_V1</span>
+            <span class="pill">目标 50 次</span>
+        </div>
+    </div>
+</header>
+
+<main class="cert-shell">
+
+    <div class="cert-intro">
+        <h2>工厂招聘体能检测认证</h2>
+        <p>
+            首次调用训练 Best 权重并沉淀到企业私有环境；本次调用直接加载沉淀的 Best 权重，跑出实时监测 +
+            实时纠正 + 实时计数 + 实时反馈。深蹲 / 仰卧起坐连续完成目标次数即达标，生成可下载认证证书。
+        </p>
+    </div>
+
+    <!-- 流程指示 -->
+    <ol class="stepper">
+        <li class="stepper-item active">
+            <span class="stepper-dot">1</span>
+            <div><b>填写信息</b><span>姓名 · 工号 · 检测项目</span></div>
+        </li>
+        <li class="stepper-item">
+            <span class="stepper-dot">2</span>
+            <div><b>实时检测</b><span>自动计数 + 实时纠错</span></div>
+        </li>
+        <li class="stepper-item">
+            <span class="stepper-dot">3</span>
+            <div><b>发放认证</b><span>结果判定 + 证书下载</span></div>
+        </li>
+    </ol>
+
+    <div class="error-banner" id="globalError" hidden></div>
+
+    <!-- 阶段一：信息填写 -->
+    <section class="card" id="formCard">
+        <span class="step-badge">STEP 1 · 填写信息</span>
+        <h2 class="card-title">填写检测人信息</h2>
+        <p class="card-desc">信息仅用于生成认证证书与历史记录，请如实填写。结果供 HR 复核，最终录用由企业授权人员决定。</p>
+
+        <div class="field-row">
             <div>
-                <h1>工厂招聘体能检测认证（训练 + 沉淀 + 复用 · 实时四层）</h1>
-                <p>首次调用训练 Best 权重并沉淀到企业私有环境；本次调用直接加载沉淀的 Best 权重，跑出实时监测 + 实时纠正 + 实时计数 + 实时反馈，深蹲 / 俯卧撑 / 仰卧起坐连续完成目标次数即达标，生成可下载认证证书。</p>
+                <label class="field-label" for="nameInput">姓名 <span style="color:var(--r-500)">*</span></label>
+                <input id="nameInput" class="input" type="text" placeholder="请输入姓名" maxlength="30" autocomplete="off">
             </div>
-            <a href="/" class="back-link">← 返回首页</a>
+            <div>
+                <label class="field-label" for="workerIdInput">工号 <span style="color:var(--r-500)">*</span></label>
+                <input id="workerIdInput" class="input" type="text" placeholder="请输入工号" maxlength="30" autocomplete="off">
+            </div>
         </div>
 
-        <div class="error-banner" id="globalError" hidden></div>
+        <span class="field-label pick-label" id="pickLabel">检测项目</span>
+        <select id="exerciseSelect" class="sr-only" tabindex="-1" aria-hidden="true">
+            {% for exercise_id, meta in exercises.items() if exercise_id in ['squats', 'situps'] %}
+                <option value="{{ exercise_id }}" data-tip="{{ meta.tip }}">{{ meta.label }} · 连续 50 次</option>
+            {% endfor %}
+        </select>
 
-        <!-- 阶段一：信息填写 -->
-        <section class="card" id="formCard">
-            <span class="step-badge">STEP 1 · 填写信息</span>
-            <h2 class="card-title">填写检测人信息</h2>
-            <p class="card-desc">信息仅用于生成认证证书与历史记录，请如实填写。</p>
+        <div class="pick-grid" role="radiogroup" aria-labelledby="pickLabel">
+            {% for exercise_id, meta in exercises.items() if exercise_id in ['squats', 'situps'] %}
+                <button type="button" class="pick" role="radio" aria-checked="false" data-value="{{ exercise_id }}">
+                    <span class="pick-icon" aria-hidden="true">
+                        {% if exercise_id == 'squats' %}
+                            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.2" r="2"/><path d="M12 6.4v4.2l-3.4 3.2V20"/><path d="M12 10.6l3.4 3.2V20"/><path d="M8 8.6h8"/></svg>
+                        {% else %}
+                            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="8" r="2"/><path d="M8.4 9.4 13 12l4.5-3"/><path d="M13 12v4.5h5.5"/><path d="M3.5 18.5h17"/></svg>
+                        {% endif %}
+                    </span>
+                    <span class="pick-text">
+                        <b>{{ meta.label }}</b>
+                        <span>连续 50 次达标</span>
+                    </span>
+                    <span class="tick" aria-hidden="true">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9 17.5 20 6.5"/></svg>
+                    </span>
+                </button>
+            {% endfor %}
+        </div>
 
-            <div class="field-row">
-                <div>
-                    <label class="field-label" for="nameInput">姓名 *</label>
-                    <input id="nameInput" type="text" placeholder="请输入姓名" maxlength="30">
-                </div>
-                <div>
-                    <label class="field-label" for="workerIdInput">工号 *</label>
-                    <input id="workerIdInput" type="text" placeholder="请输入工号" maxlength="30">
-                </div>
-                <div>
-                    <label class="field-label" for="exerciseSelect">检测项目</label>
-                    <select id="exerciseSelect">
-                        {% for exercise_id, meta in exercises.items() if exercise_id in ['squats', 'situps'] %}
-                            <option value="{{ exercise_id }}" data-tip="{{ meta.tip }}">{{ meta.label }} · 连续 50 次</option>
-                        {% endfor %}
-                    </select>
-                </div>
+        <p class="hint" id="exerciseTip">选择检测项目后，请按提示站到合适的入镜位置。</p>
+
+        <div class="btn-row">
+            <button type="button" class="btn btn-primary btn-lg" id="startDetectBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5.5 18.5 12 7 18.5Z"/></svg>
+                开始检测
+            </button>
+        </div>
+    </section>
+
+    <!-- 阶段二：实时检测 -->
+    <section class="card" id="detectCard" hidden>
+        <span class="step-badge">STEP 2 · 实时检测</span>
+        <h2 class="card-title">实时动作检测</h2>
+        <p class="card-desc">站到画面中央，保持全身入镜。系统实时计数，完成 50 次自动达标；没有计数时会立刻说明原因。</p>
+
+        <div class="video-box">
+            <video id="cameraPreview" autoplay playsinline muted></video>
+            <canvas id="frameCanvas" hidden></canvas>
+            <canvas id="ghostCoachCanvas" class="ghost-coach-canvas" aria-hidden="true"></canvas>
+
+            <div class="stage-standby" aria-hidden="true">
+                <span class="stage-standby-mark">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h7A2.5 2.5 0 0 1 15 8.5v7a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 3 15.5Z"/><path d="m15 10.5 5-3v9l-5-3Z"/></svg>
+                </span>
+                <b>正在等待画面</b>
+                <span>请允许浏览器访问摄像头，然后站到画面中央保持全身入镜。</span>
             </div>
-            <p class="hint" id="exerciseTip">选择检测项目后，请按提示站到合适的入镜位置。</p>
 
-            <div class="btn-row">
-                <button type="button" class="btn btn-primary" id="startDetectBtn">开始检测</button>
-            </div>
-        </section>
-
-        <!-- 阶段二：实时检测 -->
-        <section class="card" id="detectCard" hidden>
-            <span class="step-badge">STEP 2 · 实时检测</span>
-            <h2 class="card-title">实时动作检测</h2>
-            <p class="card-desc">站到画面中央，保持全身入镜。系统实时计数，完成 50 次自动达标。</p>
-
-            <div class="video-box">
-                <video id="cameraPreview" autoplay playsinline muted></video>
-                <canvas id="frameCanvas" hidden></canvas>
-                <canvas id="ghostCoachCanvas" class="ghost-coach-canvas" aria-hidden="true"></canvas>
-                <div class="video-overlay">
-                    <div>
+            <div class="video-overlay">
+                <div class="overlay-top">
+                    <div class="overlay-stack">
                         <span class="pill warn" id="statusBadge">等待中</span>
                         <span class="pill" id="exerciseBadge">深蹲</span>
                         <span class="pill ghost-coach-status" id="ghostCoachStatus" data-ghost-state="unavailable">视觉引导待命</span>
                     </div>
-                    <div class="progress-panel">
-                        <div class="row">
-                            <div>
-                                <div class="count"><span id="repCount">0</span> <em>/ 50</em></div>
-                                <div class="phase" id="phaseText">准备</div>
-                            </div>
-                            <div class="phase" id="modeText">手动计数</div>
+                </div>
+
+                <div class="progress-panel">
+                    <div class="row">
+                        <div>
+                            <div class="count"><span id="repCount">0</span> <em>/ 50</em></div>
+                            <div class="phase" id="phaseText">准备</div>
                         </div>
-                        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
-                        <div class="cue-line" id="cueLine">打开摄像头后开始检测。</div>
+                        <div class="ring" aria-hidden="true">
+                            <svg viewBox="0 0 88 88">
+                                <defs>
+                                    <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+                                        <stop offset="0%" stop-color="#5d8bff"/>
+                                        <stop offset="100%" stop-color="#1fc689"/>
+                                    </linearGradient>
+                                </defs>
+                                <circle class="ring-bg" cx="44" cy="44" r="39"/>
+                                <circle class="ring-fg" cx="44" cy="44" r="39"/>
+                            </svg>
+                            <span class="ring-label"><b>0%</b><span>达标</span></span>
+                        </div>
+                        <div class="phase" id="modeText">手动计数</div>
                     </div>
+                    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+                    <div class="cue-line" id="cueLine">打开摄像头后开始检测。</div>
                 </div>
             </div>
+        </div>
 
-            <div class="btn-row">
-                <button type="button" class="btn btn-secondary" id="endDetectBtn">结束检测</button>
-                <button type="button" class="btn btn-secondary" id="resetDetectBtn" hidden>重新检测</button>
-            </div>
-            <p class="hint" id="cameraStatus">检测过程中请保持全身在画面内，动作节奏稳定。</p>
-        </section>
+        <div class="btn-row">
+            <button type="button" class="btn btn-secondary" id="endDetectBtn">结束检测</button>
+            <button type="button" class="btn btn-secondary" id="resetDetectBtn" hidden>重新检测</button>
+        </div>
+        <p class="hint" id="cameraStatus">检测过程中请保持全身在画面内，动作节奏稳定。</p>
+    </section>
 
-        <!-- 阶段三：结果与证书 -->
-        <section class="card" id="resultCard" hidden>
-            <span class="step-badge">STEP 3 · 检测结果</span>
-            <div class="result-panel">
-                <div class="result-head">
-                    <div class="result-icon" id="resultIcon">🏅</div>
-                    <div>
-                        <h2 id="resultTitle">检测通过</h2>
-                        <p id="resultSub">恭喜完成认证。</p>
-                    </div>
+    <!-- 阶段三：结果与证书 -->
+    <section class="card" id="resultCard" hidden>
+        <span class="step-badge">STEP 3 · 检测结果</span>
+        <div class="result-panel">
+            <div class="result-head">
+                <div class="result-icon" id="resultIcon">🏅</div>
+                <div>
+                    <h2 id="resultTitle">检测通过</h2>
+                    <p id="resultSub">恭喜完成认证。</p>
                 </div>
+            </div>
+            <div class="cert-frame">
                 <canvas class="cert-canvas" id="certCanvas" width="1000" height="700"></canvas>
-                <div class="btn-row">
-                    <button type="button" class="btn btn-success" id="downloadCertBtn">下载证书（PNG）</button>
-                    <button type="button" class="btn btn-secondary" id="shareCertBtn">复制认证信息</button>
-                    <button type="button" class="btn btn-secondary" id="againBtn">再来一次</button>
-                    <button type="button" class="btn btn-secondary" id="homeBtn">返回首页</button>
-                </div>
             </div>
-        </section>
-
-        <!-- 历史记录 -->
-        <section class="card">
-            <span class="step-badge">RECORDS · 认证记录</span>
-            <h2 class="card-title">历史认证记录</h2>
-            <p class="card-desc">近期通过体能检测认证的人员名单。</p>
-            <div class="table-wrap">
-                <table class="history-table">
-                    <thead>
-                        <tr>
-                            <th>姓名</th>
-                            <th>工号</th>
-                            <th>项目</th>
-                            <th>达标次数</th>
-                            <th>证书编号</th>
-                            <th>认证时间</th>
-                        </tr>
-                    </thead>
-                    <tbody id="historyBody"></tbody>
-                </table>
+            <div class="btn-row" style="margin-top:0">
+                <button type="button" class="btn btn-success" id="downloadCertBtn">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v10.5"/><path d="m7.5 10.5 4.5 4.5 4.5-4.5"/><path d="M4.5 19.5h15"/></svg>
+                    下载证书（PNG）
+                </button>
+                <button type="button" class="btn btn-secondary" id="shareCertBtn">复制认证信息</button>
+                <button type="button" class="btn btn-secondary" id="againBtn">再来一次</button>
+                <button type="button" class="btn btn-secondary" id="homeBtn">返回首页</button>
             </div>
-            <p class="history-empty" id="historyEmpty" hidden>暂无认证记录。</p>
-        </section>
-    </main>
+        </div>
+    </section>
 
+    <!-- 历史记录 -->
+    <section class="card">
+        <span class="step-badge">RECORDS · 认证记录</span>
+        <h2 class="card-title">历史认证记录</h2>
+        <p class="card-desc">近期通过体能检测认证的人员名单。</p>
+        <div class="table-wrap" style="margin-top:18px">
+            <table class="table history-table">
+                <thead>
+                    <tr>
+                        <th>姓名</th>
+                        <th>工号</th>
+                        <th>项目</th>
+                        <th>达标次数</th>
+                        <th>证书编号</th>
+                        <th>认证时间</th>
+                    </tr>
+                </thead>
+                <tbody id="historyBody"></tbody>
+            </table>
+        </div>
+        <p class="history-empty" id="historyEmpty" hidden>
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h8l4 4v13H6Z"/><path d="M13.5 3.5V8H18"/><path d="M9 13h6M9 16.5h4"/></svg>
+            暂无认证记录。完成一次达标检测后，记录会出现在这里。
+        </p>
+    </section>
+
+</main>
+
+<script src="/static/console-ui.js" defer></script>
     <script src="/static/ghost-coach.js"></script>
     <script>
         const CERT_TARGET = 50;
@@ -773,57 +447,133 @@
             return `LLM-CERT-${nowCompact()}-${rand}`;
         }
 
+        const CERT_FONT = "'PingFang SC', 'Microsoft YaHei', 'Segoe UI', sans-serif";
+
+        function roundRectPath(ctx, x, y, w, h, r) {
+            if (typeof ctx.roundRect === "function") {
+                ctx.beginPath();
+                ctx.roundRect(x, y, w, h, r);
+                return;
+            }
+            ctx.beginPath();
+            ctx.moveTo(x + r, y);
+            ctx.arcTo(x + w, y, x + w, y + h, r);
+            ctx.arcTo(x + w, y + h, x, y + h, r);
+            ctx.arcTo(x, y + h, x, y, r);
+            ctx.arcTo(x, y, x + w, y, r);
+            ctx.closePath();
+        }
+
+        // Drawn in the same palette as the rest of the product: this PNG leaves
+        // the building, so it has to look like it came from the same system.
         function drawCertificate(ctx, info) {
             const W = 1000, H = 700;
-            // 背景
-            ctx.fillStyle = "#fbf8f1";
+
+            ctx.clearRect(0, 0, W, H);
+            ctx.fillStyle = "#ffffff";
             ctx.fillRect(0, 0, W, H);
 
-            // 外边框
-            ctx.strokeStyle = "#b78a2f";
-            ctx.lineWidth = 3;
-            ctx.strokeRect(22, 22, W - 44, H - 44);
-            ctx.lineWidth = 1;
-            ctx.strokeRect(38, 38, W - 76, H - 76);
+            // Header band
+            const band = ctx.createLinearGradient(0, 0, W, 132);
+            band.addColorStop(0, "#163ebb");
+            band.addColorStop(0.58, "#2a63f2");
+            band.addColorStop(1, "#067a52");
+            ctx.fillStyle = band;
+            ctx.fillRect(0, 0, W, 132);
 
-            // 顶部色带
-            const grad = ctx.createLinearGradient(0, 0, W, 0);
-            grad.addColorStop(0, "#123a6d");
-            grad.addColorStop(1, "#1f6feb");
-            ctx.fillStyle = grad;
-            ctx.fillRect(38, 38, W - 76, 118);
-
-            // 标题
-            ctx.fillStyle = "#ffffff";
-            ctx.font = "700 52px 'Microsoft YaHei', 'PingFang SC', sans-serif";
-            ctx.textAlign = "center";
-            ctx.fillText("体能检测认证证书", W / 2, 104);
-            ctx.font = "500 15px 'Segoe UI', sans-serif";
-            ctx.fillStyle = "rgba(255,255,255,0.85)";
-            ctx.fillText("PHYSICAL FITNESS CERTIFICATION", W / 2, 134);
-
-            // 正文
-            ctx.textAlign = "center";
-            ctx.fillStyle = "#162030";
-            ctx.font = "400 20px 'Microsoft YaHei', sans-serif";
-            ctx.fillText(`兹证明 ${info.name}（工号：${info.workerId}）`, W / 2, 250);
-
-            ctx.font = "400 20px 'Microsoft YaHei', sans-serif";
-            ctx.fillText(`已通过「${info.exercise}」体能检测，`, W / 2, 292);
-            ctx.fillText(`连续完成 ${info.reps} 次标准动作，成绩有效。`, W / 2, 334);
-
-            // 底部信息
-            ctx.font = "500 16px 'Microsoft YaHei', sans-serif";
-            ctx.fillStyle = "#5b6677";
             ctx.textAlign = "left";
-            ctx.fillText(`证书编号：${info.certNo}`, 70, 610);
-            ctx.textAlign = "right";
-            ctx.fillText(`认证日期：${info.date}`, W - 70, 610);
+            ctx.fillStyle = "rgba(255,255,255,0.72)";
+            ctx.font = "600 12px " + CERT_FONT;
+            ctx.fillText("练了么 · ENTERPRISE POSE COACH", 44, 34);
 
             ctx.textAlign = "center";
-            ctx.fillStyle = "#9aa4b2";
-            ctx.font = "400 13px 'Microsoft YaHei', sans-serif";
-            ctx.fillText("练了么 · AI 体能数字员工 · 训练 + 沉淀 + 复用 · 本证书结果仅供 HR 复核", W / 2, 650);
+            ctx.fillStyle = "#ffffff";
+            ctx.font = "700 40px " + CERT_FONT;
+            ctx.fillText("体能检测认证证书", W / 2, 82);
+            ctx.font = "600 12px " + CERT_FONT;
+            ctx.fillStyle = "rgba(255,255,255,0.76)";
+            ctx.fillText("P H Y S I C A L   F I T N E S S   C E R T I F I C A T I O N", W / 2, 108);
+
+            // Body
+            ctx.fillStyle = "#5d6b83";
+            ctx.font = "500 15px " + CERT_FONT;
+            ctx.fillText("兹证明", W / 2, 214);
+
+            ctx.fillStyle = "#141d2b";
+            ctx.font = "700 46px " + CERT_FONT;
+            ctx.fillText(info.name, W / 2, 272);
+
+            ctx.fillStyle = "#5d6b83";
+            ctx.font = "500 15px " + CERT_FONT;
+            ctx.fillText("工号 " + info.workerId, W / 2, 306);
+
+            ctx.strokeStyle = "#e6ebf3";
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(300, 340);
+            ctx.lineTo(700, 340);
+            ctx.stroke();
+
+            ctx.fillStyle = "#232e3f";
+            ctx.font = "600 24px " + CERT_FONT;
+            ctx.fillText("已通过「" + info.exercise + "」体能检测", W / 2, 394);
+
+            ctx.fillStyle = "#4e5d75";
+            ctx.font = "400 17px " + CERT_FONT;
+            ctx.fillText("连续完成标准动作，成绩有效。", W / 2, 428);
+
+            // Result pill
+            const label = "AI 自动计数 " + info.reps + " / " + CERT_TARGET + " 次 · 达标";
+            ctx.font = "600 17px " + CERT_FONT;
+            const pillW = ctx.measureText(label).width + 56;
+            const pillX = (W - pillW) / 2;
+            roundRectPath(ctx, pillX, 464, pillW, 46, 23);
+            ctx.fillStyle = "#e8fbf3";
+            ctx.fill();
+            ctx.strokeStyle = "#95ebc8";
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(pillX + 26, 487, 5, 0, Math.PI * 2);
+            ctx.fillStyle = "#067a52";
+            ctx.fill();
+
+            ctx.fillStyle = "#056d4b";
+            ctx.textAlign = "left";
+            ctx.fillText(label, pillX + 40, 493);
+
+            // Footer
+            ctx.strokeStyle = "#e6ebf3";
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(70, 592);
+            ctx.lineTo(930, 592);
+            ctx.stroke();
+
+            ctx.fillStyle = "#5d6b83";
+            ctx.font = "500 14px " + CERT_FONT;
+            ctx.textAlign = "left";
+            ctx.fillText("证书编号：" + info.certNo, 70, 626);
+            ctx.textAlign = "right";
+            ctx.fillText("认证日期：" + info.date, W - 70, 626);
+
+            ctx.textAlign = "center";
+            ctx.fillStyle = "#66748b";
+            ctx.font = "400 12.5px " + CERT_FONT;
+            ctx.fillText(
+                "练了么 · AI 体能数字员工 · 训练 + 沉淀 + 复用　|　本证书结果仅供 HR 复核，最终录用由企业授权人员决定",
+                W / 2,
+                662
+            );
+
+            // Bottom accent rule
+            const foot = ctx.createLinearGradient(0, 0, W, 0);
+            foot.addColorStop(0, "#163ebb");
+            foot.addColorStop(0.58, "#2a63f2");
+            foot.addColorStop(1, "#067a52");
+            ctx.fillStyle = foot;
+            ctx.fillRect(0, H - 6, W, 6);
         }
 
         let lastCert = null;

@@ -29,7 +29,10 @@ def _available_port(preferred: int = 4000) -> int:
 def main() -> None:
     runtime_dir = ROOT / ".pose_runtime" / "harness"
     web_app = load_harness_app(runtime_dir)
-    web_app.app.config.update(TESTING=False)
+    # Reviewers iterate on the UI against this server; pick up template edits
+    # without a restart.
+    web_app.app.config.update(TESTING=False, TEMPLATES_AUTO_RELOAD=True)
+    web_app.app.jinja_env.auto_reload = True
     configured_port = os.getenv("PORT")
     port = int(configured_port) if configured_port else _available_port()
     print("[HARNESS MODE] 页面/API/规则引擎为真实实现；姿态与重型依赖为确定性替身。")
