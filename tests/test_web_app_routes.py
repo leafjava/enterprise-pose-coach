@@ -1,29 +1,24 @@
+"""Route and session-API contracts for the Flask app.
+
+These exercise routing, request validation and the live-session payload shape —
+not model accuracy — so they load `web_app` through the harness substitutes and
+run on the minimal review environment (Flask + NumPy) as well as the full one.
+"""
+
 import io
-import os
 import sys
 import tempfile
-import types
 import unittest
+from pathlib import Path
 from unittest.mock import patch
 
 import numpy as np
 
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
-class FakeSTGCN:
-    def __init__(self, *args, **kwargs):
-        self.loaded = False
-
-    def load_state_dict(self, state_dict):
-        self.loaded = True
-
-    def to(self, device):
-        return self
-
-    def eval(self):
-        return self
-
-    def predict(self, x):
-        return np.array([[0]]), np.array([[0.95]])
+from tools.harness_support import load_harness_app  # noqa: E402
 
 
 class FakeRecognizer:
@@ -34,80 +29,16 @@ class FakeRecognizer:
         return self.result
 
 
-def load_web_app():
-    sys.modules.pop("web_app", None)
-    fake_cv2 = types.ModuleType("cv2")
-    fake_cv2.CAP_PROP_FOURCC = 6
-    fake_cv2.CAP_PROP_FRAME_COUNT = 7
-    fake_cv2.CAP_PROP_POS_FRAMES = 1
-
-    class FakeCapture:
-        def __init__(self, path):
-            self.path = path
-
-        def get(self, _prop):
-            return 1
-
-        def set(self, _prop, _value):
-            return True
-
-        def read(self):
-            return False, None
-
-        def release(self):
-            return True
-
-    fake_cv2.VideoCapture = FakeCapture
-    fake_cv2.line = lambda *args, **kwargs: None
-    fake_cv2.circle = lambda *args, **kwargs: None
-    fake_cv2.imwrite = lambda *args, **kwargs: True
-
-    fake_rtmpose = types.ModuleType("src.rtmpose_tran")
-    fake_rtmpose.RTM_Pose_Tran = lambda *args, **kwargs: (
-        True,
-        np.zeros((10, 17, 2), dtype=np.float32),
-    )
-
-    fake_datapro = types.ModuleType("src.datapro")
-    fake_datapro.PreProcess = lambda keypoints: np.zeros((2, 250, 17), dtype=np.float32)
-
-    fake_score = types.ModuleType("src.score")
-    fake_score.Score = lambda *args, **kwargs: 0.9
-
-    fake_model = types.ModuleType("src.model")
-    fake_model.ST_GCN = FakeSTGCN
-
-    fake_llm = types.ModuleType("src.local_llm")
-    fake_llm.chat_with_ollama_model = lambda *args, **kwargs: {
-        "message": {"content": "[动作评价] 好\n[评分分析] 稳定\n[心率评估] 正常\n[改进建议] 继续\n[鼓励话语] 加油"}
-    }
-
-    with tempfile.TemporaryDirectory() as runtime_dir, tempfile.TemporaryDirectory() as video_dir:
-        with patch.dict(
-            os.environ,
-            {"POSE_RUNTIME_DIR": runtime_dir, "POSE_VIDEO_DIR": video_dir},
-            clear=False,
-        ):
-            with patch.dict(
-                sys.modules,
-                {
-                    "cv2": fake_cv2,
-                    "src.rtmpose_tran": fake_rtmpose,
-                    "src.datapro": fake_datapro,
-                    "src.score": fake_score,
-                    "src.model": fake_model,
-                    "src.local_llm": fake_llm,
-                },
-            ):
-                import web_app  # pylint: disable=import-outside-toplevel
-
-                return web_app
-
-
 class WebAppRouteTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.web_app = load_web_app()
+        cls._runtime = tempfile.TemporaryDirectory(ignore_cleanup_errors=True)
+        cls.web_app = load_harness_app(Path(cls._runtime.name))
+
+    @classmethod
+    def tearDownClass(cls):
+        sys.modules.pop("web_app", None)
+        cls._runtime.cleanup()
 
     def setUp(self):
         self.client = self.web_app.app.test_client()
@@ -142,7 +73,6 @@ class WebAppRouteTests(unittest.TestCase):
             )
             self.assertEqual(response.status_code, 200)
             self.assertTrue(mock_process.called)
-
 
     def test_start_session_requires_known_exercise(self):
         response = self.client.post("/api/session/start", json={"exercise": "burpee"})
