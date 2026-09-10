@@ -60,7 +60,7 @@
 3. 在 `/api/session/stop` 把 `summary` 扩成 Skill 输出契约字段（含 `decision`、`review_status`、`model_version`、`rule_version`、`best_weight_id`、`best_weight_version`）。
 4. 新增 `/api/skill/callback/<task_id>` 接收 Skill 完成后的回写（仅当 ClawHive 主动推）。
 5. 加幂等：同 `request_id` 二次调用返回首次的 `task_id` 与最终 `decision`。
-6. 升级 Web Speech 反馈链路：第一次错误只显示在画面顶部，错误连续 3 次才触发语音，同义提示 1.5s 冷却。
+6. 升级 Web Speech 反馈链路：第一次错误只显示在画面顶部，错误连续第 2 次触发语音，同一提示 5s 冷却。
 
 ## 4. 测试矩阵
 
@@ -140,7 +140,7 @@ HR → ClawHive Agent → 练了么 Skill.session.start （传 best_weight_id）
 
 | ClawHive 能力层 | 现有 Flask API 映射 | Skill 包需要的改动 |
 |---|---|---|
-| 模型层 | `/api/session/start` + `/api/session/frame` 走 RTMPose + ST-GCN + YOLOv8n | 增加 `best_weight_id` 加载路径；新增 `/api/skill/init` 训练垂直模型 |
+| 模型层 | `/api/session/start` + `/api/session/frame` 走 RTMPose + ST-GCN | 增加 `best_weight_id` 加载路径；新增 `/api/skill/init` 训练垂直模型 |
 | 连接层 | （无） | 新增 `notify_url` 接收与 webhook 推送；预留飞书 / 钉钉 / 企微 / OA 适配器 |
 | 安全层 | （无） | 接入租户权限隔离、最小数据回传、人工复核、全链路审计事件 |
 | 知识层 | `/api/certifications.rule_version` 字段（已有雏形） | 把 `standard_id` 版本化为可配置 `PostureStandard` |

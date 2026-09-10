@@ -1112,3 +1112,49 @@ body {
         flex: 1 1 100%;
     }
 }
+
+/* 证据台账：替代原先那张与 11 类口径不符的混淆矩阵图。
+   每一行都是可以在仓库里逐条核对的事实，投影下也读得清。 */
+.evidence-ledger {
+    list-style: none;
+    margin: 0;
+    padding: 2px 6px;
+}
+
+.evidence-ledger li {
+    display: grid;
+    grid-template-columns: 76px minmax(0, 1fr) auto;
+    gap: 14px;
+    align-items: baseline;
+    padding: 14px 4px;
+    border-bottom: 1px solid var(--line);
+}
+
+.evidence-ledger li:last-child {
+    border-bottom: 0;
+}
+
+.el-k {
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--text-3);
+}
+
+.el-v {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-2);
+}
+
+.el-v code {
+    font-family: var(--font-mono);
+    font-size: 12px;
+}
+
+.el-n {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}

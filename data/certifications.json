@@ -1,20 +1,20 @@
 [
   {
-    "name": "leaf",
-    "worker_id": "1001",
+    "name": "演示候选人",
+    "worker_id": "C042",
     "exercise": "squats",
     "exercise_label": "深蹲",
     "rep_count": 50,
-    "cert_no": "LLM-CERT-20260806-2328",
-    "issued_at": "2026-08-06 21:26:24"
+    "cert_no": "DEMO-CERT-20260807-0001",
+    "issued_at": "2026-08-07 17:30:00"
   },
   {
-    "name": "leaf",
-    "worker_id": "666",
+    "name": "演示候选人",
+    "worker_id": "C043",
     "exercise": "squats",
     "exercise_label": "深蹲",
     "rep_count": 50,
-    "cert_no": "LLM-CERT-20260830-9630",
-    "issued_at": "2026-08-30 18:31:36"
+    "cert_no": "DEMO-CERT-20260807-0002",
+    "issued_at": "2026-08-07 17:52:00"
   }
 ]

@@ -5,7 +5,7 @@
 > **时长目标**：约 6 分钟（10 幕 + 1 幕问答兜底）；可压缩到 3 分钟的"快速演示版"见附录 B。
 >
 > **叙事承诺（评委看到 / 听到必须命中）**：
-> 1. **真模型**：RTMPose 39.6 MB + ST-GCN 700 KB + YOLOv8n 6.5 MB，本地权重，不再是 Mock。
+> 1. **真模型**：RTMPose 39.6 MB + ST-GCN 700 KB，本地权重，不再是 Mock。
 > 2. **真训练**：MM-Fit 21 受试者、8898 个 `(48, 17)` 窗口，最佳验证 0.94，Best 权重 sha256 可核验。
 > 3. **真沉淀**：按 `tenant + standard_id + version` 命名的 `.pth` 文件，沉淀到企业私有环境。
 > 4. **真复用**：Best 权重加载日志可见，��秒级实时监测 + 即时语音 + 完整周期计数同步成立。
@@ -204,7 +204,6 @@
   model/rtmo-*.onnx              39.6 MB  RTMPose 关键点检测
   model/mmfit_pose11cls_stride48_best.pth   700 KB  ST-GCN 通用分类（训练起点）
   model/bw_<tenant>_<date>_<version>.pth    1.2 MB  Best 权重（沉淀结果）
-  yolov8n.pt                       6.5 MB  辅助人体检测
   ```
 - 画面叠字："可下载 · 可私有部署 · 可重复调用 · 可持续进化（旧版可回滚）"
 
@@ -525,7 +524,7 @@
 |---|---|---|---|
 | MM-Fit 21 受试者 / 8898 窗口 | § 真实模型证据 | 镜头 8 / 12 | ☐ |
 | Best 权重命名规则 `bw_<tenant>_<date>_<version>.pth` | § 企业级 Skill 形态 | 镜头 11 / 14 | ☐ |
-| RTMPose 39.6 MB / ST-GCN 700 KB / YOLOv8n 6.5 MB | § 真实模型证据 | 镜头 13 | ☐ |
+| RTMPose 39.6 MB / ST-GCN 700 KB | § 真实模型证据 | 镜头 13 | ☐ |
 | RTX 5070 Ti Laptop GPU | § 真实模型证据 | 镜头 12 | ☐ |
 | 6 类专项纠错 + 5 类通用反馈 | § 核心功能全景 | 镜头 21 / 22 | ☐ |
 | 决策四态 `pass / not_met / needs_retraining / inconclusive` | § 输出契约 | 镜头 20 / 26 | ☐ |

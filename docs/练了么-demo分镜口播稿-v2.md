@@ -180,7 +180,7 @@ Skill 首先指导 Agent 搜索并筛选适合任务的开源数据集，同时�
 **画面**
 
 - 回到 `model/` 目录。
-- 依次框选 RTMPose ONNX、ST-GCN Best 权重和 YOLOv8n 文件。
+- 依次框选 RTMPose ONNX和 ST-GCN Best 权重文件。
 - 画面叠字：“可下载、可私有部署、可重复调用”。
 
 **口播**

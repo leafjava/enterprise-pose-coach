@@ -75,6 +75,8 @@ Recommended lighter real-data export:
 - Epoch 4/5: Train `88.74%`, Val `86.18%`
 - Epoch 5/5: Train `89.46%`, Val `93.15%`
 
+> **口径警告**：验证集由 `train_test_split(test_size=0.1)` 对滑窗随机划分得到，同一受试者的相邻窗口会同时落入训练集与验证集；best checkpoint 亦按验证集选取，无独立测试集。Val 高于 Train 正是泄漏的典型指纹。**93.15% 是选模指标，不是泛化估计。** 对外请使用 leave-subjects-out 的结果。
+
 ## Scope Note
 
 This new weight expands action recognition classes.
