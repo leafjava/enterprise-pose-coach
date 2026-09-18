@@ -451,6 +451,98 @@
     </div>
 </section>
 
+
+<!-- ══════════════════════════════ 流水线高危作业 · 五步闭环 ══════════════════════════════ -->
+<section class="section" id="safety-capability">
+    <div class="shell">
+        <header class="section-head">
+            <span class="eyebrow">处理流程</span>
+            <h2>从画面到告警的五步闭环</h2>
+            <p>视频采集 → 人员 / 姿态 / PPE 检测 → 风险规则判断 → 持续时间与运动量确认 → 语音预警与事件留档</p>
+        </header>
+
+        <div class="lanes">
+            <article class="lane">
+                <div class="lane-head"><span class="lane-tag">01</span><h3>视频采集</h3></div>
+                <ol class="lane-steps">
+                    <li class="lane-step"><span>USB / 内置 / RTSP / 视频文件</span></li>
+                    <li class="lane-step"><span>断流检测 + 自动重连</span></li>
+                    <li class="lane-step"><span>按工位归一化坐标</span></li>
+                </ol>
+            </article>
+            <article class="lane">
+                <div class="lane-head"><span class="lane-tag">02</span><h3>检测 + 跟踪</h3></div>
+                <ol class="lane-steps">
+                    <li class="lane-step"><span>YOLO Pose 17 关键点</span></li>
+                    <li class="lane-step"><span>ByteTrack 跨帧 ID</span></li>
+                    <li class="lane-step"><span>独立 PPE 模型（按帧间隔异步）</span></li>
+                </ol>
+            </article>
+            <article class="lane">
+                <div class="lane-head"><span class="lane-tag">03</span><h3>规则判断</h3></div>
+                <ol class="lane-steps">
+                    <li class="lane-step"><span>6 类风险：bend / fall / zone / helmet / drowsy / unconscious</span></li>
+                    <li class="lane-step"><span>二维投影几何（多边形 + 角度）</span></li>
+                    <li class="lane-step"><span>运动量比较防误报</span></li>
+                </ol>
+            </article>
+            <article class="lane">
+                <div class="lane-head"><span class="lane-tag">04</span><h3>去抖确认</h3></div>
+                <ol class="lane-steps">
+                    <li class="lane-step"><span>持续时长门控（duration_seconds）</span></li>
+                    <li class="lane-step"><span>同类告警冷却（cooldown_seconds）</span></li>
+                    <li class="lane-step"><span>跟踪丢失复位（expire_tracks）</span></li>
+                </ol>
+            </article>
+            <article class="lane">
+                <div class="lane-head"><span class="lane-tag">05</span><h3>语音 + 留档</h3></div>
+                <ol class="lane-steps">
+                    <li class="lane-step"><span>macOS say / Linux espeak / Windows SAPI</span></li>
+                    <li class="lane-step"><span>队列化异步播报</span></li>
+                    <li class="lane-step"><span>SQLite + 可选告警截图</span></li>
+                </ol>
+            </article>
+        </div>
+    </div>
+</section>
+<!-- ══════════════════════════════ 流水线高危作业 · 6 类规则 ══════════════════════════════ -->
+<section class="section" id="rules">
+    <div class="shell">
+        <header class="section-head">
+            <span class="eyebrow">规则引擎</span>
+            <h2>开箱即用的 6 类风险规则</h2>
+            <p>每条规则独立配置阈值 / 持续时长 / 冷却时间 / 严重等级，可由安全员现场校准。</p>
+        </header>
+
+        <div class="feat-grid">
+            <article class="card">
+                <div class="card-title"><span class="ei-icon alert">⚠</span>未佩戴安全头盔</div>
+                <p class="card-desc">检测到人员头部但未在头部附近找到安全帽；或 PPE 模型直接输出 no_helmet 标签。持续 2 秒触发告警，冷却 12 秒。</p>
+            </article>
+            <article class="card">
+                <div class="card-title"><span class="ei-icon alert">⤵</span>过度弯腰</div>
+                <p class="card-desc">躯干轴相对竖直方向夹角 ≥ 42° 持续 1.5 秒，触发搬运姿势告警，提示屈膝并保持背部挺直。</p>
+            </article>
+            <article class="card">
+                <div class="card-title"><span class="ei-icon critical">↓</span>疑似跌倒</div>
+                <p class="card-desc">躯干角度 ≥ 62° 且人员框宽高比 ≥ 1.15 持续 0.8 秒，触发 critical 级告警，提示立即检查。</p>
+            </article>
+            <article class="card">
+                <div class="card-title"><span class="ei-icon warn">☕</span>疑似睡着</div>
+                <p class="card-desc">头部下垂且躯干运动量持续低于阈值 12 秒，触发高风险告警，提醒安全员确认人员状态。</p>
+            </article>
+            <article class="card">
+                <div class="card-title"><span class="ei-icon critical">＋</span>疑似晕倒</div>
+                <p class="card-desc">倒地 + 持续低运动量 3 秒升级为 critical 级告警，提示立即救援；同时向事件中心推送。</p>
+            </article>
+            <article class="card">
+                <div class="card-title"><span class="ei-icon alert">⛔</span>进入危险区域</div>
+                <p class="card-desc">手腕或脚踝关键点进入现场危险区域多边形 0.35 秒，触发撤离提醒，冷却 6 秒。</p>
+            </article>
+        </div>
+    </div>
+</section>
+
 <!-- ══════════════════════════════ CTA ══════════════════════════════ -->
 <section class="shell" style="padding-block: clamp(20px,3vw,40px)">
     <div class="cta-band reveal">

@@ -1158,3 +1158,72 @@ body {
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
 }
+
+/* --------------------------------------------------------------------------
+   流水线高危作业 · 扩展样式（lian_le_ma2 移植）
+   用来渲染 #capability 五步闭环 + #rules 6 类风险规则两个模块。
+   不依赖 certification.css，保留首页 CSS 加载顺序最小化。
+   -------------------------------------------------------------------------- */
+
+/* card-title / card-desc：填充 card 容器 */
+.card-title {
+    margin: 14px 0 0;
+    font-size: 18px;
+    font-weight: 680;
+    letter-spacing: -0.022em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card-desc {
+    margin: 8px 0 0;
+    font-size: 13.5px;
+    line-height: 1.66;
+    color: var(--text-2);
+    max-width: 74ch;
+}
+
+/* 风险规则图标徽章：用颜色映射严重等级 */
+.ei-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid transparent;
+    flex: none;
+    font-family: var(--font-sans, system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif);
+    line-height: 1;
+}
+
+.ei-icon.alert {
+    background: var(--w-50);
+    border-color: var(--w-100);
+    color: var(--w-700);
+}
+
+.ei-icon.critical {
+    background: var(--r-50);
+    border-color: var(--r-100);
+    color: var(--r-700);
+}
+
+.ei-icon.warn {
+    background: var(--y-50, #fff8e1);
+    border-color: var(--y-100, #ffe082);
+    color: var(--y-800, #b28704);
+}
+
+.ei-icon.good {
+    background: var(--g-50);
+    border-color: var(--g-100);
+    color: var(--g-700);
+}
+
+/* 给 .card 增加 padding（design-system 的 .card 默认无 padding，靠 .card-pad 提供） */
+.feat-grid > .card {
+    padding: clamp(18px, 2.2vw, 24px);
+}
