@@ -95,3 +95,10 @@ dataset/readme.md
 # Source tree under skill-build/ is tracked; the rebuilt ZIP is a binary
 # artifact regenerable from source via `python -c "import zipfile..."`.
 skill-build/*.zip
+
+# ---- 流水线高危作业扩展（lian_le_ma2 移植） ----
+# 模型权重（114MB 大文件不入库，部署时单独下载）
+models/*.pt
+# 运行时数据（事件库、告警截图、留档目录）
+data/safety/*.db
+data/safety/snapshots/

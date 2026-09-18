@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f8fafc">
+    <title>事件中心 · 流水线高危作业</title>
+    <link rel="stylesheet" href="/static/safety/design-system.css">
+    <link rel="stylesheet" href="/static/safety/console.css">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="topbar-inner">
+        <a href="/" class="back-link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6"/><path d="m11.5 6-6 6 6 6"/></svg>
+            返回首页
+        </a>
+        <div class="topbar-divider" aria-hidden="true"></div>
+        <div class="topbar-title">
+            <h1>事件中心</h1>
+            <span>{{ camera_name }} · 实时告警事件流</span>
+        </div>
+        <div class="topbar-meta">
+            <span class="pill mono">v{{ version }}</span>
+            <div class="pill good">● 在线</div>
+            <a href="/monitor" class="btn btn-ghost btn-sm">实时监测</a>
+        </div>
+    </div>
+</header>
+
+<main class="events-shell">
+
+    <section class="cards">
+        <article class="card card-stat">
+            <span class="label">累计告警</span>
+            <strong class="value" id="totalCount">--</strong>
+        </article>
+        <article class="card card-stat">
+            <span class="label">待确认</span>
+            <strong class="value" id="openCount">--</strong>
+        </article>
+        <article class="card card-stat">
+            <span class="label">主要风险</span>
+            <strong class="value value-sm" id="topRisk">--</strong>
+        </article>
+    </section>
+
+    <section class="panel">
+        <header class="panel-head">
+            <h2>告警事件</h2>
+            <div class="filter-bar">
+                <label class="filter-label">
+                    <input type="checkbox" id="onlyOpen" checked />
+                    仅看待确认
+                </label>
+            </div>
+        </header>
+
+        <div class="table-wrap">
+            <table class="events-table">
+                <thead>
+                    <tr>
+                        <th>时间</th>
+                        <th>工位</th>
+                        <th>风险类型</th>
+                        <th>等级</th>
+                        <th>人员</th>
+                        <th>详情</th>
+                        <th>状态</th>
+                    </tr>
+                </thead>
+                <tbody id="eventsBody"></tbody>
+            </table>
+            <div class="empty" id="emptyState" hidden>暂无告警事件</div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="foot foot-tight">
+    <div class="shell foot-inner">
+        <span class="foot-note">事件原始响应可调用 <code>/api/events?limit=100</code> 与 <code>/api/summary</code>。</span>
+    </div>
+</footer>
+
+<script src="/static/safety/console-ui.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,656 @@
+/* ==========================================================================
+   练了么 — operator console shared chrome (/coach and /certification)
+
+   One dark stage for the camera, light instrument panels around it. The stage
+   is where the athlete looks; the rails are where the operator looks.
+   ========================================================================== */
+
+body {
+    background: var(--bg);
+    background-image: radial-gradient(900px 420px at 82% -12%, rgba(47, 107, 255, 0.06), transparent 62%),
+        radial-gradient(760px 380px at 4% 4%, rgba(31, 198, 137, 0.05), transparent 66%);
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/* --------------------------------------------------------------------------
+   Top bar
+   -------------------------------------------------------------------------- */
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgba(248, 250, 252, 0.82);
+    -webkit-backdrop-filter: saturate(180%) blur(16px);
+    backdrop-filter: saturate(180%) blur(16px);
+    border-bottom: 1px solid var(--line);
+}
+
+.topbar-inner {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    height: 58px;
+    max-width: var(--shell-wide);
+    margin-inline: auto;
+    padding-inline: clamp(14px, 2.4vw, 26px);
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 32px;
+    padding: 0 11px 0 8px;
+    border-radius: var(--r-sm);
+    font-size: 13px;
+    font-weight: 560;
+    color: var(--text-2);
+    transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+    flex: none;
+}
+
+.back-link:hover {
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: var(--sh-xs);
+}
+
+.topbar-title {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    min-width: 0;
+}
+
+.topbar-title h1 {
+    font-size: 15.5px;
+    font-weight: 660;
+    letter-spacing: -0.024em;
+    white-space: nowrap;
+}
+
+.topbar-title span {
+    font-size: 12.5px;
+    color: var(--text-3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.topbar-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+    flex: none;
+}
+
+.topbar-divider {
+    width: 1px;
+    height: 22px;
+    background: var(--line-strong);
+    flex: none;
+}
+
+/* --------------------------------------------------------------------------
+   Pills — the runtime toggles these classes, so keep the contract:
+   .pill / .pill.good / .pill.warn / .pill.alert
+   -------------------------------------------------------------------------- */
+.pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 27px;
+    padding: 0 11px;
+    border-radius: var(--r-full);
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    color: var(--text-2);
+    font-size: 12px;
+    font-weight: 570;
+    letter-spacing: -0.004em;
+    white-space: nowrap;
+    box-shadow: var(--sh-xs);
+    transition: background var(--t) var(--ease), border-color var(--t) var(--ease),
+        color var(--t) var(--ease);
+}
+
+.pill.good {
+    background: var(--g-50);
+    border-color: var(--g-200);
+    color: var(--g-700);
+}
+
+.pill.warn {
+    background: var(--w-50);
+    border-color: var(--w-100);
+    color: var(--w-700);
+}
+
+.pill.alert {
+    background: var(--r-50);
+    border-color: var(--r-100);
+    color: var(--r-700);
+}
+
+.pill.mono {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0;
+}
+
+/* On the dark stage the same pills become glass. */
+.stage-overlay .pill,
+.video-overlay .pill {
+    background: rgba(10, 18, 30, 0.6);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-color: rgba(148, 174, 214, 0.22);
+    color: var(--stage-text);
+    box-shadow: none;
+    height: 28px;
+}
+
+.stage-overlay .pill.good,
+.video-overlay .pill.good {
+    background: rgba(6, 52, 38, 0.68);
+    border-color: rgba(31, 198, 137, 0.42);
+    color: #8df0c6;
+}
+
+.stage-overlay .pill.warn,
+.video-overlay .pill.warn {
+    background: rgba(64, 41, 4, 0.7);
+    border-color: rgba(251, 199, 90, 0.42);
+    color: #fcd894;
+}
+
+.stage-overlay .pill.alert,
+.video-overlay .pill.alert {
+    background: rgba(74, 20, 12, 0.72);
+    border-color: rgba(255, 157, 146, 0.44);
+    color: #ffb9b0;
+}
+
+/* --------------------------------------------------------------------------
+   Dark camera stage
+   -------------------------------------------------------------------------- */
+.video-stage,
+.video-box {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--r-2xl);
+    background: radial-gradient(90% 80% at 50% 22%, #16273c 0%, #0c1725 58%, #070d17 100%);
+    border: 1px solid rgba(148, 174, 214, 0.16);
+    box-shadow: 0 2px 6px rgba(9, 18, 33, 0.18), 0 32px 68px -26px rgba(9, 18, 33, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    isolation: isolate;
+    transition: box-shadow var(--t-slow) var(--ease), border-color var(--t-slow) var(--ease);
+}
+
+/* Tone ring driven by the live status badge — peripheral feedback the athlete
+   can read without looking away from their own body. */
+.video-stage[data-tone="good"],
+.video-box[data-tone="good"] {
+    border-color: rgba(31, 198, 137, 0.5);
+    box-shadow: 0 0 0 1px rgba(31, 198, 137, 0.18), 0 0 44px -6px rgba(31, 198, 137, 0.32),
+        0 32px 68px -26px rgba(9, 18, 33, 0.5);
+}
+
+.video-stage[data-tone="warn"],
+.video-box[data-tone="warn"] {
+    border-color: rgba(251, 199, 90, 0.5);
+    box-shadow: 0 0 0 1px rgba(251, 199, 90, 0.18), 0 0 44px -6px rgba(251, 199, 90, 0.34),
+        0 32px 68px -26px rgba(9, 18, 33, 0.5);
+}
+
+.video-stage[data-tone="alert"],
+.video-box[data-tone="alert"] {
+    border-color: rgba(255, 122, 106, 0.56);
+    box-shadow: 0 0 0 1px rgba(255, 122, 106, 0.2), 0 0 46px -4px rgba(240, 80, 63, 0.4),
+        0 32px 68px -26px rgba(9, 18, 33, 0.5);
+}
+
+.video-stage video,
+.video-box video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: transparent;
+}
+
+/* Standby art: a calm brief instead of a black rectangle before the camera
+   opens. Hidden as soon as the video element has a stream. */
+.stage-standby {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-align: center;
+    padding: 24px;
+    color: var(--stage-text-2);
+    transition: opacity var(--t-slow) var(--ease);
+}
+
+.video-stage.is-live .stage-standby,
+.video-box.is-live .stage-standby {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.stage-standby-mark {
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    background: rgba(148, 174, 214, 0.08);
+    border: 1px solid rgba(148, 174, 214, 0.18);
+    color: rgba(215, 227, 245, 0.8);
+}
+
+.stage-standby b {
+    font-size: 15px;
+    font-weight: 620;
+    color: var(--stage-text);
+    letter-spacing: -0.018em;
+}
+
+.stage-standby span {
+    font-size: 13px;
+    max-width: 30ch;
+    line-height: 1.6;
+}
+
+/* HUD layers. ghost-coach.css pins these above the overlay canvas at z-index 2. */
+.stage-overlay,
+.video-overlay {
+    position: absolute;
+    inset: 0;
+    padding: clamp(12px, 1.6vw, 18px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+    pointer-events: none;
+}
+
+.overlay-top,
+.overlay-bottom {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.overlay-bottom {
+    align-items: flex-end;
+}
+
+.overlay-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    min-width: 0;
+}
+
+.overlay-card {
+    padding: 11px 14px;
+    border-radius: var(--r-lg);
+    background: rgba(9, 17, 28, 0.62);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    backdrop-filter: blur(14px) saturate(160%);
+    border: 1px solid rgba(148, 174, 214, 0.18);
+    color: var(--stage-text);
+    min-width: 0;
+}
+
+.overlay-label {
+    display: block;
+    font-size: 10px;
+    font-weight: 640;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(215, 227, 245, 0.6);
+    margin-bottom: 2px;
+}
+
+.overlay-value {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.016em;
+    line-height: 1.42;
+}
+
+.overlay-sub {
+    margin-top: 3px;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: rgba(215, 227, 245, 0.6);
+}
+
+/* The rep readout — the one number that has to be readable across a room. */
+.overlay-count {
+    text-align: right;
+    padding: 10px 16px 12px;
+    min-width: 104px;
+}
+
+.overlay-count .overlay-value {
+    font-size: clamp(34px, 4vw, 46px);
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    line-height: 1.02;
+    font-variant-numeric: tabular-nums;
+    color: #fff;
+}
+
+.overlay-count.bump .overlay-value {
+    animation: rep-bump 420ms var(--spring);
+}
+
+@keyframes rep-bump {
+    0% {
+        transform: translateY(5px) scale(0.9);
+        opacity: 0.45;
+    }
+    100% {
+        transform: none;
+        opacity: 1;
+    }
+}
+
+.cue-card {
+    flex: 1 1 auto;
+    max-width: 62%;
+}
+
+/* --------------------------------------------------------------------------
+   Phase track — where the athlete is inside the movement
+   -------------------------------------------------------------------------- */
+.phase-track {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 9px;
+}
+
+.phase-track i {
+    flex: 1 1 0;
+    height: 3px;
+    border-radius: 3px;
+    background: rgba(148, 174, 214, 0.22);
+    font-style: normal;
+    transition: background var(--t) var(--ease), box-shadow var(--t) var(--ease);
+}
+
+.phase-track i.on {
+    background: var(--g-400);
+    box-shadow: 0 0 10px rgba(31, 198, 137, 0.7);
+}
+
+/* --------------------------------------------------------------------------
+   Rails / instrument panels
+   -------------------------------------------------------------------------- */
+.rail {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 0;
+}
+
+.rail-section {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-xl);
+    box-shadow: var(--sh-sm);
+    padding: 18px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 14px;
+    font-size: 12px;
+    font-weight: 660;
+    letter-spacing: 0.075em;
+    text-transform: uppercase;
+    color: var(--text-3);
+}
+
+.section-heading::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+}
+
+.field-label {
+    display: block;
+    margin: 0 0 7px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text-2);
+}
+
+.field-label + .select,
+.field-label + .input {
+    margin-bottom: 14px;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.button-grid .span-2 {
+    grid-column: span 2;
+}
+
+.status-copy {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--text-3);
+}
+
+/* Metrics */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+}
+
+.metric {
+    background: var(--surface);
+    padding: 13px 14px 14px;
+}
+
+.metric .metric-value {
+    margin-top: 3px;
+    font-size: 22px;
+}
+
+.metric:first-child .metric-value {
+    color: var(--g-600);
+}
+
+/* Live cue block */
+.feedback-main {
+    font-size: 15.5px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.5;
+    color: var(--text);
+}
+
+.feedback-sub {
+    margin-top: 6px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-3);
+}
+
+.cue-log {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    margin-top: 14px;
+    border-top: 1px solid var(--line);
+    padding-top: 12px;
+    max-height: 208px;
+    overflow-y: auto;
+}
+
+.cue-log:empty {
+    display: none;
+}
+
+.cue-log li {
+    display: flex;
+    gap: 9px;
+    align-items: flex-start;
+    padding: 7px 9px;
+    border-radius: var(--r-sm);
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--text-2);
+    background: var(--surface-2);
+    animation: cue-in 320ms var(--ease-out);
+}
+
+.cue-log li::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    margin-top: 7px;
+    border-radius: 50%;
+    background: var(--w-300);
+    flex: none;
+}
+
+.cue-log li:first-child {
+    background: var(--w-50);
+    color: var(--w-700);
+}
+
+@keyframes cue-in {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Summary */
+.summary-panel {
+    border-color: var(--g-200);
+    background: linear-gradient(168deg, var(--g-50), var(--surface) 58%);
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.summary-item {
+    padding: 12px 14px;
+    border-radius: var(--r-md);
+    background: var(--surface);
+    border: 1px solid var(--line);
+}
+
+.summary-item .metric-value {
+    margin-top: 3px;
+    font-size: 22px;
+}
+
+.summary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 14px;
+}
+
+.summary-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 9px 12px;
+    border-radius: var(--r-sm);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--text-2);
+}
+
+.summary-list li strong {
+    font-size: 12px;
+    font-weight: 640;
+    color: var(--r-600);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.error-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: var(--r-lg);
+    border: 1px solid var(--r-100);
+    background: var(--r-50);
+    color: var(--r-700);
+    font-size: 13.5px;
+    line-height: 1.55;
+}
+
+/* --------------------------------------------------------------------------
+   Narrow screens: the top bar sheds context, never identity or state
+   -------------------------------------------------------------------------- */
+@media (max-width: 760px) {
+    .topbar-inner {
+        gap: 10px;
+    }
+
+    .topbar-title span,
+    .topbar-meta .pill.mono {
+        display: none;
+    }
+
+    .topbar-meta {
+        min-width: 0;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Reduced motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    .overlay-count.bump .overlay-value,
+    .cue-log li {
+        animation: none;
+    }
+}

@@ -1,0 +1,106 @@
+{
+  "camera": {
+    "source": 0,
+    "name": "1号工位",
+    "width": 1280,
+    "height": 720,
+    "reconnect_seconds": 3.0
+  },
+  "model": {
+    "weights": "yolo11n-pose.pt",
+    "confidence": 0.45,
+    "keypoint_confidence": 0.35,
+    "device": "auto",
+    "tracker": "bytetrack.yaml"
+  },
+  "ppe_model": {
+    "enabled": true,
+    "weights": "models/hardhat_detection_yolo11_200_epochs_best_02032025.pt",
+    "confidence": 0.35,
+    "device": "auto",
+    "inference_interval_frames": 2
+  },
+  "alerts": {
+    "database": "data/safety/events.db",
+    "snapshot_directory": "data/safety/snapshots",
+    "save_snapshots": true,
+    "voice_enabled": true,
+    "voice_rate": 190,
+    "default_cooldown_seconds": 8.0
+  },
+  "rules": [
+    {
+      "id": "missing_safety_helmet",
+      "type": "no_helmet",
+      "enabled": true,
+      "name": "未佩戴安全头盔",
+      "severity": "high",
+      "helmet_classes": ["hardhat", "helmet"],
+      "head_classes": ["head"],
+      "no_helmet_classes": ["no_helmet", "no-hardhat"],
+      "duration_seconds": 2.0,
+      "cooldown_seconds": 12.0,
+      "message": "请注意，请立即正确佩戴安全头盔"
+    },
+    {
+      "id": "excessive_bend",
+      "type": "bend",
+      "enabled": true,
+      "name": "过度弯腰",
+      "severity": "high",
+      "threshold_degrees": 42.0,
+      "duration_seconds": 1.5,
+      "cooldown_seconds": 8.0,
+      "message": "请注意，搬运姿势不规范，请屈膝并保持背部挺直"
+    },
+    {
+      "id": "fall_detected",
+      "type": "fall",
+      "enabled": true,
+      "name": "疑似跌倒",
+      "severity": "critical",
+      "torso_threshold_degrees": 62.0,
+      "bbox_aspect_ratio": 1.15,
+      "duration_seconds": 0.8,
+      "cooldown_seconds": 12.0,
+      "message": "检测到人员疑似跌倒，请立即检查"
+    },
+    {
+      "id": "possible_drowsiness",
+      "type": "drowsy",
+      "enabled": true,
+      "name": "疑似睡着",
+      "severity": "high",
+      "head_drop_ratio": -0.08,
+      "motion_threshold_ratio": 0.012,
+      "duration_seconds": 12.0,
+      "cooldown_seconds": 30.0,
+      "message": "检测到人员长时间低头静止，请确认人员状态"
+    },
+    {
+      "id": "possible_unconsciousness",
+      "type": "unconscious",
+      "enabled": true,
+      "name": "疑似晕倒",
+      "severity": "critical",
+      "torso_threshold_degrees": 62.0,
+      "bbox_aspect_ratio": 1.05,
+      "motion_threshold_ratio": 0.015,
+      "duration_seconds": 3.0,
+      "cooldown_seconds": 20.0,
+      "message": "检测到人员倒地后持续静止，疑似晕倒，请立即救援"
+    },
+    {
+      "id": "danger_zone_entry",
+      "type": "danger_zone",
+      "enabled": true,
+      "name": "进入危险区域",
+      "severity": "critical",
+      "polygon": [[0.72, 0.12], [0.98, 0.12], [0.98, 0.92], [0.72, 0.92]],
+      "keypoints": ["left_wrist", "right_wrist", "left_ankle", "right_ankle"],
+      "duration_seconds": 0.35,
+      "cooldown_seconds": 6.0,
+      "message": "危险区域，请立即停止并撤离"
+    }
+  ]
+}

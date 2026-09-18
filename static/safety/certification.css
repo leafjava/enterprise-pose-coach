@@ -1,0 +1,554 @@
+/* ==========================================================================
+   练了么 — /certification
+   A three-step operator flow: identify, measure, certify. The candidate should
+   feel like they are being coached, not audited.
+   ========================================================================== */
+
+.cert-shell {
+    width: 100%;
+    max-width: 1080px;
+    margin-inline: auto;
+    padding: clamp(18px, 2.6vw, 30px) clamp(16px, 3vw, 28px) clamp(40px, 5vw, 72px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.cert-intro h2 {
+    font-size: clamp(23px, 2.8vw, 31px);
+    font-weight: 700;
+    letter-spacing: -0.034em;
+}
+
+.cert-intro p {
+    margin-top: 9px;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--text-2);
+    max-width: 78ch;
+}
+
+/* --------------------------------------------------------------------------
+   Stepper
+   -------------------------------------------------------------------------- */
+.stepper {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    padding: 14px 16px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-xl);
+    box-shadow: var(--sh-sm);
+}
+
+.stepper-item {
+    display: grid;
+    grid-template-columns: 26px minmax(0, 1fr);
+    gap: 10px;
+    align-items: center;
+    position: relative;
+    padding-right: 12px;
+}
+
+.stepper-item + .stepper-item::before {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: 50%;
+    width: 1px;
+    height: 26px;
+    transform: translateY(-50%);
+    background: var(--line-strong);
+}
+
+.stepper-dot {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--surface-2);
+    border: 1px solid var(--line-strong);
+    color: var(--text-4);
+    font-size: 11.5px;
+    font-weight: 680;
+    font-variant-numeric: tabular-nums;
+    transition: background var(--t) var(--ease), border-color var(--t) var(--ease),
+        color var(--t) var(--ease), box-shadow var(--t) var(--ease);
+    flex: none;
+}
+
+.stepper-item b {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 620;
+    letter-spacing: -0.016em;
+    color: var(--text-3);
+    transition: color var(--t) var(--ease);
+}
+
+.stepper-item span {
+    display: block;
+    font-size: 11.5px;
+    color: var(--text-4);
+    line-height: 1.4;
+}
+
+.stepper-item.active .stepper-dot {
+    background: var(--b-500);
+    border-color: var(--b-600);
+    color: #fff;
+    box-shadow: 0 0 0 4px var(--b-50);
+}
+
+.stepper-item.active b {
+    color: var(--text);
+}
+
+.stepper-item.done .stepper-dot {
+    background: var(--g-500);
+    border-color: var(--g-600);
+    color: #fff;
+}
+
+.stepper-item.done b {
+    color: var(--text-2);
+}
+
+/* --------------------------------------------------------------------------
+   Cards
+   -------------------------------------------------------------------------- */
+.card {
+    padding: clamp(20px, 2.6vw, 28px);
+}
+
+.step-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    height: 24px;
+    padding: 0 11px;
+    border-radius: var(--r-full);
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-line);
+    color: var(--b-700);
+    font-size: 11px;
+    font-weight: 640;
+    letter-spacing: 0.055em;
+}
+
+.card-title {
+    margin: 14px 0 0;
+    font-size: 20px;
+    font-weight: 680;
+    letter-spacing: -0.028em;
+}
+
+.card-desc {
+    margin: 7px 0 0;
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--text-2);
+    max-width: 74ch;
+}
+
+.hint {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 13px;
+    border-radius: var(--r-md);
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--text-2);
+}
+
+.btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   Step 1 — identity + item picker
+   -------------------------------------------------------------------------- */
+.field-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.pick-label {
+    margin-top: 20px;
+}
+
+.pick-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.pick {
+    position: relative;
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr);
+    gap: 12px;
+    align-items: center;
+    padding: 14px 16px;
+    text-align: left;
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--r-lg);
+    box-shadow: var(--sh-xs);
+    cursor: pointer;
+    transition: border-color var(--t) var(--ease), box-shadow var(--t) var(--ease),
+        background var(--t) var(--ease), transform var(--t-fast) var(--ease);
+}
+
+.pick:hover {
+    border-color: var(--b-300);
+    box-shadow: var(--sh-md);
+}
+
+.pick:active {
+    transform: translateY(1px);
+}
+
+.pick-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    display: grid;
+    place-items: center;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    color: var(--text-3);
+    transition: background var(--t) var(--ease), color var(--t) var(--ease),
+        border-color var(--t) var(--ease);
+}
+
+.pick-text {
+    min-width: 0;
+}
+
+.pick-text b {
+    display: block;
+    font-size: 14.5px;
+    font-weight: 640;
+    letter-spacing: -0.018em;
+    color: var(--text);
+}
+
+.pick-text span {
+    display: block;
+    font-size: 12px;
+    color: var(--text-3);
+    line-height: 1.45;
+}
+
+.pick .tick {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--b-500);
+    color: #fff;
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity var(--t) var(--ease), transform var(--t) var(--spring);
+}
+
+.pick.on {
+    border-color: var(--b-400);
+    background: linear-gradient(160deg, var(--b-50), var(--surface) 72%);
+    box-shadow: 0 0 0 3px rgba(47, 107, 255, 0.14), var(--sh-sm);
+}
+
+.pick.on .pick-icon {
+    background: var(--b-500);
+    border-color: var(--b-600);
+    color: #fff;
+}
+
+.pick.on .tick {
+    opacity: 1;
+    transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   Step 2 — detection stage
+   -------------------------------------------------------------------------- */
+.video-box {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.progress-panel {
+    padding: 14px 16px 15px;
+    border-radius: var(--r-lg);
+    background: rgba(9, 17, 28, 0.66);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    backdrop-filter: blur(14px) saturate(160%);
+    border: 1px solid rgba(148, 174, 214, 0.18);
+    color: var(--stage-text);
+}
+
+.progress-panel .row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.count {
+    font-size: clamp(30px, 3.6vw, 40px);
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    line-height: 1.02;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+}
+
+.count em {
+    font-style: normal;
+    font-size: 0.44em;
+    font-weight: 620;
+    letter-spacing: -0.01em;
+    color: rgba(215, 227, 245, 0.62);
+}
+
+.phase {
+    font-size: 12.5px;
+    font-weight: 560;
+    color: rgba(215, 227, 245, 0.66);
+}
+
+.progress-track {
+    position: relative;
+    height: 6px;
+    margin-top: 11px;
+    border-radius: var(--r-full);
+    background: rgba(148, 174, 214, 0.2);
+    overflow: hidden;
+}
+
+.progress-fill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 0;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--b-400), var(--g-400));
+    box-shadow: 0 0 14px rgba(31, 198, 137, 0.55);
+    transition: width var(--t-slow) var(--ease-out);
+}
+
+.cue-line {
+    margin-top: 11px;
+    font-size: 13.5px;
+    font-weight: 560;
+    line-height: 1.5;
+    color: var(--stage-text);
+}
+
+/* Circular target readout — the "how far to 50" glance */
+.ring {
+    position: relative;
+    width: 92px;
+    height: 92px;
+    flex: none;
+}
+
+.ring svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.ring .ring-bg {
+    fill: none;
+    stroke: rgba(148, 174, 214, 0.22);
+    stroke-width: 7;
+}
+
+.ring .ring-fg {
+    fill: none;
+    stroke: url(#ringGrad);
+    stroke-width: 7;
+    stroke-linecap: round;
+    stroke-dasharray: 245;
+    stroke-dashoffset: 245;
+    transition: stroke-dashoffset var(--t-slow) var(--ease-out);
+    filter: drop-shadow(0 0 6px rgba(31, 198, 137, 0.6));
+}
+
+.ring-label {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    text-align: center;
+}
+
+.ring-label b {
+    display: block;
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+}
+
+.ring-label span {
+    display: block;
+    font-size: 9.5px;
+    font-weight: 620;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: rgba(215, 227, 245, 0.62);
+}
+
+/* --------------------------------------------------------------------------
+   Step 3 — result + certificate
+   -------------------------------------------------------------------------- */
+.result-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 16px;
+}
+
+.result-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.result-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    display: grid;
+    place-items: center;
+    font-size: 28px;
+    background: var(--surface-2);
+    border: 1px solid var(--line-strong);
+    flex: none;
+}
+
+.result-icon.pass {
+    background: linear-gradient(160deg, var(--g-100), var(--g-50));
+    border-color: var(--g-300);
+    box-shadow: 0 0 0 5px var(--g-50);
+}
+
+.result-icon.fail {
+    background: linear-gradient(160deg, var(--w-100), var(--w-50));
+    border-color: var(--w-300);
+    box-shadow: 0 0 0 5px var(--w-50);
+}
+
+.result-head h2 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+.result-head p {
+    margin-top: 5px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-2);
+}
+
+.cert-frame {
+    padding: 14px;
+    border-radius: var(--r-2xl);
+    background: linear-gradient(160deg, var(--surface-2), var(--surface));
+    border: 1px solid var(--line);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.cert-canvas {
+    width: 100%;
+    height: auto;
+    border-radius: var(--r-md);
+    background: #fff;
+    box-shadow: var(--sh-lg);
+}
+
+/* --------------------------------------------------------------------------
+   Records
+   -------------------------------------------------------------------------- */
+.history-table td:nth-child(4),
+.history-table th:nth-child(4) {
+    font-variant-numeric: tabular-nums;
+}
+
+.history-table td:nth-child(5) {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-3);
+}
+
+.history-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 34px 20px;
+    text-align: center;
+    font-size: 13.5px;
+    color: var(--text-3);
+}
+
+.history-empty svg {
+    color: var(--text-4);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 760px) {
+    .field-row {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .stepper {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    .stepper-item + .stepper-item::before {
+        display: none;
+    }
+
+    .video-box {
+        aspect-ratio: 4 / 3;
+    }
+
+    .progress-panel .row {
+        align-items: center;
+    }
+
+    .ring {
+        width: 74px;
+        height: 74px;
+    }
+
+    .btn-row .btn {
+        flex: 1 1 100%;
+    }
+}

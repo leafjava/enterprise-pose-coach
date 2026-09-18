@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f8fafc">
+    <meta name="description" content="流水线高危作业 · 面向工业现场的 AI 姿态监测与实时语音预警系统。YOLO Pose + 独立 PPE 模型 + 6 类风险规则引擎，毫秒级语音预警 + 事件留档。">
+    <title>流水线高危作业 · 姿态监测与实时语音预警</title>
+    <link rel="stylesheet" href="/static/safety/design-system.css">
+    <link rel="stylesheet" href="/static/safety/home.css">
+    <link rel="stylesheet" href="/static/safety/console.css">
+    <link rel="stylesheet" href="/static/safety/certification.css">
+    <link rel="stylesheet" href="/static/safety/coach.css">
+    <link rel="stylesheet" href="/static/safety/ghost-coach.css">
+</head>
+<body>
+
+<!-- ══════════════════════ NAV ══════════════════════ -->
+<header class="nav">
+    <div class="shell nav-inner">
+        <a href="/" class="brand">
+            <span class="brand-mark" aria-hidden="true">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2 4 6v6c0 5 3.5 9.4 8 10 4.5-.6 8-5 8-10V6l-8-4z"/>
+                    <path d="m9 12 2 2 4-4"/>
+                </svg>
+            </span>
+            流水线高危作业
+            <span class="brand-sub">Pipeline Safety Monitor</span>
+        </a>
+
+        <nav class="nav-links" aria-label="页面导航">
+            <a href="#capability">能力闭环</a>
+            <a href="#rules">6 类规则</a>
+            <a href="#engine">识别引擎</a>
+            <a href="#privacy">离线与隐私</a>
+        </nav>
+
+        <div class="nav-cta">
+            <a href="/monitor" class="btn btn-ghost">实时监测</a>
+            <a href="/events" class="btn btn-primary">
+                事件中心
+                <svg class="arw" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13"/><path d="m12.5 6 6 6-6 6"/></svg>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main>
+
+<!-- ══════════════════════ HERO ══════════════════════ -->
+<section class="hero">
+    <div class="bg-aurora" aria-hidden="true"></div>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <div class="shell hero-inner">
+        <div class="hero-copy">
+            <span class="hero-badge">
+                <span class="dot" aria-hidden="true"></span>
+                工业现场 AI · <b>视觉 + 语音 双链路</b>
+            </span>
+
+            <h1>作业现场，<br><em class="grad-text">看得见的预警</em></h1>
+
+            <p class="hero-sub">实时监测 · 实时语音 · 实时留档 · 离线优先</p>
+
+            <p class="hero-copytext">
+                通过固定摄像头识别作业人员的 17 点姿态，独立 PPE 模型判定安全帽佩戴情况，
+                配合 <strong>6 类风险规则引擎</strong> 在违规动作持续达到阈值后立即语音提醒，
+                并将事件完整留档供安全员复核。<strong>全部本地推理，原始视频不长期保存</strong>。
+            </p>
+
+            <div class="hero-actions">
+                <a href="/monitor" class="btn btn-primary btn-lg">
+                    实时监测体验
+                    <svg class="arw" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13"/><path d="m12.5 6 6 6-6 6"/></svg>
+                </a>
+                <a href="/events" class="btn btn-success btn-lg">
+                    事件中心
+                    <svg class="arw" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13"/><path d="m12.5 6 6 6-6 6"/></svg>
+                </a>
+            </div>
+
+            <div class="hero-meta">
+                <span><b>{{ rules_count }}</b> 个已启用规则 / 共 {{ rules_total }} 个</span>
+                <span><b>{{ camera_name }}</b></span>
+                <span>v{{ version }}</span>
+            </div>
+        </div>
+
+        <aside class="hero-visual" aria-label="实时告警预览">
+            <div class="hv-chrome">
+                <div class="hv-chip">● 监测中</div>
+                <div class="hv-chip">{{ camera_name }}</div>
+                <div class="hv-chip mono">v{{ version }}</div>
+            </div>
+            <div class="hv-canvas-wrap">
+                <div class="hv-placeholder" aria-hidden="true">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="6" width="13" height="12" rx="2"/>
+                        <path d="m22 8-6 4 6 4z"/>
+                    </svg>
+                    <span>实时摄像头预览 · 进入 /monitor 启动</span>
+                </div>
+            </div>
+            <div class="hv-hud">
+                <div class="hv-hud-top">
+                    <div class="hv-stat">
+                        <span class="hv-count" data-stat="critical">--</span>
+                        <span class="label">严重告警</span>
+                    </div>
+                    <div class="hv-stat">
+                        <span class="hv-count" data-stat="high">--</span>
+                        <span class="label">高风险</span>
+                    </div>
+                    <div class="hv-stat">
+                        <span class="hv-count" data-stat="open">--</span>
+                        <span class="label">待确认</span>
+                    </div>
+                </div>
+                <div class="hv-divider"></div>
+                <div class="hv-foot">
+                    <span class="hv-cue">上一次告警：<em id="lastAlert">暂无</em></span>
+                </div>
+            </div>
+        </aside>
+    </div>
+</section>
+
+<!-- ══════════════════════ 能力闭环 ══════════════════════ -->
+<section class="section" id="capability">
+    <div class="shell">
+        <header class="section-head">
+            <span class="eyebrow">处理流程</span>
+            <h2>从画面到告警的五步闭环</h2>
+            <p>视频采集 → 人员 / 姿态 / PPE 检测 → 风险规则判断 → 持续时间与运动量确认 → 语音预警与事件留档</p>
+        </header>
+
+        <div class="lanes">
+            <article class="lane">
+                <div class="lane-head"><span class="lane-tag">01</span><h3>视频采集</h3></div>
+                <ol class="lane-steps">
+                    <li class="lane-step"><span>USB / 内置 / RTSP / 视频文件</span></li>
+                    <li class="lane-step"><span>断流检测 + 自动重连</span></li>
+                    <li class="lane-step"><span>按工位归一化坐标</span></li>
+                </ol>
+            </article>
+            <article class="lane">
+                <div class="lane-head"><span class="lane-tag">02</span><h3>检测 + 跟踪</h3></div>
+                <ol class="lane-steps">
+                    <li class="lane-step"><span>YOLO Pose 17 关键点</span></li>
+                    <li class="lane-step"><span>ByteTrack 跨帧 ID</span></li>
+                    <li class="lane-step"><span>独立 PPE 模型（按帧间隔异步）</span></li>
+                </ol>
+            </article>
+            <article class="lane">
+                <div class="lane-head"><span class="lane-tag">03</span><h3>规则判断</h3></div>
+                <ol class="lane-steps">
+                    <li class="lane-step"><span>6 类风险：bend / fall / zone / helmet / drowsy / unconscious</span></li>
+                    <li class="lane-step"><span>二维投影几何（多边形 + 角度）</span></li>
+                    <li class="lane-step"><span>运动量比较防误报</span></li>
+                </ol>
+            </article>
+            <article class="lane">
+                <div class="lane-head"><span class="lane-tag">04</span><h3>去抖确认</h3></div>
+                <ol class="lane-steps">
+                    <li class="lane-step"><span>持续时长门控（duration_seconds）</span></li>
+                    <li class="lane-step"><span>同类告警冷却（cooldown_seconds）</span></li>
+                    <li class="lane-step"><span>跟踪丢失复位（expire_tracks）</span></li>
+                </ol>
+            </article>
+            <article class="lane">
+                <div class="lane-head"><span class="lane-tag">05</span><h3>语音 + 留档</h3></div>
+                <ol class="lane-steps">
+                    <li class="lane-step"><span>macOS say / Linux espeak / Windows SAPI</span></li>
+                    <li class="lane-step"><span>队列化异步播报</span></li>
+                    <li class="lane-step"><span>SQLite + 可选告警截图</span></li>
+                </ol>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════ 6 类规则 ══════════════════════ -->
+<section class="section" id="rules">
+    <div class="shell">
+        <header class="section-head">
+            <span class="eyebrow">规则引擎</span>
+            <h2>开箱即用的 6 类风险规则</h2>
+            <p>每条规则独立配置阈值 / 持续时长 / 冷却时间 / 严重等级，可由安全员现场校准。</p>
+        </header>
+
+        <div class="feat-grid">
+            <article class="card">
+                <div class="card-title"><span class="ei-icon alert">⚠</span>未佩戴安全头盔</div>
+                <p class="card-desc">检测到人员头部但未在头部附近找到安全帽；或 PPE 模型直接输出 no_helmet 标签。持续 2 秒触发告警，冷却 12 秒。</p>
+            </article>
+            <article class="card">
+                <div class="card-title"><span class="ei-icon alert">⤵</span>过度弯腰</div>
+                <p class="card-desc">躯干轴相对竖直方向夹角 ≥ 42° 持续 1.5 秒，触发搬运姿势告警，提示屈膝并保持背部挺直。</p>
+            </article>
+            <article class="card">
+                <div class="card-title"><span class="ei-icon critical">↓</span>疑似跌倒</div>
+                <p class="card-desc">躯干角度 ≥ 62° 且人员框宽高比 ≥ 1.15 持续 0.8 秒，触发 critical 级告警，提示立即检查。</p>
+            </article>
+            <article class="card">
+                <div class="card-title"><span class="ei-icon warn">☕</span>疑似睡着</div>
+                <p class="card-desc">头部下垂且躯干运动量持续低于阈值 12 秒，触发高风险告警，提醒安全员确认人员状态。</p>
+            </article>
+            <article class="card">
+                <div class="card-title"><span class="ei-icon critical">＋</span>疑似晕倒</div>
+                <p class="card-desc">倒地 + 持续低运动量 3 秒升级为 critical 级告警，提示立即救援；同时向事件中心推送。</p>
+            </article>
+            <article class="card">
+                <div class="card-title"><span class="ei-icon alert">⛔</span>进入危险区域</div>
+                <p class="card-desc">手腕或脚踝关键点进入现场危险区域多边形 0.35 秒，触发撤离提醒，冷却 6 秒。</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════ 识别引擎 ══════════════════════ -->
+<section class="section" id="engine">
+    <div class="shell">
+        <header class="section-head">
+            <span class="eyebrow">识别引擎</span>
+            <h2>两个模型，三层去抖</h2>
+            <p>YOLO Pose 提供 17 关键点，独立 PPE 模型按帧间隔异步加载；规则引擎持续时长 + 同类冷却 + 跟踪丢失复位三层去抖。</p>
+        </header>
+
+        <div class="engine">
+            <article class="engine-item">
+                <span class="engine-num">01</span>
+                <h3>Ultralytics YOLO Pose</h3>
+                <p>COCO 17 关键点格式 + ByteTrack 跨帧 ID，单帧推理延迟通常 < 30ms（GPU）/ < 80ms（CPU）。</p>
+            </article>
+            <article class="engine-item">
+                <span class="engine-num">02</span>
+                <h3>独立 PPE 模型</h3>
+                {% if ppe_enabled %}
+                <p>已加载 <code>{{ ppe_weights }}</code>，按帧间隔（默认 2 帧）异步推理，不抢主路带宽。</p>
+                {% else %}
+                <p>当前未启用 PPE 模型，<code>no_helmet</code> 规则不会触发。如需启用，请在 <code>config/default.json</code> 中设置 <code>ppe_model.enabled=true</code>。</p>
+                {% endif %}
+            </article>
+            <article class="engine-item">
+                <span class="engine-num">03</span>
+                <h3>6 类规则引擎</h3>
+                <p>几何 + 运动量双重判定，每条规则独立 duration / cooldown 配置，杜绝瞬时误报。</p>
+            </article>
+            <article class="engine-item">
+                <span class="engine-num">04</span>
+                <h3>队列化语音播报</h3>
+                <p>macOS <code>say</code> / Linux <code>espeak</code> / Windows PowerShell SAPI 自动 fallback，后台线程异步播放不阻塞检测循环。</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════ 离线与隐私 ══════════════════════ -->
+<section class="section" id="privacy">
+    <div class="shell">
+        <header class="section-head">
+            <span class="eyebrow">部署特性</span>
+            <h2>离线优先 · 隐私默认</h2>
+            <p>整套系统本地推理，原始视频默认不长期保存；只有脱敏后的事件进 SQLite 数据库，可按需配置截图策略。</p>
+        </header>
+
+        <div class="feat-grid">
+            <article class="card">
+                <div class="card-title"><span class="ei-icon good">✓</span>本地推理</div>
+                <p class="card-desc">YOLO Pose + PPE 模型全部在用户电脑或厂区边缘盒子上运行，不需要上传任何画面到云端。</p>
+            </article>
+            <article class="card">
+                <div class="card-title"><span class="ei-icon good">✓</span>事件留档</div>
+                <p class="card-desc">SQLite 记录工位 / 时间 / 跟踪编号 / 风险类型 / 持续时长，可由 <code>/api/events</code> 查询与确认。</p>
+            </article>
+            <article class="card">
+                <div class="card-title"><span class="ei-icon good">✓</span>配置驱动</div>
+                <p class="card-desc">所有阈值、区域、时长、冷却时间均在 <code>config/default.json</code> 中声明，部署新工位只需改 JSON。</p>
+            </article>
+            <article class="card">
+                <div class="card-title"><span class="ei-icon good">✓</span>快照可选</div>
+                <p class="card-desc"><code>alerts.save_snapshots</code> 默认开启，仅在告警触发瞬间保存带叠加层的画面供安全员复核。</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════ CTA ══════════════════════ -->
+<section class="cta-band">
+    <div class="shell cta-band-inner">
+        <div>
+            <h2>现场已经具备摄像头？</h2>
+            <p>把现有 USB / RTSP 摄像头接入，10 分钟内就能看到第一条告警。</p>
+        </div>
+        <div class="cta-actions">
+            <a href="/monitor" class="btn btn-primary btn-lg">进入实时监测</a>
+            <a href="/events" class="btn btn-ghost btn-lg">查看事件中心</a>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer class="foot">
+    <div class="shell foot-inner">
+        <span class="foot-brand">流水线高危作业 · v{{ version }}</span>
+        <span class="foot-note">系统用于辅助风险预警，不能替代安全联锁、急停装置和人工安全管理。</span>
+    </div>
+</footer>
+
+<script src="/static/safety/home.js" defer></script>
+<script>
+(async function bootstrapHome() {
+  try {
+    const [summary, events] = await Promise.all([
+      fetch('/api/summary').then(r => r.json()).catch(() => null),
+      fetch('/api/events?limit=50').then(r => r.json()).catch(() => []),
+    ]);
+    if (!summary) return;
+    document.querySelector('[data-stat="open"]').textContent = summary.unacknowledged ?? 0;
+    const buckets = { critical: 0, high: 0 };
+    for (const e of events) {
+      if (!e.acknowledged && e.severity && buckets[e.severity] !== undefined) buckets[e.severity] += 1;
+    }
+    document.querySelector('[data-stat="critical"]').textContent = buckets.critical;
+    document.querySelector('[data-stat="high"]').textContent = buckets.high;
+    if (events[0]) {
+      const last = events[0];
+      document.getElementById('lastAlert').textContent =
+        `${last.rule_name} · ${new Date(last.created_at).toLocaleTimeString()}`;
+    } else {
+      document.getElementById('lastAlert').textContent = '暂无告警';
+    }
+  } catch (err) {
+    console.warn('首页统计刷新失败：', err);
+  }
+})();
+</script>
+</body>
+</html>

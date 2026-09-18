@@ -1,5 +1,6 @@
 ﻿import json
 import os
+import logging
 import base64
 import time
 import hashlib
@@ -27,12 +28,24 @@ from src.score import Score
 from src.model import ST_GCN
 from src.local_llm import chat_with_ollama_model
 
+from src.pipeline_safety.config import load_config as load_safety_config, ConfigError
+from src.pipeline_safety.safety_web import register_safety
+
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'
 app.config['RESULT_FOLDER'] = 'static/results'  # 新增：保存可视化图像的目录
 app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 os.makedirs(app.config['RESULT_FOLDER'], exist_ok=True)  # 确保目录存在
+
+# ───────────── 流水线高危作业扩展（lian_le_ma2 移植） ─────────────
+# 加载独立的 config/safety/default.json，失败时只打印日志不阻塞主应用启动。
+try:
+    SAFETY_CONFIG = load_safety_config("config/safety/default.json")
+    register_safety(app, SAFETY_CONFIG)
+except ConfigError as exc:
+    logging.getLogger(__name__).warning("流水线高危作业扩展未挂载：%s", exc)
+    SAFETY_CONFIG = None
 
 def _resolve_runtime_dir():
     configured_runtime_dir = os.getenv("POSE_RUNTIME_DIR")

@@ -1,0 +1,408 @@
+/* ==========================================================================
+   流水线高危作业 — /monitor 工作台样式
+   作用：补齐 monitor.html 用到的样式（.rules-list / .rule-row / .side-panel /
+         .panel-head / .status-list / .btn-sm / .badge / .cue-* / .foot-* 等）。
+   设计原则：保持 console.css 的视觉语言（深色舞台 + 浅色面板），不重复声明
+             已在 design-system.css / console.css / coach.css 中定义的 token 与基础类。
+   ========================================================================== */
+
+/* ---------- 顶部 topbar 补充 ---------- */
+.topbar-meta {
+    gap: 8px;
+}
+
+.pill.warn {
+    /* pill.warn 已在 console.css 里定义，这里显式兜底以防 cache miss */
+    background: var(--w-50);
+    color: var(--w-700);
+}
+
+.pill.alert {
+    background: var(--r-50);
+    color: var(--r-700);
+}
+
+.pill.good {
+    background: var(--g-50);
+    color: var(--g-700);
+}
+
+/* ---------- 按钮尺寸补充 ---------- */
+.btn-sm {
+    height: 30px;
+    padding: 0 12px;
+    font-size: 12.5px;
+    border-radius: var(--r-sm);
+}
+
+/* ---------- 工作台双列 ---------- */
+.app-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 18px;
+    max-width: var(--shell-wide);
+    margin: 22px auto 28px;
+    padding-inline: clamp(14px, 2.4vw, 26px);
+}
+
+@media (max-width: 960px) {
+    .app-shell {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* ---------- 舞台区 ---------- */
+.stage {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.stage-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.stage-title {
+    font-size: 18px;
+    font-weight: 660;
+    letter-spacing: -0.022em;
+    margin: 0 0 4px;
+}
+
+.stage-copy {
+    margin: 0;
+    font-size: 13.5px;
+    color: var(--text-3);
+    line-height: 1.55;
+    max-width: 56ch;
+}
+
+.stage-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.stage-actions-bar {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+
+@media (max-width: 720px) {
+    .stage-actions-bar {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* ---------- 视频舞台叠加层 ---------- */
+.stage-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 14px;
+}
+
+.overlay-top {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.overlay-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+}
+
+.cue-line {
+    pointer-events: auto;
+    background: rgba(10, 18, 30, 0.62);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(148, 174, 214, 0.22);
+    color: #e8efff;
+    border-radius: var(--r-md);
+    padding: 7px 12px;
+    font-size: 13px;
+    font-weight: 560;
+    line-height: 1.4;
+    max-width: min(80%, 640px);
+}
+
+.cue-line.secondary {
+    background: rgba(10, 18, 30, 0.42);
+    color: #c5d2e8;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* ---------- 侧栏 + 面板 ---------- */
+.side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 0;
+}
+
+.panel-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.panel-head h3 {
+    font-size: 14px;
+    font-weight: 640;
+    margin: 0;
+    letter-spacing: -0.012em;
+}
+
+/* ---------- 活跃规则列表 ---------- */
+.rules-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.rule-row {
+    padding: 10px 12px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: border-color var(--t-fast) var(--ease);
+}
+
+.rule-row:hover {
+    border-color: var(--line-strong);
+}
+
+.rule-row-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.rule-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.rule-row-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    font-size: 11.5px;
+    color: var(--text-3);
+}
+
+/* ---------- 严重等级徽章 ---------- */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    height: 20px;
+    padding: 0 8px;
+    border-radius: var(--r-full);
+    font-size: 10.5px;
+    font-weight: 660;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+}
+
+.badge-high {
+    background: var(--w-50);
+    color: var(--w-700);
+    border-color: var(--w-100);
+}
+
+.badge-critical {
+    background: var(--r-50);
+    color: var(--r-700);
+    border-color: var(--r-100);
+}
+
+.badge-medium {
+    background: var(--surface);
+    color: var(--text-2);
+    border-color: var(--line-strong);
+}
+
+.badge-low {
+    background: var(--g-50);
+    color: var(--g-700);
+    border-color: var(--g-200);
+}
+
+/* 行等级强调色 */
+.rule-critical {
+    border-left: 3px solid var(--r-500);
+}
+
+.rule-high {
+    border-left: 3px solid var(--w-500);
+}
+
+.rule-medium {
+    border-left: 3px solid var(--line-strong);
+}
+
+.rule-low {
+    border-left: 3px solid var(--g-500);
+}
+
+/* ---------- 系统状态列表 ---------- */
+.status-list {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+
+.status-list > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 6px 10px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-sm);
+}
+
+.status-list dt {
+    font-size: 11.5px;
+    color: var(--text-3);
+    margin: 0;
+}
+
+.status-list dd {
+    margin: 0;
+    font-size: 12.5px;
+    font-weight: 580;
+    color: var(--text);
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+/* ---------- 最近告警条目 ---------- */
+.cue-log {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 240px;
+    overflow-y: auto;
+}
+
+.cue-empty {
+    color: var(--text-3);
+    font-size: 12.5px;
+    text-align: center;
+    padding: 18px 8px;
+    background: var(--surface);
+    border: 1px dashed var(--line);
+    border-radius: var(--r-md);
+}
+
+.cue-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 7px 10px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-sm);
+    font-size: 12.5px;
+}
+
+.cue-item.cue-critical {
+    border-left: 3px solid var(--r-500);
+}
+
+.cue-item.cue-high {
+    border-left: 3px solid var(--w-500);
+}
+
+.cue-item.cue-medium {
+    border-left: 3px solid var(--line-strong);
+}
+
+.cue-item.cue-low {
+    border-left: 3px solid var(--g-500);
+}
+
+.cue-name {
+    color: var(--text);
+    font-weight: 560;
+}
+
+.cue-time {
+    color: var(--text-3);
+    font-size: 11.5px;
+    font-family: var(--font-mono);
+}
+
+/* ---------- footer 紧凑变体 ---------- */
+.foot-tight {
+    margin-top: 0;
+    padding-block: 14px;
+    border-top: 1px solid var(--line);
+}
+
+.foot-link {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-3);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--line-strong);
+}
+
+.foot-link:hover {
+    color: var(--text);
+    border-bottom-color: var(--text-2);
+}
+
+/* ---------- metric 小尺寸兜底 ---------- */
+.metric {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 12px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+}
+
+.metric-label {
+    font-size: 11.5px;
+    color: var(--text-3);
+}
+
+.metric-value {
+    font-size: 18px;
+    font-weight: 640;
+    color: var(--text);
+    letter-spacing: -0.018em;
+}
