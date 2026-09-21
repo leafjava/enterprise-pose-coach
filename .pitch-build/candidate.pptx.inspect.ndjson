@@ -1,0 +1,190 @@
+{"kind":"deck","id":"pr/4rsdbs","name":"Deck"}
+{"kind":"layout","layoutId":"05cfac9d-4d08-4788-af5b-6b955785faa8","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"6e2074aa-23d7-4373-a43b-6308e87c24c0","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/80mjiw","slide":1,"title":"01","textShapes":5}
+{"kind":"textbox","id":"sh/zad0r6d0","slide":1,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[1172,34,45,22]}
+{"kind":"textbox","id":"sh/0b610bul","slide":1,"text":"练了么","textPreview":"练了么","textChars":3,"textLines":1,"bbox":[64,78,1120,92]}
+{"kind":"textbox","id":"sh/1cfitgv6","slide":1,"text":"让每一次岗位训练，\n都有人看动作","textPreview":"让每一次岗位训练， | 都有人看动作","textChars":16,"textLines":2,"bbox":[64,225,1120,184]}
+{"kind":"textbox","id":"sh/mdoj2lcr","slide":1,"text":"面向制造与仓储的 AI 动作教练","textPreview":"面向制造与仓储的 AI 动作教练","textChars":16,"textLines":1,"bbox":[68,468,1080,52]}
+{"kind":"textbox","id":"sh/nex0vqdw","slide":1,"text":"2026 全球智能体大赛   A 赛道 · 智能体搭建赛","textPreview":"2026 全球智能体大赛   A 赛道 · 智能体搭建赛","textChars":28,"textLines":1,"bbox":[68,622,1110,35]}
+{"kind":"notes","id":"nt/80mjiw","slide":1,"text":"各位评委好，我们是练了么。员工看完培训视频以后，动作到底做对没有？我们希望让每一次岗位训练，都有人看动作。员工用摄像头练习，系统当场给出具体指导，主管看到训练记录和需要复训的地方。\n\n依据：项目 Web 主流程及本次商业定位。"}
+{"kind":"slide","id":"sl/mnq3kj","slide":2,"title":"培训结束以后，谁来确认动作做对了？","textShapes":12}
+{"kind":"textbox","id":"sh/g321c7e9","slide":2,"text":"培训结束以后，谁来确认动作做对了？","textPreview":"培训结束以后，谁来确认动作做对了？","textChars":17,"textLines":1,"bbox":[64,72,1152,90]}
+{"kind":"textbox","id":"sh/v2t0jmxo","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1172,34,45,22]}
+{"kind":"textbox","id":"sh/u1kzahw3","slide":2,"text":"员工","textPreview":"员工","textChars":2,"textLines":1,"bbox":[64,220,340,55]}
+{"kind":"textbox","id":"sh/t0bihcfi","slide":2,"text":"需要当场知道怎么改","textPreview":"需要当场知道怎么改","textChars":9,"textLines":1,"bbox":[64,292,340,55]}
+{"kind":"textbox","id":"sh/8z2h87ex","slide":2,"text":"“膝盖往外打开”\n比一条笼统的评分更有用","textPreview":"“膝盖往外打开” | 比一条笼统的评分更有用","textChars":20,"textLines":2,"bbox":[64,362,340,130]}
+{"kind":"textbox","id":"sh/7yt0f2xc","slide":2,"text":"班组长","textPreview":"班组长","textChars":3,"textLines":1,"bbox":[464,220,340,55]}
+{"kind":"textbox","id":"sh/6xkz6xwr","slide":2,"text":"需要逐个看动作","textPreview":"需要逐个看动作","textChars":7,"textLines":1,"bbox":[464,292,340,55]}
+{"kind":"textbox","id":"sh/dwfitwfm","slide":2,"text":"示范以后，还要反复纠正\n训练人数增加，观察负担增加","textPreview":"示范以后，还要反复纠正 | 训练人数增加，观察负担增加","textChars":25,"textLines":2,"bbox":[464,362,340,130]}
+{"kind":"textbox","id":"sh/svm1kre1","slide":2,"text":"企业","textPreview":"企业","textChars":2,"textLines":1,"bbox":[864,220,352,55]}
+{"kind":"textbox","id":"sh/e9cnyd4j","slide":2,"text":"需要知道谁该复训","textPreview":"需要知道谁该复训","textChars":8,"textLines":1,"bbox":[864,292,352,55]}
+{"kind":"textbox","id":"sh/falo7i54","slide":2,"text":"参加过培训只是起点\n动作记录才能支持后续跟进","textPreview":"参加过培训只是起点 | 动作记录才能支持后续跟进","textChars":22,"textLines":2,"bbox":[864,362,352,130]}
+{"kind":"textbox","id":"sh/gbu50nm9","slide":2,"text":"同样的观察与记录任务，反复出现在入职、转岗和在岗训练中","textPreview":"同样的观察与记录任务，反复出现在入职、转岗和在岗训练中","textChars":27,"textLines":1,"bbox":[64,654,1152,45]}
+{"kind":"notes","id":"nt/mnq3kj","slide":2,"text":"想象一位刚入职的仓储员工。视频看过了，要求也听过了，真正开始做动作时，他依然需要有人提醒。班组长要逐个看、反复讲，企业还需要留下培训依据。这个断点会出现在入职、转岗和复训里。我们的切口，就是其中能够按标准观察和记录的动作。\n\n依据：场景假设，来自项目 PRD 与用户提供的制造、仓储场景，尚非客户访谈结论。"}
+{"kind":"slide","id":"sl/lvxdzd","slide":3,"title":"员工练一遍，主管拿到一份记录","textShapes":9}
+{"kind":"textbox","id":"sh/axsvqxoz","slide":3,"text":"员工练一遍，主管拿到一份记录","textPreview":"员工练一遍，主管拿到一份记录","textChars":14,"textLines":1,"bbox":[64,72,1152,90]}
+{"kind":"textbox","id":"sh/xk3elcna","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1172,34,45,22]}
+{"kind":"textbox","id":"sh/nu1cf258","slide":3,"text":"01  选择训练项目","textPreview":"01  选择训练项目","textChars":10,"textLines":1,"bbox":[898,213,318,50]}
+{"kind":"textbox","id":"sh/mtsvmxon","slide":3,"text":"动作和次数由任务约定","textPreview":"动作和次数由任务约定","textChars":10,"textLines":1,"bbox":[898,274,318,70]}
+{"kind":"textbox","id":"sh/9wjehsne","slide":3,"text":"02  实时指导","textPreview":"02  实时指导","textChars":8,"textLines":1,"bbox":[898,361,318,50]}
+{"kind":"textbox","id":"sh/ovadon6t","slide":3,"text":"阶段、纠错、完整周期计数","textPreview":"阶段、纠错、完整周期计数","textChars":12,"textLines":1,"bbox":[898,422,318,70]}
+{"kind":"textbox","id":"sh/zq1cbi5c","slide":3,"text":"03  留下训练记录","textPreview":"03  留下训练记录","textChars":10,"textLines":1,"bbox":[898,507,318,50]}
+{"kind":"textbox","id":"sh/ep8vidor","slide":3,"text":"会话总结和认证记录","textPreview":"会话总结和认证记录","textChars":9,"textLines":1,"bbox":[898,568,318,60]}
+{"kind":"textbox","id":"sh/s32ls7yl","slide":3,"text":"既有产品界面演示。企业任务分发与台账回写列入接入计划","textPreview":"既有产品界面演示。企业任务分发与台账回写列入接入计划","textChars":26,"textLines":1,"bbox":[64,654,1152,45]}
+{"kind":"image","id":"im/1wru1sna","slide":3,"name":"","alt":"练了么既有产品界面，Ghost Coach 可视化演示，非真人模型测试","bbox":[64,195,790,444]}
+{"kind":"notes","id":"nt/lvxdzd","slide":3,"text":"练了么已经有 Web 实时教练和体能评估页面。员工选择动作项目，用摄像头练习，系统返回阶段、次数和纠错提示，结束后生成会话总结。这里展示的是既有产品的界面演示。企业任务分发与台账回写将在平台接入时补齐。我们的交付单位，是一项有过程、有结果的训练任务。\n\n依据：web_app.py /api/session/start、frame、stop 与 /api/certifications；原版产品截图。"}
+{"kind":"slide","id":"sl/ddtkgy","slide":4,"title":"膝盖往外打开，指导就在动作发生时","textShapes":7}
+{"kind":"textbox","id":"sh/xkzit83q","slide":4,"text":"膝盖往外打开，指导就在动作发生时","textPreview":"膝盖往外打开，指导就在动作发生时","textChars":16,"textLines":1,"bbox":[64,72,1152,90]}
+{"kind":"textbox","id":"sh/axojyt4f","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1172,34,45,22]}
+{"kind":"textbox","id":"sh/knq143mh","slide":4,"text":"看见具体错误","textPreview":"看见具体错误","textChars":6,"textLines":1,"bbox":[969,216,250,70]}
+{"kind":"textbox","id":"sh/loz2x832","slide":4,"text":"膝盖与躯干\n直接在画面中提示","textPreview":"膝盖与躯干 | 直接在画面中提示","textChars":14,"textLines":2,"bbox":[969,298,250,85]}
+{"kind":"textbox","id":"sh/yl8j2t4b","slide":4,"text":"完成完整周期","textPreview":"完成完整周期","textChars":6,"textLines":1,"bbox":[969,420,250,70]}
+{"kind":"textbox","id":"sh/jmh0vylw","slide":4,"text":"规则判断阶段\n累计动作次数","textPreview":"规则判断阶段 | 累计动作次数","textChars":13,"textLines":2,"bbox":[969,502,250,85]}
+{"kind":"textbox","id":"sh/srq18nmd","slide":4,"text":"可视化界面演示","textPreview":"可视化界面演示","textChars":7,"textLines":1,"bbox":[971,625,245,40]}
+{"kind":"image","id":"im/udgbetk3","slide":4,"name":"","alt":"练了么既有产品界面，Ghost Coach 可视化演示，非真人模型测试","bbox":[64,190,864,486]}
+{"kind":"notes","id":"nt/ddtkgy","slide":4,"text":"请看这个深蹲示例。界面把需要调整的膝盖和躯干直接标出来，给出具体的动作提示。员工调整姿势，完成一次完整动作周期，次数随之增加。语音提示设有连续触发和冷却机制，避免每帧重复播报。这一页是 Ghost Coach 可视化界面演示，用来说明交互；真实模型效果应由摄像头演示和现场测试证明。答辩时，我们重点演示错误、纠正、计数这三个连续状态。\n\n依据：src/live_coach.py；src/ghost_coach.py；static/ghost-coach.js；原版错误状态截图。"}
+{"kind":"slide","id":"sl/bh3al5","slide":5,"title":"训练之外，现场风险也能及时提醒","textShapes":7}
+{"kind":"textbox","id":"sh/1o7a5sz6","slide":5,"text":"训练之外，现场风险也能及时提醒","textPreview":"训练之外，现场风险也能及时提醒","textChars":15,"textLines":1,"bbox":[64,72,1152,90]}
+{"kind":"textbox","id":"sh/elgbax0v","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1172,34,45,22]}
+{"kind":"textbox","id":"sh/zmps32h0","slide":5,"text":"6 类规则","textPreview":"6 类规则","textChars":5,"textLines":1,"bbox":[64,192,335,85]}
+{"kind":"textbox","id":"sh/cjet8nip","slide":5,"text":"过度弯腰 / 疑似跌倒\n头盔缺失 / 危险区进入\n低头静止 / 倒地静止","textPreview":"过度弯腰 / 疑似跌倒 | 头盔缺失 / 危险区进入 | 低头静止 / 倒地静止","textChars":36,"textLines":3,"bbox":[64,300,372,160]}
+{"kind":"textbox","id":"sh/dk7a1sza","slide":5,"text":"事件记录保留规则、持续时间、\n工位和确认状态，可保存截图","textPreview":"事件记录保留规则、持续时间、 | 工位和确认状态，可保存截图","textChars":28,"textLines":2,"bbox":[64,506,375,100]}
+{"kind":"textbox","id":"sh/ri5szih4","slide":5,"text":"持续门控 + 冷却 + 跟踪状态清理","textPreview":"持续门控 + 冷却 + 跟踪状态清理","textChars":18,"textLines":1,"bbox":[624,544,592,48]}
+{"kind":"textbox","id":"sh/4ve94nid","slide":5,"text":"安全模块已开发。PPE 权重需补齐，规则参数需按工位验证；静止类信号仅用于提醒核查","textPreview":"安全模块已开发。PPE 权重需补齐，规则参数需按工位验证；静止类信号仅用于提醒核查","textChars":41,"textLines":1,"bbox":[64,654,1152,45]}
+{"kind":"table","id":"tb/ry9wjyhc","slide":5,"name":"","rows":4,"cols":3,"preview":"规则例子 | 持续时间 | 同类冷却","bbox":[624,202,592,300]}
+{"kind":"notes","id":"nt/bh3al5","slide":5,"text":"在训练之外，我们增加了独立的现场安全模块。它使用 YOLO 姿态与独立 PPE 检测接口，配置了六类规则。规则持续成立才提醒，同类事件经过冷却再告警，并保存事件和可选截图。持续静止等信号只提示人员核查。代码模块已经开发，当前默认 PPE 权重还需要补齐，现场效果也需要单独验收。\n\n依据：src/pipeline_safety/rules.py、events.py、monitor.py；config/safety/default.json。"}
+{"kind":"slide","id":"sl/gtevch","slide":6,"title":"一个智能体空间，完成一项现场任务","textShapes":17}
+{"kind":"textbox","id":"sh/7qtgretk","slide":6,"text":"一个智能体空间，完成一项现场任务","textPreview":"一个智能体空间，完成一项现场任务","textChars":16,"textLines":1,"bbox":[64,72,1152,90]}
+{"kind":"textbox","id":"sh/8r2x0ju5","slide":6,"text":"A 赛道空间搭建方案 · 发布与有效性待平台核验","textPreview":"A 赛道空间搭建方案 · 发布与有效性待平台核验","textChars":24,"textLines":1,"bbox":[64,32,1000,26]}
+{"kind":"textbox","id":"sh/tsbytobq","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1172,34,45,22]}
+{"kind":"textbox","id":"sh/utkf2tcb","slide":6,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[64,210,246,55]}
+{"kind":"textbox","id":"sh/vudgvetg","slide":6,"text":"任务与标准","textPreview":"任务与标准","textChars":5,"textLines":1,"bbox":[64,282,246,55]}
+{"kind":"textbox","id":"sh/gvmx4ju1","slide":6,"text":"任务调度、岗位标准\n训练计划、设备检查","textPreview":"任务调度、岗位标准 | 训练计划、设备检查","textChars":19,"textLines":2,"bbox":[64,352,246,130]}
+{"kind":"textbox","id":"sh/hwvyxobm","slide":6,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[374,210,246,55]}
+{"kind":"textbox","id":"sh/ix4z6tc7","slide":6,"text":"训练与评估","textPreview":"训练与评估","textChars":5,"textLines":1,"bbox":[374,282,246,55]}
+{"kind":"textbox","id":"sh/3ydgzyts","slide":6,"text":"动作教练、考核记录\n复训、答疑\n批次报告","textPreview":"动作教练、考核记录 | 复训、答疑 | 批次报告","textChars":20,"textLines":3,"bbox":[374,352,246,130]}
+{"kind":"textbox","id":"sh/3m9cvi10","slide":6,"text":"6","textPreview":"6","textChars":1,"textLines":1,"bbox":[684,210,246,55]}
+{"kind":"textbox","id":"sh/il0vmdkf","slide":6,"text":"风险提醒","textPreview":"风险提醒","textChars":4,"textLines":1,"bbox":[684,282,246,55]}
+{"kind":"textbox","id":"sh/5oruxsj6","slide":6,"text":"对应六类现场规则\n输出事件证据\n提供处置提示","textPreview":"对应六类现场规则 | 输出事件证据 | 提供处置提示","textChars":22,"textLines":3,"bbox":[684,352,246,130]}
+{"kind":"textbox","id":"sh/4nidon2l","slide":6,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[994,210,222,55]}
+{"kind":"textbox","id":"sh/vipcri14","slide":6,"text":"复核与模型","textPreview":"复核与模型","textChars":5,"textLines":1,"bbox":[994,282,222,55]}
+{"kind":"textbox","id":"sh/uhgvidkj","slide":6,"text":"事件复核、样本\n模型训练\n权重管理","textPreview":"事件复核、样本 | 模型训练 | 权重管理","textChars":17,"textLines":3,"bbox":[994,352,222,130]}
+{"kind":"textbox","id":"sh/hk7utsja","slide":6,"text":"协作结果：一份训练记录，带出一项有依据的复训任务","textPreview":"协作结果：一份训练记录，带出一项有依据的复训任务","textChars":24,"textLines":1,"bbox":[64,562,1152,60]}
+{"kind":"textbox","id":"sh/gjydkn2p","slide":6,"text":"19 为建议分工数。每个智能体均需独立工具、调用样例及失败分支，不能以角色名称代替有效性","textPreview":"19 为建议分工数。每个智能体均需独立工具、调用样例及失败分支，不能以角色名称代替有效性","textChars":44,"textLines":1,"bbox":[64,654,1152,45]}
+{"kind":"notes","id":"nt/gtevch","slide":6,"text":"A 赛道要求至少十个有效智能体。我们围绕业务任务设计十九个角色，分别负责任务、训练、安全和复核资产。比如一项新人训练，由任务调度选择标准，教练调用本地引擎，记录智能体整理结果，复训智能体给出下一次任务。每个角色都应有独立输入和可检查的输出。这一页是空间搭建方案，平台发布及有效性需要真实调用记录来证明。\n\n依据：用户提供的 A 赛道通知；本次提出的空间架构方案。"}
+{"kind":"slide","id":"sl/iphdmd","slide":7,"title":"实时判定留在本地，智能体负责业务协同","textShapes":10}
+{"kind":"textbox","id":"sh/ul03mx43","slide":7,"text":"实时判定留在本地，智能体负责业务协同","textPreview":"实时判定留在本地，智能体负责业务协同","textChars":18,"textLines":1,"bbox":[64,72,1152,90]}
+{"kind":"textbox","id":"sh/h8rmhc3e","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1172,34,45,22]}
+{"kind":"textbox","id":"sh/w7ilo7m9","slide":7,"text":"训练链","textPreview":"训练链","textChars":3,"textLines":1,"bbox":[64,204,220,50]}
+{"kind":"textbox","id":"sh/7ip4bilc","slide":7,"text":"人体 17 关键点\nRTMPose / RTMO","textPreview":"人体 17 关键点 | RTMPose / RTMO","textChars":24,"textLines":2,"bbox":[64,288,348,110]}
+{"kind":"textbox","id":"sh/mhg3id4r","slide":7,"text":"11 类动作分类\nST-GCN","textPreview":"11 类动作分类 | ST-GCN","textChars":15,"textLines":2,"bbox":[464,288,348,110]}
+{"kind":"textbox","id":"sh/9k7mds3i","slide":7,"text":"阶段、计数与纠错\n几何规则","textPreview":"阶段、计数与纠错 | 几何规则","textChars":13,"textLines":2,"bbox":[864,288,350,110]}
+{"kind":"textbox","id":"sh/8jylknmx","slide":7,"text":"安全链","textPreview":"安全链","textChars":3,"textLines":1,"bbox":[64,446,220,50]}
+{"kind":"textbox","id":"sh/ret4nmlw","slide":7,"text":"YOLO Pose 与 PPE 检测接口","textPreview":"YOLO Pose 与 PPE 检测接口","textChars":20,"textLines":1,"bbox":[64,512,565,56]}
+{"kind":"textbox","id":"sh/6dknuhkb","slide":7,"text":"时序规则判定与事件记录","textPreview":"时序规则判定与事件记录","textChars":11,"textLines":1,"bbox":[674,512,542,56]}
+{"kind":"textbox","id":"sh/4vidcnu9","slide":7,"text":"智能体读取结构化结果，安排解释、复核与复训；目标边缘设备的延迟及并发需要实测","textPreview":"智能体读取结构化结果，安排解释、复核与复训；目标边缘设备的延迟及并发需要实测","textChars":38,"textLines":1,"bbox":[64,654,1152,45]}
+{"kind":"notes","id":"nt/iphdmd","slide":7,"text":"实时动作反馈需要稳定、可解释的判断。训练链用人体关键点和动作分类，加几何规则完成阶段、计数与纠错。安全链使用另一组检测器和规则。智能体负责选择任务、解释结果和安排后续工作，核心逐帧计数不依赖生成式模型。这样既能给出明确的错误原因，也保留本地部署的选择。具体边缘设备还需要测延迟和并发。\n\n依据：src/fitness_infer.py、src/live_coach.py、src/rtmpose_tran.py、src/pipeline_safety/detector.py；智能体协同为设计方案。"}
+{"kind":"slide","id":"sl/6a7c6g","slide":8,"title":"企业自己的动作样本，可以反复使用","textShapes":8}
+{"kind":"textbox","id":"sh/e1srmx0v","slide":8,"text":"企业自己的动作样本，可以反复使用","textPreview":"企业自己的动作样本，可以反复使用","textChars":16,"textLines":1,"bbox":[64,72,1152,90]}
+{"kind":"textbox","id":"sh/14jaxcj6","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1172,34,45,22]}
+{"kind":"textbox","id":"sh/03a9o7i1","slide":8,"text":"已经具备","textPreview":"已经具备","textChars":4,"textLines":1,"bbox":[64,198,500,50]}
+{"kind":"textbox","id":"sh/n61sz21c","slide":8,"text":"训练选优\n保存本地权重\n后续加载推理","textPreview":"训练选优 | 保存本地权重 | 后续加载推理","textChars":18,"textLines":3,"bbox":[64,279,510,200]}
+{"kind":"textbox","id":"sh/m5sbqh0r","slide":8,"text":"企业接入计划","textPreview":"企业接入计划","textChars":6,"textLines":1,"bbox":[674,198,542,50]}
+{"kind":"textbox","id":"sh/983a1cji","slide":8,"text":"授权样本与岗位标准\n按企业管理模型版本\n独立评估后升级与回滚","textPreview":"授权样本与岗位标准 | 按企业管理模型版本 | 独立评估后升级与回滚","textChars":30,"textLines":3,"bbox":[674,279,542,200]}
+{"kind":"textbox","id":"sh/o7uts7ix","slide":8,"text":"长期资产：经确认的岗位规则与纠错样本","textPreview":"长期资产：经确认的岗位规则与纠错样本","textChars":18,"textLines":1,"bbox":[64,563,1152,60]}
+{"kind":"textbox","id":"sh/3ahsni18","slide":8,"text":"本地训练与权重加载已有代码；企业自动微调、租户隔离、版本注册及回滚仍需实现","textPreview":"本地训练与权重加载已有代码；企业自动微调、租户隔离、版本注册及回滚仍需实现","textChars":37,"textLines":1,"bbox":[64,654,1152,45]}
+{"kind":"notes","id":"nt/6a7c6g","slide":8,"text":"项目已经具备训练保存最优 checkpoint、以及后续加载本地权重的基础能力。下一阶段，我们要把授权的企业动作样本、岗位标准和复核结果串起来，按企业管理模型版本。新增样本经过独立评估以后再决定是否升级，并保留回滚记录。真正值得积累的是客户确认过的岗位规则和纠错样本。租户隔离、自动版本注册与回滚仍然是接入计划。\n\n依据：src/train.py；src/fitness_infer.py；skill-build/enterprise-pose-coach/references/api-mapping.md。"}
+{"kind":"slide","id":"sl/d9158j","slide":9,"title":"技术底座，可以逐项核验","textShapes":15}
+{"kind":"textbox","id":"sh/3ud4b6t4","slide":9,"text":"技术底座，可以逐项核验","textPreview":"技术底座，可以逐项核验","textChars":11,"textLines":1,"bbox":[64,72,1152,90]}
+{"kind":"textbox","id":"sh/ov6lkbap","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1172,34,45,22]}
+{"kind":"textbox","id":"sh/pwfmdgbu","slide":9,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[64,218,250,55]}
+{"kind":"textbox","id":"sh/qxo3mlsf","slide":9,"text":"类动作分类","textPreview":"类动作分类","textChars":5,"textLines":1,"bbox":[64,290,250,55]}
+{"kind":"textbox","id":"sh/bix4f6t0","slide":9,"text":"本地 ST-GCN 权重\n分类范围可核对","textPreview":"本地 ST-GCN 权重 | 分类范围可核对","textChars":20,"textLines":2,"bbox":[64,360,250,130]}
+{"kind":"textbox","id":"sh/cj6lobal","slide":9,"text":"6","textPreview":"6","textChars":1,"textLines":1,"bbox":[374,218,250,55]}
+{"kind":"textbox","id":"sh/dkfmhgb6","slide":9,"text":"类专项训练规则","textPreview":"类专项训练规则","textChars":7,"textLines":1,"bbox":[374,290,250,55]}
+{"kind":"textbox","id":"sh/ylonqlsr","slide":9,"text":"阶段、计数与动作纠错\n主演示选择深蹲","textPreview":"阶段、计数与动作纠错 | 主演示选择深蹲","textChars":18,"textLines":2,"bbox":[374,360,250,130]}
+{"kind":"textbox","id":"sh/zmh4jqtc","slide":9,"text":"23","textPreview":"23","textChars":2,"textLines":1,"bbox":[684,218,250,55]}
+{"kind":"textbox","id":"sh/vm5cvulc","slide":9,"text":"项流程测试通过","textPreview":"项流程测试通过","textChars":7,"textLines":1,"bbox":[684,290,250,55]}
+{"kind":"textbox","id":"sh/alwvmpkr","slide":9,"text":"页面、契约、几何规则\n本次核查已重新执行","textPreview":"页面、契约、几何规则 | 本次核查已重新执行","textChars":20,"textLines":2,"bbox":[684,360,250,130]}
+{"kind":"textbox","id":"sh/xo7ux43i","slide":9,"text":"本地","textPreview":"本地","textChars":2,"textLines":1,"bbox":[994,218,222,55]}
+{"kind":"textbox","id":"sh/wnydoz2x","slide":9,"text":"视觉推理","textPreview":"视觉推理","textChars":4,"textLines":1,"bbox":[994,290,222,55]}
+{"kind":"textbox","id":"sh/ny5cralg","slide":9,"text":"本地模型权重\n逐帧推理在本地","textPreview":"本地模型权重 | 逐帧推理在本地","textChars":14,"textLines":2,"bbox":[994,360,222,130]}
+{"kind":"textbox","id":"sh/mxwvip4v","slide":9,"text":"流程测试不代表模型精度。企业现场泛化、误报漏报与设备性能，进入试点单独验收","textPreview":"流程测试不代表模型精度。企业现场泛化、误报漏报与设备性能，进入试点单独验收","textChars":37,"textLines":1,"bbox":[64,654,1152,45]}
+{"kind":"notes","id":"nt/d9158j","slide":9,"text":"今天可以核验的是本地模型文件、十一类动作分类、六类专项动作规则和运行中的 Web 代码。这次重新执行的二十三项流程测试全部通过。它们验证页面、契约和几何规则。企业现场的模型精度还需要按受试者和工位独立测试，我们没有把旧训练验证数字当成现场准确率。\n\n依据：model/；src/fitness_infer.py；src/live_coach.py；本次 tools/harness.mjs test：23 tests OK；docs/real-evidence.md。"}
+{"kind":"slide","id":"sl/o9pl8y","slide":10,"title":"第一笔收入，来自一个训练点","textShapes":9}
+{"kind":"textbox","id":"sh/321sruds","slide":10,"text":"第一笔收入，来自一个训练点","textPreview":"第一笔收入，来自一个训练点","textChars":13,"textLines":1,"bbox":[64,72,1152,90]}
+{"kind":"textbox","id":"sh/43at0fed","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1172,34,45,22]}
+{"kind":"textbox","id":"sh/54jatkvy","slide":10,"text":"谁购买","textPreview":"谁购买","textChars":3,"textLines":1,"bbox":[64,208,500,45]}
+{"kind":"textbox","id":"sh/ud8bu5wb","slide":10,"text":"制造 / 仓储培训点","textPreview":"制造 / 仓储培训点","textChars":10,"textLines":1,"bbox":[64,278,535,65]}
+{"kind":"textbox","id":"sh/vehsnadw","slide":10,"text":"推动：培训负责人或 EHS\n使用：班组长和一线员工\n部署：IT 参与确认","textPreview":"推动：培训负责人或 EHS | 使用：班组长和一线员工 | 部署：IT 参与确认","textChars":36,"textLines":3,"bbox":[64,376,530,150]}
+{"kind":"textbox","id":"sh/gzqtwfeh","slide":10,"text":"怎么收费","textPreview":"怎么收费","textChars":4,"textLines":1,"bbox":[674,208,542,45]}
+{"kind":"textbox","id":"sh/h0zapkv2","slide":10,"text":"岗位适配与部署费\n训练点年度服务费","textPreview":"岗位适配与部署费 | 训练点年度服务费","textChars":17,"textLines":2,"bbox":[674,278,542,125]}
+{"kind":"textbox","id":"sh/e9cb69cf","slide":10,"text":"验证一个点位后，扩展相邻岗位\n现场维护与复核成本纳入毛利","textPreview":"验证一个点位后，扩展相邻岗位 | 现场维护与复核成本纳入毛利","textChars":28,"textLines":2,"bbox":[674,451,542,100]}
+{"kind":"textbox","id":"sh/falszed0","slide":10,"text":"收费方式为商业假设。招聘/转岗评估保留为相邻场景，标准须由企业确认","textPreview":"收费方式为商业假设。招聘/转岗评估保留为相邻场景，标准须由企业确认","textChars":33,"textLines":1,"bbox":[64,654,1152,45]}
+{"kind":"notes","id":"nt/o9pl8y","slide":10,"text":"我们的第一笔收入，计划来自一个有明确动作考核需求的企业训练点。培训或 EHS 负责人推动，IT 参与，班组长使用。收费可以从岗位适配和部署开始，再按训练点收年度服务费。扩展到相邻岗位时，复用已有引擎和事件记录，新增客户确认的规则。是否成立，要看复训更省时、使用是否持续、现场维护成本能否控制。\n\n依据：商业化建议与收费假设，尚无付费客户或签约证据。"}
+{"kind":"slide","id":"sl/n3nttr","slide":11,"title":"四周试点，把采购问题逐项回答","textShapes":16}
+{"kind":"textbox","id":"sh/nqpczy94","slide":11,"text":"四周试点，把采购问题逐项回答","textPreview":"四周试点，把采购问题逐项回答","textChars":14,"textLines":1,"bbox":[64,72,1152,90]}
+{"kind":"textbox","id":"sh/orids3ap","slide":11,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1172,34,45,22]}
+{"kind":"textbox","id":"sh/9sru18ra","slide":11,"text":"第 1 周","textPreview":"第 1 周","textChars":5,"textLines":1,"bbox":[64,210,240,55]}
+{"kind":"textbox","id":"sh/at0vudsv","slide":11,"text":"定标准","textPreview":"定标准","textChars":3,"textLines":1,"bbox":[64,282,240,55]}
+{"kind":"textbox","id":"sh/bu9w3i9g","slide":11,"text":"确认岗位动作\n记录人工基线","textPreview":"确认岗位动作 | 记录人工基线","textChars":13,"textLines":2,"bbox":[64,352,240,130]}
+{"kind":"textbox","id":"sh/wvidwnq1","slide":11,"text":"第 2 周","textPreview":"第 2 周","textChars":5,"textLines":1,"bbox":[374,210,240,55]}
+{"kind":"textbox","id":"sh/xwre5srm","slide":11,"text":"并行训练","textPreview":"并行训练","textChars":4,"textLines":1,"bbox":[374,282,240,55]}
+{"kind":"textbox","id":"sh/qxwvi9sr","slide":11,"text":"AI 与人工同时记录\n保留分歧样例","textPreview":"AI 与人工同时记录 | 保留分歧样例","textChars":17,"textLines":2,"bbox":[374,352,240,130]}
+{"kind":"textbox","id":"sh/ry5cre9c","slide":11,"text":"第 3 周","textPreview":"第 3 周","textChars":5,"textLines":1,"bbox":[684,210,240,55]}
+{"kind":"textbox","id":"sh/fq1wfmhk","slide":11,"text":"测复杂场景","textPreview":"测复杂场景","textChars":5,"textLines":1,"bbox":[684,282,240,55]}
+{"kind":"textbox","id":"sh/epsf6hgz","slide":11,"text":"机位与遮挡变化\n不同员工参与\n统计错误与复核量","textPreview":"机位与遮挡变化 | 不同员工参与 | 统计错误与复核量","textChars":23,"textLines":3,"bbox":[684,352,240,130]}
+{"kind":"textbox","id":"sh/1sjehwza","slide":11,"text":"第 4 周","textPreview":"第 4 周","textChars":5,"textLines":1,"bbox":[994,210,222,55]}
+{"kind":"textbox","id":"sh/grax8ry5","slide":11,"text":"共同复盘","textPreview":"共同复盘","textChars":4,"textLines":1,"bbox":[994,282,222,55]}
+{"kind":"textbox","id":"sh/rmhwbmh8","slide":11,"text":"对照验收指标\n决定采购与扩展","textPreview":"对照验收指标 | 决定采购与扩展","textChars":14,"textLines":2,"bbox":[994,352,222,130]}
+{"kind":"textbox","id":"sh/6l8f2hgn","slide":11,"text":"验收看四项：工时、判断一致性、复核率、复训后错误率","textPreview":"验收看四项：工时、判断一致性、复核率、复训后错误率","textChars":25,"textLines":1,"bbox":[64,555,1152,70]}
+{"kind":"textbox","id":"sh/tojedwze","slide":11,"text":"验收阈值在试点开始前由双方共同约定。安全模块另测每摄像头小时误报与漏报","textPreview":"验收阈值在试点开始前由双方共同约定。安全模块另测每摄像头小时误报与漏报","textChars":35,"textLines":1,"bbox":[64,654,1152,45]}
+{"kind":"notes","id":"nt/n3nttr","slide":11,"text":"我们希望和一家制造或仓储企业做四周并行试点。第一周确认岗位动作和人工基线，第二周让 AI 与人工同时记录，第三周专门测试遮挡、机位变化和不同员工，第四周与负责人复盘。我们看每百人训练工时、计数和错误判断一致性、需要复核的比例，以及复训以后错误有没有减少。双方先约定验收阈值，再决定是否采购和扩展。\n\n依据：本次提出的试点计划，尚非客户承诺。"}
+{"kind":"slide","id":"sl/y7e3lv","slide":12,"title":"12","textShapes":5}
+{"kind":"textbox","id":"sh/cri9036h","slide":12,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1172,34,45,22]}
+{"kind":"textbox","id":"sh/bq98rypw","slide":12,"text":"让一线员工做对动作，\n让主管看见进步","textPreview":"让一线员工做对动作， | 让主管看见进步","textChars":18,"textLines":2,"bbox":[64,122,1148,194]}
+{"kind":"textbox","id":"sh/a50rytor","slide":12,"text":"我们寻找一家试点企业","textPreview":"我们寻找一家试点企业","textChars":10,"textLines":1,"bbox":[68,390,1100,57]}
+{"kind":"textbox","id":"sh/lwbaxs7e","slide":12,"text":"一个训练点，一位岗位专家，四周并行验证","textPreview":"一个训练点，一位岗位专家，四周并行验证","textChars":19,"textLines":1,"bbox":[68,473,1120,90]}
+{"kind":"textbox","id":"sh/kv294n6t","slide":12,"text":"练了么    AI 动作教练","textPreview":"练了么    AI 动作教练","textChars":14,"textLines":1,"bbox":[68,628,1100,35]}
+{"kind":"notes","id":"nt/y7e3lv","slide":12,"text":"我们希望让一线员工每次练习都得到具体指导，让主管看见员工的进步。接下来，我们需要一家试点企业，开放一个训练点，也需要一位岗位专家，和我们一起确认动作与验收标准。四周以后，用现场记录决定产品下一步。谢谢各位。\n\n依据：本次试点合作请求。"}
+{"kind":"slide","id":"sl/p3idau","slide":13,"title":"智能体分工 01–10：任务与训练","textShapes":4}
+{"kind":"textbox","id":"sh/kv258vad","slide":13,"text":"智能体分工 01–10：任务与训练","textPreview":"智能体分工 01–10：任务与训练","textChars":17,"textLines":1,"bbox":[64,72,1152,90]}
+{"kind":"textbox","id":"sh/zutozq9s","slide":13,"text":"答辩备份 · 建议搭建清单","textPreview":"答辩备份 · 建议搭建清单","textChars":13,"textLines":1,"bbox":[64,32,1000,26]}
+{"kind":"textbox","id":"sh/ytkn6ls7","slide":13,"text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1172,34,45,22]}
+{"kind":"textbox","id":"sh/8zm5cva9","slide":13,"text":"角色方案尚需平台配置与调用记录。共用底层工具时，各角色仍应交付不同的业务结果","textPreview":"角色方案尚需平台配置与调用记录。共用底层工具时，各角色仍应交付不同的业务结果","textChars":38,"textLines":1,"bbox":[64,654,1152,45]}
+{"kind":"table","id":"tb/8vix4f6l","slide":13,"name":"","rows":11,"cols":3,"preview":"智能体 | 输入 / 工具 | 独立产物与验收点","bbox":[64,174,1152,468]}
+{"kind":"notes","id":"nt/p3idau","slide":13,"text":"这些是建议搭建的独立智能体。独立性需要由工具、输入、输出和失败处理证明。优先完成其中至少十个的实际平台运行，并根据平台规则核验有效性。表格中列出的工具能力有已有代码基础，也有需要补齐的业务适配。\n\n依据：本次 A 赛道空间方案，平台发布待核验。"}
+{"kind":"slide","id":"sl/s72ixu","slide":14,"title":"智能体分工 11–19：安全、复核与模型","textShapes":4}
+{"kind":"textbox","id":"sh/apwvidgv","slide":14,"text":"智能体分工 11–19：安全、复核与模型","textPreview":"智能体分工 11–19：安全、复核与模型","textChars":20,"textLines":1,"bbox":[64,72,1152,90]}
+{"kind":"textbox","id":"sh/xs7edsz6","slide":14,"text":"答辩备份 · 建议搭建清单","textPreview":"答辩备份 · 建议搭建清单","textChars":13,"textLines":1,"bbox":[64,32,1000,26]}
+{"kind":"textbox","id":"sh/wryxknyl","slide":14,"text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[1172,34,45,22]}
+{"kind":"textbox","id":"sh/m1wvedgj","slide":14,"text":"目标为 19 个角色；有效数量以平台验收为准。静止类识别输出行为信号，交由人员核查","textPreview":"目标为 19 个角色；有效数量以平台验收为准。静止类识别输出行为信号，交由人员核查","textChars":41,"textLines":1,"bbox":[64,654,1152,45]}
+{"kind":"table","id":"tb/mx4bid03","slide":14,"name":"","rows":10,"cols":3,"preview":"智能体 | 输入 / 工具 | 独立产物与验收点","bbox":[64,179,1152,458]}
+{"kind":"notes","id":"nt/s72ixu","slide":14,"text":"六类安全规则可以封装为相应的风险智能体，输出不同的事件证据和处置建议。复核智能体记录人工确认结果，样本管理与模型智能体管理授权数据和评估。尤其要验证失败分支，例如 PPE 权重缺失时报告不可用，不能把没有输出解释为人员安全。\n\n依据：src/pipeline_safety/ 提供安全工具基础，其余业务适配及平台角色为方案。"}
+{"kind":"slide","id":"sl/sr4he3","slide":15,"title":"交付状态与下一步验收","textShapes":4}
+{"kind":"textbox","id":"sh/50bel4nm","slide":15,"text":"交付状态与下一步验收","textPreview":"交付状态与下一步验收","textChars":10,"textLines":1,"bbox":[64,72,1152,90]}
+{"kind":"textbox","id":"sh/id0vq94b","slide":15,"text":"答辩备份 · 实现边界","textPreview":"答辩备份 · 实现边界","textChars":11,"textLines":1,"bbox":[64,32,1000,26]}
+{"kind":"textbox","id":"sh/je9wje5w","slide":15,"text":"15","textPreview":"15","textChars":2,"textLines":1,"bbox":[1172,34,45,22]}
+{"kind":"textbox","id":"sh/xcreh4nq","slide":15,"text":"核心推理可本地部署；目标设备吞吐量、现场收益及企业级治理尚不能视为已经验收","textPreview":"核心推理可本地部署；目标设备吞吐量、现场收益及企业级治理尚不能视为已经验收","textChars":37,"textLines":1,"bbox":[64,654,1152,45]}
+{"kind":"table","id":"tb/5w7e50ji","slide":15,"name":"","rows":7,"cols":3,"preview":"范围 | 当前证据 | 下一步验收","bbox":[64,184,1152,414]}
+{"kind":"notes","id":"nt/sr4he3","slide":15,"text":"项目当前最成熟的是训练 Web 主链。安全模块已有代码和事件记录，但默认 PPE 权重缺失，需要先补齐并联调。企业治理功能主要处在契约设计阶段，平台空间也需要提供发布与调用证据。正式考核前，要把记录与服务端会话绑定，完成鉴权和防重放。我们以这些明确的验收项控制下一阶段交付。\n\n依据：源码核查：web_app.py、src/pipeline_safety/、config/safety/default.json、references/api-mapping.md；本次测试结果。"}
+{"kind":"slide","id":"sl/czrtu8","slide":16,"title":"收费空间，先用客户的工时账来算","textShapes":8}
+{"kind":"textbox","id":"sh/crm9knix","slide":16,"text":"收费空间，先用客户的工时账来算","textPreview":"收费空间，先用客户的工时账来算","textChars":15,"textLines":1,"bbox":[64,72,1152,90]}
+{"kind":"textbox","id":"sh/bqdsbi1c","slide":16,"text":"答辩备份 · 假设测算，非试点收益","textPreview":"答辩备份 · 假设测算，非试点收益","textChars":17,"textLines":1,"bbox":[64,32,1000,26]}
+{"kind":"textbox","id":"sh/qp4rid0r","slide":16,"text":"16","textPreview":"16","textChars":2,"textLines":1,"bbox":[1172,34,45,22]}
+{"kind":"textbox","id":"sh/onm9g3i1","slide":16,"text":"80 小时 / 月","textPreview":"80 小时 / 月","textChars":9,"textLines":1,"bbox":[812,229,405,75]}
+{"kind":"textbox","id":"sh/3mds7y1g","slide":16,"text":"净节省工时","textPreview":"净节省工时","textChars":5,"textLines":1,"bbox":[812,311,405,45]}
+{"kind":"textbox","id":"sh/2l4ret0v","slide":16,"text":"4,800 元 / 月","textPreview":"4,800 元 / 月","textChars":11,"textLines":1,"bbox":[812,414,405,75]}
+{"kind":"textbox","id":"sh/1kbq58ja","slide":16,"text":"对应人工成本","textPreview":"对应人工成本","textChars":6,"textLines":1,"bbox":[812,496,405,45]}
+{"kind":"textbox","id":"sh/gj29c3ip","slide":16,"text":"未扣设备、部署、软件和维护成本。用客户实测替换全部假设，再决定采购预算与报价","textPreview":"未扣设备、部署、软件和维护成本。用客户实测替换全部假设，再决定采购预算与报价","textChars":38,"textLines":1,"bbox":[64,654,1152,45]}
+{"kind":"table","id":"tb/4va1s7ml","slide":16,"name":"","rows":5,"cols":2,"preview":"可替换输入 | 示例假设","bbox":[64,190,680,345]}
+{"kind":"notes","id":"nt/czrtu8","slide":16,"text":"这是测算示例，不是试点结果。假设一个训练点每月一千二百人次，每人减少五分钟观察整理，但仍需要一分钟复核，综合人工成本每小时六十元。月度净节省八十小时，对应四千八百元。这个金额还没有扣设备、软件、部署和维护。只有客户实测后仍有足够净收益，年度服务才有定价空间。\n\n依据：本次商业假设与算术示例：1200×(5−1)/60=80 小时，80×60=4800 元/月。"}
+{"kind":"slide","id":"sl/k5lkrd","slide":17,"title":"现场演示：45 秒讲清一次完整动作","textShapes":5}
+{"kind":"textbox","id":"sh/j2pg7qts","slide":17,"text":"现场演示：45 秒讲清一次完整动作","textPreview":"现场演示：45 秒讲清一次完整动作","textChars":17,"textLines":1,"bbox":[64,72,1152,90]}
+{"kind":"textbox","id":"sh/knyx0vad","slide":17,"text":"答辩备份 · 演示执行","textPreview":"答辩备份 · 演示执行","textChars":11,"textLines":1,"bbox":[64,32,1000,26]}
+{"kind":"textbox","id":"sh/5o7y90by","slide":17,"text":"17","textPreview":"17","textChars":2,"textLines":1,"bbox":[1172,34,45,22]}
+{"kind":"textbox","id":"sh/7qpgbat4","slide":17,"text":"故障时：明确说明无法判定，使用标注清楚的界面演示继续讲解","textPreview":"故障时：明确说明无法判定，使用标注清楚的界面演示继续讲解","textChars":28,"textLines":1,"bbox":[64,583,1152,55]}
+{"kind":"textbox","id":"sh/srix4fa9","slide":17,"text":"当前 PPT 使用既有界面图片，未嵌入真人演示视频；正式路演前按上述顺序录制","textPreview":"当前 PPT 使用既有界面图片，未嵌入真人演示视频；正式路演前按上述顺序录制","textChars":38,"textLines":1,"bbox":[64,654,1152,45]}
+{"kind":"table","id":"tb/b654ja1k","slide":17,"name":"","rows":5,"cols":3,"preview":"时间 | 观众看到什么 | 要证明什么","bbox":[64,196,1152,350]}
+{"kind":"notes","id":"nt/k5lkrd","slide":17,"text":"正式演示先确认真实模型、相机与机位已准备好。前十秒展示入镜和项目，接下来用一次明显错误动作展示纠错，再完成正确周期和计数，最后展示会话总结。若摄像头或模型不可用，明确说明本次无法判定，切换到可视化页面解释交互。不能把固定姿态演示当成真实推理结果。\n\n依据：项目 /coach、/api/session/*、Ghost Coach 演示入口；本次演示设计。"}

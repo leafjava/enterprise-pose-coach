@@ -1,0 +1,430 @@
+{"kind":"deck","id":"pr/fluo53","name":"Deck"}
+{"kind":"layout","layoutId":"/ppt/slideMasters/slideMaster1.xml","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout1.xml","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/y90nupkv","slide":1,"title":"2026 GLOBAL AGENT COMPETITION","textShapes":6}
+{"kind":"shape","id":"sh/hofulsf2","slide":1,"bbox":[64,54,292,30]}
+{"kind":"textbox","id":"sh/547294r6","slide":1,"text":"2026 GLOBAL AGENT COMPETITION","textPreview":"2026 GLOBAL AGENT COMPETITION","textChars":29,"textLines":1,"bbox":[64,56,292,25]}
+{"kind":"textbox","id":"sh/k3yl0zql","slide":1,"text":"让企业数字员工\n看懂现场动作","textPreview":"让企业数字员工 | 看懂现场动作","textChars":14,"textLines":2,"bbox":[64,145,570,170]}
+{"kind":"textbox","id":"sh/7qp4be9c","slide":1,"text":"练了么｜企业现场动作数字员工","textPreview":"练了么｜企业现场动作数字员工","textChars":14,"textLines":1,"bbox":[64,350,520,46]}
+{"kind":"textbox","id":"sh/65g3298r","slide":1,"text":"普通摄像头完成实时计数、即时纠错和风险提醒；训练与安全事件留下可复核记录。","textPreview":"普通摄像头完成实时计数、即时纠错和风险提醒；训练与安全事件留下可复核记录。","textChars":37,"textLines":1,"bbox":[64,420,500,105]}
+{"kind":"shape","id":"sh/ts7md4r2","slide":1,"bbox":[64,560,500,0]}
+{"kind":"textbox","id":"sh/sryl4zqx","slide":1,"text":"2026 全球智能体大赛","textPreview":"2026 全球智能体大赛","textChars":12,"textLines":1,"bbox":[64,580,500,30]}
+{"kind":"textbox","id":"sh/fu94fe98","slide":1,"text":"A 赛道｜智能体搭建赛","textPreview":"A 赛道｜智能体搭建赛","textChars":11,"textLines":1,"bbox":[64,616,500,28]}
+{"kind":"shape","id":"sh/utg3698n","slide":1,"bbox":[674,46,544,614]}
+{"kind":"image","id":"im/5cze9svq","slide":1,"name":"","geometry":"roundRect","bbox":[676,48,540,610]}
+{"kind":"notes","id":"nt/y90nupkv","slide":1,"text":"基于原版 ClawHive 路演母版修订。比赛信息来自用户提供的 2026 全球智能体大赛通知；报名平台最新细则未能独立核验。项目当前核心是本地实时教练与安全监测模块，平台智能体空间仍需发布验收。\n依据：README.md；deliverables/A赛道-设计文档.md；web_app.py；src/pipeline_safety/。"}
+{"kind":"slide","id":"sl/hwbqtkby","slide":2,"title":"FIELD BOTTLENECK","textShapes":22}
+{"kind":"textbox","id":"sh/4zmxwzmp","slide":2,"text":"FIELD BOTTLENECK","textPreview":"FIELD BOTTLENECK","textChars":16,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/9072xkry","slide":2,"text":"企业现场缺的，是持续看动作的人","textPreview":"企业现场缺的，是持续看动作的人","textChars":15,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/ozy1ofad","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/b29kza94","slide":2,"bbox":[64,132,1152,0]}
+{"kind":"textbox","id":"sh/a10jqpsj","slide":2,"text":"3 × 1","textPreview":"3 × 1","textChars":5,"textLines":1,"bbox":[64,176,360,100]}
+{"kind":"textbox","id":"sh/x4r21kru","slide":2,"text":"三段现场任务 × 一套视觉能力","textPreview":"三段现场任务 × 一套视觉能力","textChars":15,"textLines":1,"bbox":[68,278,350,36]}
+{"kind":"textbox","id":"sh/w3i1sfa9","slide":2,"text":"招聘、在岗训练与安全巡检共享动作观察需求","textPreview":"招聘、在岗训练与安全巡检共享动作观察需求","textChars":20,"textLines":1,"bbox":[68,326,372,62]}
+{"kind":"shape","id":"sh/r65knqtk","slide":2,"bbox":[64,420,356,170]}
+{"kind":"textbox","id":"sh/q5wjelsz","slide":2,"text":"采购前先测现场指标","textPreview":"采购前先测现场指标","textChars":9,"textLines":1,"bbox":[88,446,300,32]}
+{"kind":"textbox","id":"sh/ove9o7yd","slide":2,"text":"人工观察工时\n有效动作判断一致性\n每摄像头小时误报率","textPreview":"人工观察工时 | 有效动作判断一致性 | 每摄像头小时误报率","textChars":26,"textLines":3,"bbox":[88,492,300,80]}
+{"kind":"textbox","id":"sh/9wnqhczy","slide":2,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[492,192,48,24]}
+{"kind":"textbox","id":"sh/mtwrmxg7","slide":2,"text":"招聘筛选","textPreview":"招聘筛选","textChars":4,"textLines":1,"bbox":[492,232,150,36]}
+{"kind":"textbox","id":"sh/nu58f2hs","slide":2,"text":"考官逐人观察与登记","textPreview":"考官逐人观察与登记","textChars":9,"textLines":1,"bbox":[492,282,150,64]}
+{"kind":"shape","id":"sh/wjy9sry9","slide":2,"bbox":[656,188,1,0]}
+{"kind":"textbox","id":"sh/xk7qlczu","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[668,192,48,24]}
+{"kind":"textbox","id":"sh/ahwrqhgj","slide":2,"text":"在岗训练","textPreview":"在岗训练","textChars":4,"textLines":1,"bbox":[668,232,150,36]}
+{"kind":"textbox","id":"sh/bip8jmho","slide":2,"text":"动作错误缺少即时反馈","textPreview":"动作错误缺少即时反馈","textChars":10,"textLines":1,"bbox":[668,282,150,64]}
+{"kind":"shape","id":"sh/cnupgny5","slide":2,"bbox":[832,188,1,0]}
+{"kind":"textbox","id":"sh/do3q9szq","slide":2,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[844,192,48,24]}
+{"kind":"textbox","id":"sh/t8byxkn2","slide":2,"text":"工业安全","textPreview":"工业安全","textChars":4,"textLines":1,"bbox":[844,232,150,36]}
+{"kind":"textbox","id":"sh/s72xofmh","slide":2,"text":"异常往往事后才被发现","textPreview":"异常往往事后才被发现","textChars":10,"textLines":1,"bbox":[844,282,150,64]}
+{"kind":"shape","id":"sh/76twva5c","slide":2,"bbox":[1008,188,1,0]}
+{"kind":"textbox","id":"sh/65kfmpor","slide":2,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1020,192,48,24]}
+{"kind":"textbox","id":"sh/hcvy14ne","slide":2,"text":"事后复核","textPreview":"事后复核","textChars":4,"textLines":1,"bbox":[1020,232,150,36]}
+{"kind":"textbox","id":"sh/gbmxszmt","slide":2,"text":"缺少同一规则下的过程记录","textPreview":"缺少同一规则下的过程记录","textChars":12,"textLines":1,"bbox":[1020,282,150,64]}
+{"kind":"shape","id":"sh/fadgzu58","slide":2,"bbox":[492,378,688,0]}
+{"kind":"textbox","id":"sh/u94fqp4n","slide":2,"text":"录用、安全处置仍由授权人员决定；系统承担重复观察和事件记录。","textPreview":"录用、安全处置仍由授权人员决定；系统承担重复观察和事件记录。","textChars":30,"textLines":1,"bbox":[492,418,680,70]}
+{"kind":"textbox","id":"sh/p0vy54na","slide":2,"text":"遮挡、低置信度和模型不可用时，明确转人工核查。","textPreview":"遮挡、低置信度和模型不可用时，明确转人工核查。","textChars":23,"textLines":1,"bbox":[492,514,680,40]}
+{"kind":"notes","id":"nt/hwbqtkby","slide":2,"text":"用户提供的三个场景是招聘筛选、在岗训练、工业安全。此页不使用尚无现场实测支持的 3 倍吞吐或 40% 周期缩短。\n依据：用户提供的场景思路；README.md；config/safety/default.json。"}
+{"kind":"slide","id":"sl/ofy9wn61","slide":3,"title":"PRODUCT LOOP","textShapes":9}
+{"kind":"textbox","id":"sh/f29gbyx0","slide":3,"text":"PRODUCT LOOP","textPreview":"PRODUCT LOOP","textChars":12,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/cza94vmx","slide":3,"text":"一次动作检测，贯通任务与记录","textPreview":"一次动作检测，贯通任务与记录","textChars":14,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/d0jax03i","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/298ryl4v","slide":3,"bbox":[64,132,1152,0]}
+{"kind":"shape","id":"sh/3ah8rqlg","slide":3,"bbox":[366,375,49,2]}
+{"kind":"shape","id":"sh/obq90bml","slide":3,"bbox":[412,372,12,8]}
+{"kind":"shape","id":"sh/pcjqtg36","slide":3,"bbox":[812,375,49,2]}
+{"kind":"shape","id":"sh/m5cra54z","slide":3,"bbox":[858,372,12,8]}
+{"kind":"shape","id":"sh/n6ls3alk","slide":3,"bbox":[64,178,300,420]}
+{"kind":"textbox","id":"sh/n2l4fq98","slide":3,"text":"HR / EHS","textPreview":"HR / EHS","textChars":8,"textLines":1,"bbox":[88,204,220,24]}
+{"kind":"textbox","id":"sh/m1c3mlsn","slide":3,"text":"“安排深蹲 50 次检测，并记录需要复训的动作问题。”","textPreview":"“安排深蹲 50 次检测，并记录需要复训的动作问题。”","textChars":27,"textLines":1,"bbox":[88,250,250,150]}
+{"kind":"textbox","id":"sh/943mhgre","slide":3,"text":"比赛空间拟负责选标准、分发任务和汇总异常","textPreview":"比赛空间拟负责选标准、分发任务和汇总异常","textChars":20,"textLines":1,"bbox":[88,452,250,72]}
+{"kind":"shape","id":"sh/83ulovat","slide":3,"bbox":[88,546,112,30]}
+{"kind":"textbox","id":"sh/v6l4jq94","slide":3,"text":"任务入口","textPreview":"任务入口","textChars":4,"textLines":1,"bbox":[88,548,112,25]}
+{"kind":"shape","id":"sh/a5c3ql8z","slide":3,"bbox":[422,208,392,286]}
+{"kind":"textbox","id":"sh/w7ulsvqp","slide":3,"text":"浏览器摄像头完成识别、纠错与完整周期计数","textPreview":"浏览器摄像头完成识别、纠错与完整周期计数","textChars":20,"textLines":1,"bbox":[424,518,388,60]}
+{"kind":"shape","id":"sh/ja54na9g","slide":3,"bbox":[868,208,350,286]}
+{"kind":"textbox","id":"sh/e10f2twf","slide":3,"text":"会话总结与认证记录已在本地实现\n企业系统回写仍待接入","textPreview":"会话总结与认证记录已在本地实现 | 企业系统回写仍待接入","textChars":26,"textLines":2,"bbox":[870,518,346,65]}
+{"kind":"image","id":"im/n2tc3y1g","slide":3,"name":"","geometry":"roundRect","bbox":[424,210,388,282]}
+{"kind":"image","id":"im/21kvutkb","slide":3,"name":"","geometry":"roundRect","bbox":[870,210,346,282]}
+{"kind":"notes","id":"nt/ofy9wn61","slide":3,"text":"中间和右侧保留原版真实产品截图。当前 Web 已实现 /coach、/certification 和会话 API；智能体任务分发、企业台账回写仍是接入计划。\n依据：web_app.py；templates/coach.html；templates/certification.html。"}
+{"kind":"slide","id":"sl/jyx0ra1s","slide":4,"title":"LIVE PROOF","textShapes":16}
+{"kind":"textbox","id":"sh/2xkrih8b","slide":4,"text":"LIVE PROOF","textPreview":"LIVE PROOF","textChars":10,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/1cj2d8b6","slide":4,"text":"动作出错时，画面指出该怎么调整","textPreview":"动作出错时，画面指出该怎么调整","textChars":15,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/0ba143al","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/rm1k7yt4","slide":4,"bbox":[64,132,1152,0]}
+{"kind":"shape","id":"sh/ql8jytsj","slide":4,"bbox":[62,166,794,478]}
+{"kind":"textbox","id":"sh/sna103ap","slide":4,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[902,176,42,28]}
+{"kind":"textbox","id":"sh/3ihk3et8","slide":4,"text":"阶段","textPreview":"阶段","textChars":2,"textLines":1,"bbox":[954,174,200,32]}
+{"kind":"textbox","id":"sh/ih8ju9sn","slide":4,"text":"准备 / 下降 / 底部 / 上升","textPreview":"准备 / 下降 / 底部 / 上升","textChars":17,"textLines":1,"bbox":[902,216,290,48]}
+{"kind":"shape","id":"sh/kbm987y5","slide":4,"bbox":[902,270,290,0]}
+{"kind":"textbox","id":"sh/5cva1cfq","slide":4,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[902,288,42,28]}
+{"kind":"textbox","id":"sh/i94r6xgz","slide":4,"text":"纠错","textPreview":"纠错","textChars":2,"textLines":1,"bbox":[954,286,200,32]}
+{"kind":"textbox","id":"sh/jadsz2xk","slide":4,"text":"膝内扣、深度不足及时提示","textPreview":"膝内扣、深度不足及时提示","textChars":12,"textLines":1,"bbox":[902,328,290,48]}
+{"kind":"shape","id":"sh/w72947yt","slide":4,"bbox":[902,382,290,0]}
+{"kind":"textbox","id":"sh/x8vaxsfe","slide":4,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[902,400,42,28]}
+{"kind":"textbox","id":"sh/a5kr2xg3","slide":4,"text":"计数","textPreview":"计数","textChars":2,"textLines":1,"bbox":[954,398,200,32]}
+{"kind":"textbox","id":"sh/v6tsv2xo","slide":4,"text":"完整动作周期成立才 +1","textPreview":"完整动作周期成立才 +1","textChars":12,"textLines":1,"bbox":[902,440,290,48]}
+{"kind":"shape","id":"sh/g36tgryd","slide":4,"bbox":[902,494,290,0]}
+{"kind":"textbox","id":"sh/h4fa9wfy","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[902,512,42,28]}
+{"kind":"textbox","id":"sh/p0batw72","slide":4,"text":"降级","textPreview":"降级","textChars":2,"textLines":1,"bbox":[954,510,200,32]}
+{"kind":"textbox","id":"sh/oz29krqh","slide":4,"text":"低置信度进入人工复核","textPreview":"低置信度进入人工复核","textChars":10,"textLines":1,"bbox":[902,552,290,48]}
+{"kind":"textbox","id":"sh/3ytsrmpw","slide":4,"text":"画面标注、短句提示与语音播报同步工作","textPreview":"画面标注、短句提示与语音播报同步工作","textChars":18,"textLines":1,"bbox":[902,626,290,28]}
+{"kind":"image","id":"im/a5sritkf","slide":4,"name":"","geometry":"roundRect","bbox":[64,168,790,474]}
+{"kind":"notes","id":"nt/jyx0ra1s","slide":4,"text":"此页沿用原版 Ghost Coach 界面截图，展示实时纠错与完整周期计数。截图是产品界面证据，不代表工业现场准确率。\n依据：src/live_coach.py；src/ghost_coach.py；templates/index.html。"}
+{"kind":"slide","id":"sl/i107q5of","slide":5,"title":"MODEL & RULE ASSETS","textShapes":26}
+{"kind":"textbox","id":"sh/8f6hcj6t","slide":5,"text":"MODEL & RULE ASSETS","textPreview":"MODEL & RULE ASSETS","textChars":19,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/dgbulwnm","slide":5,"text":"本地模型与规则，组成可复用的现场能力","textPreview":"本地模型与规则，组成可复用的现场能力","textChars":18,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/cf2tcr61","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/z2tcnm5s","slide":5,"bbox":[64,132,1152,0]}
+{"kind":"textbox","id":"sh/yhkbe1o7","slide":5,"text":"当前离线链路","textPreview":"当前离线链路","textChars":6,"textLines":1,"bbox":[64,176,150,28]}
+{"kind":"shape","id":"sh/l4bupwny","slide":5,"bbox":[255,261,81,2]}
+{"kind":"shape","id":"sh/032tgr6d","slide":5,"bbox":[333,258,12,8]}
+{"kind":"shape","id":"sh/n6dcr65o","slide":5,"bbox":[493,261,81,2]}
+{"kind":"shape","id":"sh/m5kbi1oj","slide":5,"bbox":[571,258,12,8]}
+{"kind":"shape","id":"sh/w32dkbuh","slide":5,"bbox":[731,261,81,2]}
+{"kind":"shape","id":"sh/x4vedgvm","slide":5,"bbox":[809,258,12,8]}
+{"kind":"shape","id":"sh/ahkvi1cb","slide":5,"bbox":[64,220,190,112]}
+{"kind":"textbox","id":"sh/v2twb6dw","slide":5,"text":"公开样本","textPreview":"公开样本","textChars":4,"textLines":1,"bbox":[82,240,155,28]}
+{"kind":"textbox","id":"sh/k7mxovud","slide":5,"text":"MM-Fit 数据\n48 帧切窗","textPreview":"MM-Fit 数据 | 48 帧切窗","textChars":16,"textLines":2,"bbox":[82,278,155,42]}
+{"kind":"shape","id":"sh/58vehgvy","slide":5,"bbox":[345,220,190,112]}
+{"kind":"textbox","id":"sh/i54fmlc7","slide":5,"text":"模型训练","textPreview":"模型训练","textChars":4,"textLines":1,"bbox":[363,240,155,28]}
+{"kind":"textbox","id":"sh/j6dwfqds","slide":5,"text":"ST-GCN 训练脚本\n本地运行","textPreview":"ST-GCN 训练脚本 | 本地运行","textChars":16,"textLines":2,"bbox":[363,278,155,42]}
+{"kind":"shape","id":"sh/sb6xsvu9","slide":5,"bbox":[583,220,190,112]}
+{"kind":"textbox","id":"sh/tcfel0vu","slide":5,"text":"训练选优","textPreview":"训练选优","textChars":4,"textLines":1,"bbox":[601,240,155,28]}
+{"kind":"textbox","id":"sh/hgrmpwj2","slide":5,"text":"比较验证指标\n保存 checkpoint","textPreview":"比较验证指标 | 保存 checkpoint","textChars":20,"textLines":2,"bbox":[601,278,155,42]}
+{"kind":"shape","id":"sh/gfi5grih","slide":5,"bbox":[821,220,190,112]}
+{"kind":"textbox","id":"sh/fe94nm1w","slide":5,"text":"本地权重","textPreview":"本地权重","textChars":4,"textLines":1,"bbox":[839,240,155,28]}
+{"kind":"textbox","id":"sh/ud0ne10b","slide":5,"text":"模型文件落盘\n供推理加载","textPreview":"模型文件落盘 | 供推理加载","textChars":12,"textLines":2,"bbox":[839,278,155,42]}
+{"kind":"shape","id":"sh/pkr6tgjy","slide":5,"bbox":[1050,208,166,136]}
+{"kind":"textbox","id":"sh/4ji5kbid","slide":5,"text":"当前边界","textPreview":"当前边界","textChars":4,"textLines":1,"bbox":[1058,232,150,30]}
+{"kind":"textbox","id":"sh/3i94r61s","slide":5,"text":"租户注册与回滚\n尚未打通","textPreview":"租户注册与回滚 | 尚未打通","textChars":12,"textLines":2,"bbox":[1064,278,138,52]}
+{"kind":"textbox","id":"sh/2h0ni107","slide":5,"text":"企业增量流程","textPreview":"企业增量流程","textChars":6,"textLines":1,"bbox":[64,400,150,28]}
+{"kind":"shape","id":"sh/5o7mhcju","slide":5,"bbox":[255,489,81,2]}
+{"kind":"shape","id":"sh/kny587i9","slide":5,"bbox":[333,486,12,8]}
+{"kind":"shape","id":"sh/atcjidg7","slide":5,"bbox":[493,489,81,2]}
+{"kind":"shape","id":"sh/vu5kbihc","slide":5,"bbox":[571,486,12,8]}
+{"kind":"shape","id":"sh/wve1knyx","slide":5,"bbox":[731,489,81,2]}
+{"kind":"shape","id":"sh/xwn2dszi","slide":5,"bbox":[809,486,12,8]}
+{"kind":"shape","id":"sh/ihw3mxg3","slide":5,"bbox":[64,448,190,96]}
+{"kind":"textbox","id":"sh/ji5kf2ho","slide":5,"text":"授权样本","textPreview":"授权样本","textChars":4,"textLines":1,"bbox":[82,466,155,28]}
+{"kind":"textbox","id":"sh/kjelony9","slide":5,"text":"企业许可与标注","textPreview":"企业许可与标注","textChars":7,"textLines":1,"bbox":[82,506,155,24]}
+{"kind":"shape","id":"sh/5kn2hszu","slide":5,"bbox":[345,448,190,96]}
+{"kind":"textbox","id":"sh/e1sjatgz","slide":5,"text":"候选版本","textPreview":"候选版本","textChars":4,"textLines":1,"bbox":[363,466,155,28]}
+{"kind":"textbox","id":"sh/zmlk3yhk","slide":5,"text":"参数或权重更新","textPreview":"参数或权重更新","textChars":7,"textLines":1,"bbox":[363,506,155,24]}
+{"kind":"shape","id":"sh/fid07u98","slide":5,"bbox":[583,448,190,96]}
+{"kind":"textbox","id":"sh/ehkzepsn","slide":5,"text":"离线回放","textPreview":"离线回放","textChars":4,"textLines":1,"bbox":[601,466,155,28]}
+{"kind":"textbox","id":"sh/1kvi94re","slide":5,"text":"对比误判与漏判","textPreview":"对比误判与漏判","textChars":7,"textLines":1,"bbox":[601,506,155,24]}
+{"kind":"shape","id":"sh/gjmhgzqt","slide":5,"bbox":[821,448,190,96]}
+{"kind":"textbox","id":"sh/3md0bu94","slide":5,"text":"人工批准","textPreview":"人工批准","textChars":4,"textLines":1,"bbox":[839,466,155,28]}
+{"kind":"textbox","id":"sh/2l4zip8j","slide":5,"text":"EHS 确认岗位标准","textPreview":"EHS 确认岗位标准","textChars":10,"textLines":1,"bbox":[839,506,155,24]}
+{"kind":"shape","id":"sh/povid4ra","slide":5,"bbox":[1050,438,166,116]}
+{"kind":"textbox","id":"sh/onmhkzqp","slide":5,"text":"发布回滚","textPreview":"发布回滚","textChars":4,"textLines":1,"bbox":[1062,462,142,28]}
+{"kind":"textbox","id":"sh/bqx0fe9g","slide":5,"text":"旧版保留可恢复","textPreview":"旧版保留可恢复","textChars":7,"textLines":1,"bbox":[1062,506,142,24]}
+{"kind":"textbox","id":"sh/qp4jm98v","slide":5,"text":"规则调参普通电脑即可；ST-GCN 可用 CPU 训练，RTMPose 微调建议 GPU。","textPreview":"规则调参普通电脑即可；ST-GCN 可用 CPU 训练，RTMPose 微调建议 GPU。","textChars":45,"textLines":1,"bbox":[64,606,1080,34]}
+{"kind":"notes","id":"nt/i107q5of","slide":5,"text":"呼应当前对话的调参问题：ClawHive 或比赛智能体可辅助分析错误、提出参数候选和编排评测；现有仓库只有离线训练脚本和本地权重，尚无按租户自动训练、注册、回滚的运行时链路。规则调参不需要 GPU，小型 ST-GCN 可用 CPU，RTMPose 微调建议 GPU。\n依据：src/train.py；model/mmfit_pose11cls_stride48_best.pth；config/posture_standards/recruit_squat_50_v1.json；deliverables/练了么-评委问答手册.md。"}
+{"kind":"slide","id":"sl/x8f69ofe","slide":6,"title":"A-TRACK DESIGN","textShapes":22}
+{"kind":"textbox","id":"sh/jet8nm1c","slide":6,"text":"A-TRACK DESIGN","textPreview":"A-TRACK DESIGN","textChars":14,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/yhg7epsj","slide":6,"text":"A 赛道：一个空间协同现场动作任务","textPreview":"A 赛道：一个空间协同现场动作任务","textChars":17,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/zi98nu94","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/87ipkzal","slide":6,"bbox":[64,132,1152,0]}
+{"kind":"textbox","id":"sh/98rqt4r6","slide":6,"text":"智能体职责组","textPreview":"智能体职责组","textChars":6,"textLines":1,"bbox":[64,166,220,26]}
+{"kind":"textbox","id":"sh/ml07i9sv","slide":6,"text":"可复用的本地能力","textPreview":"可复用的本地能力","textChars":8,"textLines":1,"bbox":[372,166,520,26]}
+{"kind":"textbox","id":"sh/7m98ru9g","slide":6,"text":"提交状态","textPreview":"提交状态","textChars":4,"textLines":1,"bbox":[1030,166,170,26]}
+{"kind":"shape","id":"sh/oryp8fah","slide":6,"bbox":[64,200,1152,0]}
+{"kind":"textbox","id":"sh/pc76hkr2","slide":6,"text":"任务与标准","textPreview":"任务与标准","textChars":5,"textLines":1,"bbox":[64,216,220,36]}
+{"kind":"textbox","id":"sh/h4bupgn6","slide":6,"text":"任务拆解、岗位标准、训练计划、设备检查","textPreview":"任务拆解、岗位标准、训练计划、设备检查","textChars":19,"textLines":1,"bbox":[372,216,590,42]}
+{"kind":"textbox","id":"sh/w32twb6l","slide":6,"text":"角色待上架","textPreview":"角色待上架","textChars":5,"textLines":1,"bbox":[1000,216,216,36]}
+{"kind":"shape","id":"sh/v2tcn650","slide":6,"bbox":[64,282,1152,0]}
+{"kind":"textbox","id":"sh/u1kbu1ov","slide":6,"text":"动作教练","textPreview":"动作教练","textChars":4,"textLines":1,"bbox":[64,298,220,36]}
+{"kind":"textbox","id":"sh/5svutgni","slide":6,"text":"RTMPose、ST-GCN、阶段计数与即时纠错","textPreview":"RTMPose、ST-GCN、阶段计数与即时纠错","textChars":24,"textLines":1,"bbox":[372,298,590,42]}
+{"kind":"textbox","id":"sh/47mt0b6x","slide":6,"text":"本地链路可演示","textPreview":"本地链路可演示","textChars":7,"textLines":1,"bbox":[1000,298,216,36]}
+{"kind":"shape","id":"sh/j6dcr65c","slide":6,"bbox":[64,364,1152,0]}
+{"kind":"textbox","id":"sh/i54bylor","slide":6,"text":"安全提醒","textPreview":"安全提醒","textChars":4,"textLines":1,"bbox":[64,380,220,36]}
+{"kind":"textbox","id":"sh/twfux0ne","slide":6,"text":"六类规则、持续门控、同类冷却与事件留档","textPreview":"六类规则、持续门控、同类冷却与事件留档","textChars":19,"textLines":1,"bbox":[372,380,590,42]}
+{"kind":"textbox","id":"sh/svmt4v6t","slide":6,"text":"PPE 权重待补","textPreview":"PPE 权重待补","textChars":8,"textLines":1,"bbox":[1000,380,216,36]}
+{"kind":"shape","id":"sh/cbe5g3ih","slide":6,"bbox":[64,446,1152,0]}
+{"kind":"textbox","id":"sh/dcnm98zm","slide":6,"text":"复核与报告","textPreview":"复核与报告","textChars":5,"textLines":1,"bbox":[64,462,220,36]}
+{"kind":"textbox","id":"sh/qpwnet0b","slide":6,"text":"会话总结、事件确认与认证记录","textPreview":"会话总结、事件确认与认证记录","textChars":14,"textLines":1,"bbox":[372,462,590,42]}
+{"kind":"textbox","id":"sh/bq547yhw","slide":6,"text":"业务适配待验收","textPreview":"业务适配待验收","textChars":7,"textLines":1,"bbox":[1000,462,216,36]}
+{"kind":"shape","id":"sh/0fy5k3id","slide":6,"bbox":[64,528,1152,0]}
+{"kind":"textbox","id":"sh/lg76d8zy","slide":6,"text":"模型资产","textPreview":"模型资产","textChars":4,"textLines":1,"bbox":[64,544,220,36]}
+{"kind":"textbox","id":"sh/ydgnit07","slide":6,"text":"离线训练选优、本地权重与版本登记方案","textPreview":"离线训练选优、本地权重与版本登记方案","textChars":18,"textLines":1,"bbox":[372,544,590,42]}
+{"kind":"textbox","id":"sh/zep4byhs","slide":6,"text":"注册回滚待实现","textPreview":"注册回滚待实现","textChars":7,"textLines":1,"bbox":[1000,544,216,36]}
+{"kind":"shape","id":"sh/gju58ji9","slide":6,"bbox":[64,610,1152,0]}
+{"kind":"textbox","id":"sh/1k3mhozu","slide":6,"text":"A 赛道要求同一空间至少 10 个有效智能体；当前为职责设计，以平台验收为准。","textPreview":"A 赛道要求同一空间至少 10 个有效智能体；当前为职责设计，以平台验收为准。","textChars":39,"textLines":1,"bbox":[64,632,1040,32]}
+{"kind":"notes","id":"nt/x8f69ofe","slide":6,"text":"根据用户提供的比赛通知，A 赛道提交一个智能体空间，空间内至少 10 个有效智能体。仓库无法证明 19 个智能体已经在比赛平台发布。此页明确区分本地能力和待上架角色。若转投 B 赛道，需要另行封装至少 6 个有效 Skill。\n依据：用户提供的比赛通知；deliverables/A赛道-设计文档.md；web_app.py；src/pipeline_safety/。"}
+{"kind":"slide","id":"sl/gnmp4jqx","slide":7,"title":"TECH ARCHITECTURE","textShapes":24}
+{"kind":"textbox","id":"sh/honq18ru","slide":7,"text":"TECH ARCHITECTURE","textPreview":"TECH ARCHITECTURE","textChars":17,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/cb2tkvap","slide":7,"text":"两条本地视觉链路，共用规则与事件思路","textPreview":"两条本地视觉链路，共用规则与事件思路","textChars":18,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/dcbud0ra","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/ydkbm5sv","slide":7,"bbox":[64,132,1152,0]}
+{"kind":"shape","id":"sh/zedcfa9g","slide":7,"bbox":[236,287,49,2]}
+{"kind":"shape","id":"sh/kzmdova1","slide":7,"bbox":[282,284,12,8]}
+{"kind":"shape","id":"sh/l0vuh0rm","slide":7,"bbox":[466,287,49,2]}
+{"kind":"shape","id":"sh/eh0ba1sr","slide":7,"bbox":[512,284,12,8]}
+{"kind":"shape","id":"sh/fi9c369c","slide":7,"bbox":[696,287,49,2]}
+{"kind":"shape","id":"sh/baxkjqlk","slide":7,"bbox":[742,284,12,8]}
+{"kind":"shape","id":"sh/a9ojq5kz","slide":7,"bbox":[926,287,49,2]}
+{"kind":"shape","id":"sh/xcz2l03q","slide":7,"bbox":[972,284,12,8]}
+{"kind":"shape","id":"sh/cbq1sv25","slide":7,"bbox":[64,224,172,122]}
+{"kind":"textbox","id":"sh/n6x0fqlo","slide":7,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[80,240,32,20]}
+{"kind":"textbox","id":"sh/25ojml43","slide":7,"text":"摄像头","textPreview":"摄像头","textChars":3,"textLines":1,"bbox":[80,270,140,30]}
+{"kind":"textbox","id":"sh/p8fih03e","slide":7,"text":"浏览器与工位视频","textPreview":"浏览器与工位视频","textChars":8,"textLines":1,"bbox":[80,310,140,24]}
+{"kind":"shape","id":"sh/o761ov2t","slide":7,"bbox":[294,224,172,122]}
+{"kind":"textbox","id":"sh/f2d0b6lc","slide":7,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[310,240,32,20]}
+{"kind":"textbox","id":"sh/eh4jil4r","slide":7,"text":"姿态估计","textPreview":"姿态估计","textChars":4,"textLines":1,"bbox":[310,270,140,30]}
+{"kind":"textbox","id":"sh/id4ju1oz","slide":7,"text":"RTMPose / YOLO Pose","textPreview":"RTMPose / YOLO Pose","textChars":19,"textLines":1,"bbox":[310,310,140,24]}
+{"kind":"shape","id":"sh/jedkn654","slide":7,"bbox":[524,224,172,122]}
+{"kind":"textbox","id":"sh/4fm1wb6p","slide":7,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[540,240,32,20]}
+{"kind":"textbox","id":"sh/50v2pgna","slide":7,"text":"动作理解","textPreview":"动作理解","textChars":4,"textLines":1,"bbox":[540,270,140,30]}
+{"kind":"textbox","id":"sh/q143ylov","slide":7,"text":"11 类动作 / 人员跟踪","textPreview":"11 类动作 / 人员跟踪","textChars":13,"textLines":1,"bbox":[540,310,140,24]}
+{"kind":"shape","id":"sh/r2dkrq5g","slide":7,"bbox":[754,224,172,122]}
+{"kind":"textbox","id":"sh/s3ml0v61","slide":7,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[770,240,32,20]}
+{"kind":"textbox","id":"sh/d4f2t0nm","slide":7,"text":"规则引擎","textPreview":"规则引擎","textChars":4,"textLines":1,"bbox":[770,270,140,30]}
+{"kind":"textbox","id":"sh/e5o32lor","slide":7,"text":"计数 / 六类风险 / 去抖","textPreview":"计数 / 六类风险 / 去抖","textChars":14,"textLines":1,"bbox":[770,310,140,24]}
+{"kind":"shape","id":"sh/f6xkvq5c","slide":7,"bbox":[984,224,172,122]}
+{"kind":"textbox","id":"sh/p0zmlk7u","slide":7,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1000,240,32,20]}
+{"kind":"textbox","id":"sh/ozq5szq9","slide":7,"text":"记录与复核","textPreview":"记录与复核","textChars":5,"textLines":1,"bbox":[1000,270,140,30]}
+{"kind":"textbox","id":"sh/nyh4jupo","slide":7,"text":"会话总结 / SQLite 事件","textPreview":"会话总结 / SQLite 事件","textChars":16,"textLines":1,"bbox":[1000,310,140,24]}
+{"kind":"shape","id":"sh/2x8nqp83","slide":7,"bbox":[64,420,548,166]}
+{"kind":"textbox","id":"sh/x4j6p47q","slide":7,"text":"训练与考核","textPreview":"训练与考核","textChars":5,"textLines":1,"bbox":[88,446,190,28]}
+{"kind":"textbox","id":"sh/c3a5wzq5","slide":7,"text":"阶段、次数、Top 错误与短句反馈","textPreview":"阶段、次数、Top 错误与短句反馈","textChars":17,"textLines":1,"bbox":[88,486,460,38]}
+{"kind":"textbox","id":"sh/b2h4nupk","slide":7,"text":"逐帧计数以确定性规则为准","textPreview":"逐帧计数以确定性规则为准","textChars":12,"textLines":1,"bbox":[88,540,460,24]}
+{"kind":"shape","id":"sh/a18nup8z","slide":7,"bbox":[668,420,548,166]}
+{"kind":"textbox","id":"sh/lsj6t47m","slide":7,"text":"工业安全","textPreview":"工业安全","textChars":4,"textLines":1,"bbox":[692,446,210,28]}
+{"kind":"textbox","id":"sh/kra50jqh","slide":7,"text":"六类风险事件、截图与确认记录","textPreview":"六类风险事件、截图与确认记录","textChars":14,"textLines":1,"bbox":[692,486,460,38]}
+{"kind":"textbox","id":"sh/wneps3ap","slide":7,"text":"独立 PPE 权重缺失时，头盔检测不可用","textPreview":"独立 PPE 权重缺失时，头盔检测不可用","textChars":20,"textLines":1,"bbox":[692,540,460,24]}
+{"kind":"notes","id":"nt/gnmp4jqx","slide":7,"text":"训练链路使用 RTMPose + ST-GCN + 几何规则。工业安全模块单独使用 YOLO Pose、独立 PPE 模型接口和六类规则；当前仓库没有配置路径所指向的 PPE 权重文件。两条链路共用业务场景，但并非同一个已整合的模型推理管线。\n依据：web_app.py；src/live_coach.py；src/pipeline_safety/monitor.py；src/pipeline_safety/detector.py；config/safety/default.json。"}
+{"kind":"slide","id":"sl/fu1gfa1s","slide":8,"title":"VERIFIABLE EVIDENCE","textShapes":17}
+{"kind":"textbox","id":"sh/7u5w765k","slide":8,"text":"VERIFIABLE EVIDENCE","textPreview":"VERIFIABLE EVIDENCE","textChars":19,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/18byd4zy","slide":8,"text":"本地权重可核验，现场准确率仍待测","textPreview":"本地权重可核验，现场准确率仍待测","textChars":16,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/g72x4zyd","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/ri9g7uhw","slide":8,"bbox":[64,132,1152,0]}
+{"kind":"textbox","id":"sh/tkby9kzm","slide":8,"text":"21","textPreview":"21","textChars":2,"textLines":1,"bbox":[774,184,180,60]}
+{"kind":"textbox","id":"sh/sjix0zy1","slide":8,"text":"名真实受试者","textPreview":"名真实受试者","textChars":6,"textLines":1,"bbox":[774,248,180,30]}
+{"kind":"textbox","id":"sh/je9g3ahk","slide":8,"text":"MM-Fit 数据源","textPreview":"MM-Fit 数据源","textChars":10,"textLines":1,"bbox":[774,282,180,52]}
+{"kind":"textbox","id":"sh/id0fu50z","slide":8,"text":"8,898","textPreview":"8,898","textChars":5,"textLines":1,"bbox":[998,184,210,60]}
+{"kind":"textbox","id":"sh/o7ydoret","slide":8,"text":"个训练窗口","textPreview":"个训练窗口","textChars":5,"textLines":1,"bbox":[998,248,210,30]}
+{"kind":"textbox","id":"sh/98rehwve","slide":8,"text":"48 帧 × 17 关节","textPreview":"48 帧 × 17 关节","textChars":12,"textLines":1,"bbox":[998,282,210,52]}
+{"kind":"shape","id":"sh/m5gvmhwn","slide":8,"bbox":[774,348,434,0]}
+{"kind":"textbox","id":"sh/n6pwfmd8","slide":8,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[774,376,180,60]}
+{"kind":"textbox","id":"sh/0jydkreh","slide":8,"text":"类动作","textPreview":"类动作","textChars":3,"textLines":1,"bbox":[774,440,180,30]}
+{"kind":"textbox","id":"sh/1k7edwv2","slide":8,"text":"ST-GCN 分类模型","textPreview":"ST-GCN 分类模型","textChars":11,"textLines":1,"bbox":[774,474,180,52]}
+{"kind":"textbox","id":"sh/ehgvihwr","slide":8,"text":"93.15%","textPreview":"93.15%","textChars":6,"textLines":1,"bbox":[998,376,210,60]}
+{"kind":"textbox","id":"sh/zipwbmdc","slide":8,"text":"窗口验证选模指标","textPreview":"窗口验证选模指标","textChars":8,"textLines":1,"bbox":[998,440,210,30]}
+{"kind":"textbox","id":"sh/kfixwbe1","slide":8,"text":"Epoch 5 / 5","textPreview":"Epoch 5 / 5","textChars":11,"textLines":1,"bbox":[998,474,210,52]}
+{"kind":"shape","id":"sh/lgbepgvm","slide":8,"bbox":[774,560,434,54]}
+{"kind":"textbox","id":"sh/tw7e9gnq","slide":8,"text":"23 项流程测试通过 · 安全模块配置六类规则","textPreview":"23 项流程测试通过 · 安全模块配置六类规则","textChars":23,"textLines":1,"bbox":[792,575,398,25]}
+{"kind":"textbox","id":"sh/svydgb65","slide":8,"text":"93.15% 的随机滑窗划分可能泄漏；不能当作企业现场准确率。","textPreview":"93.15% 的随机滑窗划分可能泄漏；不能当作企业现场准确率。","textChars":31,"textLines":1,"bbox":[64,636,1140,26]}
+{"kind":"chart","id":"ch/6t07u5w7","slide":8,"name":"Chart","chartType":"line","title":"5 轮训练准确率（%）","bbox":[64,174,650,420]}
+{"kind":"notes","id":"nt/fu1gfa1s","slide":8,"text":"源图为五轮训练曲线，沿用原版可编辑图表。MM-Fit 数据有 21 名受试者、8,898 个训练窗口、11 类动作。93.15% 是随机滑窗划分上的选模指标，邻近窗口可能跨训练与验证集；没有按受试者独立测试，不得对外称现场准确率。23 项 harness 测试已在本次任务重新运行通过。\n依据：docs/real-evidence.md；docs/mmfit-retrain-summary-2026-05-29.md；npm run test 本次输出。"}
+{"kind":"slide","id":"sl/udsvah03","slide":9,"title":"RISK & REVIEW","textShapes":23}
+{"kind":"textbox","id":"sh/pofy50nu","slide":9,"text":"RISK & REVIEW","textPreview":"RISK & REVIEW","textChars":13,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/1cfmhgne","slide":9,"text":"现场告警先降误报，关键结论留给人","textPreview":"现场告警先降误报，关键结论留给人","textChars":16,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/0b65obm9","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/nex4jq5k","slide":9,"bbox":[64,132,1152,0]}
+{"kind":"shape","id":"sh/mdonql4z","slide":9,"bbox":[64,172,374,458]}
+{"kind":"textbox","id":"sh/9gzml0nq","slide":9,"text":"HUMAN REVIEW","textPreview":"HUMAN REVIEW","textChars":12,"textLines":1,"bbox":[92,204,310,30]}
+{"kind":"textbox","id":"sh/ofq5svm5","slide":9,"text":"看不清，\n交给人判断。","textPreview":"看不清， | 交给人判断。","textChars":11,"textLines":2,"bbox":[92,270,300,120]}
+{"kind":"textbox","id":"sh/bih4na5w","slide":9,"text":"遮挡、无人入镜或模型不可用时，记录技术失败并提示人工核查","textPreview":"遮挡、无人入镜或模型不可用时，记录技术失败并提示人工核查","textChars":28,"textLines":1,"bbox":[92,430,292,116]}
+{"kind":"textbox","id":"sh/ah8nu54b","slide":9,"text":"录用、安全处置和医疗判断由授权人员负责","textPreview":"录用、安全处置和医疗判断由授权人员负责","textChars":19,"textLines":1,"bbox":[92,570,292,42]}
+{"kind":"textbox","id":"sh/oza1gfyh","slide":9,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[500,184,42,22]}
+{"kind":"textbox","id":"sh/p0ji9kf2","slide":9,"text":"本地推理","textPreview":"本地推理","textChars":4,"textLines":1,"bbox":[558,180,230,32]}
+{"kind":"textbox","id":"sh/2xsjepgb","slide":9,"text":"视觉模型和规则在本地运行","textPreview":"视觉模型和规则在本地运行","textChars":12,"textLines":1,"bbox":[800,182,390,56]}
+{"kind":"shape","id":"sh/3y107axw","slide":9,"bbox":[500,262,690,0]}
+{"kind":"textbox","id":"sh/cnu1kzyd","slide":9,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[500,294,42,22]}
+{"kind":"textbox","id":"sh/do3id4fy","slide":9,"text":"持续门控","textPreview":"持续门控","textChars":4,"textLines":1,"bbox":[558,290,230,32]}
+{"kind":"textbox","id":"sh/qlcjipgn","slide":9,"text":"风险持续达到配置时间才触发告警","textPreview":"风险持续达到配置时间才触发告警","textChars":15,"textLines":1,"bbox":[800,292,390,56]}
+{"kind":"shape","id":"sh/bml0buxs","slide":9,"bbox":[500,372,690,0]}
+{"kind":"textbox","id":"sh/0ru1ozyp","slide":9,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[500,404,42,22]}
+{"kind":"textbox","id":"sh/lsn2h4fa","slide":9,"text":"同类冷却","textPreview":"同类冷却","textChars":4,"textLines":1,"bbox":[558,400,230,32]}
+{"kind":"textbox","id":"sh/98ji147e","slide":9,"text":"同一风险在冷却期内不重复轰炸","textPreview":"同一风险在冷却期内不重复轰炸","textChars":14,"textLines":1,"bbox":[800,402,390,56]}
+{"kind":"shape","id":"sh/87a18zqt","slide":9,"bbox":[500,482,690,0]}
+{"kind":"textbox","id":"sh/76h0zup8","slide":9,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[500,514,42,22]}
+{"kind":"textbox","id":"sh/ml8j6p8n","slide":9,"text":"跟踪复位","textPreview":"跟踪复位","textChars":4,"textLines":1,"bbox":[558,510,230,32]}
+{"kind":"textbox","id":"sh/hcji5o7a","slide":9,"text":"人员丢失时清理规则状态，避免残留误报","textPreview":"人员丢失时清理规则状态，避免残留误报","textChars":18,"textLines":1,"bbox":[800,512,390,56]}
+{"kind":"shape","id":"sh/wba1cjqp","slide":9,"bbox":[500,618,92,30]}
+{"kind":"textbox","id":"sh/va103ep4","slide":9,"text":"已完成","textPreview":"已完成","textChars":3,"textLines":1,"bbox":[500,620,92,25]}
+{"kind":"shape","id":"sh/u9sja98z","slide":9,"bbox":[604,618,112,30]}
+{"kind":"textbox","id":"sh/xgzitk76","slide":9,"text":"需纠正","textPreview":"需纠正","textChars":3,"textLines":1,"bbox":[604,620,112,25]}
+{"kind":"shape","id":"sh/cf6h0fql","slide":9,"bbox":[728,618,154,30]}
+{"kind":"textbox","id":"sh/2l4faloj","slide":9,"text":"需核查","textPreview":"需核查","textChars":3,"textLines":1,"bbox":[728,620,154,25]}
+{"kind":"shape","id":"sh/nmdg3q54","slide":9,"bbox":[894,618,138,30]}
+{"kind":"textbox","id":"sh/onmxcv69","slide":9,"text":"无法判定","textPreview":"无法判定","textChars":4,"textLines":1,"bbox":[894,620,138,25]}
+{"kind":"notes","id":"nt/udsvah03","slide":9,"text":"三层去抖来自安全规则的 duration_seconds、cooldown_seconds 与 expire_tracks。跌倒、低头静止、倒地静止均属于风险信号，不得宣称医学诊断或零误报。截图留档由配置控制，需按企业隐私政策使用。\n依据：src/pipeline_safety/rules.py；config/safety/default.json；src/pipeline_safety/events.py。"}
+{"kind":"slide","id":"sl/m90b6t0r","slide":10,"title":"BUSINESS MODEL","textShapes":18}
+{"kind":"textbox","id":"sh/0nut8rul","slide":10,"text":"BUSINESS MODEL","textPreview":"BUSINESS MODEL","textChars":14,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/xc3mho32","slide":10,"text":"单点部署，从招聘延伸到在岗与安全","textPreview":"单点部署，从招聘延伸到在岗与安全","textChars":16,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/cbu58j2h","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/zelojyl8","slide":10,"bbox":[64,132,1152,0]}
+{"kind":"textbox","id":"sh/ydcnatkn","slide":10,"text":"首个客户","textPreview":"首个客户","textChars":4,"textLines":1,"bbox":[64,176,180,26]}
+{"kind":"textbox","id":"sh/l036l83y","slide":10,"text":"有岗位动作培训和批量考核需求的制造、仓储企业","textPreview":"有岗位动作培训和批量考核需求的制造、仓储企业","textChars":22,"textLines":1,"bbox":[64,216,510,92]}
+{"kind":"textbox","id":"sh/kzu5c32t","slide":10,"text":"买方：培训或 EHS 负责人\n部署与合规由 IT 参与","textPreview":"买方：培训或 EHS 负责人 | 部署与合规由 IT 参与","textChars":27,"textLines":2,"bbox":[64,336,430,70]}
+{"kind":"shape","id":"sh/725onyl4","slide":10,"bbox":[64,448,510,142]}
+{"kind":"textbox","id":"sh/m1cnetkj","slide":10,"text":"价值用试点数据计算","textPreview":"价值用试点数据计算","textChars":9,"textLines":1,"bbox":[88,472,350,28]}
+{"kind":"textbox","id":"sh/s7yt4b21","slide":10,"text":"人工观察工时\n复训后错误率\n每摄像头小时误报率","textPreview":"人工观察工时 | 复训后错误率 | 每摄像头小时误报率","textChars":23,"textLines":3,"bbox":[88,514,400,66]}
+{"kind":"textbox","id":"sh/d87uxg3m","slide":10,"text":"LAND","textPreview":"LAND","textChars":4,"textLines":1,"bbox":[664,176,100,24]}
+{"kind":"textbox","id":"sh/q5gb21kb","slide":10,"text":"EXPAND","textPreview":"EXPAND","textChars":6,"textLines":1,"bbox":[1092,176,100,24]}
+{"kind":"shape","id":"sh/r6pcv6lw","slide":10,"bbox":[684,281,121,2]}
+{"kind":"shape","id":"sh/0bit8b2d","slide":10,"bbox":[802,278,12,8]}
+{"kind":"shape","id":"sh/1cru1g3y","slide":10,"bbox":[884,281,121,2]}
+{"kind":"shape","id":"sh/e9gb61k7","slide":10,"bbox":[1002,278,12,8]}
+{"kind":"shape","id":"sh/fapcz6ls","slide":10,"bbox":[632,214,160,154]}
+{"kind":"textbox","id":"sh/ozitcv29","slide":10,"text":"招聘 / 转岗","textPreview":"招聘 / 转岗","textChars":7,"textLines":1,"bbox":[648,238,128,50]}
+{"kind":"textbox","id":"sh/p0ru503u","slide":10,"text":"单点部署费\n按检测量服务","textPreview":"单点部署费 | 按检测量服务","textChars":12,"textLines":2,"bbox":[646,304,132,48]}
+{"kind":"shape","id":"sh/xwnupgvy","slide":10,"bbox":[832,214,160,154]}
+{"kind":"textbox","id":"sh/wvetgbud","slide":10,"text":"在岗训练","textPreview":"在岗训练","textChars":4,"textLines":1,"bbox":[848,238,128,50]}
+{"kind":"textbox","id":"sh/bu5cnqd8","slide":10,"text":"年度服务费\n岗位规则适配","textPreview":"年度服务费 | 岗位规则适配","textChars":12,"textLines":2,"bbox":[846,304,132,48]}
+{"kind":"shape","id":"sh/atwbelcn","slide":10,"bbox":[1032,214,160,154]}
+{"kind":"textbox","id":"sh/lk7ut0va","slide":10,"text":"现场安全","textPreview":"现场安全","textChars":4,"textLines":1,"bbox":[1048,238,128,50]}
+{"kind":"textbox","id":"sh/kjytkvup","slide":10,"text":"按工位扩展\n持续规则维护","textPreview":"按工位扩展 | 持续规则维护","textChars":12,"textLines":2,"bbox":[1046,304,132,48]}
+{"kind":"shape","id":"sh/jypcrqd4","slide":10,"bbox":[632,420,560,0]}
+{"kind":"textbox","id":"sh/yxgbilcj","slide":10,"text":"先验证一个训练点的准确性与使用率，再扩展到相邻岗位和安全工位。","textPreview":"先验证一个训练点的准确性与使用率，再扩展到相邻岗位和安全工位。","textChars":31,"textLines":1,"bbox":[632,454,560,88]}
+{"kind":"textbox","id":"sh/1o3ahwvq","slide":10,"text":"收费方式是商业假设；目前没有付费客户，也没有 3 倍或 40% 的现场实测。","textPreview":"收费方式是商业假设；目前没有付费客户，也没有 3 倍或 40% 的现场实测。","textChars":38,"textLines":1,"bbox":[632,570,560,54]}
+{"kind":"notes","id":"nt/m90b6t0r","slide":10,"text":"此页是商业化假设，不应表述为已签约或已产生收入。用户提出的招聘吞吐约 3 倍、新人上手周期缩短约 40% 没有可核验试点数据，因此不写成成果。\n依据：用户提供的落地价值设想；README.md；deliverables/练了么-投资人尽调意见书.md。"}
+{"kind":"slide","id":"sl/jetc3ut0","slide":11,"title":"PILOT & DELIVERY","textShapes":24}
+{"kind":"textbox","id":"sh/eh8fex47","slide":11,"text":"PILOT & DELIVERY","textPreview":"PILOT & DELIVERY","textChars":16,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/xcryxg7y","slide":11,"text":"四周试点，量出准确性与人工成本","textPreview":"四周试点，量出准确性与人工成本","textChars":15,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/wbih4b6d","slide":11,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/n69grmpw","slide":11,"bbox":[64,132,1152,0]}
+{"kind":"shape","id":"sh/250zy18b","slide":11,"bbox":[380,309,63,2]}
+{"kind":"shape","id":"sh/98rytw72","slide":11,"bbox":[440,306,12,8]}
+{"kind":"shape","id":"sh/o7ih0r6h","slide":11,"bbox":[810,309,63,2]}
+{"kind":"shape","id":"sh/72t03qp0","slide":11,"bbox":[870,306,12,8]}
+{"kind":"shape","id":"sh/61kzalof","slide":11,"bbox":[64,202,326,220]}
+{"kind":"textbox","id":"sh/ofqtgnyt","slide":11,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[86,224,40,28]}
+{"kind":"textbox","id":"sh/9gza9sze","slide":11,"text":"第 1 周：定标准","textPreview":"第 1 周：定标准","textChars":9,"textLines":1,"bbox":[86,270,280,34]}
+{"kind":"textbox","id":"sh/mdobedg3","slide":11,"text":"选一个岗位动作\n记录人工基线","textPreview":"选一个岗位动作 | 记录人工基线","textChars":14,"textLines":2,"bbox":[86,324,280,70]}
+{"kind":"shape","id":"sh/nehs7iho","slide":11,"bbox":[452,202,358,220]}
+{"kind":"textbox","id":"sh/0b6tc3yx","slide":11,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[474,224,40,28]}
+{"kind":"textbox","id":"sh/1cfa58zi","slide":11,"text":"第 2–3 周：并行","textPreview":"第 2–3 周：并行","textChars":10,"textLines":1,"bbox":[474,270,310,34]}
+{"kind":"textbox","id":"sh/epobatgr","slide":11,"text":"AI 与人工同步观察\n保留分歧和遮挡样例","textPreview":"AI 与人工同步观察 | 保留分歧和遮挡样例","textChars":20,"textLines":2,"bbox":[474,324,310,70]}
+{"kind":"shape","id":"sh/zaxs3yhc","slide":11,"bbox":[882,202,326,220]}
+{"kind":"textbox","id":"sh/cn6t83y1","slide":11,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[904,224,40,28]}
+{"kind":"textbox","id":"sh/dofa18z6","slide":11,"text":"第 4 周：复盘","textPreview":"第 4 周：复盘","textChars":8,"textLines":1,"bbox":[904,270,280,34]}
+{"kind":"textbox","id":"sh/tsnip0ny","slide":11,"text":"对照预先约定指标\n决定是否扩到更多工位","textPreview":"对照预先约定指标 | 决定是否扩到更多工位","textChars":19,"textLines":2,"bbox":[904,324,280,70]}
+{"kind":"textbox","id":"sh/87ehgv6d","slide":11,"text":"当前可核验","textPreview":"当前可核验","textChars":5,"textLines":1,"bbox":[64,474,150,26]}
+{"kind":"textbox","id":"sh/7650nq5s","slide":11,"text":"●","textPreview":"●","textChars":1,"textLines":1,"bbox":[64,516,20,24]}
+{"kind":"textbox","id":"sh/65wzelo7","slide":11,"text":"Web 实时教练与认证页","textPreview":"Web 实时教练与认证页","textChars":12,"textLines":1,"bbox":[86,514,174,48]}
+{"kind":"textbox","id":"sh/l43ilgn2","slide":11,"text":"●","textPreview":"●","textChars":1,"textLines":1,"bbox":[271,516,20,24]}
+{"kind":"textbox","id":"sh/k3uhcb6h","slide":11,"text":"本地模型权重","textPreview":"本地模型权重","textChars":6,"textLines":1,"bbox":[293,514,174,48]}
+{"kind":"textbox","id":"sh/j2lgjq5w","slide":11,"text":"●","textPreview":"●","textChars":1,"textLines":1,"bbox":[478,516,20,24]}
+{"kind":"textbox","id":"sh/y1czalob","slide":11,"text":"安全六类规则与事件接口","textPreview":"安全六类规则与事件接口","textChars":11,"textLines":1,"bbox":[500,514,174,48]}
+{"kind":"textbox","id":"sh/p07ixkn6","slide":11,"text":"●","textPreview":"●","textChars":1,"textLines":1,"bbox":[685,516,20,24]}
+{"kind":"textbox","id":"sh/4zyhofml","slide":11,"text":"版本化动作标准配置","textPreview":"版本化动作标准配置","textChars":9,"textLines":1,"bbox":[707,514,174,48]}
+{"kind":"textbox","id":"sh/m58fih43","slide":11,"text":"●","textPreview":"●","textChars":1,"textLines":1,"bbox":[892,516,20,24]}
+{"kind":"textbox","id":"sh/n61wbmlo","slide":11,"text":"23 项流程测试与 smoke","textPreview":"23 项流程测试与 smoke","textChars":15,"textLines":1,"bbox":[914,514,174,48]}
+{"kind":"shape","id":"sh/o7axk7m9","slide":11,"bbox":[64,584,1152,0]}
+{"kind":"textbox","id":"sh/98jedc3u","slide":11,"text":"A 赛道提交前还需：发布至少 10 个有效智能体，并保存协作运行记录。","textPreview":"A 赛道提交前还需：发布至少 10 个有效智能体，并保存协作运行记录。","textChars":35,"textLines":1,"bbox":[64,610,1152,32]}
+{"kind":"notes","id":"nt/jetc3ut0","slide":11,"text":"试点计划不是客户承诺。建议预设人工计数一致性、需复核率、每摄像头小时误报率、观察工时与复训后错误率等指标。报名平台有效智能体数量必须以平台反馈核验。\n依据：用户提供赛事要求；README.md；src/pipeline_safety/。"}
+{"kind":"slide","id":"sl/8f2psfyx","slide":12,"title":"THE ASK","textShapes":10}
+{"kind":"shape","id":"sh/0nap8f6l","slide":12,"bbox":[64,58,110,30]}
+{"kind":"textbox","id":"sh/1gbm9s3a","slide":12,"text":"THE ASK","textPreview":"THE ASK","textChars":7,"textLines":1,"bbox":[64,60,110,25]}
+{"kind":"textbox","id":"sh/0f2lgnmp","slide":12,"text":"让现场每一次动作\n都有标准和证据","textPreview":"让现场每一次动作 | 都有标准和证据","textChars":16,"textLines":2,"bbox":[64,148,880,160]}
+{"kind":"textbox","id":"sh/ra943il8","slide":12,"text":"寻找一家制造 / 仓储试点企业\n选一个岗位动作，做四周并行验证","textPreview":"寻找一家制造 / 仓储试点企业 | 选一个岗位动作，做四周并行验证","textChars":31,"textLines":2,"bbox":[64,372,720,92]}
+{"kind":"shape","id":"sh/q903ad4n","slide":12,"bbox":[64,518,820,0]}
+{"kind":"textbox","id":"sh/dcbm583y","slide":12,"text":"先量出误判、工时和复训效果，再决定扩展。","textPreview":"先量出误判、工时和复训效果，再决定扩展。","textChars":20,"textLines":1,"bbox":[64,550,880,44]}
+{"kind":"textbox","id":"sh/sb2lcnmd","slide":12,"text":"练了么 · AI 现场动作数字员工","textPreview":"练了么 · AI 现场动作数字员工","textChars":17,"textLines":1,"bbox":[64,642,460,26]}
+{"kind":"shape","id":"sh/b6d4f2lc","slide":12,"bbox":[1004,90,144,540]}
+{"kind":"textbox","id":"sh/a543mx4r","slide":12,"text":"感知","textPreview":"感知","textChars":2,"textLines":1,"bbox":[1022,126,108,40]}
+{"kind":"shape","id":"sh/wvupgz6t","slide":12,"bbox":[1034,184,84,0]}
+{"kind":"textbox","id":"sh/xw3q94ne","slide":12,"text":"纠错","textPreview":"纠错","textChars":2,"textLines":1,"bbox":[1022,224,108,40]}
+{"kind":"shape","id":"sh/atc7epon","slide":12,"bbox":[1034,282,84,0]}
+{"kind":"textbox","id":"sh/bulo7u58","slide":12,"text":"计数","textPreview":"计数","textChars":2,"textLines":1,"bbox":[1022,322,108,40]}
+{"kind":"shape","id":"sh/orapcf6h","slide":12,"bbox":[1034,380,84,0]}
+{"kind":"textbox","id":"sh/9sj65kn2","slide":12,"text":"预警","textPreview":"预警","textChars":2,"textLines":1,"bbox":[1022,420,108,40]}
+{"kind":"shape","id":"sh/mps7a5or","slide":12,"bbox":[1034,478,84,0]}
+{"kind":"textbox","id":"sh/nq1o3a5w","slide":12,"text":"复核","textPreview":"复核","textChars":2,"textLines":1,"bbox":[1022,518,108,40]}
+{"kind":"notes","id":"nt/8f2psfyx","slide":12,"text":"收束到具体试点请求：一家企业、一个岗位动作、四周并行验证。避免承诺已经具备生产级安全告警或自动招聘决策。\n依据：用户提供的新赛事方向；项目当前实现。"}
+{"kind":"slide","id":"sl/hgzapcr6","slide":13,"title":"APPENDIX · SCENARIOS","textShapes":16}
+{"kind":"textbox","id":"sh/oz6x4vul","slide":13,"text":"APPENDIX · SCENARIOS","textPreview":"APPENDIX · SCENARIOS","textChars":20,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/q50nydsj","slide":13,"text":"备份｜三类场景共享动作观察能力","textPreview":"备份｜三类场景共享动作观察能力","textChars":15,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/bq9orito","slide":13,"text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/o3i5w3ad","slide":13,"bbox":[64,132,1152,0]}
+{"kind":"textbox","id":"sh/p4r6p8by","slide":13,"text":"S1","textPreview":"S1","textChars":2,"textLines":1,"bbox":[64,176,50,28]}
+{"kind":"textbox","id":"sh/21gnuts7","slide":13,"text":"招聘深蹲 50 次","textPreview":"招聘深蹲 50 次","textChars":9,"textLines":1,"bbox":[64,220,320,42]}
+{"kind":"shape","id":"sh/32ponyts","slide":13,"bbox":[64,286,330,250]}
+{"kind":"textbox","id":"sh/gzy5s3a1","slide":13,"text":"实时阶段\n即时纠错\n完整周期计数\n认证记录","textPreview":"实时阶段 | 即时纠错 | 完整周期计数 | 认证记录","textChars":21,"textLines":4,"bbox":[88,316,280,160]}
+{"kind":"shape","id":"sh/1076lobm","slide":13,"bbox":[88,486,160,30]}
+{"kind":"textbox","id":"sh/hcfy9k3u","slide":13,"text":"当前最强闭环","textPreview":"当前最强闭环","textChars":6,"textLines":1,"bbox":[88,488,160,25]}
+{"kind":"textbox","id":"sh/gb6x0zm9","slide":13,"text":"S2","textPreview":"S2","textChars":2,"textLines":1,"bbox":[458,176,50,28]}
+{"kind":"textbox","id":"sh/vaxg7ulo","slide":13,"text":"在岗动作训练","textPreview":"在岗动作训练","textChars":6,"textLines":1,"bbox":[458,220,320,42]}
+{"kind":"shape","id":"sh/u9ofyp43","slide":13,"bbox":[458,286,330,250]}
+{"kind":"textbox","id":"sh/t8fy5k3i","slide":13,"text":"11 类动作识别\n6 类专项纠错\n实时语音提示\n会话训练总结","textPreview":"11 类动作识别 | 6 类专项纠错 | 实时语音提示 | 会话训练总结","textChars":30,"textLines":4,"bbox":[482,316,280,160]}
+{"kind":"shape","id":"sh/876xwfmx","slide":13,"bbox":[482,486,160,30]}
+{"kind":"textbox","id":"sh/7mdg3als","slide":13,"text":"项目组合待补","textPreview":"项目组合待补","textChars":6,"textLines":1,"bbox":[482,488,160,25]}
+{"kind":"textbox","id":"sh/6l4fu547","slide":13,"text":"S3","textPreview":"S3","textChars":2,"textLines":1,"bbox":[852,176,50,28]}
+{"kind":"textbox","id":"sh/lkvy103m","slide":13,"text":"工业安全预警","textPreview":"工业安全预警","textChars":6,"textLines":1,"bbox":[852,220,320,42]}
+{"kind":"shape","id":"sh/kjmxsfm1","slide":13,"bbox":[852,286,330,250]}
+{"kind":"textbox","id":"sh/cnqh8fux","slide":13,"text":"6 类风险规则\n三层去抖\nSQLite 事件留档\nPPE 权重待补","textPreview":"6 类风险规则 | 三层去抖 | SQLite 事件留档 | PPE 权重待补","textChars":33,"textLines":4,"bbox":[876,316,280,160]}
+{"kind":"shape","id":"sh/xozyhkbi","slide":13,"bbox":[876,486,160,30]}
+{"kind":"textbox","id":"sh/q18f65cr","slide":13,"text":"现场数据待校准","textPreview":"现场数据待校准","textChars":7,"textLines":1,"bbox":[876,488,160,25]}
+{"kind":"textbox","id":"sh/bmhgfatc","slide":13,"text":"安全事件可展示规则与留档流程；误报、漏报和 PPE 模型需现场验证。","textPreview":"安全事件可展示规则与留档流程；误报、漏报和 PPE 模型需现场验证。","textChars":34,"textLines":1,"bbox":[64,606,1152,40]}
+{"kind":"notes","id":"nt/hgzapcr6","slide":13,"text":"S1、S2 属于当前训练 Web 主链能力。S3 源码已包含安全监测、六类规则和事件接口，但独立 PPE 权重缺失，现场误报漏报尚未评估。\n依据：web_app.py；src/live_coach.py；src/pipeline_safety/；config/safety/default.json。"}
+{"kind":"slide","id":"sl/6lsnupw7","slide":14,"title":"CURRENT APIS","textShapes":8}
+{"kind":"textbox","id":"sh/a1wze9g7","slide":14,"text":"CURRENT APIS","textPreview":"CURRENT APIS","textChars":12,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/xc7eds76","slide":14,"text":"两个本地接口链路，支撑训练与安全演示","textPreview":"两个本地接口链路，支撑训练与安全演示","textChars":18,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/wbydknq1","slide":14,"text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/jepwf2pc","slide":14,"bbox":[64,132,1152,0]}
+{"kind":"textbox","id":"sh/idgvmx8r","slide":14,"text":"训练会话","textPreview":"训练会话","textChars":4,"textLines":1,"bbox":[64,174,120,26]}
+{"kind":"shape","id":"sh/5grehs7i","slide":14,"bbox":[64,214,530,370]}
+{"kind":"textbox","id":"sh/kfidonqx","slide":14,"text":"POST /api/session/start\n  exercise: squats\nPOST /api/session/frame\n  session_id + image_data\nPOST /api/session/stop\n  summary: 次数 / 错误 / 时长","textPreview":"POST /api/session/start |   exercise: squats | POST /api/session/frame |   session_id + image_data | POST /api/session/stop |   summary: ...","textChars":139,"textLines":6,"bbox":[92,246,474,300]}
+{"kind":"textbox","id":"sh/zi5c3y98","slide":14,"text":"安全事件","textPreview":"安全事件","textChars":4,"textLines":1,"bbox":[686,174,120,26]}
+{"kind":"shape","id":"sh/ehwvat8n","slide":14,"bbox":[686,214,530,370]}
+{"kind":"textbox","id":"sh/c3e1gjyd","slide":14,"text":"POST /safety/api/frame\n  frame: JPEG / PNG\nGET /safety/api/events\n  规则 / 工位 / 时间 / 截图\nPOST /safety/api/events/{id}/acknowledge\n  人工确认事件","textPreview":"POST /safety/api/frame |   frame: JPEG / PNG | GET /safety/api/events |   规则 / 工位 / 时间 / 截图 | POST /safety/api/events/{id}/acknowledge | ...","textChars":135,"textLines":6,"bbox":[714,246,474,300]}
+{"kind":"textbox","id":"sh/x4ni9ofy","slide":14,"text":"上图为当前运行时接口；租户鉴权、幂等回写与 Best 权重注册尚未实现。","textPreview":"上图为当前运行时接口；租户鉴权、幂等回写与 Best 权重注册尚未实现。","textChars":36,"textLines":1,"bbox":[64,616,1152,34]}
+{"kind":"notes","id":"nt/6lsnupw7","slide":14,"text":"此页特意把原版中仅存在于契约示例、尚无运行时代码的 best_weight_id 和 decision 移除。左侧是 web_app.py 当前会话 API；右侧是 safety_web.py 当前安全事件 API。生产级鉴权、幂等、租户隔离待实现。\n依据：web_app.py；src/pipeline_safety/safety_web.py。"}
+{"kind":"slide","id":"sl/vaxsvy10","slide":15,"title":"APPENDIX · READINESS","textShapes":27}
+{"kind":"textbox","id":"sh/jmxwzu1g","slide":15,"text":"APPENDIX · READINESS","textPreview":"APPENDIX · READINESS","textChars":20,"textLines":1,"bbox":[64,34,640,24]}
+{"kind":"textbox","id":"sh/547mhg3m","slide":15,"text":"备份｜赛道交付与技术边界","textPreview":"备份｜赛道交付与技术边界","textChars":12,"textLines":1,"bbox":[64,68,1120,58]}
+{"kind":"textbox","id":"sh/k3y5ov21","slide":15,"text":"15","textPreview":"15","textChars":2,"textLines":1,"bbox":[1180,38,36,20]}
+{"kind":"shape","id":"sh/76p4jqls","slide":15,"bbox":[64,132,1152,0]}
+{"kind":"textbox","id":"sh/65gnqlk7","slide":15,"text":"交付项","textPreview":"交付项","textChars":3,"textLines":1,"bbox":[64,166,220,24]}
+{"kind":"textbox","id":"sh/t87ml0ji","slide":15,"text":"当前状态","textPreview":"当前状态","textChars":4,"textLines":1,"bbox":[340,166,360,24]}
+{"kind":"textbox","id":"sh/s7y5sv2x","slide":15,"text":"提交前验收","textPreview":"提交前验收","textChars":5,"textLines":1,"bbox":[770,166,430,24]}
+{"kind":"shape","id":"sh/na5476l8","slide":15,"bbox":[64,196,1152,0]}
+{"kind":"textbox","id":"sh/m9c3e1kn","slide":15,"text":"动作教练","textPreview":"动作教练","textChars":4,"textLines":1,"bbox":[64,212,230,34]}
+{"kind":"textbox","id":"sh/wrm9kvep","slide":15,"text":"本地权重、训练脚本与实时页面","textPreview":"本地权重、训练脚本与实时页面","textChars":14,"textLines":1,"bbox":[340,212,370,45]}
+{"kind":"textbox","id":"sh/hsvat0fa","slide":15,"text":"真机记录 FPS、失败率与持续运行表现","textPreview":"真机记录 FPS、失败率与持续运行表现","textChars":19,"textLines":1,"bbox":[770,212,400,48]}
+{"kind":"textbox","id":"sh/upkrilwj","slide":15,"text":"●","textPreview":"●","textChars":1,"textLines":1,"bbox":[1180,214,22,22]}
+{"kind":"shape","id":"sh/vqdsrqx4","slide":15,"bbox":[64,278,1152,0]}
+{"kind":"textbox","id":"sh/4vm9ovel","slide":15,"text":"安全监测","textPreview":"安全监测","textChars":4,"textLines":1,"bbox":[64,294,230,34]}
+{"kind":"textbox","id":"sh/5wvax0f6","slide":15,"text":"六类规则、事件库与确认接口","textPreview":"六类规则、事件库与确认接口","textChars":13,"textLines":1,"bbox":[340,294,370,45]}
+{"kind":"textbox","id":"sh/it4rm5wv","slide":15,"text":"补齐 PPE 权重，测误报与漏报","textPreview":"补齐 PPE 权重，测误报与漏报","textChars":16,"textLines":1,"bbox":[770,294,400,48]}
+{"kind":"textbox","id":"sh/judsvqxg","slide":15,"text":"●","textPreview":"●","textChars":1,"textLines":1,"bbox":[1180,296,22,22]}
+{"kind":"shape","id":"sh/0z29cbyh","slide":15,"bbox":[64,360,1152,0]}
+{"kind":"textbox","id":"sh/l0bqlgf2","slide":15,"text":"智能体空间","textPreview":"智能体空间","textChars":5,"textLines":1,"bbox":[64,376,230,34]}
+{"kind":"textbox","id":"sh/1kjyt83e","slide":15,"text":"本地工具与 19 角色职责方案","textPreview":"本地工具与 19 角色职责方案","textChars":15,"textLines":1,"bbox":[340,376,370,45]}
+{"kind":"textbox","id":"sh/gjax03m9","slide":15,"text":"至少 10 个有效智能体和协作日志","textPreview":"至少 10 个有效智能体和协作日志","textChars":17,"textLines":1,"bbox":[770,376,400,48]}
+{"kind":"textbox","id":"sh/fi1grylo","slide":15,"text":"●","textPreview":"●","textChars":1,"textLines":1,"bbox":[1180,378,22,22]}
+{"kind":"shape","id":"sh/ehsfyt43","slide":15,"bbox":[64,442,1152,0]}
+{"kind":"textbox","id":"sh/p8jyx83q","slide":15,"text":"现场精度","textPreview":"现场精度","textChars":4,"textLines":1,"bbox":[64,458,230,34]}
+{"kind":"textbox","id":"sh/o7ah4nm5","slide":15,"text":"窗口验证仅用于选模","textPreview":"窗口验证仅用于选模","textChars":9,"textLines":1,"bbox":[340,458,370,45]}
+{"kind":"textbox","id":"sh/361gvilk","slide":15,"text":"按人员和场地独立测试，再定阈值","textPreview":"按人员和场地独立测试，再定阈值","textChars":15,"textLines":1,"bbox":[770,458,400,48]}
+{"kind":"textbox","id":"sh/25sf2d4z","slide":15,"text":"●","textPreview":"●","textChars":1,"textLines":1,"bbox":[1180,460,22,22]}
+{"kind":"shape","id":"sh/dc3y1s3m","slide":15,"bbox":[64,524,1152,0]}
+{"kind":"textbox","id":"sh/cbuh8nmh","slide":15,"text":"企业治理","textPreview":"企业治理","textChars":4,"textLines":1,"bbox":[64,540,230,34]}
+{"kind":"textbox","id":"sh/uh4v2pkj","slide":15,"text":"单机会话和本地记录已有","textPreview":"单机会话和本地记录已有","textChars":11,"textLines":1,"bbox":[340,540,370,45]}
+{"kind":"textbox","id":"sh/vixcvu14","slide":15,"text":"补鉴权、租户隔离、审计与人工复核","textPreview":"补鉴权、租户隔离、审计与人工复核","textChars":16,"textLines":1,"bbox":[770,540,400,48]}
+{"kind":"textbox","id":"sh/wj6d4z2p","slide":15,"text":"●","textPreview":"●","textChars":1,"textLines":1,"bbox":[1180,542,22,22]}
+{"kind":"shape","id":"sh/hkfexkja","slide":15,"bbox":[64,618,1152,0]}
+{"kind":"textbox","id":"sh/ilov6pkv","slide":15,"text":"赛道门槛与模型性能均需独立验收；演示功能不等于生产级部署。","textPreview":"赛道门槛与模型性能均需独立验收；演示功能不等于生产级部署。","textChars":29,"textLines":1,"bbox":[64,636,1152,28]}
+{"kind":"notes","id":"nt/vaxsvy10","slide":15,"text":"A 赛道官方门槛来自用户提供信息：1 个智能体空间内至少 10 个有效智能体。仓库当前只有角色方案，未见平台空间的核验证据。安全帽 PPE 模型配置路径对应权重缺失。93.15% 不是现场精度。\n依据：用户提供通知；deliverables/A赛道-设计文档.md；docs/real-evidence.md；config/safety/default.json；web_app.py。"}
