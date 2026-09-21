@@ -12,8 +12,10 @@ URL 前缀：/safety
 from __future__ import annotations
 
 import logging
+import threading
+import time
 from pathlib import Path
-from typing import Any
+from typing import Any, Optional
 
 from flask import (
     Blueprint,
@@ -27,6 +29,7 @@ from flask import (
 
 from . import __version__
 from .events import EventStore
+from .monitor import SafetyMonitor
 
 LOGGER = logging.getLogger(__name__)
 
@@ -45,6 +48,24 @@ def create_blueprint(config: dict[str, Any]) -> Blueprint:
     camera_cfg = config.get("camera", {})
     ppe_cfg = config.get("ppe_model", {})
     rules_cfg = config.get("rules", [])
+
+    # 懒加载单例：第一次 /safety/api/frame 命中时才把 YOLO 模型载入内存。
+    monitor_state: dict[str, Any] = {"instance": None, "lock": threading.Lock(), "last_error": None}
+
+    def _get_monitor() -> Optional[SafetyMonitor]:
+        if monitor_state["instance"] is not None:
+            return monitor_state["instance"]
+        with monitor_state["lock"]:
+            if monitor_state["instance"] is not None:
+                return monitor_state["instance"]
+            try:
+                # preview=False：不要 cv2.imshow（无桌面 / Flask 后台跑）
+                monitor_state["instance"] = SafetyMonitor(config, preview=False)
+                LOGGER.info("流水线高危作业 · 推理引擎已初始化（网页摄像头链路）")
+            except Exception as exc:  # noqa: BLE001
+                monitor_state["last_error"] = repr(exc)
+                LOGGER.exception("推理引擎初始化失败：%s", exc)
+        return monitor_state["instance"]
 
     bp = Blueprint(
         "pipeline_safety",
@@ -157,6 +178,73 @@ def create_blueprint(config: dict[str, Any]) -> Blueprint:
         if not store.acknowledge(event_id):
             abort(404, description="事件不存在")
         return jsonify({"ok": True})
+
+    # ───────────── 网页摄像头帧接收 ─────────────
+    @bp.route("/api/frame", methods=["POST"])
+    def ingest_frame():
+        """接收浏览器摄像头抓到的 JPEG/PNG 帧，跑一次推理，写库 + 语音播报。
+
+        请求体：multipart/form-data; field="frame"; Content-Type: image/jpeg 或 image/png
+        返回：JSON {status, alerts:[{rule_id, rule_name, severity, message, event_id}], processed_ms}
+        """
+        monitor = _get_monitor()
+        if monitor is None:
+            return (
+                jsonify(
+                    {
+                        "status": "error",
+                        "detail": "推理引擎未就绪",
+                        "hint": monitor_state["last_error"] or "请检查 ultralytics / 模型权重是否可用",
+                    }
+                ),
+                503,
+            )
+
+        upload = request.files.get("frame")
+        if upload is None or not upload.filename:
+            return jsonify({"status": "error", "detail": "缺少 frame 字段"}), 400
+
+        try:
+            payload = upload.read()
+        except Exception as exc:  # noqa: BLE001
+            return jsonify({"status": "error", "detail": f"读取上传失败：{exc!r}"}), 400
+        if not payload:
+            return jsonify({"status": "error", "detail": "上传内容为空"}), 400
+
+        try:
+            import cv2
+            import numpy as np
+
+            arr = np.frombuffer(payload, dtype=np.uint8)
+            frame = cv2.imdecode(arr, cv2.IMREAD_COLOR)
+        except Exception as exc:  # noqa: BLE001
+            return jsonify({"status": "error", "detail": f"解码失败：{exc!r}"}), 400
+        if frame is None:
+            return jsonify({"status": "error", "detail": "解码后为空帧，请检查摄像头输出"}), 400
+
+        started = time.monotonic()
+        try:
+            should_quit = monitor._process_frame(frame)
+        except Exception as exc:  # noqa: BLE001
+            LOGGER.exception("单帧推理失败：%s", exc)
+            return (
+                jsonify({"status": "error", "detail": f"推理失败：{exc!r}"}),
+                500,
+            )
+
+        # 拉最近一条未确认告警作为本帧的"最新结果"返回，避免每次全量查库
+        recent = store.list(limit=1, offset=0)
+        latest = recent[0] if recent else None
+        elapsed_ms = int((time.monotonic() - started) * 1000)
+
+        return jsonify(
+            {
+                "status": "ok",
+                "processed_ms": elapsed_ms,
+                "should_quit": bool(should_quit),
+                "latest_event": latest,
+            }
+        )
 
     # ───────────── 告警截图 ─────────────
     @bp.route("/snapshots/<path:filename>", methods=["GET"])

@@ -171,6 +171,10 @@
   const sessionAlertCount = $("sessionAlertCount");
   let stream = null;
   let alertCount = 0;
+  let captureTimer = null;
+  let captureInFlight = false;
+  const CAPTURE_INTERVAL_MS = 250;          // 4 fps 上传帧，平衡延迟与负载
+  const MAX_CAPTURE_WIDTH = 960;            // 缩到 960 宽，推理够用
   const seenIds = new Set();
 
   function setPill(text, mode = "") {
@@ -198,6 +202,11 @@
     try {
       stream = await navigator.mediaDevices.getUserMedia({ video: { width: 1280, height: 720 }, audio: false });
       preview.srcObject = stream;
+      // 等视频元数据就绪再开始抓帧，避免拿到 0×0
+      await new Promise((resolve) => {
+        if (preview.readyState >= 2) return resolve();
+        preview.onloadedmetadata = () => resolve();
+      });
       standby.setAttribute("aria-hidden", "true");
       standby.style.display = "none";
       setPill("摄像头已开启", "good");
@@ -208,6 +217,7 @@
       ghostStatus.dataset.ghostState = "ready";
       ghostStatus.textContent = "叠加层就绪";
       primaryCue.textContent = "等待系统识别人员姿态";
+      startFrameUpload();
     } catch (err) {
       console.warn(err);
       setPill("摄像头权限被拒", "warn");
@@ -217,7 +227,83 @@
     }
   }
 
+  // ───────────── 抓帧 → 上传 → 渲染告警 ─────────────
+  function startFrameUpload() {
+    if (captureTimer) clearInterval(captureTimer);
+    captureTimer = setInterval(captureAndUploadFrame, CAPTURE_INTERVAL_MS);
+  }
+
+  function stopFrameUpload() {
+    if (captureTimer) {
+      clearInterval(captureTimer);
+      captureTimer = null;
+    }
+  }
+
+  async function captureAndUploadFrame() {
+    if (captureInFlight || !stream || !preview.videoWidth) return;
+    captureInFlight = true;
+
+    const w = preview.videoWidth;
+    const h = preview.videoHeight;
+    const scale = Math.min(1, MAX_CAPTURE_WIDTH / w);
+    const targetW = Math.max(1, Math.round(w * scale));
+    const targetH = Math.max(1, Math.round(h * scale));
+
+    const canvas = document.createElement("canvas");
+    canvas.width = targetW;
+    canvas.height = targetH;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(preview, 0, 0, targetW, targetH);
+    const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/jpeg", 0.7));
+    if (!blob) {
+      captureInFlight = false;
+      return;
+    }
+
+    try {
+      const fd = new FormData();
+      fd.append("frame", blob, "frame.jpg");
+      const resp = await fetch("/safety/api/frame", { method: "POST", body: fd });
+      const data = await resp.json().catch(() => ({ status: "error", detail: "解析响应失败" }));
+      if (data.status !== "ok") {
+        if (data.detail) {
+          statusBadge.textContent = "后端异常";
+          statusBadge.className = "pill warn";
+          primaryCue.textContent = data.hint ? `${data.detail}（${data.hint}）` : data.detail;
+        }
+        return;
+      }
+      handleLatestEvent(data.latest_event, data.processed_ms);
+    } catch (err) {
+      console.warn("frame upload failed", err);
+      primaryCue.textContent = "上传帧失败，请确认 web_app.py 正在运行";
+    } finally {
+      captureInFlight = false;
+    }
+  }
+
+  function handleLatestEvent(event, processedMs) {
+    if (!event) {
+      statusBadge.textContent = "监测中";
+      statusBadge.className = "pill good";
+      return;
+    }
+    if (seenIds.has(event.id)) return;
+    seenIds.add(event.id);
+    alertCount += 1;
+    sessionAlertCount.textContent = String(alertCount);
+    lastAlertName.textContent = event.rule_name || event.rule_id || "—";
+    pushCue(event.rule_name || event.rule_id || "告警", event.severity || "alert");
+    const message = event.message || "检测到违规，请立即检查";
+    primaryCue.textContent = message;
+    secondaryCue.textContent = `耗时 ${processedMs ?? "—"} ms · 状态 ${event.status || "open"}`;
+    statusBadge.textContent = event.severity === "critical" ? "严重告警" : "已告警";
+    statusBadge.className = "pill " + (event.severity === "critical" ? "alert" : "warn");
+  }
+
   function stopCamera() {
+    stopFrameUpload();
     if (stream) {
       stream.getTracks().forEach((t) => t.stop());
       stream = null;

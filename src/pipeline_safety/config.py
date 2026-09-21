@@ -21,7 +21,13 @@ def load_config(path: str | Path) -> Dict[str, Any]:
 
     _validate(data)
     result = deepcopy(data)
-    project_root = config_path.parent.parent
+    # 配置文件路径可能是 config/safety/default.json（两层深），也可能在 config/ 根；
+    # 往上找到第一个含 src/ 的目录作为项目根。
+    project_root = config_path.parent
+    for _ in range(4):
+        if (project_root / "src").is_dir():
+            break
+        project_root = project_root.parent
     alerts = result["alerts"]
     for key in ("database", "snapshot_directory"):
         candidate = Path(str(alerts[key])).expanduser()
@@ -34,6 +40,12 @@ def load_config(path: str | Path) -> Dict[str, Any]:
         if not weights.is_absolute():
             weights = project_root / weights
         ppe["weights"] = str(weights.resolve())
+    model = result.get("model", {})
+    if model.get("weights"):
+        weights = Path(str(model["weights"])).expanduser()
+        if not weights.is_absolute():
+            weights = project_root / weights
+        model["weights"] = str(weights.resolve())
     return result
 
 
